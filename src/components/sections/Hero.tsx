@@ -14,7 +14,7 @@ interface Product {
   category: string;
   image: string;
   is_featured: boolean;
-  tiktok_url: string | null; // add this
+  tiktok_url: string | null;
 }
 
 export default function HeroSection() {
@@ -68,9 +68,16 @@ export default function HeroSection() {
           bottom: -60px; left: -60px; pointer-events: none; }
 
         /* ── Main grid ── */
-        .hs-grid { position: relative; z-index: 1; display: grid;
-          grid-template-columns: 1fr 1fr; min-height: 520px; max-width: 1320px;
-          margin: 0 auto; padding: 0 5vw; gap: 0; }
+        .hs-grid {
+          position: relative; z-index: 1;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          min-height: 520px;
+          max-width: 1320px;
+          margin: 0 auto;
+          padding: 0 5vw;
+          gap: 0;
+        }
 
         /* ── Left ── */
         .hs-left { display: flex; flex-direction: column; justify-content: center;
@@ -114,14 +121,14 @@ export default function HeroSection() {
           display: flex; align-items: center; gap: 5px; }
 
         /* ── Right panel ── */
-        .hs-right { position: relative; display: flex; align-items: stretch; }
+        .hs-right { position: relative; display: flex; align-items: stretch; overflow: hidden; }
 
         /* ── Image stage ── */
         .hs-stage { flex: 1; display: flex; flex-direction: column;
           align-items: center; justify-content: center;
-          padding: 3rem 0 3rem 3rem; position: relative; }
+          padding: 3rem 0 3rem 3rem; position: relative; min-width: 0; }
 
-        .hs-img-frame { position: relative; width: 100%; max-width: 420px;
+        .hs-img-frame { position: relative; width: 100%; max-width: 360px;
           aspect-ratio: 1; border-radius: 32px; background: white;
           border: 1px solid rgba(0,0,0,0.06); overflow: hidden;
           display: flex; align-items: center; justify-content: center;
@@ -146,7 +153,7 @@ export default function HeroSection() {
           cursor: pointer; transition: transform 0.15s, background 0.15s; padding: 0; }
 
         /* ── Product info strip ── */
-        .hs-product-strip { width: 100%; max-width: 420px; margin-top: 1rem;
+        .hs-product-strip { width: 100%; max-width: 360px; margin-top: 1rem;
           background: white; border: 1px solid rgba(0,0,0,0.07); border-radius: 20px;
           padding: 14px 18px; display: flex; align-items: center; gap: 12px; }
         .hs-strip-cat { font-size: 0.6rem; font-weight: 900; letter-spacing: 0.12em;
@@ -157,14 +164,15 @@ export default function HeroSection() {
         .hs-strip-price { font-size: 0.92rem; font-weight: 900; color: #FF6B35; margin: 0; }
 
         /* ── Skeleton ── */
-        .hs-skel { width: 100%; max-width: 420px; aspect-ratio: 1; border-radius: 32px;
+        .hs-skel { width: 100%; max-width: 360px; aspect-ratio: 1; border-radius: 32px;
           background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
           background-size: 200% 100%; animation: hsSkel 1.4s ease infinite; }
         @keyframes hsSkel { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
         /* ── Stats sidebar ── */
         .hs-stats-bar { display: flex; flex-direction: column; gap: 1rem;
-          justify-content: center; padding: 3rem 0 3rem 1.5rem; border-left: 1px solid rgba(0,0,0,0.07); }
+          justify-content: center; padding: 3rem 0 3rem 1.5rem;
+          border-left: 1px solid rgba(0,0,0,0.07); flex-shrink: 0; }
         .hs-stat-card { background: white; border: 1px solid rgba(0,0,0,0.07);
           border-radius: 16px; padding: 14px 16px; min-width: 90px; text-align: center; }
         .hs-stat-num { font-size: 1.1rem; font-weight: 900; color: #111827;
@@ -205,23 +213,80 @@ export default function HeroSection() {
           text-decoration: none; transition: opacity 0.2s; border: none; cursor: pointer; }
         .hs-tiktok-btn:hover { opacity: 0.85; }
 
-        /* ── Responsive ── */
-        @media (max-width: 960px) {
-          .hs-grid { grid-template-columns: 1fr; }
-          .hs-left { padding: 2.5rem 0 1.5rem; align-items: center; text-align: center; }
-          .hs-sub { text-align: center; }
+        /* ══════ RESPONSIVE ══════ */
+
+        /* Tablet: stack to single column */
+        @media (max-width: 860px) {
+          .hs-grid {
+            grid-template-columns: 1fr;
+            padding: 0 1.25rem;
+          }
+          .hs-left {
+            padding: 2.5rem 0 1rem;
+            align-items: center;
+            text-align: center;
+          }
+          .hs-sub { text-align: center; max-width: 100%; }
           .hs-pills { justify-content: center; }
           .hs-ctas { justify-content: center; }
           .hs-trust { justify-content: center; }
-          .hs-right { justify-content: center; }
-          .hs-stage { padding: 0 0 2.5rem; align-items: center; }
-          .hs-stats-bar { flex-direction: row; border-left: none;
-            border-top: 1px solid rgba(0,0,0,0.07); padding: 1.5rem 0 0; }
-          .hs-stat-card { flex: 1; }
+
+          /* Right: image + stats side by side on tablet */
+          .hs-right {
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 1.25rem;
+            padding-bottom: 2.5rem;
+          }
+          .hs-stage {
+            padding: 0;
+            align-items: center;
+            flex: 1;
+            min-width: 0;
+          }
+          .hs-stats-bar {
+            flex-direction: column;
+            border-left: 1px solid rgba(0,0,0,0.07);
+            border-top: none;
+            padding: 0 0 0 1.25rem;
+            justify-content: center;
+            flex-shrink: 0;
+          }
+          .hs-stat-card { min-width: 80px; }
         }
-        @media (max-width: 600px) {
-          .hs-headline { font-size: clamp(2rem, 9vw, 2.8rem); }
-          .hs-img-frame { border-radius: 22px; }
+
+        /* Mobile: fully stacked, stats go horizontal below image */
+        @media (max-width: 560px) {
+          .hs-grid { padding: 0 1rem; }
+          .hs-left { padding: 2rem 0 1rem; gap: 1.1rem; }
+          .hs-headline { font-size: clamp(2rem, 9vw, 2.6rem); }
+
+          .hs-right {
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+          }
+          .hs-stage { padding: 0; width: 100%; }
+          .hs-img-frame { max-width: 100%; border-radius: 22px; }
+          .hs-skel { max-width: 100%; border-radius: 22px; }
+          .hs-product-strip { max-width: 100%; }
+
+          /* Stats go horizontal row below image */
+          .hs-stats-bar {
+            flex-direction: row;
+            border-left: none;
+            border-top: 1px solid rgba(0,0,0,0.07);
+            padding: 1rem 0 0;
+            width: 100%;
+            justify-content: space-between;
+            gap: 0.75rem;
+          }
+          .hs-stat-card { flex: 1; min-width: 0; padding: 10px 8px; }
+          .hs-stat-num { font-size: 1rem; }
+          .hs-stat-lbl { font-size: 0.55rem; }
+
+          /* Modal */
           .hs-modal { flex-direction: column; border-radius: 20px; }
           .hs-modal-img { width: 100%; min-height: 220px; padding: 1.5rem; }
           .hs-modal-body { padding: 1.25rem 1.25rem 1.5rem; }
@@ -362,7 +427,6 @@ export default function HeroSection() {
                     <span className="hs-new-badge">NEW</span>
                   </div>
 
-                  {/* Selector dots */}
                   {products.length > 1 && (
                     <div className="hs-dots">
                       {products.map((_, i) => (
@@ -382,20 +446,8 @@ export default function HeroSection() {
                     </div>
                   )}
 
-                  {/* Name / price strip */}
                   <div className="hs-product-strip">
                     <span className="hs-strip-cat">{featured.category}</span>
-                    {/* <div style={{ flex: 1, minWidth: 0 }}>
-                      <p className="hs-strip-name">{featured.name}</p>
-                      {featured.price > 0 && (
-                        <p className="hs-strip-price">
-                          ₱
-                          {Number(featured.price).toLocaleString(undefined, {
-                            minimumFractionDigits: 2,
-                          })}
-                        </p>
-                      )}
-                    </div> */}
                     <button
                       onClick={() => setModalOpen(true)}
                       style={{
@@ -410,6 +462,7 @@ export default function HeroSection() {
                         fontSize: "0.78rem",
                         whiteSpace: "nowrap",
                         flexShrink: 0,
+                        marginLeft: "auto",
                       }}
                     >
                       View →
@@ -514,14 +567,6 @@ export default function HeroSection() {
             <div className="hs-modal-body">
               <span className="hs-modal-cat">{featured.category}</span>
               <h2 className="hs-modal-name">{featured.name}</h2>
-              {/* {featured.price > 0 && (
-                <p className="hs-modal-price">
-                  ₱
-                  {Number(featured.price)
-                    .toFixed(2)
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                </p>
-              )} */}
               <p className="hs-modal-desc">{featured.description}</p>
 
               <p className="hs-modal-shop-label">Available on</p>
