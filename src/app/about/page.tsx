@@ -121,7 +121,51 @@ export default function About() {
         .ab-body { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 5rem; display: flex; flex-direction: column; gap: 3rem; }
 
         .ab-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
-        .ab-intro-visual { background: #EDE8DF; border-radius: 24px; border: 1.5px solid #DDD8CF; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; padding: 2.5rem 1.5rem; }
+
+        /* ── IMAGE FIX ── */
+        .ab-intro-visual {
+          background: #EDE8DF;
+          border-radius: 24px;
+          border: 1.5px solid #DDD8CF;
+          overflow: hidden;
+          position: relative;
+          width: 100%;
+          min-height: 420px;   /* reliable fixed height instead of aspect-ratio */
+        }
+        .ab-intro-visual img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.5s ease;
+        }
+        .ab-intro-visual:hover img { transform: scale(1.04); }
+        .ab-intro-visual-overlay {
+          position: absolute;
+          bottom: 0; left: 0; right: 0;
+          background: linear-gradient(to top, rgba(26,26,26,0.7) 0%, transparent 100%);
+          padding: 1.5rem 1.25rem 1.25rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+        }
+        .ab-intro-visual-label {
+          font-family: 'Bricolage Grotesque', sans-serif;
+          font-weight: 800;
+          font-size: 1rem;
+          color: #FAF7F2;
+          letter-spacing: 0.05em;
+        }
+        .ab-intro-visual-sub {
+          font-size: 0.7rem;
+          color: rgba(250,247,242,0.7);
+          font-weight: 600;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+        }
 
         .ab-tagline { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; line-height: 1.15; color: #1A1A1A; margin-bottom: 1rem; }
         .ab-tagline span { color: #8C7355; }
@@ -153,13 +197,14 @@ export default function About() {
 
         @media (max-width: 860px) {
           .ab-intro { grid-template-columns: 1fr; }
-          .ab-intro-visual { display: none; }
+          .ab-intro-visual { min-height: 300px; }
           .ab-pillars { grid-template-columns: repeat(2, 1fr); }
           .ab-reviews { grid-template-columns: 1fr; }
         }
         @media (max-width: 500px) {
           .ab-body { padding: 2rem 1rem 4rem; }
           .ab-pillars { grid-template-columns: repeat(2, 1fr); }
+          .ab-intro-visual { min-height: 240px; }
         }
       `}</style>
 
@@ -262,90 +307,13 @@ export default function About() {
         <div className="ab-body">
           {/* Intro */}
           <div className="ab-intro ab-u d4">
+            {/* Product image */}
             <div className="ab-intro-visual">
-              <svg
-                width="90"
-                viewBox="0 0 90 180"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  x="20"
-                  y="10"
-                  width="50"
-                  height="8"
-                  rx="4"
-                  fill="#8C7355"
-                  opacity="0.9"
-                />
-                <path
-                  d="M18 18 L14 165 Q14 170 20 170 L70 170 Q76 170 76 165 L72 18 Z"
-                  fill="#FAF7F2"
-                  stroke="#8C7355"
-                  strokeWidth="2"
-                />
-                <path
-                  d="M22 18 L18 150 L72 150 L68 18 Z"
-                  fill="#EDE8DF"
-                  opacity="0.6"
-                />
-                <text
-                  x="45"
-                  y="105"
-                  textAnchor="middle"
-                  fontFamily="'Bricolage Grotesque',sans-serif"
-                  fontSize="14"
-                  fontWeight="800"
-                  fill="#8C7355"
-                >
-                  HILEE
-                </text>
-                <rect
-                  x="14"
-                  y="165"
-                  width="62"
-                  height="8"
-                  rx="4"
-                  fill="#8C7355"
-                  opacity="0.4"
-                />
-                <path
-                  d="M30 38 Q45 34 60 38"
-                  stroke="#8C7355"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  opacity="0.3"
-                />
-                <path
-                  d="M28 55 Q45 51 62 55"
-                  stroke="#8C7355"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  opacity="0.2"
-                />
-              </svg>
-              <div
-                style={{
-                  fontFamily: "'Bricolage Grotesque',sans-serif",
-                  fontWeight: 800,
-                  fontSize: "0.9rem",
-                  color: "#8C7355",
-                  letterSpacing: "0.05em",
-                  marginTop: "0.5rem",
-                }}
-              >
-                HILEE
-              </div>
-              <div
-                style={{
-                  fontSize: "0.7rem",
-                  color: "#aaa",
-                  fontWeight: 600,
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                }}
-              >
-                Premium Tumblers
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/about.jpg" alt="Hilee Premium Tumbler" />
+              <div className="ab-intro-visual-overlay">
+                <div className="ab-intro-visual-label">HILEE</div>
+                <div className="ab-intro-visual-sub">Premium Tumblers</div>
               </div>
             </div>
 

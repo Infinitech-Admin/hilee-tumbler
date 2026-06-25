@@ -16,7 +16,7 @@ import {
   Package,
 } from "lucide-react";
 import Image from "next/image";
-import GoogleTranslate from "@/components/googleTranslate";
+// import GoogleTranslate from "@/components/googleTranslate";
 import { useCartStore } from "@/store/cartStore";
 import { useAuthStore } from "@/store/authStore";
 
@@ -172,7 +172,7 @@ const Header = () => {
           {/* Right side actions */}
           <div className="flex items-center gap-2 sm:gap-3">
             {/* Install button - Desktop only */}
-            {showInstallButton && (
+            {/* {showInstallButton && (
               <Button
                 variant="outline"
                 size="sm"
@@ -182,15 +182,13 @@ const Header = () => {
                 <Download className="h-3 w-3" />
                 <span>Install</span>
               </Button>
-            )}
+            )} */}
 
             {/* Google Translate - Desktop only */}
-            <div className="hidden md:block">
-              <GoogleTranslate />
-            </div>
+            <div className="hidden md:block">{/* <GoogleTranslate /> */}</div>
 
             {/* Cart Button - Desktop only, logged in */}
-            {user && (
+            {/* {user && (
               <Link href="/cart" className="hidden md:block">
                 <Button
                   variant="outline"
@@ -206,7 +204,7 @@ const Header = () => {
                   )}
                 </Button>
               </Link>
-            )}
+            )} */}
 
             {user ? (
               <div className="relative group">
@@ -235,7 +233,7 @@ const Header = () => {
                     </p>
                   </div>
 
-                  <Link
+                  {/* <Link
                     href="/profile"
                     onClick={() => setIsDropdownOpen(false)}
                     className="block"
@@ -244,14 +242,14 @@ const Header = () => {
                       <User className="h-4 w-4" />
                       <span className="text-sm font-medium">Profile</span>
                     </div>
-                  </Link>
+                  </Link> */}
 
-                  <Link
+                  {/* <Link
                     href="/cart"
                     onClick={() => setIsDropdownOpen(false)}
                     className="block"
-                  >
-                    <div className="flex items-center justify-between px-4 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors cursor-pointer">
+                  > */}
+                  {/* <div className="flex items-center justify-between px-4 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors cursor-pointer">
                       <div className="flex items-center space-x-3">
                         <ShoppingCart className="h-4 w-4" />
                         <span className="text-sm font-medium">Cart</span>
@@ -262,18 +260,18 @@ const Header = () => {
                         </Badge>
                       )}
                     </div>
-                  </Link>
+                  </Link> */}
 
-                  <Link
+                  {/* <Link
                     href="/orders"
                     onClick={() => setIsDropdownOpen(false)}
                     className="block"
-                  >
-                    <div className="flex items-center space-x-3 px-4 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors cursor-pointer">
+                  > */}
+                  {/* <div className="flex items-center space-x-3 px-4 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors cursor-pointer">
                       <Package className="h-4 w-4" />
                       <span className="text-sm font-medium">Orders</span>
                     </div>
-                  </Link>
+                  </Link> */}
 
                   <div className="border-t border-gray-100 mt-2 pt-2">
                     <button
@@ -350,9 +348,9 @@ const Header = () => {
 
                   {/* Mobile Menu Content */}
                   <div className="flex-1 overflow-y-auto py-4">
-                    <div className="px-4 pb-4 border-b border-gray-100">
+                    {/* <div className="px-4 pb-4 border-b border-gray-100">
                       <GoogleTranslate />
-                    </div>
+                    </div> */}
 
                     <nav className="py-2">
                       <div className="space-y-1 px-2">
