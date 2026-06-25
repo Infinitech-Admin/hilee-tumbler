@@ -478,12 +478,12 @@ export default function ProductSection() {
                           {product.name}
                         </h3>
 
-                        <div className="ps-price" style={{ color: accent }}>
+                        {/* <div className="ps-price" style={{ color: accent }}>
                           ₱
                           {Number(product.price).toLocaleString("en-PH", {
                             minimumFractionDigits: 2,
                           })}
-                        </div>
+                        </div> */}
                       </div>
 
                       {/* TikTok shop link */}
@@ -635,7 +635,7 @@ export default function ProductSection() {
                 {selected.name}
               </h2>
 
-              <div
+              {/* <div
                 className="ps-disp"
                 style={{
                   fontSize: "2rem",
@@ -648,7 +648,7 @@ export default function ProductSection() {
                 {Number(selected.price).toLocaleString("en-PH", {
                   minimumFractionDigits: 2,
                 })}
-              </div>
+              </div> */}
 
               <div
                 style={{

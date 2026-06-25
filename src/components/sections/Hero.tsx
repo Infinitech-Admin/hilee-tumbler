@@ -385,7 +385,7 @@ export default function HeroSection() {
                   {/* Name / price strip */}
                   <div className="hs-product-strip">
                     <span className="hs-strip-cat">{featured.category}</span>
-                    <div style={{ flex: 1, minWidth: 0 }}>
+                    {/* <div style={{ flex: 1, minWidth: 0 }}>
                       <p className="hs-strip-name">{featured.name}</p>
                       {featured.price > 0 && (
                         <p className="hs-strip-price">
@@ -395,7 +395,7 @@ export default function HeroSection() {
                           })}
                         </p>
                       )}
-                    </div>
+                    </div> */}
                     <button
                       onClick={() => setModalOpen(true)}
                       style={{
@@ -514,14 +514,14 @@ export default function HeroSection() {
             <div className="hs-modal-body">
               <span className="hs-modal-cat">{featured.category}</span>
               <h2 className="hs-modal-name">{featured.name}</h2>
-              {featured.price > 0 && (
+              {/* {featured.price > 0 && (
                 <p className="hs-modal-price">
                   ₱
                   {Number(featured.price)
                     .toFixed(2)
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 </p>
-              )}
+              )} */}
               <p className="hs-modal-desc">{featured.description}</p>
 
               <p className="hs-modal-shop-label">Available on</p>

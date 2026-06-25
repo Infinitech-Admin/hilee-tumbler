@@ -302,7 +302,7 @@ export default function MenuItemCard({ item, index = 0 }: MenuItemCardProps) {
                     {categoryStyle.label}
                   </div>
                   <h3 className="mc-name">{item.name}</h3>
-                  <div className="mc-price">₱{formatPrice(item.price)}</div>
+                  {/* <div className="mc-price">₱{formatPrice(item.price)}</div> */}
                 </div>
               </DialogTrigger>
 
@@ -443,7 +443,7 @@ export default function MenuItemCard({ item, index = 0 }: MenuItemCardProps) {
 
             <div style={{ height: "1px", background: "#F3F4F6" }} />
 
-            <div>
+            {/* <div>
               <div
                 style={{
                   fontSize: "0.6rem",
@@ -468,7 +468,7 @@ export default function MenuItemCard({ item, index = 0 }: MenuItemCardProps) {
               >
                 ₱{formatPrice(item.price)}
               </div>
-            </div>
+            </div> */}
 
             <div
               style={{
