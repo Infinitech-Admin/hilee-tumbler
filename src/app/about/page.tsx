@@ -1,0 +1,427 @@
+"use client";
+
+import { useState, useEffect } from "react";
+
+export default function About() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{ background: "#FAF7F2" }}
+      ></div>
+    );
+  }
+
+  const pillars = [
+    {
+      num: "01",
+      name: "Double-wall vacuum",
+      desc: "Ice cold for 24 hours. Hot drinks stay warm for 12.",
+    },
+    {
+      num: "02",
+      name: "Food-grade stainless",
+      desc: "Pure taste, zero plastic. Safe and built to last.",
+    },
+    {
+      num: "03",
+      name: "100% BPA free",
+      desc: "No harmful chemicals. Just clean, safe hydration.",
+    },
+    {
+      num: "04",
+      name: "Drop-tough build",
+      desc: "Durable design backed by a lifetime warranty.",
+    },
+  ];
+
+  const reviews = [
+    {
+      stars: "★★★★★",
+      text: "My iced coffee was still cold after 8 hours. I've tried a lot of tumblers — this one actually delivers.",
+      name: "Maria L.",
+    },
+    {
+      stars: "★★★★★",
+      text: "Solid, sleek, and the lid has never once leaked on me. It's become my everyday essential.",
+      name: "Anna R.",
+    },
+    {
+      stars: "★★★★★",
+      text: "Brought it to a full-day event and my drink stayed cold the whole time. Absolutely worth it.",
+      name: "Joy P.",
+    },
+  ];
+
+  const tickerItems = [
+    "HILEE TUMBLERS",
+    "STAY COLD ALL DAY",
+    "BUILT TO LAST",
+    "BPA FREE",
+    "PREMIUM DRINKWARE",
+    "NATIONWIDE SHIPPING",
+    "HILEE TUMBLERS",
+    "STAY COLD ALL DAY",
+    "BUILT TO LAST",
+    "BPA FREE",
+    "PREMIUM DRINKWARE",
+    "NATIONWIDE SHIPPING",
+  ];
+
+  const tickerColors = [
+    "#8C7355",
+    "#A89070",
+    "#C4AA8A",
+    "#6B5E4A",
+    "#D4C4A8",
+    "#9E8868",
+  ];
+
+  const trustItems = [
+    { e: "🚚", t: "Free Shipping" },
+    { e: "↩️", t: "30-Day Returns" },
+    { e: "🏆", t: "Lifetime Warranty" },
+    { e: "✅", t: "100% BPA Free" },
+    { e: "🧊", t: "24H Ice Cold" },
+  ];
+
+  return (
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Nunito:wght@300;400;600;700;800&display=swap');
+
+        .ab { font-family: 'Nunito', sans-serif; background: #FAF7F2; color: #1A1A1A; min-height: 100vh; }
+        .ab * { box-sizing: border-box; }
+        .ab-h { font-family: 'Bricolage Grotesque', sans-serif; }
+
+        @keyframes ab-tick { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+        .ab-ticker { background: #EDE8DF; border-bottom: 2px solid rgba(0,0,0,0.05); height: 40px; overflow: hidden; display: flex; align-items: center; }
+        .ab-tick-track { display: flex; width: max-content; animation: ab-tick 28s linear infinite; }
+        .ab-tick-item { display: flex; align-items: center; gap: 1.25rem; padding: 0 1.75rem; white-space: nowrap; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.25em; text-transform: uppercase; color: #5C4F3A; }
+        .ab-tick-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+
+        @keyframes ab-up { from { opacity: 0; transform: translateY(28px) } to { opacity: 1; transform: none } }
+        .ab-u { animation: ab-up 0.85s cubic-bezier(.22,1,.36,1) both; }
+        .d1 { animation-delay: .06s } .d2 { animation-delay: .18s }
+        .d3 { animation-delay: .3s  } .d4 { animation-delay: .44s }
+        .d5 { animation-delay: .56s } .d6 { animation-delay: .68s }
+
+        @keyframes ab-float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-7px) } }
+        .ab-badge { display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; animation: ab-float 4s ease-in-out infinite; }
+
+        .ab-hero { background: #FAF7F2; padding: 4rem 2rem 3rem; text-align: center; border-bottom: 1.5px solid rgba(0,0,0,0.06); }
+
+        .ab-body { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 5rem; display: flex; flex-direction: column; gap: 3rem; }
+
+        .ab-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+        .ab-intro-visual { background: #EDE8DF; border-radius: 24px; border: 1.5px solid #DDD8CF; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; padding: 2.5rem 1.5rem; }
+
+        .ab-tagline { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; line-height: 1.15; color: #1A1A1A; margin-bottom: 1rem; }
+        .ab-tagline span { color: #8C7355; }
+        .ab-body-text { font-size: 0.9rem; color: #666; font-weight: 500; line-height: 1.8; }
+
+        .ab-section-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.3rem; color: #1A1A1A; text-align: center; margin-bottom: 1.5rem; }
+
+        .ab-pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+        .ab-pillar { background: #FAF7F2; border-radius: 20px; border: 1.5px solid #DDD8CF; padding: 1.5rem 1rem; text-align: center; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .ab-pillar:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.07); }
+        .ab-pillar-num { font-family: 'Bricolage Grotesque', sans-serif; font-size: 2rem; font-weight: 800; color: #8C7355; line-height: 1; margin-bottom: 0.5rem; }
+        .ab-pillar-name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 0.85rem; color: #1A1A1A; margin-bottom: 0.3rem; }
+        .ab-pillar-desc { font-size: 0.75rem; color: #888; font-weight: 500; line-height: 1.5; }
+
+        .ab-reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .ab-review { background: #FAF7F2; border-radius: 20px; border: 1.5px solid #DDD8CF; padding: 1.25rem; }
+        .ab-review-stars { color: #8C7355; font-size: 0.8rem; margin-bottom: 0.75rem; letter-spacing: 0.1em; }
+        .ab-review-text { font-size: 0.82rem; color: #555; font-weight: 500; line-height: 1.7; margin-bottom: 0.75rem; font-style: italic; }
+        .ab-review-name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 0.78rem; color: #1A1A1A; }
+
+        .ab-promise { background: #EDE8DF; border-radius: 24px; padding: 2.5rem 2rem; text-align: center; border: 1.5px solid #DDD8CF; }
+        .ab-promise-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.6rem; color: #1A1A1A; margin-bottom: 0.75rem; }
+        .ab-promise-sub { font-size: 0.9rem; color: #6B5E4A; font-weight: 500; line-height: 1.7; max-width: 50ch; margin: 0 auto 1.5rem; }
+        .ab-promise-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #1A1A1A; color: #FAF7F2; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; border: none; border-radius: 999px; padding: 0.7rem 1.75rem; cursor: pointer; transition: filter 0.2s, transform 0.15s; }
+        .ab-promise-btn:hover { filter: brightness(1.3); transform: translateY(-1px); }
+
+        .ab-trust { display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; padding: 1.75rem 2rem; border-top: 1.5px dashed #DDD8CF; }
+        .ab-trust-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 700; color: #bbb; }
+
+        @media (max-width: 860px) {
+          .ab-intro { grid-template-columns: 1fr; }
+          .ab-intro-visual { display: none; }
+          .ab-pillars { grid-template-columns: repeat(2, 1fr); }
+          .ab-reviews { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 500px) {
+          .ab-body { padding: 2rem 1rem 4rem; }
+          .ab-pillars { grid-template-columns: repeat(2, 1fr); }
+        }
+      `}</style>
+
+      <div className="ab">
+        {/* Ticker */}
+        <div className="ab-ticker">
+          <div className="ab-tick-track">
+            {tickerItems.map((t, i) => (
+              <div key={i} className="ab-tick-item">
+                <span
+                  className="ab-tick-dot"
+                  style={{ background: tickerColors[i % 6] }}
+                />
+                {t}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Hero */}
+        <div className="ab-hero">
+          <div
+            className="ab-u d1"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.6rem",
+              flexWrap: "wrap",
+              marginBottom: "1.25rem",
+            }}
+          >
+            <span
+              className="ab-badge"
+              style={{
+                background: "#EDE8DF",
+                border: "1.5px solid #C4B89A",
+                color: "#6B5E4A",
+                animationDelay: "0s",
+              }}
+            >
+              🧊 Stay Cold. Stay Bold.
+            </span>
+            <span
+              className="ab-badge"
+              style={{
+                background: "#E8E0D0",
+                border: "1.5px solid #C4B89A",
+                color: "#7A6A52",
+                animationDelay: "0.7s",
+              }}
+            >
+              ⭐ Trusted Brand
+            </span>
+            <span
+              className="ab-badge"
+              style={{
+                background: "#F0EBE0",
+                border: "1.5px solid #C4B89A",
+                color: "#8C7355",
+                animationDelay: "1.3s",
+              }}
+            >
+              ✅ 100% BPA Free
+            </span>
+          </div>
+
+          <div className="ab-u d2" style={{ marginBottom: "0.75rem" }}>
+            <h1
+              className="ab-h"
+              style={{
+                fontSize: "clamp(3.2rem,8vw,6.5rem)",
+                fontWeight: 800,
+                lineHeight: 0.92,
+                letterSpacing: "-0.025em",
+                margin: 0,
+                color: "#1A1A1A",
+              }}
+            >
+              Our Story
+            </h1>
+          </div>
+
+          <p
+            className="ab-u d3"
+            style={{
+              fontSize: "1rem",
+              lineHeight: 1.75,
+              color: "#888",
+              maxWidth: "42ch",
+              margin: "0 auto",
+              fontWeight: 400,
+            }}
+          >
+            Built for the ones who never stop — sip by sip.
+          </p>
+        </div>
+
+        {/* Body */}
+        <div className="ab-body">
+          {/* Intro */}
+          <div className="ab-intro ab-u d4">
+            <div className="ab-intro-visual">
+              <svg
+                width="90"
+                viewBox="0 0 90 180"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="20"
+                  y="10"
+                  width="50"
+                  height="8"
+                  rx="4"
+                  fill="#8C7355"
+                  opacity="0.9"
+                />
+                <path
+                  d="M18 18 L14 165 Q14 170 20 170 L70 170 Q76 170 76 165 L72 18 Z"
+                  fill="#FAF7F2"
+                  stroke="#8C7355"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M22 18 L18 150 L72 150 L68 18 Z"
+                  fill="#EDE8DF"
+                  opacity="0.6"
+                />
+                <text
+                  x="45"
+                  y="105"
+                  textAnchor="middle"
+                  fontFamily="'Bricolage Grotesque',sans-serif"
+                  fontSize="14"
+                  fontWeight="800"
+                  fill="#8C7355"
+                >
+                  HILEE
+                </text>
+                <rect
+                  x="14"
+                  y="165"
+                  width="62"
+                  height="8"
+                  rx="4"
+                  fill="#8C7355"
+                  opacity="0.4"
+                />
+                <path
+                  d="M30 38 Q45 34 60 38"
+                  stroke="#8C7355"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  opacity="0.3"
+                />
+                <path
+                  d="M28 55 Q45 51 62 55"
+                  stroke="#8C7355"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  opacity="0.2"
+                />
+              </svg>
+              <div
+                style={{
+                  fontFamily: "'Bricolage Grotesque',sans-serif",
+                  fontWeight: 800,
+                  fontSize: "0.9rem",
+                  color: "#8C7355",
+                  letterSpacing: "0.05em",
+                  marginTop: "0.5rem",
+                }}
+              >
+                HILEE
+              </div>
+              <div
+                style={{
+                  fontSize: "0.7rem",
+                  color: "#aaa",
+                  fontWeight: 600,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                }}
+              >
+                Premium Tumblers
+              </div>
+            </div>
+
+            <div>
+              <h2 className="ab-tagline">
+                Crafted for the <span>Way You Live.</span>
+              </h2>
+              <p className="ab-body-text">
+                Hilee was born from a simple frustration — drinkware that looks
+                good but falls short when it matters. Drinks that go warm too
+                fast. Lids that leak. Tumblers that dent on the first drop.
+                <br />
+                <br />
+                So we built something better. Hilee tumblers are designed for
+                real life — whether you&apos;re rushing to work, hitting the
+                gym, or just getting through the day. Double-wall vacuum
+                insulation keeps your drinks ice cold for up to 24 hours and hot
+                for 12. Food-grade stainless steel means no unwanted taste, no
+                compromise. Every detail, from lid to base, is made to hold up —
+                and look great doing it.
+                <br />
+                <br />
+                Premium hydration shouldn&apos;t be a luxury. At Hilee, we make
+                sure it isn&apos;t.
+              </p>
+            </div>
+          </div>
+
+          {/* Pillars */}
+          <div className="ab-u d5">
+            <div className="ab-section-title">What Makes Hilee Different</div>
+            <div className="ab-pillars">
+              {pillars.map((p) => (
+                <div key={p.num} className="ab-pillar">
+                  <div className="ab-pillar-num">{p.num}</div>
+                  <div className="ab-pillar-name">{p.name}</div>
+                  <div className="ab-pillar-desc">{p.desc}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Reviews */}
+          <div className="ab-u d6">
+            <div className="ab-section-title">What Our Customers Say</div>
+            <div className="ab-reviews">
+              {reviews.map((r) => (
+                <div key={r.name} className="ab-review">
+                  <div className="ab-review-stars">{r.stars}</div>
+                  <div className="ab-review-text">&ldquo;{r.text}&rdquo;</div>
+                  <div className="ab-review-name">— {r.name}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Promise CTA */}
+          <div className="ab-promise ab-u d6">
+            <div className="ab-promise-title">Your Drink. Our Commitment.</div>
+            <div className="ab-promise-sub">
+              Every Hilee tumbler ships with a lifetime warranty, because we
+              stand behind every sip. Built for you, built to last.
+            </div>
+            <button className="ab-promise-btn">Shop Hilee Tumblers →</button>
+          </div>
+
+          {/* Trust strip */}
+          <div className="ab-trust">
+            {trustItems.map((x) => (
+              <span key={x.t} className="ab-trust-item">
+                <span>{x.e}</span> {x.t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
