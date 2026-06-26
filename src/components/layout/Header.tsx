@@ -331,7 +331,7 @@ const Header = () => {
                     </div>
                   </div>
 
-                  {showInstallButton && (
+                  {/* {showInstallButton && (
                     <div className="px-4 py-3 bg-gray-50 border-b border-gray-100">
                       <Button
                         onClick={() => {
@@ -344,7 +344,7 @@ const Header = () => {
                         <span>Install App</span>
                       </Button>
                     </div>
-                  )}
+                  )} */}
 
                   {/* Mobile Menu Content */}
                   <div className="flex-1 overflow-y-auto py-4">
@@ -376,7 +376,7 @@ const Header = () => {
                   <div className="border-t border-gray-100 p-4 space-y-3">
                     {user ? (
                       <>
-                        <Link href="/orders" onClick={() => setIsOpen(false)}>
+                        {/* <Link href="/orders" onClick={() => setIsOpen(false)}>
                           <div className="flex items-center space-x-3 px-3 py-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
                             <Package className="h-5 w-5 text-gray-600 flex-shrink-0" />
                             <div className="flex-1 min-w-0">
@@ -388,9 +388,9 @@ const Header = () => {
                               </p>
                             </div>
                           </div>
-                        </Link>
+                        </Link> */}
 
-                        <Link href="/cart" onClick={() => setIsOpen(false)}>
+                        {/* <Link href="/cart" onClick={() => setIsOpen(false)}>
                           <div className="flex items-center justify-between px-3 py-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
                             <div className="flex items-center space-x-3">
                               <ShoppingCart className="h-5 w-5 text-gray-600 flex-shrink-0" />
@@ -409,7 +409,7 @@ const Header = () => {
                               </Badge>
                             )}
                           </div>
-                        </Link>
+                        </Link> */}
 
                         <div className="px-3 py-3 bg-gray-50 rounded-lg">
                           <p className="text-sm font-medium text-gray-800 mb-1">
