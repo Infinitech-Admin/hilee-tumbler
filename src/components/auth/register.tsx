@@ -1,16 +1,28 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { User, Mail, Lock, Eye, EyeOff, Phone, MapPin, Building, Hash, UserPlus, CircleChevronLeft } from "lucide-react"
-import { useRouter } from "next/navigation"
-import Link from "next/link"
-import { Toaster } from "@/components/ui/sonner"
-import { toast } from "sonner"
+import type React from "react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  User,
+  Mail,
+  Lock,
+  Eye,
+  EyeOff,
+  Phone,
+  MapPin,
+  Building,
+  Hash,
+  UserPlus,
+  CircleChevronLeft,
+} from "lucide-react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { Toaster } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -22,162 +34,257 @@ export default function RegisterPage() {
     zip_code: "",
     password: "",
     password_confirmation: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const router = useRouter()
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const router = useRouter();
 
   const handleInputChange = (field: keyof typeof formData, value: string) => {
     if (field === "phone") {
-      const numbersOnly = value.replace(/\D/g, "")
-      setFormData((prev) => ({ ...prev, [field]: numbersOnly }))
-      return
+      setFormData((prev) => ({ ...prev, [field]: value.replace(/\D/g, "") }));
+      return;
     }
-    setFormData((prev) => ({ ...prev, [field]: value }))
-  }
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!formData.name || !formData.email || !formData.password || !formData.password_confirmation) {
+    e.preventDefault();
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.password ||
+      !formData.password_confirmation
+    ) {
       toast.error("Missing Information", {
         description: "Please fill in all required fields.",
-      })
-      return
+      });
+      return;
     }
-
     if (formData.password !== formData.password_confirmation) {
       toast.error("Password Mismatch", {
-        description: "Passwords do not match. Please check and try again.",
-      })
-      return
+        description: "Passwords do not match.",
+      });
+      return;
     }
-
     if (formData.password.length < 8) {
       toast.error("Password Too Short", {
-        description: "Password must be at least 8 characters long.",
-      })
-      return
+        description: "Password must be at least 8 characters.",
+      });
+      return;
     }
-
     if (formData.phone && formData.phone.length !== 11) {
       toast.error("Invalid Phone Number", {
         description: "Phone number must be exactly 11 digits.",
-      })
-      return
+      });
+      return;
     }
-
-    setIsSubmitting(true)
-
+    setIsSubmitting(true);
     try {
       const response = await fetch("/api/auth/register", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
-      })
-
-      const data = await response.json()
-
+      });
+      const data = await response.json();
       if (data.success) {
         toast.success("Registration Successful!", {
           description: "Please check your email to verify your account.",
           duration: 5000,
-        })
-
-        setTimeout(() => {
-          router.push("/login")
-        }, 2000)
+        });
+        setTimeout(() => router.push("/login"), 2000);
       } else {
         toast.error("Registration Failed", {
           description: data.message || "Registration failed. Please try again.",
-        })
+        });
       }
     } catch (error) {
-      console.error("Registration error:", error)
       toast.error("Connection Error", {
-        description: "Unable to register. Please check your connection and try again.",
-      })
+        description: "Unable to register. Please check your connection.",
+      });
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
+
+  const fieldStyle = {
+    height: 48,
+    border: "1.5px solid #DDD8CF",
+    borderRadius: 10,
+    background: "#FFFFFF",
+    color: "#2E2419",
+    fontSize: "0.9rem",
+  };
+  const labelStyle = {
+    display: "flex",
+    alignItems: "center",
+    gap: "0.4rem",
+    fontSize: "0.75rem",
+    fontWeight: 700,
+    color: "#2E2419",
+    letterSpacing: "0.05em",
+    textTransform: "uppercase" as const,
+    marginBottom: "0.5rem",
+  };
 
   return (
     <>
-      <div className="relative min-h-screen bg-gradient-to-b from-purple-800 via-purple-900 to-purple-800 overflow-y-auto">
-        {/* Soft floating blobs */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-pink-300 rounded-full blur-3xl opacity-30 animate-blob pointer-events-none"></div>
-        <div className="absolute top-40 right-10 w-72 h-72 bg-purple-300 rounded-full blur-3xl opacity-30 animate-blob animation-delay-2000 pointer-events-none"></div>
-        <div className="absolute -bottom-10 left-1/2 w-72 h-72 bg-blue-300 rounded-full blur-3xl opacity-30 animate-blob animation-delay-4000 pointer-events-none"></div>
-
-        <style>{`
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap');
         @keyframes blob {
           0%,100% { transform: translate(0,0) scale(1); }
           33% { transform: translate(30px,-50px) scale(1.1); }
           66% { transform: translate(-20px,20px) scale(0.9); }
         }
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
-        .animation-delay-4000 { animation-delay: 4s; }
+        .hilee-blob { animation: blob 7s infinite; }
+        .hilee-blob-2 { animation-delay: 2s; }
+        .hilee-blob-3 { animation-delay: 4s; }
+        .hilee-input:focus {
+          border-color: #FF6B35 !important;
+          box-shadow: 0 0 0 3px rgba(255,107,53,0.12) !important;
+          outline: none !important;
+        }
+        .hilee-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(255,107,53,0.45) !important; }
       `}</style>
 
-        <div className="min-h-screen flex justify-center px-4 py-8 md:py-12">
-          <Card className="w-full max-w-xl md:max-w-2xl lg:max-w-3xl bg-white shadow-2xl border-4 border-purple-400 overflow-hidden !p-0">
-            <CardHeader className="text-center bg-gradient-to-r from-purple-500 to-purple-500 rounded-t-lg px-6 py-4 !m-0 p-2">
-              <div className="relative flex items-center py-2">
-                <Link href="/" className="absolute left-0">
-                  <CircleChevronLeft className="w-7 h-7 text-white mx-5" />
-                </Link>
-                <h2 className="mx-auto text-3xl md:text-4xl text-white font-bold">
-                  Register
-                </h2>
+      <div
+        className="relative min-h-screen overflow-y-auto"
+        style={{
+          background:
+            "linear-gradient(160deg, #2E2419 0%, #4A3728 40%, #2E2419 100%)",
+        }}
+      >
+        <div
+          className="hilee-blob absolute top-16 left-8 w-80 h-80 rounded-full pointer-events-none"
+          style={{ background: "#E9DCC8", filter: "blur(80px)", opacity: 0.18 }}
+        />
+        <div
+          className="hilee-blob hilee-blob-2 absolute top-1/3 right-8 w-72 h-72 rounded-full pointer-events-none"
+          style={{ background: "#FF6B35", filter: "blur(80px)", opacity: 0.18 }}
+        />
+        <div
+          className="hilee-blob hilee-blob-3 absolute bottom-12 left-1/2 w-64 h-64 rounded-full pointer-events-none"
+          style={{ background: "#C4AA8A", filter: "blur(80px)", opacity: 0.18 }}
+        />
+
+        <div className="min-h-screen flex justify-center px-4 py-10 relative z-10">
+          <Card
+            className="w-full max-w-2xl !p-0 overflow-hidden h-fit"
+            style={{
+              background: "#FAF7F2",
+              border: "1.5px solid #DDD8CF",
+              borderRadius: "24px",
+            }}
+          >
+            <CardHeader className="!p-0 !m-0">
+              <div
+                style={{
+                  background:
+                    "linear-gradient(135deg, #2E2419 0%, #4A3728 100%)",
+                  borderBottom: "2px solid #FF6B35",
+                  padding: "1.75rem 2rem 1.5rem",
+                }}
+              >
+                <div className="flex items-center gap-3 mb-1">
+                  <Link
+                    href="/"
+                    style={{
+                      width: 32,
+                      height: 32,
+                      borderRadius: "50%",
+                      border: "1.5px solid rgba(233,220,200,0.3)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#E9DCC8",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <CircleChevronLeft className="w-5 h-5" />
+                  </Link>
+                  <h2
+                    style={{
+                      fontFamily: "'Bricolage Grotesque', sans-serif",
+                      fontSize: "1.9rem",
+                      fontWeight: 800,
+                      color: "#FAF7F2",
+                      letterSpacing: "-0.02em",
+                      lineHeight: 1,
+                    }}
+                  >
+                    Create account
+                  </h2>
+                </div>
+                <p
+                  style={{
+                    fontSize: "0.75rem",
+                    color: "rgba(233,220,200,0.6)",
+                    fontWeight: 600,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    paddingLeft: 44,
+                  }}
+                >
+                  Get the latest updates and discounts
+                </p>
               </div>
-              <p className="text-white/90 mt-2">Get the latest updates and discounts!</p>
             </CardHeader>
-            <CardContent className="p-6">
-              <form onSubmit={handleSubmit} className="space-y-6">
+
+            <CardContent style={{ padding: "1.75rem 2rem" }}>
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="name" className="text-black font-semibold flex items-center gap-2 mb-2">
-                      <User className="w-4 h-4 text-purple-500" />
-                      Full Name *
+                    <Label htmlFor="name" style={labelStyle}>
+                      <User
+                        className="w-3.5 h-3.5"
+                        style={{ color: "#FF6B35" }}
+                      />{" "}
+                      Full name *
                     </Label>
                     <Input
                       id="name"
                       value={formData.name}
-                      onChange={(e) => handleInputChange("name", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("name", e.target.value)
+                      }
                       placeholder="Enter your full name"
                       required
-                      className="border-2 border-purple-300 bg-white text-black placeholder:text-gray-400 focus:border-purple-500 focus:ring-purple-400/30 h-12 text-base"
                       disabled={isSubmitting}
+                      className="hilee-input"
+                      style={fieldStyle}
                     />
                   </div>
-
                   <div>
-                    <Label htmlFor="email" className="text-black font-semibold flex items-center gap-2 mb-2">
-                      <Mail className="w-4 h-4 text-purple-500" />
-                      Email Address
+                    <Label htmlFor="email" style={labelStyle}>
+                      <Mail
+                        className="w-3.5 h-3.5"
+                        style={{ color: "#FF6B35" }}
+                      />{" "}
+                      Email address
                     </Label>
                     <Input
                       id="email"
                       type="email"
                       value={formData.email}
-                      onChange={(e) => handleInputChange("email", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("email", e.target.value)
+                      }
                       placeholder="your@email.com"
                       required
-                      className="border-2 border-purple-300 bg-white text-black placeholder:text-gray-400 focus:border-purple-500 focus:ring-purple-400/30 h-12 text-base"
                       disabled={isSubmitting}
+                      className="hilee-input"
+                      style={fieldStyle}
                     />
                   </div>
                 </div>
 
                 <div>
-                  <Label htmlFor="phone" className="text-black font-semibold flex items-center gap-2 mb-2">
-                    <Phone className="w-4 h-4 text-purple-500" />
-                    Phone Number
+                  <Label htmlFor="phone" style={labelStyle}>
+                    <Phone
+                      className="w-3.5 h-3.5"
+                      style={{ color: "#FF6B35" }}
+                    />{" "}
+                    Phone number
                   </Label>
                   <Input
                     id="phone"
@@ -186,62 +293,83 @@ export default function RegisterPage() {
                     onChange={(e) => handleInputChange("phone", e.target.value)}
                     placeholder="09123456789 (11 digits)"
                     maxLength={11}
-                    className="border-2 border-purple-300 bg-white text-black placeholder:text-gray-400 focus:border-purple-500 focus:ring-purple-400/30 h-12 text-base"
                     disabled={isSubmitting}
+                    className="hilee-input"
+                    style={fieldStyle}
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="address" className="text-black font-semibold flex items-center gap-2 mb-2">
-                    <MapPin className="w-4 h-4 text-purple-500" />
+                  <Label htmlFor="address" style={labelStyle}>
+                    <MapPin
+                      className="w-3.5 h-3.5"
+                      style={{ color: "#FF6B35" }}
+                    />{" "}
                     Address
                   </Label>
                   <Input
                     id="address"
                     value={formData.address}
-                    onChange={(e) => handleInputChange("address", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("address", e.target.value)
+                    }
                     placeholder="Enter your address"
-                    className="border-2 border-purple-300 bg-white text-black placeholder:text-gray-400 focus:border-purple-500 focus:ring-purple-400/30 h-12 text-base"
                     disabled={isSubmitting}
+                    className="hilee-input"
+                    style={fieldStyle}
                   />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="city" className="text-black font-semibold flex items-center gap-2 mb-2">
-                      <Building className="w-4 h-4 text-purple-500" />
+                    <Label htmlFor="city" style={labelStyle}>
+                      <Building
+                        className="w-3.5 h-3.5"
+                        style={{ color: "#FF6B35" }}
+                      />{" "}
                       City
                     </Label>
                     <Input
                       id="city"
                       value={formData.city}
-                      onChange={(e) => handleInputChange("city", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("city", e.target.value)
+                      }
                       placeholder="Enter your city"
-                      className="border-2 border-purple-300 bg-white text-black placeholder:text-gray-400 focus:border-purple-500 focus:ring-purple-400/30 h-12 text-base"
                       disabled={isSubmitting}
+                      className="hilee-input"
+                      style={fieldStyle}
                     />
                   </div>
-
                   <div>
-                    <Label htmlFor="zip_code" className="text-black font-semibold flex items-center gap-2 mb-2">
-                      <Hash className="w-4 h-4 text-purple-500" />
-                      ZIP Code
+                    <Label htmlFor="zip_code" style={labelStyle}>
+                      <Hash
+                        className="w-3.5 h-3.5"
+                        style={{ color: "#FF6B35" }}
+                      />{" "}
+                      ZIP code
                     </Label>
                     <Input
                       id="zip_code"
                       value={formData.zip_code}
-                      onChange={(e) => handleInputChange("zip_code", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("zip_code", e.target.value)
+                      }
                       placeholder="12345"
-                      className="border-2 border-purple-300 bg-white text-black placeholder:text-gray-400 focus:border-purple-500 focus:ring-purple-400/30 h-12 text-base"
                       disabled={isSubmitting}
+                      className="hilee-input"
+                      style={fieldStyle}
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="password" className="text-black font-semibold flex items-center gap-2 mb-2">
-                      <Lock className="w-4 h-4 text-purple-500" />
+                    <Label htmlFor="password" style={labelStyle}>
+                      <Lock
+                        className="w-3.5 h-3.5"
+                        style={{ color: "#FF6B35" }}
+                      />{" "}
                       Password *
                     </Label>
                     <div className="relative">
@@ -249,48 +377,80 @@ export default function RegisterPage() {
                         id="password"
                         type={showPassword ? "text" : "password"}
                         value={formData.password}
-                        onChange={(e) => handleInputChange("password", e.target.value)}
-                        placeholder="Enter password (min 8 characters)"
+                        onChange={(e) =>
+                          handleInputChange("password", e.target.value)
+                        }
+                        placeholder="Min. 8 characters"
                         required
                         minLength={8}
-                        className="border-2 border-purple-300 bg-white text-black placeholder:text-gray-400 focus:border-purple-500 focus:ring-purple-400/30 h-12 text-base pr-10"
                         disabled={isSubmitting}
+                        className="hilee-input"
+                        style={{ ...fieldStyle, paddingRight: "2.75rem" }}
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-purple-500 hover:text-purple-700 transition-colors"
+                        className="absolute right-3 top-1/2 -translate-y-1/2"
+                        style={{
+                          color: "#ACA193",
+                          background: "none",
+                          border: "none",
+                          cursor: "pointer",
+                          display: "flex",
+                        }}
                       >
-                        {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                        {showPassword ? (
+                          <EyeOff className="w-4 h-4" />
+                        ) : (
+                          <Eye className="w-4 h-4" />
+                        )}
                       </button>
                     </div>
                   </div>
-
                   <div>
-                    <Label
-                      htmlFor="password_confirmation"
-                      className="text-black font-semibold flex items-center gap-2 mb-2"
-                    >
-                      <Lock className="w-4 h-4 text-purple-500" />
-                      Confirm Password
+                    <Label htmlFor="password_confirmation" style={labelStyle}>
+                      <Lock
+                        className="w-3.5 h-3.5"
+                        style={{ color: "#FF6B35" }}
+                      />{" "}
+                      Confirm password
                     </Label>
                     <div className="relative">
                       <Input
                         id="password_confirmation"
                         type={showConfirmPassword ? "text" : "password"}
                         value={formData.password_confirmation}
-                        onChange={(e) => handleInputChange("password_confirmation", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange(
+                            "password_confirmation",
+                            e.target.value,
+                          )
+                        }
                         placeholder="Confirm password"
                         required
-                        className="border-2 border-purple-300 bg-white text-black placeholder:text-gray-400 focus:border-purple-500 focus:ring-purple-400/30 h-12 text-base pr-10"
                         disabled={isSubmitting}
+                        className="hilee-input"
+                        style={{ ...fieldStyle, paddingRight: "2.75rem" }}
                       />
                       <button
                         type="button"
-                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-purple-500 hover:text-purple-700 transition-colors"
+                        onClick={() =>
+                          setShowConfirmPassword(!showConfirmPassword)
+                        }
+                        className="absolute right-3 top-1/2 -translate-y-1/2"
+                        style={{
+                          color: "#ACA193",
+                          background: "none",
+                          border: "none",
+                          cursor: "pointer",
+                          display: "flex",
+                        }}
                       >
-                        {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                        {showConfirmPassword ? (
+                          <EyeOff className="w-4 h-4" />
+                        ) : (
+                          <Eye className="w-4 h-4" />
+                        )}
                       </button>
                     </div>
                   </div>
@@ -298,29 +458,46 @@ export default function RegisterPage() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-purple-500 to-purple-500 hover:from-purple-400 hover:to-purple-400 text-white/95 font-bold py-3 h-14 shadow-lg hover:shadow-xl transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                   size="lg"
                   disabled={isSubmitting}
+                  className="w-full hilee-btn"
+                  style={{
+                    height: 52,
+                    borderRadius: 12,
+                    border: "none",
+                    background: "linear-gradient(135deg, #FF6B35, #FF8C5A)",
+                    color: "#FAF7F2",
+                    fontWeight: 800,
+                    fontSize: "0.95rem",
+                    letterSpacing: "0.03em",
+                    boxShadow: "0 6px 24px rgba(255,107,53,0.35)",
+                    transition: "transform 0.2s, box-shadow 0.2s",
+                  }}
                 >
                   {isSubmitting ? (
                     <span className="flex items-center gap-2">
-                      <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin"></div>
-                      Creating Account...
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      Creating account...
                     </span>
                   ) : (
-                    <>
-                      <UserPlus className="w-4 h-4 mr-2" />
-                      Create Account
-                    </>
+                    <span className="flex items-center gap-2">
+                      <UserPlus className="w-4 h-4" /> Create account
+                    </span>
                   )}
                 </Button>
 
-                <div className="text-center pt-4">
-                  <p className="text-black/80">
+                <div className="text-center pt-2">
+                  <p
+                    style={{
+                      fontSize: "0.82rem",
+                      color: "#7C6F60",
+                      fontWeight: 500,
+                    }}
+                  >
                     Already have an account?{" "}
                     <Link
                       href="/login"
-                      className="text-purple-600 hover:text-purple-700 font-semibold transition-colors"
+                      style={{ color: "#FF6B35", fontWeight: 700 }}
                     >
                       Login here
                     </Link>
@@ -333,5 +510,5 @@ export default function RegisterPage() {
       </div>
       <Toaster />
     </>
-  )
+  );
 }
