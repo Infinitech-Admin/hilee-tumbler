@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Home,
   Package,
@@ -17,7 +17,7 @@ import {
   Mail,
   Menu,
   X,
-} from "lucide-react"
+} from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -28,7 +28,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 const items = [
   {
@@ -39,12 +39,20 @@ const items = [
     bgColor: "hover:bg-gradient-to-r hover:from-purple-50 hover:to-purple-50",
   },
   {
+    title: "Inbox",
+    url: "/admin/partnershp",
+    icon: Mail,
+    color: "text-purple-600",
+    bgColor: "hover:bg-gradient-to-r hover:from-purple-50 hover:to-purple-50",
+  },
+  {
     title: "Products",
     url: "/admin/product",
     icon: Package,
     color: "text-purple-700",
     bgColor: "hover:bg-gradient-to-r hover:from-purple-50 hover:to-purple-50",
   },
+
   {
     title: "Orders",
     url: "/admin/order",
@@ -80,18 +88,18 @@ const items = [
     color: "text-purple-600",
     bgColor: "hover:bg-gradient-to-r hover:from-purple-50 hover:to-purple-50",
   },
-]
+];
 
 // ── Unchanged original AppSidebar ──────────────────────────────────────────
 export function AppSidebar() {
-  const pathname = usePathname()
-  const router = useRouter()
+  const pathname = usePathname();
+  const router = useRouter();
 
   const handleLogout = () => {
-    localStorage.removeItem("auth_token")
-    localStorage.removeItem("user_data")
-    router.push("/login")
-  }
+    localStorage.removeItem("auth_token");
+    localStorage.removeItem("user_data");
+    router.push("/login");
+  };
 
   return (
     <Sidebar className="border-r border-purple-200">
@@ -103,7 +111,9 @@ export function AppSidebar() {
                 <Flame className="w-6 h-6 text-white" />
               </div>
               <div>
-                <SidebarGroupLabel className="text-white font-bold text-lg">Hilee Admin</SidebarGroupLabel>
+                <SidebarGroupLabel className="text-white font-bold text-lg">
+                  Hilee Admin
+                </SidebarGroupLabel>
                 <p className="text-purple-100 text-xs">Management Portal</p>
               </div>
             </div>
@@ -122,8 +132,13 @@ export function AppSidebar() {
                         : ""
                     }`}
                   >
-                    <Link href={item.url || "#"} className="flex items-center gap-3">
-                      <item.icon className={`h-5 w-5 ${item.color} group-hover:scale-110 transition-transform`} />
+                    <Link
+                      href={item.url || "#"}
+                      className="flex items-center gap-3"
+                    >
+                      <item.icon
+                        className={`h-5 w-5 ${item.color} group-hover:scale-110 transition-transform`}
+                      />
                       <span className="font-medium">{item.title}</span>
                       {pathname === item.url && (
                         <TrendingUp className="ml-auto h-4 w-4 text-purple-600" />
@@ -148,7 +163,7 @@ export function AppSidebar() {
         </Button>
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }
 
 // ── ResponsiveSidebar — use THIS in your layout instead of <AppSidebar /> ──
@@ -167,7 +182,7 @@ export function AppSidebar() {
 //    }
 //
 export function ResponsiveSidebar() {
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <>
@@ -188,7 +203,9 @@ export function ResponsiveSidebar() {
       {/* ── Mobile / tablet: backdrop ── */}
       <div
         className={`lg:hidden fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${
-          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          mobileOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setMobileOpen(false)}
         aria-hidden="true"
@@ -213,5 +230,5 @@ export function ResponsiveSidebar() {
         <AppSidebar />
       </div>
     </>
-  )
+  );
 }
