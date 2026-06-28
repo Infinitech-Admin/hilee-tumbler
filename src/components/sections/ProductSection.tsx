@@ -523,7 +523,7 @@ export default function ProductSection() {
 
           {/* View all CTA */}
           <div style={{ textAlign: "center", marginTop: "3rem" }}>
-            <Link href="/menu" className="ps-cta">
+            <Link href="/products" className="ps-cta">
               View All Products
               <ArrowRight size={16} strokeWidth={2.5} />
             </Link>
