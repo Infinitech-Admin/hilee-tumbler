@@ -29,7 +29,7 @@ const getImageUrl = (imagePath: string): string => {
 
 const THEME = {
   accent: "#FF6B35",
-  bg: "linear-gradient(145deg, #FAFAFA, #F2F2F2)",
+  bg: "linear-gradient(145deg, #F7F1E8, #ECE0CC)",
 };
 
 export default function ProductSection() {
@@ -58,7 +58,7 @@ export default function ProductSection() {
 
         .ps-section {
           position: relative; overflow: hidden;
-          background: linear-gradient(160deg, #FFFDF9 0%, #FFF8EE 60%, #F0FAF8 100%);
+          background: linear-gradient(160deg, #E9DCC8 0%, #F3ECE1 55%, #FFFFFF 100%);
           padding: 5rem 2rem 5rem;
         }
 
@@ -202,10 +202,10 @@ export default function ProductSection() {
           width: 32px; height: 32px; border-radius: 50%;
           background: rgba(0,0,0,0.07); border: none;
           display: flex; align-items: center; justify-content: center;
-          cursor: pointer; color: #888;
+          cursor: pointer; color: #7C6F60;
           transition: background 0.2s ease;
         }
-        .ps-modal-close:hover { background: rgba(0,0,0,0.14); color: #1A1A1A; }
+        .ps-modal-close:hover { background: rgba(0,0,0,0.14); color: #2E2419; }
         .ps-modal-shop-btn {
           width: 100%; height: 48px;
           display: flex; align-items: center; justify-content: center; gap: 0.5rem;
@@ -315,7 +315,7 @@ export default function ProductSection() {
                 fontWeight: 800,
                 lineHeight: 0.95,
                 letterSpacing: "-0.025em",
-                color: "#1A1A1A",
+                color: "#2E2419",
                 margin: "0 0 0.75rem",
               }}
             >
@@ -326,7 +326,7 @@ export default function ProductSection() {
               style={{
                 fontSize: "1rem",
                 lineHeight: 1.75,
-                color: "#888",
+                color: "#7C6F60",
                 maxWidth: "44ch",
                 margin: "0 auto",
                 fontWeight: 400,
@@ -346,7 +346,7 @@ export default function ProductSection() {
                   style={{
                     height: "340px",
                     borderRadius: "20px",
-                    background: "linear-gradient(135deg,#F5F5F5,#EFEFEF)",
+                    background: "linear-gradient(135deg,#F5EEE3,#E9DCC8)",
                     animation: "ps-in 1.2s ease-in-out infinite alternate",
                   }}
                 />
@@ -374,7 +374,7 @@ export default function ProductSection() {
               >
                 Failed to load products
               </p>
-              <p style={{ color: "#bbb", fontSize: "0.85rem" }}>{error}</p>
+              <p style={{ color: "#ACA193", fontSize: "0.85rem" }}>{error}</p>
             </div>
           )}
 
@@ -465,7 +465,7 @@ export default function ProductSection() {
                           style={{
                             fontSize: "clamp(0.8rem,1.4vw,0.95rem)",
                             fontWeight: 700,
-                            color: "#1A1A1A",
+                            color: "#2E2419",
                             lineHeight: 1.25,
                             margin: 0,
                             display: "-webkit-box",
@@ -510,7 +510,7 @@ export default function ProductSection() {
                 <p
                   style={{
                     textAlign: "center",
-                    color: "#bbb",
+                    color: "#ACA193",
                     gridColumn: "1/-1",
                     padding: "3rem 0",
                   }}
@@ -627,7 +627,7 @@ export default function ProductSection() {
                 style={{
                   fontSize: "clamp(1.3rem,3vw,1.9rem)",
                   fontWeight: 800,
-                  color: "#1A1A1A",
+                  color: "#2E2419",
                   margin: 0,
                   lineHeight: 1.1,
                 }}
@@ -662,7 +662,7 @@ export default function ProductSection() {
                 style={{
                   fontSize: "0.88rem",
                   lineHeight: 1.8,
-                  color: "#888",
+                  color: "#7C6F60",
                   fontWeight: 400,
                   margin: 0,
                   flex: 1,
@@ -693,7 +693,7 @@ export default function ProductSection() {
                 style={{
                   textAlign: "center",
                   fontSize: "0.62rem",
-                  color: "#ccc",
+                  color: "#C9C0B3",
                   margin: 0,
                   fontWeight: 600,
                   letterSpacing: "0.06em",

@@ -5,7 +5,7 @@ import { Flame, Sprout, Brush, Gift } from "lucide-react";
 
 export default function HomePreview() {
   return (
-    <section className="relative py-20 overflow-hidden bg-[#FAF7F2]">
+    <section className="relative py-20 overflow-hidden bg-gradient-to-b from-[#E9DCC8] to-white">
       {/* Blobs */}
       <div className="absolute top-10 left-10 w-32 h-32 rounded-full blur-xl opacity-20 bg-[#FF6B35]" />
       <div className="absolute top-40 right-20 w-24 h-24 rounded-full blur-lg opacity-15 bg-[#FF6B35]" />
@@ -22,11 +22,11 @@ export default function HomePreview() {
               </span>
             </div>
 
-            <h1 className="text-5xl lg:text-6xl font-bold leading-tight text-[#1A1A1A]">
+            <h1 className="text-5xl lg:text-6xl font-bold leading-tight text-[#2E2419]">
               Hilee
             </h1>
 
-            <p className="text-lg text-[#6B7280] leading-relaxed">
+            <p className="text-lg text-[#7C6F60] leading-relaxed">
               HILEE started with a simple mission: make premium-quality
               insulated drinkware accessible to everyone. Born in the
               Philippines, we&apos;ve become a go-to brand for students,
@@ -34,7 +34,7 @@ export default function HomePreview() {
               style.
             </p>
 
-            <p className="text-lg text-[#6B7280] leading-relaxed">
+            <p className="text-lg text-[#7C6F60] leading-relaxed">
               Every HILEE flask is crafted from 304 food-grade stainless steel
               with double-wall vacuum insulation — keeping your drinks ice-cold
               for 24 hours or piping hot for up to 8. With free name printing,
@@ -91,13 +91,13 @@ export default function HomePreview() {
                 className="group hover:border-[#FF6B35]/40 hover:shadow-[0_4px_20px_rgba(255,107,53,0.08)] transition-all duration-200 bg-white border border-black/[0.07] rounded-[20px] h-full flex flex-col"
               >
                 <CardContent className="p-6 flex flex-col flex-1">
-                  <div className="w-11 h-11 bg-[#FFF3E0] rounded-xl flex items-center justify-center mb-4">
+                  <div className="w-11 h-11 bg-[#E9DCC8] rounded-xl flex items-center justify-center mb-4">
                     {card.icon}
                   </div>
-                  <h3 className="font-extrabold text-base mb-1 text-[#1A1A1A]">
+                  <h3 className="font-extrabold text-base mb-1 text-[#2E2419]">
                     {card.title}
                   </h3>
-                  <p className="text-sm text-[#888] flex-1 leading-relaxed">
+                  <p className="text-sm text-[#7C6F60] flex-1 leading-relaxed">
                     {card.desc}
                   </p>
                 </CardContent>

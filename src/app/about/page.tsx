@@ -14,7 +14,9 @@ export default function About() {
     return (
       <div
         className="min-h-screen flex items-center justify-center"
-        style={{ background: "#FAF7F2" }}
+        style={{
+          background: "linear-gradient(180deg, #E9DCC8 0%, #FFFFFF 100%)",
+        }}
       ></div>
     );
   }
@@ -97,7 +99,7 @@ export default function About() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Nunito:wght@300;400;600;700;800&display=swap');
 
-        .ab { font-family: 'Nunito', sans-serif; background: #FAF7F2; color: #1A1A1A; min-height: 100vh; }
+        .ab { font-family: 'Nunito', sans-serif; background: linear-gradient(180deg, #E9DCC8 0%, #FFFFFF 100%); color: #2E2419; min-height: 100vh; }
         .ab * { box-sizing: border-box; }
         .ab-h { font-family: 'Bricolage Grotesque', sans-serif; }
 
@@ -116,7 +118,7 @@ export default function About() {
         @keyframes ab-float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-7px) } }
         .ab-badge { display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; animation: ab-float 4s ease-in-out infinite; }
 
-        .ab-hero { background: #FAF7F2; padding: 4rem 2rem 3rem; text-align: center; border-bottom: 1.5px solid rgba(0,0,0,0.06); }
+        .ab-hero { background: transparent; padding: 4rem 2rem 3rem; text-align: center; border-bottom: 1.5px solid rgba(0,0,0,0.06); }
 
         .ab-body { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 5rem; display: flex; flex-direction: column; gap: 3rem; }
 
@@ -124,7 +126,7 @@ export default function About() {
 
         /* ── IMAGE FIX ── */
         .ab-intro-visual {
-          background: #EDE8DF;
+          background: linear-gradient(145deg, #F7F1E8, #ECE0CC);
           border-radius: 24px;
           border: 1.5px solid #DDD8CF;
           overflow: hidden;
@@ -146,7 +148,7 @@ export default function About() {
         .ab-intro-visual-overlay {
           position: absolute;
           bottom: 0; left: 0; right: 0;
-          background: linear-gradient(to top, rgba(26,26,26,0.7) 0%, transparent 100%);
+          background: linear-gradient(to top, rgba(26,16,10,0.7) 0%, transparent 100%);
           padding: 1.5rem 1.25rem 1.25rem;
           display: flex;
           flex-direction: column;
@@ -167,33 +169,33 @@ export default function About() {
           text-transform: uppercase;
         }
 
-        .ab-tagline { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; line-height: 1.15; color: #1A1A1A; margin-bottom: 1rem; }
-        .ab-tagline span { color: #8C7355; }
-        .ab-body-text { font-size: 0.9rem; color: #666; font-weight: 500; line-height: 1.8; }
+        .ab-tagline { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; line-height: 1.15; color: #2E2419; margin-bottom: 1rem; }
+        .ab-tagline span { color: #FF6B35; }
+        .ab-body-text { font-size: 0.9rem; color: #7C6F60; font-weight: 500; line-height: 1.8; }
 
-        .ab-section-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.3rem; color: #1A1A1A; text-align: center; margin-bottom: 1.5rem; }
+        .ab-section-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.3rem; color: #2E2419; text-align: center; margin-bottom: 1.5rem; }
 
         .ab-pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-        .ab-pillar { background: #FAF7F2; border-radius: 20px; border: 1.5px solid #DDD8CF; padding: 1.5rem 1rem; text-align: center; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .ab-pillar { background: white; border-radius: 20px; border: 1.5px solid rgba(0,0,0,0.07); padding: 1.5rem 1rem; text-align: center; transition: transform 0.2s ease, box-shadow 0.2s ease; }
         .ab-pillar:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.07); }
-        .ab-pillar-num { font-family: 'Bricolage Grotesque', sans-serif; font-size: 2rem; font-weight: 800; color: #8C7355; line-height: 1; margin-bottom: 0.5rem; }
-        .ab-pillar-name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 0.85rem; color: #1A1A1A; margin-bottom: 0.3rem; }
-        .ab-pillar-desc { font-size: 0.75rem; color: #888; font-weight: 500; line-height: 1.5; }
+        .ab-pillar-num { font-family: 'Bricolage Grotesque', sans-serif; font-size: 2rem; font-weight: 800; color: #FF6B35; line-height: 1; margin-bottom: 0.5rem; }
+        .ab-pillar-name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 0.85rem; color: #2E2419; margin-bottom: 0.3rem; }
+        .ab-pillar-desc { font-size: 0.75rem; color: #7C6F60; font-weight: 500; line-height: 1.5; }
 
         .ab-reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-        .ab-review { background: #FAF7F2; border-radius: 20px; border: 1.5px solid #DDD8CF; padding: 1.25rem; }
-        .ab-review-stars { color: #8C7355; font-size: 0.8rem; margin-bottom: 0.75rem; letter-spacing: 0.1em; }
-        .ab-review-text { font-size: 0.82rem; color: #555; font-weight: 500; line-height: 1.7; margin-bottom: 0.75rem; font-style: italic; }
-        .ab-review-name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 0.78rem; color: #1A1A1A; }
+        .ab-review { background: white; border-radius: 20px; border: 1.5px solid rgba(0,0,0,0.07); padding: 1.25rem; }
+        .ab-review-stars { color: #FF6B35; font-size: 0.8rem; margin-bottom: 0.75rem; letter-spacing: 0.1em; }
+        .ab-review-text { font-size: 0.82rem; color: #7C6F60; font-weight: 500; line-height: 1.7; margin-bottom: 0.75rem; font-style: italic; }
+        .ab-review-name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 0.78rem; color: #2E2419; }
 
-        .ab-promise { background: #EDE8DF; border-radius: 24px; padding: 2.5rem 2rem; text-align: center; border: 1.5px solid #DDD8CF; }
-        .ab-promise-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.6rem; color: #1A1A1A; margin-bottom: 0.75rem; }
-        .ab-promise-sub { font-size: 0.9rem; color: #6B5E4A; font-weight: 500; line-height: 1.7; max-width: 50ch; margin: 0 auto 1.5rem; }
-        .ab-promise-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #1A1A1A; color: #FAF7F2; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; border: none; border-radius: 999px; padding: 0.7rem 1.75rem; cursor: pointer; transition: filter 0.2s, transform 0.15s; }
-        .ab-promise-btn:hover { filter: brightness(1.3); transform: translateY(-1px); }
+        .ab-promise { background: #F3ECE1; border-radius: 24px; padding: 2.5rem 2rem; text-align: center; border: 1.5px solid #DDD8CF; }
+        .ab-promise-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.6rem; color: #2E2419; margin-bottom: 0.75rem; }
+        .ab-promise-sub { font-size: 0.9rem; color: #7C6F60; font-weight: 500; line-height: 1.7; max-width: 50ch; margin: 0 auto 1.5rem; }
+        .ab-promise-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #FF6B35, #FF8C5A); color: white; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; border: none; border-radius: 999px; padding: 0.7rem 1.75rem; cursor: pointer; box-shadow: 0 8px 28px rgba(255,107,53,0.35); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .ab-promise-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(255,107,53,0.45); }
 
         .ab-trust { display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; padding: 1.75rem 2rem; border-top: 1.5px dashed #DDD8CF; }
-        .ab-trust-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 700; color: #bbb; }
+        .ab-trust-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 700; color: #ACA193; }
 
         @media (max-width: 860px) {
           .ab-intro { grid-template-columns: 1fr; }
@@ -240,9 +242,9 @@ export default function About() {
             <span
               className="ab-badge"
               style={{
-                background: "#EDE8DF",
-                border: "1.5px solid #C4B89A",
-                color: "#6B5E4A",
+                background: "rgba(255,107,53,0.1)",
+                border: "1.5px solid rgba(255,107,53,0.25)",
+                color: "#FF6B35",
                 animationDelay: "0s",
               }}
             >
@@ -251,9 +253,9 @@ export default function About() {
             <span
               className="ab-badge"
               style={{
-                background: "#E8E0D0",
-                border: "1.5px solid #C4B89A",
-                color: "#7A6A52",
+                background: "rgba(255,107,53,0.1)",
+                border: "1.5px solid rgba(255,107,53,0.25)",
+                color: "#FF6B35",
                 animationDelay: "0.7s",
               }}
             >
@@ -262,9 +264,9 @@ export default function About() {
             <span
               className="ab-badge"
               style={{
-                background: "#F0EBE0",
-                border: "1.5px solid #C4B89A",
-                color: "#8C7355",
+                background: "rgba(255,107,53,0.1)",
+                border: "1.5px solid rgba(255,107,53,0.25)",
+                color: "#FF6B35",
                 animationDelay: "1.3s",
               }}
             >
@@ -281,7 +283,7 @@ export default function About() {
                 lineHeight: 0.92,
                 letterSpacing: "-0.025em",
                 margin: 0,
-                color: "#1A1A1A",
+                color: "#2E2419",
               }}
             >
               Our Story
@@ -293,7 +295,7 @@ export default function About() {
             style={{
               fontSize: "1rem",
               lineHeight: 1.75,
-              color: "#888",
+              color: "#7C6F60",
               maxWidth: "42ch",
               margin: "0 auto",
               fontWeight: 400,
@@ -377,7 +379,7 @@ export default function About() {
               Every Hilee tumbler ships with a lifetime warranty, because we
               stand behind every sip. Built for you, built to last.
             </div>
-            <button className="ab-promise-btn">Shop Hilee Tumblers →</button>
+            {/* <button className="ab-promise-btn">Shop Hilee Tumblers →</button> */}
           </div>
 
           {/* Trust strip */}

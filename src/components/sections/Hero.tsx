@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ShoppingBag, Droplets, ArrowRight } from "lucide-react";
 
-const ACCENT = "#FF6B35";
+const ACCENT = "#E85D2F";
 
 interface Product {
   id: number;
@@ -47,24 +47,24 @@ export default function HeroSection() {
 
         /* ── Ticker ── */
         .ht-wrap { overflow: hidden; white-space: nowrap; padding: 9px 0;
-          border-bottom: 1px solid rgba(0,0,0,0.07); background: #FFF3E0; }
+          border-bottom: 1px solid rgba(0,0,0,0.07); background: #E9DCC8; }
         .ht-inner { display: inline-flex; animation: htTick 28s linear infinite; }
         @keyframes htTick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
         .ht-item { display: inline-flex; align-items: center; gap: 8px; padding: 0 24px;
           font-family: 'Nunito', sans-serif; font-size: 0.68rem; font-weight: 800;
           letter-spacing: 0.12em; text-transform: uppercase; }
-        .ht-dot { width: 4px; height: 4px; border-radius: 50%; background: #FF6B35; flex-shrink: 0; }
+        .ht-dot { width: 4px; height: 4px; border-radius: 50%; background: #E85D2F; flex-shrink: 0; }
 
         /* ── Shell ── */
-        .hs-shell { font-family: 'Nunito', sans-serif; background: #FAF7F2;
+        .hs-shell { font-family: 'Nunito', sans-serif; background: linear-gradient(180deg, #E9DCC8 0%, #FFFFFF 100%);
           position: relative; overflow: hidden; }
 
         /* ── Decorative bg blobs ── */
         .hs-blob-a { position: absolute; width: 500px; height: 500px; border-radius: 50%;
-          background: #FF6B35; opacity: 0.07; filter: blur(100px);
+          background: #E85D2F; opacity: 0.07; filter: blur(100px);
           top: -120px; right: -100px; pointer-events: none; }
         .hs-blob-b { position: absolute; width: 300px; height: 300px; border-radius: 50%;
-          background: #FF6B35; opacity: 0.05; filter: blur(80px);
+          background: #E85D2F; opacity: 0.05; filter: blur(80px);
           bottom: -60px; left: -60px; pointer-events: none; }
 
         /* ── Main grid ── */
@@ -85,13 +85,13 @@ export default function HeroSection() {
 
         .hs-label { display: inline-flex; align-items: center; gap: 7px; width: fit-content; }
         .hs-label-text { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.14em;
-          text-transform: uppercase; color: #FF6B35; }
+          text-transform: uppercase; color: #E85D2F; }
 
         .hs-headline { font-size: clamp(2.6rem, 5vw, 4.2rem); font-weight: 900;
-          line-height: 1.0; color: #111827; margin: 0; letter-spacing: -0.025em; }
-        .hs-headline span { color: #FF6B35; }
+          line-height: 1.0; color: #2E2419; margin: 0; letter-spacing: -0.025em; }
+        .hs-headline span { color: #E85D2F; }
 
-        .hs-sub { font-size: clamp(0.9rem, 1.3vw, 1rem); color: #6B7280;
+        .hs-sub { font-size: clamp(0.9rem, 1.3vw, 1rem); color: #7C6F60;
           line-height: 1.7; max-width: 400px; margin: 0; }
 
         /* ── Pills row ── */
@@ -99,21 +99,21 @@ export default function HeroSection() {
         .hs-pill { background: white; border: 1px solid rgba(0,0,0,0.07);
           border-radius: 999px; padding: 7px 14px; font-size: 0.72rem; font-weight: 700;
           color: #374151; display: flex; align-items: center; gap: 6px; }
-        .hs-pill-dot { width: 7px; height: 7px; border-radius: 50%; background: #FF6B35; }
+        .hs-pill-dot { width: 7px; height: 7px; border-radius: 50%; background: #E85D2F; }
 
         /* ── CTAs ── */
         .hs-ctas { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
         .hs-btn-primary { display: inline-flex; align-items: center; gap: 8px;
-          padding: 15px 30px; border-radius: 999px; background: #FF6B35; color: white;
+          padding: 15px 30px; border-radius: 999px; background: #E85D2F; color: white;
           font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.88rem;
           letter-spacing: 0.03em; text-decoration: none; border: none; cursor: pointer;
           transition: transform 0.18s, box-shadow 0.18s;
-          box-shadow: 0 8px 28px rgba(255,107,53,0.3); }
-        .hs-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(255,107,53,0.38); }
+          box-shadow: 0 8px 28px rgba(232,93,47,0.3); }
+        .hs-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(232,93,47,0.38); }
         .hs-btn-ghost { display: inline-flex; align-items: center; gap: 6px;
           font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.88rem;
           color: #374151; text-decoration: none; transition: color 0.18s; }
-        .hs-btn-ghost:hover { color: #FF6B35; }
+        .hs-btn-ghost:hover { color: #E85D2F; }
 
         /* ── Trust badges ── */
         .hs-trust { display: flex; gap: 1.25rem; flex-wrap: wrap; padding-top: 0.25rem; }
@@ -136,14 +136,14 @@ export default function HeroSection() {
         .hs-img-frame:hover { transform: scale(1.015); }
         .hs-img-frame:hover .hs-view-overlay { opacity: 1; }
 
-        .hs-view-overlay { position: absolute; inset: 0; background: rgba(255,107,53,0.06);
+        .hs-view-overlay { position: absolute; inset: 0; background: rgba(232,93,47,0.06);
           display: flex; align-items: center; justify-content: center;
           opacity: 0; transition: opacity 0.2s; border-radius: 32px; }
-        .hs-view-overlay span { background: #FF6B35; color: white; font-weight: 800;
+        .hs-view-overlay span { background: #E85D2F; color: white; font-weight: 800;
           font-size: 0.8rem; padding: 10px 22px; border-radius: 999px; letter-spacing: 0.05em; }
 
         .hs-new-badge { position: absolute; top: 18px; left: 18px; z-index: 2;
-          background: #FF6B35; color: white; font-size: 0.6rem; font-weight: 900;
+          background: #E85D2F; color: white; font-size: 0.6rem; font-weight: 900;
           letter-spacing: 0.12em; text-transform: uppercase;
           padding: 5px 12px; border-radius: 999px; }
 
@@ -157,15 +157,15 @@ export default function HeroSection() {
           background: white; border: 1px solid rgba(0,0,0,0.07); border-radius: 20px;
           padding: 14px 18px; display: flex; align-items: center; gap: 12px; }
         .hs-strip-cat { font-size: 0.6rem; font-weight: 900; letter-spacing: 0.12em;
-          text-transform: uppercase; color: white; background: #FF6B35;
+          text-transform: uppercase; color: white; background: #E85D2F;
           padding: 3px 9px; border-radius: 999px; flex-shrink: 0; }
-        .hs-strip-name { font-size: 0.82rem; font-weight: 800; color: #111827;
+        .hs-strip-name { font-size: 0.82rem; font-weight: 800; color: #2E2419;
           margin: 0 0 2px; line-height: 1.2; }
-        .hs-strip-price { font-size: 0.92rem; font-weight: 900; color: #FF6B35; margin: 0; }
+        .hs-strip-price { font-size: 0.92rem; font-weight: 900; color: #E85D2F; margin: 0; }
 
         /* ── Skeleton ── */
         .hs-skel { width: 100%; max-width: 360px; aspect-ratio: 1; border-radius: 32px;
-          background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+          background: linear-gradient(90deg, #ECE2D2 25%, #DFD2BC 50%, #ECE2D2 75%);
           background-size: 200% 100%; animation: hsSkel 1.4s ease infinite; }
         @keyframes hsSkel { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
@@ -175,7 +175,7 @@ export default function HeroSection() {
           border-left: 1px solid rgba(0,0,0,0.07); flex-shrink: 0; }
         .hs-stat-card { background: white; border: 1px solid rgba(0,0,0,0.07);
           border-radius: 16px; padding: 14px 16px; min-width: 90px; text-align: center; }
-        .hs-stat-num { font-size: 1.1rem; font-weight: 900; color: #111827;
+        .hs-stat-num { font-size: 1.1rem; font-weight: 900; color: #2E2419;
           display: block; line-height: 1; margin-bottom: 4px; }
         .hs-stat-lbl { font-size: 0.6rem; font-weight: 800; color: #9CA3AF;
           text-transform: uppercase; letter-spacing: 0.1em; display: block; }
@@ -187,7 +187,7 @@ export default function HeroSection() {
         .hs-modal { background: white; border-radius: 28px; overflow: hidden;
           width: 100%; max-width: 780px; max-height: 90svh; display: flex;
           box-shadow: 0 40px 80px rgba(0,0,0,0.2); overflow-y: auto; }
-        .hs-modal-img { width: 42%; flex-shrink: 0; background: #FAF7F2;
+        .hs-modal-img { width: 42%; flex-shrink: 0; background: #F3ECE1;
           display: flex; align-items: center; justify-content: center;
           padding: 2.5rem; box-sizing: border-box; min-height: 300px; }
         .hs-modal-body { flex: 1; padding: 2rem 2rem 2rem 1.5rem;
@@ -198,13 +198,13 @@ export default function HeroSection() {
           display: flex; align-items: center; justify-content: center;
           font-size: 1rem; color: #374151; line-height: 1; }
         .hs-modal-cat { font-size: 0.62rem; font-weight: 900; letter-spacing: 0.12em;
-          text-transform: uppercase; color: white; background: #FF6B35;
+          text-transform: uppercase; color: white; background: #E85D2F;
           padding: 4px 12px; border-radius: 999px; width: fit-content; }
         .hs-modal-name { font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight: 900;
-          color: #111827; margin: 0; line-height: 1.15; }
+          color: #2E2419; margin: 0; line-height: 1.15; }
         .hs-modal-price { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 900;
-          color: #FF6B35; margin: 0; }
-        .hs-modal-desc { font-size: 0.88rem; color: #6B7280; line-height: 1.7; margin: 0; flex: 1; }
+          color: #E85D2F; margin: 0; }
+        .hs-modal-desc { font-size: 0.88rem; color: #7C6F60; line-height: 1.7; margin: 0; flex: 1; }
         .hs-modal-shop-label { font-size: 0.6rem; font-weight: 800; letter-spacing: 0.1em;
           text-transform: uppercase; color: #9CA3AF; margin: 0; }
         .hs-tiktok-btn { display: flex; align-items: center; justify-content: center; gap: 8px;
@@ -482,7 +482,7 @@ export default function HeroSection() {
                 <div key={l} className="hs-stat-card">
                   <span
                     className="hs-stat-num"
-                    style={{ color: n === "24H" ? ACCENT : "#111827" }}
+                    style={{ color: n === "24H" ? ACCENT : "#2E2419" }}
                   >
                     {n}
                   </span>
@@ -509,7 +509,7 @@ export default function HeroSection() {
             left: "50%",
             top: "50%",
             transform: "translate(-50%,-50%)",
-            background: "#FAF7F2",
+            background: "#F3ECE1",
             padding: "0 1rem",
             display: "flex",
             alignItems: "center",

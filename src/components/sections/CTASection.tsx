@@ -3,14 +3,14 @@ import { Button } from "@/components/ui/button";
 
 export default function CTASection() {
   return (
-    <section className="relative py-16 sm:py-20 lg:py-24 overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700">
+    <section className="relative py-16 sm:py-20 lg:py-24 overflow-hidden bg-gradient-to-b from-[#3A3D47] via-[#31333C] to-[#2B2D35]">
       <div className="relative container mx-auto px-4 text-center">
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white drop-shadow-lg leading-tight">
-          <span className="bg-gradient-to-r from-white via-gray-300 to-white bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-white via-white/70 to-white bg-clip-text text-transparent">
             Stylish & Durable
           </span>
           <br />
-          <span className="text-gray-300 drop-shadow-xl">
+          <span className="text-white/70 drop-shadow-xl">
             Tumblers for Everyday Life
           </span>
         </h2>
@@ -24,7 +24,7 @@ export default function CTASection() {
           <Button
             asChild
             size="lg"
-            className="text-lg sm:text-xl px-8 sm:px-10 py-4 sm:py-6 bg-white text-gray-900 hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-2xl border-2 border-white/20 font-semibold"
+            className="text-lg sm:text-xl px-8 sm:px-10 py-4 sm:py-6 bg-white text-[#2B2D35] hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-2xl border-2 border-white/20 font-semibold"
           >
             <Link href="/products">💧 Shop Tumblers</Link>
           </Button>
@@ -39,9 +39,9 @@ export default function CTASection() {
         </div>
 
         <div className="mt-6 sm:mt-8 text-white/70 text-sm sm:text-base">
-          <span className="inline-block mx-2">🖤</span>
+          <span className="inline-block mx-2">🧡</span>
           <span>Eco-Friendly, Stylish & Durable Tumblers</span>
-          <span className="inline-block mx-2">🖤</span>
+          <span className="inline-block mx-2">🧡</span>
         </div>
       </div>
     </section>

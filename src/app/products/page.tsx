@@ -111,7 +111,7 @@ export default function MenuPage() {
       <div
         style={{
           minHeight: "100vh",
-          background: "#FAF7F2",
+          background: "linear-gradient(180deg, #E9DCC8 0%, #FFFFFF 100%)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -125,7 +125,7 @@ export default function MenuPage() {
       <div
         style={{
           minHeight: "100vh",
-          background: "#FAF7F2",
+          background: "linear-gradient(180deg, #E9DCC8 0%, #FFFFFF 100%)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -150,33 +150,33 @@ export default function MenuPage() {
           >
             Failed to load products
           </p>
-          <p style={{ color: "#999", fontSize: "0.85rem" }}>{error}</p>
+          <p style={{ color: "#ACA193", fontSize: "0.85rem" }}>{error}</p>
         </div>
       </div>
     );
   }
 
   const ticker = [
-    "STAY HYDRATED",
-    "FREE SHIPPING",
-    "24H COLD RETENTION",
+    "HILEE TUMBLERS",
+    "STAY COLD ALL DAY",
+    "BUILT TO LAST",
     "BPA FREE",
-    "STAINLESS STEEL",
-    "PREMIUM QUALITY",
-    "STAY HYDRATED",
-    "FREE SHIPPING",
-    "24H COLD RETENTION",
+    "PREMIUM DRINKWARE",
+    "NATIONWIDE SHIPPING",
+    "HILEE TUMBLERS",
+    "STAY COLD ALL DAY",
+    "BUILT TO LAST",
     "BPA FREE",
-    "STAINLESS STEEL",
-    "PREMIUM QUALITY",
+    "PREMIUM DRINKWARE",
+    "NATIONWIDE SHIPPING",
   ];
   const tickerColors = [
-    "#FF6B35",
-    "#4ECDC4",
-    "#A8E6CF",
-    "#FFD93D",
-    "#C77DFF",
-    "#FF6B6B",
+    "#8C7355",
+    "#A89070",
+    "#C4AA8A",
+    "#6B5E4A",
+    "#D4C4A8",
+    "#9E8868",
   ];
 
   return (
@@ -184,15 +184,15 @@ export default function MenuPage() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Nunito:wght@300;400;600;700;800&display=swap');
 
-        .mp { font-family: 'Nunito', sans-serif; background: #FAF7F2; color: #1A1A1A; }
+        .mp { font-family: 'Nunito', sans-serif; background: linear-gradient(180deg, #E9DCC8 0%, #FFFFFF 100%); color: #2E2419; min-height: 100vh; }
         .mp * { box-sizing: border-box; }
         .mp-h { font-family: 'Bricolage Grotesque', sans-serif; }
 
         /* Ticker */
         @keyframes mp-tick { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-        .mp-ticker      { background:#FFF3E0; border-bottom:2px solid rgba(0,0,0,0.05); height:40px; overflow:hidden; display:flex; align-items:center; }
+        .mp-ticker      { background:#EDE8DF; border-bottom:2px solid rgba(0,0,0,0.05); height:40px; overflow:hidden; display:flex; align-items:center; }
         .mp-tick-track  { display:flex; width:max-content; animation:mp-tick 28s linear infinite; }
-        .mp-tick-item   { display:flex; align-items:center; gap:1.25rem; padding:0 1.75rem; white-space:nowrap; font-size:0.65rem; font-weight:800; letter-spacing:0.25em; text-transform:uppercase; color:#1A1A1A; }
+        .mp-tick-item   { display:flex; align-items:center; gap:1.25rem; padding:0 1.75rem; white-space:nowrap; font-size:0.65rem; font-weight:800; letter-spacing:0.25em; text-transform:uppercase; color:#5C4F3A; }
         .mp-tick-dot    { width:5px; height:5px; border-radius:50%; flex-shrink:0; }
 
         /* Float badges */
@@ -207,7 +207,7 @@ export default function MenuPage() {
         /* Hero */
         .mp-hero {
           position:relative; overflow:hidden;
-          background: #FAF7F2;
+          background: transparent;
           padding:4rem 2rem 3rem; text-align:center;
           border-bottom: 1.5px solid rgba(0,0,0,0.06);
         }
@@ -216,20 +216,20 @@ export default function MenuPage() {
         .mp-search-wrap { position:relative; display:inline-flex; align-items:center; }
         .mp-search {
           font-family:'Nunito',sans-serif; font-size:0.85rem; font-weight:600;
-          background:white; border:2px solid rgba(0,0,0,0.08); color:#1A1A1A;
+          background:white; border:2px solid rgba(0,0,0,0.08); color:#2E2419;
           padding:0.7rem 1.1rem 0.7rem 2.6rem; border-radius:999px; outline:none; width:300px;
           box-shadow:0 2px 16px rgba(0,0,0,0.06); transition:border-color .3s,box-shadow .3s;
         }
-        .mp-search::placeholder { color:#bbb; }
+        .mp-search::placeholder { color:#ACA193; }
         .mp-search:focus { border-color:#FF6B35; box-shadow:0 2px 20px rgba(255,107,53,0.14); }
-        .mp-search-ico { position:absolute; left:0.9rem; color:#bbb; pointer-events:none; }
+        .mp-search-ico { position:absolute; left:0.9rem; color:#ACA193; pointer-events:none; }
 
         /* Count */
-        .mp-count { display:inline-flex; align-items:center; gap:0.4rem; background:white; border:1.5px solid rgba(0,0,0,0.07); border-radius:999px; padding:0.35rem 0.9rem; box-shadow:0 2px 12px rgba(0,0,0,0.05); font-size:0.65rem; font-weight:700; color:#999; }
+        .mp-count { display:inline-flex; align-items:center; gap:0.4rem; background:white; border:1.5px solid rgba(0,0,0,0.07); border-radius:999px; padding:0.35rem 0.9rem; box-shadow:0 2px 12px rgba(0,0,0,0.05); font-size:0.65rem; font-weight:700; color:#7C6F60; }
         .mp-count-n { font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:0.9rem; color:#FF6B35; }
 
         /* Grid area */
-        .mp-grid-area { background: #FAF7F2; padding:0 2rem 5rem; min-height:60vh; }
+        .mp-grid-area { background: transparent; padding:0 2rem 5rem; min-height:60vh; }
 
         /* Layout: sidebar + main */
         .mp-layout { display:flex; gap:2rem; align-items:flex-start; max-width:1400px; margin:0 auto; }
@@ -244,13 +244,13 @@ export default function MenuPage() {
         .mp-sidebar-title {
           font-family:'Bricolage Grotesque',sans-serif; font-weight:800;
           font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase;
-          color:#ccc; margin:0 0 0.75rem 0.2rem;
+          color:#ACA193; margin:0 0 0.75rem 0.2rem;
         }
         .mp-sidebar-group { margin-bottom:0.25rem; }
         .mp-sidebar-group-label {
           font-size:0.6rem; font-weight:800; letter-spacing:0.18em; text-transform:uppercase;
-          color:#bbb; padding:0.6rem 0.5rem 0.3rem;
-          border-top:1.5px dashed rgba(0,0,0,0.07); margin-top:0.25rem;
+          color:#ACA193; padding:0.6rem 0.5rem 0.3rem;
+          border-top:1.5px dashed #DDD8CF; margin-top:0.25rem;
         }
         .mp-sidebar-group:first-of-type .mp-sidebar-group-label {
           border-top:none; padding-top:0; margin-top:0;
@@ -273,10 +273,10 @@ export default function MenuPage() {
         .mp-cb-check { display:none; }
         .mp-cb-item.on .mp-cb-check { display:block; }
         .mp-cb-dot   { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
-        .mp-cb-label { flex:1; font-size:0.78rem; font-weight:600; color:#444; transition:color 0.15s; }
+        .mp-cb-label { flex:1; font-size:0.78rem; font-weight:600; color:#5C4F3A; transition:color 0.15s; }
         .mp-cb-item.on .mp-cb-label { font-weight:700; }
         .mp-cb-count {
-          font-size:0.62rem; font-weight:700; color:#bbb;
+          font-size:0.62rem; font-weight:700; color:#ACA193;
           background:rgba(0,0,0,0.045); padding:0.1rem 0.45rem; border-radius:999px;
         }
         .mp-cb-item.on .mp-cb-count { background:rgba(255,255,255,0.7); }
@@ -285,7 +285,7 @@ export default function MenuPage() {
         .mp-active-pills {
           display:flex; flex-wrap:wrap; gap:0.3rem;
           margin:0.75rem 0 0; padding-top:0.75rem;
-          border-top:1.5px dashed rgba(0,0,0,0.07);
+          border-top:1.5px dashed #DDD8CF;
         }
         .mp-active-pill {
           display:inline-flex; align-items:center; gap:0.3rem;
@@ -302,8 +302,8 @@ export default function MenuPage() {
         .mp-clear-btn {
           width:100%; margin-top:0.85rem;
           padding:0.55rem; border-radius:10px;
-          border:1.5px solid rgba(0,0,0,0.1); background:transparent;
-          color:#888; font-family:'Nunito',sans-serif; font-size:0.72rem; font-weight:700;
+          border:1.5px solid #DDD8CF; background:transparent;
+          color:#ACA193; font-family:'Nunito',sans-serif; font-size:0.72rem; font-weight:700;
           cursor:pointer; display:flex; align-items:center; justify-content:center; gap:0.35rem;
           transition:background 0.15s, color 0.15s;
         }
@@ -314,7 +314,7 @@ export default function MenuPage() {
           display:none; align-items:center; gap:0.5rem;
           font-family:'Nunito',sans-serif; font-size:0.78rem; font-weight:800;
           padding:0.65rem 1.25rem; border-radius:999px;
-          background:white; border:2px solid rgba(0,0,0,0.1); color:#444;
+          background:white; border:2px solid #DDD8CF; color:#5C4F3A;
           cursor:pointer; box-shadow:0 2px 12px rgba(0,0,0,0.08);
           transition:all .2s ease; margin-bottom:1rem;
         }
@@ -341,30 +341,30 @@ export default function MenuPage() {
         .mp-drawer.open { transform:translateY(0); }
         .mp-drawer-handle {
           width:40px; height:4px; border-radius:999px;
-          background:rgba(0,0,0,0.12); margin:12px auto 0;
+          background:#DDD8CF; margin:12px auto 0;
         }
         .mp-drawer-header {
           display:flex; align-items:center; justify-content:space-between;
           padding:1rem 1.25rem 0.5rem;
-          border-bottom:1.5px solid rgba(0,0,0,0.06);
+          border-bottom:1.5px solid #DDD8CF;
         }
         .mp-drawer-title {
           font-family:'Bricolage Grotesque',sans-serif;
-          font-size:1.1rem; font-weight:800; color:#1A1A1A;
+          font-size:1.1rem; font-weight:800; color:#2E2419;
         }
         .mp-drawer-close {
           width:32px; height:32px; border-radius:50%;
           background:rgba(0,0,0,0.06); border:none;
           display:flex; align-items:center; justify-content:center;
-          font-size:0.9rem; cursor:pointer; color:#888;
+          font-size:0.9rem; cursor:pointer; color:#7C6F60;
           transition:background .2s;
         }
         .mp-drawer-close:hover { background:rgba(0,0,0,0.12); }
         .mp-drawer-body { padding:0.75rem 1.25rem; }
         .mp-drawer-group-label {
           font-size:0.6rem; font-weight:800; letter-spacing:0.18em; text-transform:uppercase;
-          color:#bbb; padding:0.75rem 0 0.4rem;
-          border-top:1.5px dashed rgba(0,0,0,0.07); margin-top:0.25rem;
+          color:#ACA193; padding:0.75rem 0 0.4rem;
+          border-top:1.5px dashed #DDD8CF; margin-top:0.25rem;
         }
         .mp-drawer-group-label:first-child { border-top:none; padding-top:0.25rem; }
         .mp-drawer-cb-item {
@@ -385,16 +385,16 @@ export default function MenuPage() {
         .mp-drawer-cb-check { display:none; }
         .mp-drawer-cb-item.on .mp-drawer-cb-check { display:block; }
         .mp-drawer-cb-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
-        .mp-drawer-cb-label { flex:1; font-size:0.85rem; font-weight:600; color:#444; }
+        .mp-drawer-cb-label { flex:1; font-size:0.85rem; font-weight:600; color:#5C4F3A; }
         .mp-drawer-cb-item.on .mp-drawer-cb-label { font-weight:700; }
         .mp-drawer-cb-count {
-          font-size:0.65rem; font-weight:700; color:#bbb;
+          font-size:0.65rem; font-weight:700; color:#ACA193;
           background:rgba(0,0,0,0.05); padding:0.15rem 0.5rem; border-radius:999px;
         }
         .mp-drawer-cb-item.on .mp-drawer-cb-count { background:rgba(0,0,0,0.06); }
         .mp-drawer-footer {
           display:flex; gap:0.75rem; padding:1rem 1.25rem 0;
-          border-top:1.5px solid rgba(0,0,0,0.06); margin-top:0.5rem;
+          border-top:1.5px solid #DDD8CF; margin-top:0.5rem;
           position:sticky; bottom:0; background:white;
         }
         .mp-drawer-apply {
@@ -406,8 +406,8 @@ export default function MenuPage() {
         .mp-drawer-apply:hover { filter:brightness(1.08); }
         .mp-drawer-clear {
           padding:0.85rem 1.25rem; border-radius:999px;
-          border:1.5px solid rgba(0,0,0,0.1); background:transparent;
-          font-family:'Nunito',sans-serif; font-size:0.85rem; font-weight:700; color:#888;
+          border:1.5px solid #DDD8CF; background:transparent;
+          font-family:'Nunito',sans-serif; font-size:0.85rem; font-weight:700; color:#7C6F60;
           cursor:pointer; transition:all .2s;
         }
         .mp-drawer-clear:hover { border-color:#FF6B35; color:#FF6B35; }
@@ -420,8 +420,8 @@ export default function MenuPage() {
 
         /* Strip */
         .mp-strip { display:flex; align-items:center; gap:1rem; padding:1.5rem 0 1.75rem; }
-        .mp-strip-line { flex:1; height:1.5px; background:rgba(0,0,0,0.07); border-radius:999px; }
-        .mp-strip-lbl { font-size:0.62rem; font-weight:800; letter-spacing:0.22em; text-transform:uppercase; color:#ccc; white-space:nowrap; }
+        .mp-strip-line { flex:1; height:1.5px; background:#DDD8CF; border-radius:999px; }
+        .mp-strip-lbl { font-size:0.62rem; font-weight:800; letter-spacing:0.22em; text-transform:uppercase; color:#ACA193; white-space:nowrap; }
 
         /* Product grid */
         .mp-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; }
@@ -432,8 +432,8 @@ export default function MenuPage() {
         .mp-empty { text-align:center; padding:6rem 2rem; }
 
         /* Trust */
-        .mp-trust { display:flex; align-items:center; justify-content:center; gap:2rem; flex-wrap:wrap; padding:1.75rem 2rem; border-top:1.5px dashed rgba(0,0,0,0.08); margin-top:1.5rem; }
-        .mp-trust-item { display:flex; align-items:center; gap:0.4rem; font-size:0.72rem; font-weight:700; color:#bbb; }
+        .mp-trust { display:flex; align-items:center; justify-content:center; gap:2rem; flex-wrap:wrap; padding:1.75rem 2rem; border-top:1.5px dashed #DDD8CF; margin-top:1.5rem; }
+        .mp-trust-item { display:flex; align-items:center; gap:0.4rem; font-size:0.72rem; font-weight:700; color:#ACA193; }
 
         @media(max-width:600px){ .mp-search{width:85vw} }
       `}</style>
@@ -483,9 +483,9 @@ export default function MenuPage() {
             <span
               className="mp-badge"
               style={{
-                background: "#FFF3CD",
-                border: "1.5px solid rgba(184,134,11,0.2)",
-                color: "#B8860B",
+                background: "rgba(255,107,53,0.1)",
+                border: "1.5px solid rgba(255,107,53,0.25)",
+                color: "#FF6B35",
                 animationDelay: "0.7s",
               }}
             >
@@ -494,9 +494,9 @@ export default function MenuPage() {
             <span
               className="mp-badge"
               style={{
-                background: "rgba(78,205,196,0.12)",
-                border: "1.5px solid rgba(78,205,196,0.3)",
-                color: "#2AAA9E",
+                background: "rgba(255,107,53,0.1)",
+                border: "1.5px solid rgba(255,107,53,0.25)",
+                color: "#FF6B35",
                 animationDelay: "1.3s",
               }}
             >
@@ -516,7 +516,7 @@ export default function MenuPage() {
                 lineHeight: 0.92,
                 letterSpacing: "-0.025em",
                 margin: 0,
-                color: "#1A1A1A",
+                color: "#2E2419",
               }}
             >
               Shop All
@@ -530,7 +530,7 @@ export default function MenuPage() {
               zIndex: 2,
               fontSize: "1rem",
               lineHeight: 1.75,
-              color: "#888",
+              color: "#7C6F60",
               maxWidth: "42ch",
               margin: "0 auto 2rem",
               fontWeight: 400,
@@ -846,7 +846,7 @@ export default function MenuPage() {
                   >
                     Nothing here yet
                   </div>
-                  <p style={{ color: "#bbb", fontSize: "0.9rem" }}>
+                  <p style={{ color: "#ACA193", fontSize: "0.9rem" }}>
                     Try a different filter or search term.
                   </p>
                 </div>

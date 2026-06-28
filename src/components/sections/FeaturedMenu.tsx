@@ -6,7 +6,7 @@ export default function InfoSection() {
   return (
     <section
       style={{ fontFamily: "'Nunito', sans-serif" }}
-      className="bg-[#FAF7F2] py-16 border-b border-black/[0.06]"
+      className="bg-gradient-to-b from-[#E9DCC8] to-white py-16 border-b border-black/[0.06]"
     >
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Nunito:wght@400;600;700;800&display=swap');
@@ -17,11 +17,11 @@ export default function InfoSection() {
         <div className="text-center mb-10">
           <h2
             style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-            className="text-[clamp(2rem,5vw,3rem)] font-extrabold leading-tight text-[#1A1A1A] mb-3"
+            className="text-[clamp(2rem,5vw,3rem)] font-extrabold leading-tight text-[#2E2419] mb-3"
           >
             Why choose <span className="text-[#FF6B35]">HILEE?</span>
           </h2>
-          <p className="text-[1rem] text-[#888] leading-relaxed max-w-[42ch] mx-auto font-normal">
+          <p className="text-[1rem] text-[#7C6F60] leading-relaxed max-w-[42ch] mx-auto font-normal">
             Premium hydration at an unbeatable price — built for daily life,
             school, workouts & adventure.
           </p>
@@ -57,16 +57,16 @@ export default function InfoSection() {
                          hover:border-[#FF6B35]/35 hover:shadow-[0_4px_20px_rgba(255,107,53,0.08)]
                          transition-all duration-200"
             >
-              <div className="w-11 h-11 rounded-xl bg-[#FFF3E0] flex items-center justify-center mb-4">
+              <div className="w-11 h-11 rounded-xl bg-[#E9DCC8] flex items-center justify-center mb-4">
                 {card.icon}
               </div>
               <p
                 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-                className="text-[1.05rem] font-extrabold text-[#1A1A1A] mb-2"
+                className="text-[1.05rem] font-extrabold text-[#2E2419] mb-2"
               >
                 {card.title}
               </p>
-              <p className="text-[0.82rem] text-[#888] leading-relaxed font-normal">
+              <p className="text-[0.82rem] text-[#7C6F60] leading-relaxed font-normal">
                 {card.desc}
               </p>
             </div>
