@@ -99,14 +99,14 @@ export default function About() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Nunito:wght@300;400;600;700;800&display=swap');
 
-        .ab { font-family: 'Nunito', sans-serif; background: linear-gradient(180deg, #E9DCC8 0%, #FFFFFF 100%); color: #2E2419; min-height: 100vh; }
+        .ab { font-family: 'Nunito', sans-serif; background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%); color: #0C1C2E; min-height: 100vh; }
         .ab * { box-sizing: border-box; }
         .ab-h { font-family: 'Bricolage Grotesque', sans-serif; }
 
         @keyframes ab-tick { from { transform: translateX(0) } to { transform: translateX(-50%) } }
-        .ab-ticker { background: #EDE8DF; border-bottom: 2px solid rgba(0,0,0,0.05); height: 40px; overflow: hidden; display: flex; align-items: center; }
+        .ab-ticker { background: linear-gradient(90deg, #E0F2FE, #F0F9FF); border-bottom: 2px solid rgba(14,165,233,0.1); height: 40px; overflow: hidden; display: flex; align-items: center; }
         .ab-tick-track { display: flex; width: max-content; animation: ab-tick 28s linear infinite; }
-        .ab-tick-item { display: flex; align-items: center; gap: 1.25rem; padding: 0 1.75rem; white-space: nowrap; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.25em; text-transform: uppercase; color: #5C4F3A; }
+        .ab-tick-item { display: flex; align-items: center; gap: 1.25rem; padding: 0 1.75rem; white-space: nowrap; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.25em; text-transform: uppercase; color: #0C1C2E; }
         .ab-tick-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
 
         @keyframes ab-up { from { opacity: 0; transform: translateY(28px) } to { opacity: 1; transform: none } }
@@ -116,7 +116,7 @@ export default function About() {
         .d5 { animation-delay: .56s } .d6 { animation-delay: .68s }
 
         @keyframes ab-float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-7px) } }
-        .ab-badge { display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; animation: ab-float 4s ease-in-out infinite; }
+        .ab-badge { display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; animation: ab-float 4s ease-in-out infinite; background: rgba(14,165,233,0.1); border: 1.5px solid rgba(14,165,233,0.25); color: #0EA5E9; }
 
         .ab-hero { background: transparent; padding: 4rem 2rem 3rem; text-align: center; border-bottom: 1.5px solid rgba(0,0,0,0.06); }
 
@@ -169,30 +169,30 @@ export default function About() {
           text-transform: uppercase;
         }
 
-        .ab-tagline { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; line-height: 1.15; color: #2E2419; margin-bottom: 1rem; }
-        .ab-tagline span { color: #FF6B35; }
+        .ab-tagline { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; line-height: 1.15; background: linear-gradient(135deg, #0C1C2E 0%, #0EA5E9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; }
+        .ab-tagline span { background: linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .ab-body-text { font-size: 0.9rem; color: #7C6F60; font-weight: 500; line-height: 1.8; }
 
         .ab-section-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.3rem; color: #2E2419; text-align: center; margin-bottom: 1.5rem; }
 
         .ab-pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-        .ab-pillar { background: white; border-radius: 20px; border: 1.5px solid rgba(0,0,0,0.07); padding: 1.5rem 1rem; text-align: center; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .ab-pillar:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.07); }
-        .ab-pillar-num { font-family: 'Bricolage Grotesque', sans-serif; font-size: 2rem; font-weight: 800; color: #FF6B35; line-height: 1; margin-bottom: 0.5rem; }
-        .ab-pillar-name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 0.85rem; color: #2E2419; margin-bottom: 0.3rem; }
+        .ab-pillar { background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,249,255,0.7)); border-radius: 20px; border: 1.5px solid rgba(14,165,233,0.15); padding: 1.5rem 1rem; text-align: center; transition: all 0.3s ease; backdrop-filter: blur(10px); }
+        .ab-pillar:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 32px rgba(14,165,233,0.15); border-color: rgba(14,165,233,0.3); }
+        .ab-pillar-num { font-family: 'Bricolage Grotesque', sans-serif; font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, #0EA5E9, #06B6D4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 0.5rem; }
+        .ab-pillar-name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 0.85rem; color: #0C1C2E; margin-bottom: 0.3rem; }
         .ab-pillar-desc { font-size: 0.75rem; color: #7C6F60; font-weight: 500; line-height: 1.5; }
 
         .ab-reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-        .ab-review { background: white; border-radius: 20px; border: 1.5px solid rgba(0,0,0,0.07); padding: 1.25rem; }
-        .ab-review-stars { color: #FF6B35; font-size: 0.8rem; margin-bottom: 0.75rem; letter-spacing: 0.1em; }
+        .ab-review { background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,249,255,0.7)); border-radius: 20px; border: 1.5px solid rgba(14,165,233,0.15); padding: 1.25rem; backdrop-filter: blur(10px); transition: all 0.3s ease; }
+        .ab-review:hover { transform: translateY(-3px); border-color: rgba(14,165,233,0.3); box-shadow: 0 8px 24px rgba(14,165,233,0.12); }
+        .ab-review-stars { color: #0EA5E9; font-size: 0.8rem; margin-bottom: 0.75rem; letter-spacing: 0.1em; }
         .ab-review-text { font-size: 0.82rem; color: #7C6F60; font-weight: 500; line-height: 1.7; margin-bottom: 0.75rem; font-style: italic; }
         .ab-review-name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 0.78rem; color: #2E2419; }
 
-        .ab-promise { background: #F3ECE1; border-radius: 24px; padding: 2.5rem 2rem; text-align: center; border: 1.5px solid #DDD8CF; }
-        .ab-promise-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.6rem; color: #2E2419; margin-bottom: 0.75rem; }
-        .ab-promise-sub { font-size: 0.9rem; color: #7C6F60; font-weight: 500; line-height: 1.7; max-width: 50ch; margin: 0 auto 1.5rem; }
-        .ab-promise-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #FF6B35, #FF8C5A); color: white; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; border: none; border-radius: 999px; padding: 0.7rem 1.75rem; cursor: pointer; box-shadow: 0 8px 28px rgba(255,107,53,0.35); transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .ab-promise-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(255,107,53,0.45); }
+        .ab-promise { background: linear-gradient(135deg, #E0F2FE, #F0F9FF); border-radius: 24px; padding: 2.5rem 2rem; text-align: center; border: 1.5px solid rgba(14,165,233,0.2); }
+        .ab-promise-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.6rem; background: linear-gradient(135deg, #0C1C2E 0%, #0EA5E9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; }
+        .ab-promise-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #0EA5E9, #06B6D4); color: white; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; border: none; border-radius: 999px; padding: 0.7rem 1.75rem; cursor: pointer; box-shadow: 0 12px 32px rgba(14,165,233,0.4); transition: all 0.3s ease; }
+        .ab-promise-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 48px rgba(14,165,233,0.5); }
 
         .ab-trust { display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; padding: 1.75rem 2rem; border-top: 1.5px dashed #DDD8CF; }
         .ab-trust-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 700; color: #ACA193; }

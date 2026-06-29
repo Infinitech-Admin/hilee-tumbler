@@ -140,31 +140,31 @@ export default function RegisterPage() {
         .hilee-blob-2 { animation-delay: 2s; }
         .hilee-blob-3 { animation-delay: 4s; }
         .hilee-input:focus {
-          border-color: #FF6B35 !important;
-          box-shadow: 0 0 0 3px rgba(255,107,53,0.12) !important;
+          border-color: #0EA5E9 !important;
+          box-shadow: 0 0 0 3px rgba(14,165,233,0.12) !important;
           outline: none !important;
         }
-        .hilee-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(255,107,53,0.45) !important; }
+        .hilee-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 48px rgba(255,255,255,0.5) !important; }
       `}</style>
 
       <div
         className="relative min-h-screen overflow-y-auto"
         style={{
           background:
-            "linear-gradient(160deg, #2E2419 0%, #4A3728 40%, #2E2419 100%)",
+            "linear-gradient(135deg, #0EA5E9 0%, #06B6D4 50%, #0EA5E9 100%)",
         }}
       >
         <div
           className="hilee-blob absolute top-16 left-8 w-80 h-80 rounded-full pointer-events-none"
-          style={{ background: "#E9DCC8", filter: "blur(80px)", opacity: 0.18 }}
+          style={{ background: "#FFFFFF", filter: "blur(80px)", opacity: 0.12 }}
         />
         <div
           className="hilee-blob hilee-blob-2 absolute top-1/3 right-8 w-72 h-72 rounded-full pointer-events-none"
-          style={{ background: "#FF6B35", filter: "blur(80px)", opacity: 0.18 }}
+          style={{ background: "#FFFFFF", filter: "blur(80px)", opacity: 0.15 }}
         />
         <div
           className="hilee-blob hilee-blob-3 absolute bottom-12 left-1/2 w-64 h-64 rounded-full pointer-events-none"
-          style={{ background: "#C4AA8A", filter: "blur(80px)", opacity: 0.18 }}
+          style={{ background: "#FFFFFF", filter: "blur(80px)", opacity: 0.08 }}
         />
 
         <div className="min-h-screen flex justify-center px-4 py-10 relative z-10">
@@ -180,8 +180,8 @@ export default function RegisterPage() {
               <div
                 style={{
                   background:
-                    "linear-gradient(135deg, #2E2419 0%, #4A3728 100%)",
-                  borderBottom: "2px solid #FF6B35",
+                    "linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%)",
+                  borderBottom: "2px solid rgba(255,255,255,0.2)",
                   padding: "1.75rem 2rem 1.5rem",
                 }}
               >
@@ -465,13 +465,14 @@ export default function RegisterPage() {
                     height: 52,
                     borderRadius: 12,
                     border: "none",
-                    background: "linear-gradient(135deg, #FF6B35, #FF8C5A)",
-                    color: "#FAF7F2",
+                    background:
+                      "linear-gradient(135deg, #FFFFFF 0%, #F0F9FF 100%)",
+                    color: "#0EA5E9",
                     fontWeight: 800,
                     fontSize: "0.95rem",
                     letterSpacing: "0.03em",
-                    boxShadow: "0 6px 24px rgba(255,107,53,0.35)",
-                    transition: "transform 0.2s, box-shadow 0.2s",
+                    boxShadow: "0 12px 32px rgba(255,255,255,0.4)",
+                    transition: "all 0.3s ease",
                   }}
                 >
                   {isSubmitting ? (

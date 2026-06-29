@@ -155,16 +155,16 @@ export default function Contact() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Nunito:wght@300;400;600;700;800&display=swap');
 
-        .cp { font-family: 'Nunito', sans-serif; background: linear-gradient(180deg, #E9DCC8 0%, #FFFFFF 100%); color: #2E2419; min-height: 100vh; }
+        .cp { font-family: 'Nunito', sans-serif; background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%); color: #0C1C2E; min-height: 100vh; }
         .cp * { box-sizing: border-box; }
         .cp-h { font-family: 'Bricolage Grotesque', sans-serif; }
 
         /* Ticker */
         @keyframes cp-tick { from { transform: translateX(0) } to { transform: translateX(-50%) } }
-        .cp-ticker     { background: #EDE8DF; border-bottom: 1.5px solid #DDD8CF; height: 40px; overflow: hidden; display: flex; align-items: center; }
+        .cp-ticker     { background: linear-gradient(90deg, #E0F2FE, #F0F9FF); border-bottom: 1.5px solid rgba(14,165,233,0.1); height: 40px; overflow: hidden; display: flex; align-items: center; }
         .cp-tick-track { display: flex; width: max-content; animation: cp-tick 28s linear infinite; }
-        .cp-tick-item  { display: flex; align-items: center; gap: 1.25rem; padding: 0 1.75rem; white-space: nowrap; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.25em; text-transform: uppercase; color: #5C4F3A; }
-        .cp-tick-dot   { width: 5px; height: 5px; border-radius: 50%; background: #8C7355; flex-shrink: 0; }
+        .cp-tick-item  { display: flex; align-items: center; gap: 1.25rem; padding: 0 1.75rem; white-space: nowrap; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.25em; text-transform: uppercase; color: #0C1C2E; }
+        .cp-tick-dot   { width: 5px; height: 5px; border-radius: 50%; background: #0EA5E9; flex-shrink: 0; }
 
         /* Entry animation */
         @keyframes cp-up { from { opacity: 0; transform: translateY(28px) } to { opacity: 1; transform: none } }
@@ -181,18 +181,18 @@ export default function Contact() {
         .cp-hero { position: relative; overflow: hidden; background: transparent; padding: 4rem 2rem 3rem; text-align: center; border-bottom: 1.5px solid rgba(0,0,0,0.06); }
 
         /* Eyebrow pill — matches blog */
-        .cp-eyebrow { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(255,107,53,0.1); border: 1.5px solid rgba(255,107,53,0.25); border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: #FF6B35; margin-bottom: 1.5rem; }
+        .cp-eyebrow { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(14,165,233,0.1); border: 1.5px solid rgba(14,165,233,0.25); border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: #0EA5E9; margin-bottom: 1.5rem; }
 
         /* Info cards */
         .cp-info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
         .cp-info-card {
-          background: white; border-radius: 20px; padding: 1.5rem 1rem;
-          text-align: center; border: 1.5px solid #DDD8CF;
-          box-shadow: 0 4px 20px rgba(46,36,25,0.05);
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,249,255,0.7)); border-radius: 20px; padding: 1.5rem 1rem;
+          text-align: center; border: 1.5px solid rgba(14,165,233,0.15); backdrop-filter: blur(10px);
+          box-shadow: 0 8px 24px rgba(14,165,233,0.1);
+          transition: all 0.3s ease;
         }
-        .cp-info-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(46,36,25,0.09); }
-        .cp-info-icon  { color: #FF6B35; margin: 0 auto 0.75rem; display: flex; justify-content: center; }
+        .cp-info-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 32px rgba(14,165,233,0.2); border-color: rgba(14,165,233,0.3); }
+        .cp-info-icon  { color: #0EA5E9; margin: 0 auto 0.75rem; display: flex; justify-content: center; }
         .cp-info-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 0.82rem; color: #2E2419; margin-bottom: 0.3rem; }
         .cp-info-value { font-size: 0.78rem; color: #7C6F60; font-weight: 600; }
 
@@ -250,14 +250,14 @@ export default function Contact() {
         /* Submit button */
         .cp-submit {
           width: 100%; padding: 0.8rem; border-radius: 999px; border: none;
-          background: #FF6B35; color: white;
+          background: linear-gradient(135deg, #0EA5E9, #06B6D4); color: white;
           font-family: 'Nunito', sans-serif; font-size: 0.9rem; font-weight: 800;
           cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-          box-shadow: 0 8px 28px rgba(255,107,53,0.3);
-          transition: transform 0.2s, box-shadow 0.2s;
+          box-shadow: 0 12px 32px rgba(14,165,233,0.4);
+          transition: all 0.3s ease;
           letter-spacing: 0.02em;
         }
-        .cp-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(255,107,53,0.4); }
+        .cp-submit:hover:not(:disabled) { transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 48px rgba(14,165,233,0.5); }
         .cp-submit:disabled { opacity: 0.65; cursor: not-allowed; }
 
         /* Trust strip */

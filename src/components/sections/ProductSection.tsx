@@ -28,8 +28,8 @@ const getImageUrl = (imagePath: string): string => {
 };
 
 const THEME = {
-  accent: "#FF6B35",
-  bg: "linear-gradient(145deg, #F7F1E8, #ECE0CC)",
+  accent: "#0EA5E9",
+  bg: "linear-gradient(145deg, #E0F2FE, #BAE6FD)",
 };
 
 export default function ProductSection() {
@@ -58,7 +58,7 @@ export default function ProductSection() {
 
         .ps-section {
           position: relative; overflow: hidden;
-          background: linear-gradient(160deg, #E9DCC8 0%, #F3ECE1 55%, #FFFFFF 100%);
+          background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 35%, #FFF9FF 70%, #FFFFFF 100%);
           padding: 5rem 2rem 5rem;
         }
 
@@ -68,7 +68,11 @@ export default function ProductSection() {
           50%    {border-radius:55% 45% 35% 65%/40% 60% 50% 50%}
           75%    {border-radius:70% 30% 60% 40%/55% 45% 65% 35%}
         }
-        .ps-blob { animation: ps-morph 12s ease-in-out infinite; position: absolute; pointer-events: none; z-index: 0; }
+        @keyframes ps-float {
+          0%, 100% { transform: translateY(0px) scale(1); }
+          50% { transform: translateY(40px) scale(1.05); }
+        }
+        .ps-blob { animation: ps-morph 12s ease-in-out infinite, ps-float 8s ease-in-out infinite; position: absolute; pointer-events: none; z-index: 0; }
 
         .ps-dotgrid { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.3; pointer-events: none; z-index: 0; }
 
@@ -93,11 +97,19 @@ export default function ProductSection() {
         }
 
         .ps-card {
-          background: white;
+          background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,249,255,0.7));
           border-radius: 20px;
-          box-shadow: 0 4px 24px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04);
-          border: 1.5px solid rgba(0,0,0,0.07);
+          box-shadow: 0 8px 32px rgba(14,165,233,0.12), 0 2px 8px rgba(0,0,0,0.04);
+          border: 1.5px solid rgba(14,165,233,0.15);
           overflow: hidden;
+          backdrop-filter: blur(10px);
+          transition: all 0.3s ease;
+        }
+        .ps-card:hover {
+          transform: translateY(-8px);
+          border-color: rgba(14,165,233,0.3);
+          box-shadow: 0 12px 48px rgba(14,165,233,0.2), 0 4px 12px rgba(0,0,0,0.05);
+        }
           transition: box-shadow 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
           display: flex;
           flex-direction: column;
@@ -151,6 +163,7 @@ export default function ProductSection() {
         .ps-price {
           font-family: 'Bricolage Grotesque', sans-serif;
           font-size: 1.15rem; font-weight: 800; line-height: 1;
+          color: #0EA5E9;
         }
 
         .ps-shop-row {
@@ -177,11 +190,11 @@ export default function ProductSection() {
           font-size: 0.85rem; letter-spacing: 0.06em;
           padding: 0.875rem 2rem; border-radius: 999px;
           border: none; cursor: pointer; color: white;
-          background: linear-gradient(135deg, #FF6B35, #FF8C5A);
-          box-shadow: 0 8px 28px rgba(255,107,53,0.35);
+          background: linear-gradient(135deg, #0EA5E9, #06B6D4);
+          box-shadow: 0 12px 32px rgba(14,165,233,0.4);
           transition: all 0.3s ease; text-decoration: none;
         }
-        .ps-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(255,107,53,0.45); }
+        .ps-cta:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 18px 48px rgba(14,165,233,0.5); }
 
         .ps-modal-overlay {
           position: fixed; inset: 0; z-index: 200;
@@ -233,7 +246,7 @@ export default function ProductSection() {
             width: "380px",
             height: "380px",
             background:
-              "linear-gradient(135deg,rgba(255,107,53,0.12) 0%,rgba(255,211,61,0.08) 100%)",
+              "linear-gradient(135deg,rgba(14,165,233,0.12) 0%,rgba(34,211,238,0.08) 100%)",
           }}
         />
         <div
@@ -244,7 +257,7 @@ export default function ProductSection() {
             width: "280px",
             height: "280px",
             background:
-              "linear-gradient(135deg,rgba(78,205,196,0.11) 0%,rgba(168,230,207,0.07) 100%)",
+              "linear-gradient(135deg,rgba(6,182,212,0.11) 0%,rgba(165,243,252,0.07) 100%)",
             animationDelay: "-5s",
           }}
         />
@@ -255,7 +268,7 @@ export default function ProductSection() {
             left: "5%",
             width: "140px",
             height: "140px",
-            background: "rgba(199,125,255,0.07)",
+            background: "rgba(14,165,233,0.07)",
             animationDelay: "-8s",
           }}
         />
@@ -294,15 +307,15 @@ export default function ProductSection() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "0.5rem",
-                background: "rgba(255,107,53,0.1)",
-                border: "1.5px solid rgba(255,107,53,0.25)",
+                background: "rgba(14,165,233,0.1)",
+                border: "1.5px solid rgba(14,165,233,0.25)",
                 borderRadius: "999px",
                 padding: "0.35rem 0.9rem",
                 fontSize: "0.62rem",
                 fontWeight: 800,
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
-                color: "#FF6B35",
+                color: "#0EA5E9",
                 marginBottom: "1rem",
               }}
             >
@@ -315,7 +328,7 @@ export default function ProductSection() {
                 fontWeight: 800,
                 lineHeight: 0.95,
                 letterSpacing: "-0.025em",
-                color: "#2E2419",
+                color: "#0C1C2E",
                 margin: "0 0 0.75rem",
               }}
             >
@@ -326,7 +339,7 @@ export default function ProductSection() {
               style={{
                 fontSize: "1rem",
                 lineHeight: 1.75,
-                color: "#7C6F60",
+                color: "#6B7280",
                 maxWidth: "44ch",
                 margin: "0 auto",
                 fontWeight: 400,
@@ -346,7 +359,7 @@ export default function ProductSection() {
                   style={{
                     height: "340px",
                     borderRadius: "20px",
-                    background: "linear-gradient(135deg,#F5EEE3,#E9DCC8)",
+                    background: "linear-gradient(135deg,#E0F2FE,#BAE6FD)",
                     animation: "ps-in 1.2s ease-in-out infinite alternate",
                   }}
                 />
@@ -367,7 +380,7 @@ export default function ProductSection() {
             >
               <p
                 style={{
-                  color: "#FF6B35",
+                  color: "#0EA5E9",
                   fontWeight: 700,
                   marginBottom: "0.5rem",
                 }}
@@ -421,9 +434,9 @@ export default function ProductSection() {
                       <div
                         className="ps-chip"
                         style={{
-                          borderColor: `${accent}33`,
-                          color: accent,
-                          border: `1.5px solid ${accent}33`,
+                          borderColor: `#0EA5E933`,
+                          color: "#0EA5E9",
+                          border: `1.5px solid #0EA5E933`,
                         }}
                       >
                         Hilee
@@ -432,8 +445,8 @@ export default function ProductSection() {
                       <div
                         className="ps-new"
                         style={{
-                          background: accent,
-                          boxShadow: `0 4px 12px ${accent}55`,
+                          background: "#0EA5E9",
+                          boxShadow: `0 4px 12px #0EA5E955`,
                         }}
                       >
                         <Sparkles size={8} strokeWidth={2.5} />
@@ -453,7 +466,7 @@ export default function ProductSection() {
                             fontWeight: 800,
                             letterSpacing: "0.18em",
                             textTransform: "uppercase",
-                            color: accent,
+                            color: "#0EA5E9",
                             marginBottom: "0.25rem",
                           }}
                         >
@@ -465,7 +478,7 @@ export default function ProductSection() {
                           style={{
                             fontSize: "clamp(0.8rem,1.4vw,0.95rem)",
                             fontWeight: 700,
-                            color: "#2E2419",
+                            color: "#0C1C2E",
                             lineHeight: 1.25,
                             margin: 0,
                             display: "-webkit-box",
@@ -494,13 +507,13 @@ export default function ProductSection() {
                           rel="noopener noreferrer"
                           className="ps-shop-btn"
                           style={{
-                            background: "#000000",
+                            background: "#87CEEB",
                             color: "#FFFFFF",
                             pointerEvents: product.tiktok_url ? "auto" : "none",
                             opacity: product.tiktok_url ? 1 : 0.4,
                           }}
                         >
-                          TikTok
+                          Shop now
                         </a>
                       </div>
                     </div>
@@ -685,7 +698,7 @@ export default function ProductSection() {
                   opacity: selected.tiktok_url ? 1 : 0.4,
                 }}
               >
-                Buy on TikTok
+                Shop now
                 <ExternalLink size={14} strokeWidth={2.5} />
               </a>
 

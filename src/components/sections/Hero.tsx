@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ShoppingBag, Droplets, ArrowRight } from "lucide-react";
 
-const ACCENT = "#E85D2F";
+const ACCENT = "#0EA5E9";
 
 interface Product {
   id: number;
@@ -43,29 +43,31 @@ export default function HeroSection() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
         /* ── Ticker ── */
         .ht-wrap { overflow: hidden; white-space: nowrap; padding: 9px 0;
-          border-bottom: 1px solid rgba(0,0,0,0.07); background: #E9DCC8; }
+          border-bottom: 1px solid rgba(0,0,0,0.07); background: #E0F2FE; }
         .ht-inner { display: inline-flex; animation: htTick 28s linear infinite; }
         @keyframes htTick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
         .ht-item { display: inline-flex; align-items: center; gap: 8px; padding: 0 24px;
-          font-family: 'Nunito', sans-serif; font-size: 0.68rem; font-weight: 800;
+          font-family: 'Inter', sans-serif; font-size: 0.68rem; font-weight: 800;
           letter-spacing: 0.12em; text-transform: uppercase; }
-        .ht-dot { width: 4px; height: 4px; border-radius: 50%; background: #E85D2F; flex-shrink: 0; }
+        .ht-dot { width: 4px; height: 4px; border-radius: 50%; background: #FF6B35; flex-shrink: 0; }
 
         /* ── Shell ── */
-        .hs-shell { font-family: 'Nunito', sans-serif; background: linear-gradient(180deg, #E9DCC8 0%, #FFFFFF 100%);
+        .hs-shell { font-family: 'Inter', sans-serif; 
+          background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 40%, #E1F5FF 100%);
           position: relative; overflow: hidden; }
 
         /* ── Decorative bg blobs ── */
-        .hs-blob-a { position: absolute; width: 500px; height: 500px; border-radius: 50%;
-          background: #E85D2F; opacity: 0.07; filter: blur(100px);
-          top: -120px; right: -100px; pointer-events: none; }
-        .hs-blob-b { position: absolute; width: 300px; height: 300px; border-radius: 50%;
-          background: #E85D2F; opacity: 0.05; filter: blur(80px);
-          bottom: -60px; left: -60px; pointer-events: none; }
+        .hs-blob-a { position: absolute; width: 600px; height: 600px; border-radius: 50%;
+          background: linear-gradient(135deg, #0EA5E9, #06B6D4); opacity: 0.15; filter: blur(80px);
+          top: -150px; right: -120px; pointer-events: none; animation: hs-float 8s ease-in-out infinite; }
+        .hs-blob-b { position: absolute; width: 400px; height: 400px; border-radius: 50%;
+          background: linear-gradient(135deg, #22D3EE, #0EA5E9); opacity: 0.12; filter: blur(70px);
+          bottom: -80px; left: -80px; pointer-events: none; animation: hs-float 10s ease-in-out infinite reverse; }
+        @keyframes hs-float { 0%, 100% { transform: translateY(0px) scale(1); } 50% { transform: translateY(40px) scale(1.05); } }
 
         /* ── Main grid ── */
         .hs-grid {
@@ -85,39 +87,45 @@ export default function HeroSection() {
 
         .hs-label { display: inline-flex; align-items: center; gap: 7px; width: fit-content; }
         .hs-label-text { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.14em;
-          text-transform: uppercase; color: #E85D2F; }
+          text-transform: uppercase; color: #0EA5E9; }
 
         .hs-headline { font-size: clamp(2.6rem, 5vw, 4.2rem); font-weight: 900;
-          line-height: 1.0; color: #2E2419; margin: 0; letter-spacing: -0.025em; }
-        .hs-headline span { color: #E85D2F; }
+          line-height: 1.0; background: linear-gradient(135deg, #0C1C2E 0%, #0EA5E9 50%);
+          -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+          background-clip: text; margin: 0; letter-spacing: -0.025em; }
+        .hs-headline span { background: linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%);
+          -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-        .hs-sub { font-size: clamp(0.9rem, 1.3vw, 1rem); color: #7C6F60;
+        .hs-sub { font-size: clamp(0.9rem, 1.3vw, 1rem); color: #4B5563;
           line-height: 1.7; max-width: 400px; margin: 0; }
 
         /* ── Pills row ── */
         .hs-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-        .hs-pill { background: white; border: 1px solid rgba(0,0,0,0.07);
-          border-radius: 999px; padding: 7px 14px; font-size: 0.72rem; font-weight: 700;
-          color: #374151; display: flex; align-items: center; gap: 6px; }
-        .hs-pill-dot { width: 7px; height: 7px; border-radius: 50%; background: #E85D2F; }
+        .hs-pill { background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(240,249,255,0.6));
+          border: 1.5px solid rgba(14,165,233,0.2); backdrop-filter: blur(8px);
+          border-radius: 999px; padding: 8px 16px; font-size: 0.72rem; font-weight: 700;
+          color: #0C1C2E; display: flex; align-items: center; gap: 6px; transition: all 0.2s; }
+        .hs-pill:hover { border-color: rgba(14,165,233,0.4); box-shadow: 0 4px 12px rgba(14,165,233,0.1); }
+        .hs-pill-dot { width: 7px; height: 7px; border-radius: 50%; background: #0EA5E9; }
 
         /* ── CTAs ── */
         .hs-ctas { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
         .hs-btn-primary { display: inline-flex; align-items: center; gap: 8px;
-          padding: 15px 30px; border-radius: 999px; background: #E85D2F; color: white;
-          font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.88rem;
+          padding: 15px 30px; border-radius: 999px; 
+          background: linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%);
+          color: white; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 0.88rem;
           letter-spacing: 0.03em; text-decoration: none; border: none; cursor: pointer;
-          transition: transform 0.18s, box-shadow 0.18s;
-          box-shadow: 0 8px 28px rgba(232,93,47,0.3); }
-        .hs-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(232,93,47,0.38); }
+          transition: transform 0.2s, box-shadow 0.2s, scale 0.2s;
+          box-shadow: 0 12px 32px rgba(14,165,233,0.4); }
+        .hs-btn-primary:hover { transform: translateY(-4px); scale: 1.03; box-shadow: 0 20px 48px rgba(14,165,233,0.5); }
         .hs-btn-ghost { display: inline-flex; align-items: center; gap: 6px;
-          font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.88rem;
-          color: #374151; text-decoration: none; transition: color 0.18s; }
-        .hs-btn-ghost:hover { color: #E85D2F; }
+          font-family: 'Inter', sans-serif; font-weight: 800; font-size: 0.88rem;
+          color: #0C1C2E; text-decoration: none; transition: all 0.2s; position: relative; }
+        .hs-btn-ghost:hover { color: #0EA5E9; transform: translateX(4px); }
 
         /* ── Trust badges ── */
         .hs-trust { display: flex; gap: 1.25rem; flex-wrap: wrap; padding-top: 0.25rem; }
-        .hs-trust-item { font-size: 0.72rem; font-weight: 700; color: #9CA3AF;
+        .hs-trust-item { font-size: 0.72rem; font-weight: 700; color: #6B7280;
           display: flex; align-items: center; gap: 5px; }
 
         /* ── Right panel ── */
@@ -129,21 +137,23 @@ export default function HeroSection() {
           padding: 3rem 0 3rem 3rem; position: relative; min-width: 0; }
 
         .hs-img-frame { position: relative; width: 100%; max-width: 360px;
-          aspect-ratio: 1; border-radius: 32px; background: white;
-          border: 1px solid rgba(0,0,0,0.06); overflow: hidden;
+          aspect-ratio: 1; border-radius: 32px; 
+          background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(240,249,255,0.8));
+          border: 2px solid rgba(14,165,233,0.25); overflow: hidden;
           display: flex; align-items: center; justify-content: center;
-          cursor: pointer; transition: transform 0.25s; }
-        .hs-img-frame:hover { transform: scale(1.015); }
+          cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;
+          box-shadow: 0 20px 50px rgba(14,165,233,0.15); backdrop-filter: blur(10px); }
+        .hs-img-frame:hover { transform: scale(1.03) translateY(-8px); box-shadow: 0 32px 64px rgba(14,165,233,0.3); }
         .hs-img-frame:hover .hs-view-overlay { opacity: 1; }
 
-        .hs-view-overlay { position: absolute; inset: 0; background: rgba(232,93,47,0.06);
+        .hs-view-overlay { position: absolute; inset: 0; background: rgba(14,165,233,0.08);
           display: flex; align-items: center; justify-content: center;
           opacity: 0; transition: opacity 0.2s; border-radius: 32px; }
-        .hs-view-overlay span { background: #E85D2F; color: white; font-weight: 800;
+        .hs-view-overlay span { background: #0EA5E9; color: white; font-weight: 800;
           font-size: 0.8rem; padding: 10px 22px; border-radius: 999px; letter-spacing: 0.05em; }
 
         .hs-new-badge { position: absolute; top: 18px; left: 18px; z-index: 2;
-          background: #E85D2F; color: white; font-size: 0.6rem; font-weight: 900;
+          background: #0EA5E9; color: white; font-size: 0.6rem; font-weight: 900;
           letter-spacing: 0.12em; text-transform: uppercase;
           padding: 5px 12px; border-radius: 999px; }
 
@@ -154,62 +164,67 @@ export default function HeroSection() {
 
         /* ── Product info strip ── */
         .hs-product-strip { width: 100%; max-width: 360px; margin-top: 1rem;
-          background: white; border: 1px solid rgba(0,0,0,0.07); border-radius: 20px;
-          padding: 14px 18px; display: flex; align-items: center; gap: 12px; }
+          background: linear-gradient(135deg, rgba(255,255,255,0.85), rgba(240,249,255,0.7));
+          border: 1.5px solid rgba(14,165,233,0.2); backdrop-filter: blur(8px);
+          border-radius: 20px; padding: 14px 18px; display: flex; align-items: center; gap: 12px;
+          transition: all 0.2s; }
+        .hs-product-strip:hover { border-color: rgba(14,165,233,0.4); box-shadow: 0 8px 20px rgba(14,165,233,0.1); }
         .hs-strip-cat { font-size: 0.6rem; font-weight: 900; letter-spacing: 0.12em;
-          text-transform: uppercase; color: white; background: #E85D2F;
+          text-transform: uppercase; color: white; background: #0EA5E9;
           padding: 3px 9px; border-radius: 999px; flex-shrink: 0; }
-        .hs-strip-name { font-size: 0.82rem; font-weight: 800; color: #2E2419;
+        .hs-strip-name { font-size: 0.82rem; font-weight: 800; color: #0C1C2E;
           margin: 0 0 2px; line-height: 1.2; }
-        .hs-strip-price { font-size: 0.92rem; font-weight: 900; color: #E85D2F; margin: 0; }
+        .hs-strip-price { font-size: 0.92rem; font-weight: 900; color: #0EA5E9; margin: 0; }
 
         /* ── Skeleton ── */
         .hs-skel { width: 100%; max-width: 360px; aspect-ratio: 1; border-radius: 32px;
-          background: linear-gradient(90deg, #ECE2D2 25%, #DFD2BC 50%, #ECE2D2 75%);
+          background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
           background-size: 200% 100%; animation: hsSkel 1.4s ease infinite; }
         @keyframes hsSkel { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
         /* ── Stats sidebar ── */
         .hs-stats-bar { display: flex; flex-direction: column; gap: 1rem;
           justify-content: center; padding: 3rem 0 3rem 1.5rem;
-          border-left: 1px solid rgba(0,0,0,0.07); flex-shrink: 0; }
-        .hs-stat-card { background: white; border: 1px solid rgba(0,0,0,0.07);
-          border-radius: 16px; padding: 14px 16px; min-width: 90px; text-align: center; }
-        .hs-stat-num { font-size: 1.1rem; font-weight: 900; color: #2E2419;
+          border-left: 1px solid rgba(0,0,0,0.08); flex-shrink: 0; }
+        .hs-stat-card { background: linear-gradient(135deg, rgba(255,255,255,0.85), rgba(240,249,255,0.7));
+          border: 1.5px solid rgba(14,165,233,0.2); backdrop-filter: blur(8px);
+          border-radius: 16px; padding: 14px 16px; min-width: 90px; text-align: center; transition: all 0.2s; }
+        .hs-stat-card:hover { border-color: rgba(14,165,233,0.4); box-shadow: 0 8px 20px rgba(14,165,233,0.1); }
+        .hs-stat-num { font-size: 1.1rem; font-weight: 900; color: #0C1C2E;
           display: block; line-height: 1; margin-bottom: 4px; }
-        .hs-stat-lbl { font-size: 0.6rem; font-weight: 800; color: #9CA3AF;
+        .hs-stat-lbl { font-size: 0.6rem; font-weight: 800; color: #6B7280;
           text-transform: uppercase; letter-spacing: 0.1em; display: block; }
 
         /* ══════ MODAL ══════ */
-        .hs-modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-          backdrop-filter: blur(10px); z-index: 300; display: flex;
+        .hs-modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+          backdrop-filter: blur(6px); z-index: 300; display: flex;
           align-items: center; justify-content: center; padding: 1rem; box-sizing: border-box; }
         .hs-modal { background: white; border-radius: 28px; overflow: hidden;
           width: 100%; max-width: 780px; max-height: 90svh; display: flex;
-          box-shadow: 0 40px 80px rgba(0,0,0,0.2); overflow-y: auto; }
-        .hs-modal-img { width: 42%; flex-shrink: 0; background: #F3ECE1;
+          box-shadow: 0 40px 80px rgba(0,0,0,0.22); overflow-y: auto; }
+        .hs-modal-img { width: 42%; flex-shrink: 0; background: #F0F9FF;
           display: flex; align-items: center; justify-content: center;
           padding: 2.5rem; box-sizing: border-box; min-height: 300px; }
         .hs-modal-body { flex: 1; padding: 2rem 2rem 2rem 1.5rem;
           display: flex; flex-direction: column; gap: 1rem; overflow-y: auto; }
         .hs-modal-close { position: absolute; top: 1rem; right: 1rem; z-index: 10;
           width: 34px; height: 34px; border-radius: 50%; background: white;
-          border: 1px solid rgba(0,0,0,0.1); cursor: pointer;
+          border: 1px solid rgba(0,0,0,0.12); cursor: pointer;
           display: flex; align-items: center; justify-content: center;
-          font-size: 1rem; color: #374151; line-height: 1; }
+          font-size: 1rem; color: #0C1C2E; line-height: 1; }
         .hs-modal-cat { font-size: 0.62rem; font-weight: 900; letter-spacing: 0.12em;
-          text-transform: uppercase; color: white; background: #E85D2F;
+          text-transform: uppercase; color: white; background: #0EA5E9;
           padding: 4px 12px; border-radius: 999px; width: fit-content; }
         .hs-modal-name { font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight: 900;
-          color: #2E2419; margin: 0; line-height: 1.15; }
+          color: #0C1C2E; margin: 0; line-height: 1.15; }
         .hs-modal-price { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 900;
-          color: #E85D2F; margin: 0; }
-        .hs-modal-desc { font-size: 0.88rem; color: #7C6F60; line-height: 1.7; margin: 0; flex: 1; }
+          color: #0EA5E9; margin: 0; }
+        .hs-modal-desc { font-size: 0.88rem; color: #4B5563; line-height: 1.7; margin: 0; flex: 1; }
         .hs-modal-shop-label { font-size: 0.6rem; font-weight: 800; letter-spacing: 0.1em;
-          text-transform: uppercase; color: #9CA3AF; margin: 0; }
+          text-transform: uppercase; color: #6B7280; margin: 0; }
         .hs-tiktok-btn { display: flex; align-items: center; justify-content: center; gap: 8px;
           padding: 14px 1rem; border-radius: 999px; background: #010101; color: white;
-          font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem;
+          font-family: 'Inter', sans-serif; font-weight: 800; font-size: 0.85rem;
           text-decoration: none; transition: opacity 0.2s; border: none; cursor: pointer; }
         .hs-tiktok-btn:hover { opacity: 0.85; }
 
@@ -247,7 +262,7 @@ export default function HeroSection() {
           }
           .hs-stats-bar {
             flex-direction: column;
-            border-left: 1px solid rgba(0,0,0,0.07);
+            border-left: 1px solid rgba(0,0,0,0.08);
             border-top: none;
             padding: 0 0 0 1.25rem;
             justify-content: center;
@@ -276,7 +291,7 @@ export default function HeroSection() {
           .hs-stats-bar {
             flex-direction: row;
             border-left: none;
-            border-top: 1px solid rgba(0,0,0,0.07);
+            border-top: 1px solid rgba(0,0,0,0.08);
             padding: 1rem 0 0;
             width: 100%;
             justify-content: space-between;
@@ -313,7 +328,7 @@ export default function HeroSection() {
             <span
               key={i}
               className="ht-item"
-              style={{ color: i % 2 === 0 ? "#374151" : ACCENT }}
+              style={{ color: i % 2 === 0 ? "#1F2937" : ACCENT }}
             >
               <span className="ht-dot" />
               {t}
@@ -348,19 +363,6 @@ export default function HeroSection() {
               Ice-cold for 24 hours. Yours for every adventure.
             </p>
 
-            <div className="hs-pills">
-              {[
-                "🧊 24H Cold Retention",
-                "💧 BPA Free",
-                "✅ 18 oz Capacity",
-              ].map((p) => (
-                <span key={p} className="hs-pill">
-                  <span className="hs-pill-dot" />
-                  {p}
-                </span>
-              ))}
-            </div>
-
             <div className="hs-ctas">
               <Link href="/products" className="hs-btn-primary">
                 <ShoppingBag size={16} />
@@ -369,19 +371,6 @@ export default function HeroSection() {
               <Link href="/about" className="hs-btn-ghost">
                 Our story <ArrowRight size={14} />
               </Link>
-            </div>
-
-            <div className="hs-trust">
-              {[
-                ["🚚", "Free shipping"],
-                ["↩️", "30-day returns"],
-                ["🏆", "Lifetime warranty"],
-              ].map(([e, t]) => (
-                <div key={t} className="hs-trust-item">
-                  <span>{e}</span>
-                  <span>{t}</span>
-                </div>
-              ))}
             </div>
           </div>
 
@@ -393,8 +382,8 @@ export default function HeroSection() {
               ) : !featured ? (
                 <p
                   style={{
-                    color: "#9CA3AF",
-                    fontFamily: "'Nunito',sans-serif",
+                    color: "#6B7280",
+                    fontFamily: "'Inter',sans-serif",
                   }}
                 >
                   No products.
@@ -437,7 +426,7 @@ export default function HeroSection() {
                           aria-label={`Product ${i + 1}`}
                           style={{
                             background:
-                              i === activeIdx ? ACCENT : "rgba(0,0,0,0.15)",
+                              i === activeIdx ? ACCENT : "rgba(0,0,0,0.18)",
                             transform:
                               i === activeIdx ? "scale(1.3)" : "scale(1)",
                           }}
@@ -457,7 +446,7 @@ export default function HeroSection() {
                         cursor: "pointer",
                         borderRadius: "999px",
                         padding: "9px 16px",
-                        fontFamily: "'Nunito',sans-serif",
+                        fontFamily: "'Inter',sans-serif",
                         fontWeight: 800,
                         fontSize: "0.78rem",
                         whiteSpace: "nowrap",
@@ -473,23 +462,6 @@ export default function HeroSection() {
             </div>
 
             {/* Stats sidebar */}
-            <div className="hs-stats-bar">
-              {[
-                ["500+", "Happy buyers"],
-                ["24H", "Ice cold"],
-                ["100%", "BPA free"],
-              ].map(([n, l]) => (
-                <div key={l} className="hs-stat-card">
-                  <span
-                    className="hs-stat-num"
-                    style={{ color: n === "24H" ? ACCENT : "#2E2419" }}
-                  >
-                    {n}
-                  </span>
-                  <span className="hs-stat-lbl">{l}</span>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -499,7 +471,7 @@ export default function HeroSection() {
         style={{
           position: "relative",
           height: "1px",
-          background: "rgba(0,0,0,0.07)",
+          background: "rgba(0,0,0,0.08)",
           margin: "0 4rem",
         }}
       >
@@ -509,7 +481,7 @@ export default function HeroSection() {
             left: "50%",
             top: "50%",
             transform: "translate(-50%,-50%)",
-            background: "#F3ECE1",
+            background: "#FAF7F2",
             padding: "0 1rem",
             display: "flex",
             alignItems: "center",
@@ -517,7 +489,7 @@ export default function HeroSection() {
           }}
         >
           <div
-            style={{ width: 20, height: 1, background: "rgba(0,0,0,0.1)" }}
+            style={{ width: 20, height: 1, background: "rgba(0,0,0,0.12)" }}
           />
           <div
             style={{
@@ -525,11 +497,11 @@ export default function HeroSection() {
               height: 5,
               borderRadius: "50%",
               background: ACCENT,
-              opacity: 0.5,
+              opacity: 0.6,
             }}
           />
           <div
-            style={{ width: 20, height: 1, background: "rgba(0,0,0,0.1)" }}
+            style={{ width: 20, height: 1, background: "rgba(0,0,0,0.12)" }}
           />
         </div>
       </div>
@@ -589,7 +561,7 @@ export default function HeroSection() {
                 >
                   <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.26 8.26 0 0 0 4.84 1.55V6.79a4.85 4.85 0 0 1-1.07-.1z" />
                 </svg>
-                Shop on TikTok
+                Shop now
               </a>
             </div>
           </div>

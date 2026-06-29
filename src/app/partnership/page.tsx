@@ -184,21 +184,21 @@ export default function Partnership() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Nunito:wght@300;400;500;600;700;800&display=swap');
 
-        .pt { font-family: 'Nunito', sans-serif; background: linear-gradient(180deg, #E9DCC8 0%, #FFFFFF 100%); color: #2E2419; min-height: 100vh; }
+        .pt { font-family: 'Nunito', sans-serif; background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%); color: #0C1C2E; min-height: 100vh; }
         .pt * { box-sizing: border-box; margin: 0; padding: 0; }
         .pt-h { font-family: 'Bricolage Grotesque', sans-serif; }
 
         /* Ticker */
         @keyframes pt-tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-        .pt-ticker { background: #EDE8DF; border-bottom: 1px solid #DDD8CF; height: 40px; overflow: hidden; display: flex; align-items: center; }
+        .pt-ticker { background: linear-gradient(90deg, #E0F2FE, #F0F9FF); border-bottom: 1px solid rgba(14,165,233,0.1); height: 40px; overflow: hidden; display: flex; align-items: center; }
         .pt-tick-track { display: flex; width: max-content; animation: pt-tick 30s linear infinite; }
-        .pt-tick-item { display: flex; align-items: center; gap: 1rem; padding: 0 2rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.25em; text-transform: uppercase; color: #5C4F3A; white-space: nowrap; }
-        .pt-tick-dot { width: 5px; height: 5px; border-radius: 50%; background: #8C7355; flex-shrink: 0; }
+        .pt-tick-item { display: flex; align-items: center; gap: 1rem; padding: 0 2rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.25em; text-transform: uppercase; color: #0C1C2E; white-space: nowrap; }
+        .pt-tick-dot { width: 5px; height: 5px; border-radius: 50%; background: #0EA5E9; flex-shrink: 0; }
 
         /* Hero */
         .pt-hero { padding: 5rem 2.5rem 3.5rem; text-align: center; border-bottom: 1.5px solid rgba(0,0,0,0.06); background: transparent; }
         .pt-hero-inner { max-width: 900px; margin: 0 auto; }
-        .pt-eyebrow { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(255,107,53,0.1); border: 1.5px solid rgba(255,107,53,0.25); border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: #FF6B35; margin-bottom: 1.5rem; }
+        .pt-eyebrow { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(14,165,233,0.1); border: 1.5px solid rgba(14,165,233,0.25); border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: #0EA5E9; margin-bottom: 1.5rem; }
 
         /* Fade-up */
         @keyframes pt-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
@@ -213,21 +213,17 @@ export default function Partnership() {
 
         /* Why cards */
         .pt-why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; align-items: stretch; }
-        .pt-why-card { background: #fff; border-radius: 20px; border: 1.5px solid #DDD8CF; padding: 2rem 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; height: 100%; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .pt-why-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.07); }
-        .pt-why-icon { font-size: 1.75rem; line-height: 1; }
-        .pt-why-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 1.05rem; color: #2E2419; }
+        .pt-why-card { background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,249,255,0.7)); border-radius: 20px; border: 1.5px solid rgba(14,165,233,0.15); padding: 2rem 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; height: 100%; transition: all 0.3s ease; backdrop-filter: blur(10px); }
+        .pt-why-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 32px rgba(14,165,233,0.15); border-color: rgba(14,165,233,0.3); }
+        .pt-why-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 1.05rem; color: #0C1C2E; }
         .pt-why-desc { font-size: 0.85rem; color: #7C6F60; line-height: 1.75; flex: 1; }
 
         /* Partnership cards */
         .pt-types { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; align-items: stretch; }
-        .pt-type-card { background: #fff; border-radius: 20px; border: 1.5px solid #DDD8CF; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
-        .pt-type-card:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(0,0,0,0.07); }
-        .pt-type-card.featured { border-color: #2E2419; }
-        .pt-type-header { padding: 1.75rem 1.5rem 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; flex: 1; }
-        .pt-type-tag { font-size: 0.58rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #8C7355; }
-        .pt-type-tag.featured { color: #FAF7F2; background: #2E2419; display: inline-block; padding: 0.25rem 0.6rem; border-radius: 999px; }
-        .pt-type-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.15rem; color: #2E2419; }
+        .pt-type-card { background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,249,255,0.7)); border-radius: 20px; border: 1.5px solid rgba(14,165,233,0.15); overflow: hidden; display: flex; flex-direction: column; transition: all 0.3s ease; backdrop-filter: blur(10px); }
+        .pt-type-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 40px rgba(14,165,233,0.2); border-color: rgba(14,165,233,0.3); }
+        .pt-type-card.featured { border-color: #0EA5E9; box-shadow: 0 0 0 2px rgba(14,165,233,0.1); }
+        .pt-type-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.15rem; color: #0C1C2E; }
         .pt-type-desc { font-size: 0.82rem; color: #7C6F60; line-height: 1.75; }
         .pt-type-perks { padding: 1.25rem 1.5rem; border-top: 1.5px dashed #DDD8CF; display: flex; flex-direction: column; gap: 0.55rem; }
         .pt-perk { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.8rem; color: #5C4F3A; line-height: 1.4; }
@@ -263,14 +259,14 @@ export default function Partnership() {
 
         .pt-submit { margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
         .pt-submit-btn {
-          background: #FF6B35; color: white; border: none; border-radius: 999px;
+          background: linear-gradient(135deg, #0EA5E9, #06B6D4); color: white; border: none; border-radius: 999px;
           padding: 0.8rem 2rem; font-family: 'Nunito', sans-serif; font-weight: 800;
           font-size: 0.88rem; cursor: pointer;
-          box-shadow: 0 8px 28px rgba(255,107,53,0.35);
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          box-shadow: 0 12px 32px rgba(14,165,233,0.4);
+          transition: all 0.3s ease;
           display: flex; align-items: center; gap: 0.5rem;
         }
-        .pt-submit-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(255,107,53,0.45); }
+        .pt-submit-btn:hover:not(:disabled) { transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 48px rgba(14,165,233,0.5); }
         .pt-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
         .pt-submit-note { font-size: 0.72rem; color: #ACA193; font-weight: 600; }
 

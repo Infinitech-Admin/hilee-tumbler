@@ -111,7 +111,7 @@ export default function MenuPage() {
       <div
         style={{
           minHeight: "100vh",
-          background: "linear-gradient(180deg, #E9DCC8 0%, #FFFFFF 100%)",
+          background: "linear-gradient(180deg, #F0F8FF 0%, #D4E8F7 100%)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -125,7 +125,7 @@ export default function MenuPage() {
       <div
         style={{
           minHeight: "100vh",
-          background: "linear-gradient(180deg, #E9DCC8 0%, #FFFFFF 100%)",
+          background: "linear-gradient(180deg, #F0F8FF 0%, #D4E8F7 100%)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -184,7 +184,7 @@ export default function MenuPage() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Nunito:wght@300;400;600;700;800&display=swap');
 
-        .mp { font-family: 'Nunito', sans-serif; background: linear-gradient(180deg, #E9DCC8 0%, #FFFFFF 100%); color: #2E2419; min-height: 100vh; }
+        .mp { font-family: 'Nunito', sans-serif; background: linear-gradient(180deg, #F0F8FF 0%, #D4E8F7 100%); color: #2E2419; min-height: 100vh; }
         .mp * { box-sizing: border-box; }
         .mp-h { font-family: 'Bricolage Grotesque', sans-serif; }
 

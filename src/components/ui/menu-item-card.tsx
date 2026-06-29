@@ -93,9 +93,9 @@ const TikTokIcon = ({ size = 14 }: { size?: number }) => (
 const PLATFORMS = [
   {
     key: "tiktok" as const,
-    label: "TikTok",
+    label: "Shop Now",
     Icon: TikTokIcon,
-    activeBg: "#010101",
+    activeBg: "linear-gradient(135deg, #87CEEB 0%, #4ECDC4 100%)",
     activeFg: "#FFFFFF",
     inactiveBg: "#F3F4F6",
     inactiveFg: "#6B7280",
@@ -305,11 +305,10 @@ export default function MenuItemCard({ item, index = 0 }: MenuItemCardProps) {
                   {/* <div className="mc-price">₱{formatPrice(item.price)}</div> */}
                 </div>
               </DialogTrigger>
-
-              <div className="mc-buy-label">Buy on</div>
               <div className="mc-platform-row">
                 {PLATFORMS.map((p) => {
                   const active = hasUrl(p.key);
+
                   return (
                     <a
                       key={p.key}
@@ -324,13 +323,9 @@ export default function MenuItemCard({ item, index = 0 }: MenuItemCardProps) {
                         pointerEvents: active ? "auto" : "none",
                       }}
                     >
-                      <p.Icon size={13} />
                       <span className="mc-platform-btn-name">{p.label}</span>
-                      {active ? (
-                        <span className="mc-platform-btn-status">
-                          Shop now ↗
-                        </span>
-                      ) : (
+
+                      {!active && (
                         <span className="mc-platform-btn-status">Soon</span>
                       )}
                     </a>
@@ -534,7 +529,7 @@ export default function MenuItemCard({ item, index = 0 }: MenuItemCardProps) {
                 fontFamily: "'Nunito', sans-serif",
               }}
             >
-              You'll be taken to TikTok Shop to complete your purchase
+              Click Shop Now to complete your purchase
             </p>
           </div>
         </DialogContent>
