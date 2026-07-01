@@ -121,7 +121,8 @@ export default function Contact() {
       <div
         className="min-h-screen flex items-center justify-center"
         style={{
-          background: "linear-gradient(180deg, #E9DCC8 0%, #FFFFFF 100%)",
+          background:
+            "linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%)",
         }}
       ></div>
     );
@@ -159,13 +160,6 @@ export default function Contact() {
         .cp * { box-sizing: border-box; }
         .cp-h { font-family: 'Bricolage Grotesque', sans-serif; }
 
-        /* Ticker */
-        @keyframes cp-tick { from { transform: translateX(0) } to { transform: translateX(-50%) } }
-        .cp-ticker     { background: linear-gradient(90deg, #E0F2FE, #F0F9FF); border-bottom: 1.5px solid rgba(14,165,233,0.1); height: 40px; overflow: hidden; display: flex; align-items: center; }
-        .cp-tick-track { display: flex; width: max-content; animation: cp-tick 28s linear infinite; }
-        .cp-tick-item  { display: flex; align-items: center; gap: 1.25rem; padding: 0 1.75rem; white-space: nowrap; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.25em; text-transform: uppercase; color: #0C1C2E; }
-        .cp-tick-dot   { width: 5px; height: 5px; border-radius: 50%; background: #0EA5E9; flex-shrink: 0; }
-
         /* Entry animation */
         @keyframes cp-up { from { opacity: 0; transform: translateY(28px) } to { opacity: 1; transform: none } }
         .cp-u { animation: cp-up 0.85s cubic-bezier(.22,1,.36,1) both; }
@@ -178,7 +172,7 @@ export default function Contact() {
         .cp-badge { display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; animation: cp-float 4s ease-in-out infinite; }
 
         /* Hero */
-        .cp-hero { position: relative; overflow: hidden; background: transparent; padding: 4rem 2rem 3rem; text-align: center; border-bottom: 1.5px solid rgba(0,0,0,0.06); }
+        .cp-hero { position: relative; overflow: hidden; background: linear-gradient(135deg, #BAE6FD 0%, #E0F2FE 45%, #FFFFFF 100%); padding: 4rem 2rem 3rem; text-align: center; border-bottom: 1.5px solid rgba(0,0,0,0.06); }
 
         /* Eyebrow pill — matches blog */
         .cp-eyebrow { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(14,165,233,0.1); border: 1.5px solid rgba(14,165,233,0.25); border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: #0EA5E9; margin-bottom: 1.5rem; }
@@ -273,31 +267,6 @@ export default function Contact() {
       `}</style>
 
       <div className="cp">
-        {/* Ticker */}
-        <div className="cp-ticker">
-          <div className="cp-tick-track">
-            {[
-              "GET IN TOUCH",
-              "WE'D LOVE TO HELP",
-              "CUSTOM ORDERS",
-              "BULK REQUESTS",
-              "NATIONWIDE SHIPPING",
-              "FAST RESPONSE",
-              "GET IN TOUCH",
-              "WE'D LOVE TO HELP",
-              "CUSTOM ORDERS",
-              "BULK REQUESTS",
-              "NATIONWIDE SHIPPING",
-              "FAST RESPONSE",
-            ].map((t, i) => (
-              <div key={i} className="cp-tick-item">
-                <span className="cp-tick-dot" />
-                {t}
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Hero */}
         <div className="cp-hero">
           <div className="cp-eyebrow cp-u d1">✦ Get in Touch</div>

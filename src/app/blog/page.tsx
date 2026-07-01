@@ -145,7 +145,8 @@ export default function Blog() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(180deg, #E9DCC8 0%, #FFFFFF 100%)",
+          background:
+            "linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%)",
         }}
       />
     );
@@ -250,7 +251,8 @@ export default function Blog() {
         .bl-tick-dot { width: 5px; height: 5px; border-radius: 50%; background: #0EA5E9; flex-shrink: 0; }
 
         /* Hero */
-        .bl-hero { padding: 5rem 2.5rem 3.5rem; text-align: center; border-bottom: 1.5px solid rgba(0,0,0,0.06); background: transparent; max-width: 900px; margin: 0 auto; }
+        .bl-hero { padding: 5rem 2.5rem 3.5rem; text-align: center; border-bottom: 1.5px solid rgba(0,0,0,0.06); background: linear-gradient(135deg, #BAE6FD 0%, #E0F2FE 45%, #FFFFFF 100%); max-width: none; width: 100%; margin: 0; }
+        .bl-hero-inner { max-width: 900px; margin: 0 auto; }
         .bl-eyebrow { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(14,165,233,0.1); border: 1.5px solid rgba(14,165,233,0.25); border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: #0EA5E9; margin-bottom: 1.5rem; }
 
         /* Fade up animation */
