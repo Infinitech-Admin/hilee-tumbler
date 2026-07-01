@@ -162,20 +162,6 @@ export default function HeroSection() {
         .hs-dot-btn { width: 8px; height: 8px; border-radius: 50%; border: none;
           cursor: pointer; transition: transform 0.15s, background 0.15s; padding: 0; }
 
-        /* ── Product info strip ── */
-        .hs-product-strip { width: 100%; max-width: 360px; margin-top: 1rem;
-          background: linear-gradient(135deg, rgba(255,255,255,0.85), rgba(240,249,255,0.7));
-          border: 1.5px solid rgba(14,165,233,0.2); backdrop-filter: blur(8px);
-          border-radius: 20px; padding: 14px 18px; display: flex; align-items: center; gap: 12px;
-          transition: all 0.2s; }
-        .hs-product-strip:hover { border-color: rgba(14,165,233,0.4); box-shadow: 0 8px 20px rgba(14,165,233,0.1); }
-        .hs-strip-cat { font-size: 0.6rem; font-weight: 900; letter-spacing: 0.12em;
-          text-transform: uppercase; color: white; background: #0EA5E9;
-          padding: 3px 9px; border-radius: 999px; flex-shrink: 0; }
-        .hs-strip-name { font-size: 0.82rem; font-weight: 800; color: #0C1C2E;
-          margin: 0 0 2px; line-height: 1.2; }
-        .hs-strip-price { font-size: 0.92rem; font-weight: 900; color: #0EA5E9; margin: 0; }
-
         /* ── Skeleton ── */
         .hs-skel { width: 100%; max-width: 360px; aspect-ratio: 1; border-radius: 32px;
           background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
@@ -285,7 +271,6 @@ export default function HeroSection() {
           .hs-stage { padding: 0; width: 100%; }
           .hs-img-frame { max-width: 100%; border-radius: 22px; }
           .hs-skel { max-width: 100%; border-radius: 22px; }
-          .hs-product-strip { max-width: 100%; }
 
           /* Stats go horizontal row below image */
           .hs-stats-bar {
@@ -434,29 +419,6 @@ export default function HeroSection() {
                       ))}
                     </div>
                   )}
-
-                  <div className="hs-product-strip">
-                    <span className="hs-strip-cat">{featured.category}</span>
-                    <button
-                      onClick={() => setModalOpen(true)}
-                      style={{
-                        background: ACCENT,
-                        color: "white",
-                        border: "none",
-                        cursor: "pointer",
-                        borderRadius: "999px",
-                        padding: "9px 16px",
-                        fontFamily: "'Inter',sans-serif",
-                        fontWeight: 800,
-                        fontSize: "0.78rem",
-                        whiteSpace: "nowrap",
-                        flexShrink: 0,
-                        marginLeft: "auto",
-                      }}
-                    >
-                      View →
-                    </button>
-                  </div>
                 </>
               )}
             </div>
