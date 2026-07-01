@@ -13,21 +13,6 @@ interface Post {
   featured?: boolean;
 }
 
-const TICKER_ITEMS: string[] = [
-  "HILEE BLOG",
-  "STAY COLD ALL DAY",
-  "HYDRATION TIPS",
-  "TUMBLER GUIDES",
-  "LIFESTYLE READS",
-  "WELLNESS",
-  "HILEE BLOG",
-  "STAY COLD ALL DAY",
-  "HYDRATION TIPS",
-  "TUMBLER GUIDES",
-  "LIFESTYLE READS",
-  "WELLNESS",
-];
-
 const POSTS: Post[] = [
   {
     category: "Hydration Tips",
@@ -430,16 +415,6 @@ export default function Blog() {
 
       <div className="bl">
         {/* Ticker */}
-        <div className="bl-ticker">
-          <div className="bl-tick-track">
-            {TICKER_ITEMS.map((item, i) => (
-              <div key={i} className="bl-tick-item">
-                <span className="bl-tick-dot" />
-                {item}
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* Hero */}
         <div className="bl-hero">

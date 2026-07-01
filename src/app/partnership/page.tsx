@@ -74,14 +74,6 @@ const PARTNERSHIP_TYPES = [
   },
 ];
 
-const TRUST_ITEMS = [
-  { icon: "🚚", label: "Free Shipping" },
-  { icon: "↩️", label: "30-Day Returns" },
-  { icon: "🏆", label: "Lifetime Warranty" },
-  { icon: "✅", label: "100% BPA Free" },
-  { icon: "🧊", label: "24H Ice Cold" },
-];
-
 type FormState = {
   name: string;
   email: string;
@@ -553,13 +545,6 @@ export default function Partnership() {
           </div>
 
           {/* Trust Bar */}
-          <div className="pt-trust pt-u d6">
-            {TRUST_ITEMS.map((item) => (
-              <span key={item.label} className="pt-trust-item">
-                <span>{item.icon}</span> {item.label}
-              </span>
-            ))}
-          </div>
         </div>
       </div>
     </>
