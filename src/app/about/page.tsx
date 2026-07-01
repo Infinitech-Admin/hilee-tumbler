@@ -63,20 +63,20 @@ export default function About() {
     },
   ];
 
-  const tickerItems = [
-    "HILEE TUMBLERS",
-    "STAY COLD ALL DAY",
-    "BUILT TO LAST",
-    "BPA FREE",
-    "PREMIUM DRINKWARE",
-    "NATIONWIDE SHIPPING",
-    "HILEE TUMBLERS",
-    "STAY COLD ALL DAY",
-    "BUILT TO LAST",
-    "BPA FREE",
-    "PREMIUM DRINKWARE",
-    "NATIONWIDE SHIPPING",
-  ];
+  // const tickerItems = [
+  //   "HILEE TUMBLERS",
+  //   "STAY COLD ALL DAY",
+  //   "BUILT TO LAST",
+  //   "BPA FREE",
+  //   "PREMIUM DRINKWARE",
+  //   "NATIONWIDE SHIPPING",
+  //   "HILEE TUMBLERS",
+  //   "STAY COLD ALL DAY",
+  //   "BUILT TO LAST",
+  //   "BPA FREE",
+  //   "PREMIUM DRINKWARE",
+  //   "NATIONWIDE SHIPPING",
+  // ];
 
   const tickerColors = [
     "#8C7355",
@@ -215,7 +215,7 @@ export default function About() {
       <div className="ab">
         {/* Ticker */}
         <div className="ab-ticker">
-          <div className="ab-tick-track">
+          {/* <div className="ab-tick-track">
             {tickerItems.map((t, i) => (
               <div key={i} className="ab-tick-item">
                 <span
@@ -225,7 +225,7 @@ export default function About() {
                 {t}
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
 
         {/* Hero */}
