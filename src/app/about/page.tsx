@@ -15,7 +15,8 @@ export default function About() {
       <div
         className="min-h-screen flex items-center justify-center"
         style={{
-          background: "linear-gradient(180deg, #E9DCC8 0%, #FFFFFF 100%)",
+          background:
+            "linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%)",
         }}
       ></div>
     );
@@ -118,7 +119,7 @@ export default function About() {
         @keyframes ab-float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-7px) } }
         .ab-badge { display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; animation: ab-float 4s ease-in-out infinite; background: rgba(14,165,233,0.1); border: 1.5px solid rgba(14,165,233,0.25); color: #0EA5E9; }
 
-        .ab-hero { background: transparent; padding: 4rem 2rem 3rem; text-align: center; border-bottom: 1.5px solid rgba(0,0,0,0.06); }
+        .ab-hero { background: linear-gradient(160deg, #BFE3FA 0%, #D3ECFB 45%, #EAF6FE 100%); padding: 4rem 2rem 3rem; text-align: center; border-bottom: 1.5px solid rgba(14,165,233,0.18); }
 
         .ab-body { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 5rem; display: flex; flex-direction: column; gap: 3rem; }
 
@@ -191,6 +192,7 @@ export default function About() {
 
         .ab-promise { background: linear-gradient(135deg, #E0F2FE, #F0F9FF); border-radius: 24px; padding: 2.5rem 2rem; text-align: center; border: 1.5px solid rgba(14,165,233,0.2); }
         .ab-promise-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.6rem; background: linear-gradient(135deg, #0C1C2E 0%, #0EA5E9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; }
+        .ab-promise-sub { font-size: 0.9rem; color: #5C6B7A; font-weight: 500; line-height: 1.75; max-width: 46ch; margin: 0 auto; }
         .ab-promise-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #0EA5E9, #06B6D4); color: white; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; border: none; border-radius: 999px; padding: 0.7rem 1.75rem; cursor: pointer; box-shadow: 0 12px 32px rgba(14,165,233,0.4); transition: all 0.3s ease; }
         .ab-promise-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 48px rgba(14,165,233,0.5); }
 

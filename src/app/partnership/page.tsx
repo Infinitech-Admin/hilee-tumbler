@@ -196,7 +196,7 @@ export default function Partnership() {
         .pt-tick-dot { width: 5px; height: 5px; border-radius: 50%; background: #0EA5E9; flex-shrink: 0; }
 
         /* Hero */
-        .pt-hero { padding: 5rem 2.5rem 3.5rem; text-align: center; border-bottom: 1.5px solid rgba(0,0,0,0.06); background: transparent; }
+        .pt-hero { padding: 5rem 2.5rem 3.5rem; text-align: center; border-bottom: 1.5px solid rgba(14,165,233,0.18); background: linear-gradient(135deg, #B8DFF5 0%, #D6EDFB 50%, #F0F9FF 100%); }
         .pt-hero-inner { max-width: 900px; margin: 0 auto; }
         .pt-eyebrow { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(14,165,233,0.1); border: 1.5px solid rgba(14,165,233,0.25); border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: #0EA5E9; margin-bottom: 1.5rem; }
 
@@ -215,6 +215,7 @@ export default function Partnership() {
         .pt-why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; align-items: stretch; }
         .pt-why-card { background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,249,255,0.7)); border-radius: 20px; border: 1.5px solid rgba(14,165,233,0.15); padding: 2rem 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; height: 100%; transition: all 0.3s ease; backdrop-filter: blur(10px); }
         .pt-why-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 32px rgba(14,165,233,0.15); border-color: rgba(14,165,233,0.3); }
+        .pt-why-icon { font-size: 1.6rem; }
         .pt-why-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 1.05rem; color: #0C1C2E; }
         .pt-why-desc { font-size: 0.85rem; color: #7C6F60; line-height: 1.75; flex: 1; }
 
@@ -223,6 +224,15 @@ export default function Partnership() {
         .pt-type-card { background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,249,255,0.7)); border-radius: 20px; border: 1.5px solid rgba(14,165,233,0.15); overflow: hidden; display: flex; flex-direction: column; transition: all 0.3s ease; backdrop-filter: blur(10px); }
         .pt-type-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 40px rgba(14,165,233,0.2); border-color: rgba(14,165,233,0.3); }
         .pt-type-card.featured { border-color: #0EA5E9; box-shadow: 0 0 0 2px rgba(14,165,233,0.1); }
+        .pt-type-header { padding: 1.75rem 1.5rem 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
+        .pt-type-tag {
+          display: inline-flex; align-items: center; width: fit-content;
+          font-size: 0.62rem; font-weight: 800; letter-spacing: 0.15em;
+          text-transform: uppercase; color: #0EA5E9;
+          background: rgba(14,165,233,0.1); border-radius: 999px;
+          padding: 0.3rem 0.75rem; margin-bottom: 0.25rem;
+        }
+        .pt-type-tag.featured { background: #0EA5E9; color: #fff; }
         .pt-type-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.15rem; color: #0C1C2E; }
         .pt-type-desc { font-size: 0.82rem; color: #7C6F60; line-height: 1.75; }
         .pt-type-perks { padding: 1.25rem 1.5rem; border-top: 1.5px dashed #DDD8CF; display: flex; flex-direction: column; gap: 0.55rem; }

@@ -207,9 +207,9 @@ export default function MenuPage() {
         /* Hero */
         .mp-hero {
           position:relative; overflow:hidden;
-          background: transparent;
+          background: linear-gradient(160deg, #B8DFF5 0%, #D0E9F7 45%, #F0F8FF 100%);
           padding:4rem 2rem 3rem; text-align:center;
-          border-bottom: 1.5px solid rgba(0,0,0,0.06);
+          border-bottom: 1.5px solid rgba(59,130,175,0.18);
         }
 
         /* Search */
