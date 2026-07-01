@@ -122,7 +122,7 @@ export default function Blog() {
   const [expandedPost, setExpandedPost] = useState<Post | null>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1800);
+    const timer = setTimeout(() => setLoading(false), 500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -139,16 +139,101 @@ export default function Blog() {
 
   if (loading) {
     return (
-      <div
-        style={{
-          minHeight: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background:
-            "linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%)",
-        }}
-      />
+      <>
+        <style>{`
+          .bl-sk-wrap { font-family: 'Nunito', sans-serif; background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%); min-height: 100vh; }
+          @keyframes bl-shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
+          .bl-sk {
+            background: linear-gradient(90deg, rgba(14,165,233,0.08) 25%, rgba(14,165,233,0.16) 37%, rgba(14,165,233,0.08) 63%);
+            background-size: 800px 100%;
+            animation: bl-shimmer 1.4s ease-in-out infinite;
+            border-radius: 10px;
+          }
+          .bl-sk-hero { padding: 5rem 2.5rem 3.5rem; text-align: center; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
+          .bl-sk-pill { width: 150px; height: 24px; border-radius: 999px; }
+          .bl-sk-title { width: min(90%, 480px); height: 68px; border-radius: 16px; }
+          .bl-sk-sub { width: min(80%, 380px); height: 16px; }
+          .bl-sk-filters { display: flex; gap: 0.5rem; justify-content: center; padding: 0 2.5rem 2rem; flex-wrap: wrap; }
+          .bl-sk-chip { width: 90px; height: 32px; border-radius: 999px; }
+          .bl-sk-body { max-width: 1160px; margin: 0 auto; padding: 1rem 2.5rem 6rem; display: flex; flex-direction: column; gap: 2rem; }
+          .bl-sk-featured { display: grid; grid-template-columns: 1fr 1fr; border-radius: 24px; overflow: hidden; border: 1.5px solid rgba(14,165,233,0.1); }
+          .bl-sk-featured .bl-sk-img { height: 320px; border-radius: 0; }
+          .bl-sk-featured-body { padding: 2.5rem 2.25rem; display: flex; flex-direction: column; gap: 0.9rem; background: white; }
+          .bl-sk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+          .bl-sk-card { border-radius: 20px; overflow: hidden; border: 1.5px solid rgba(14,165,233,0.1); background: white; }
+          .bl-sk-card .bl-sk-img { height: 200px; border-radius: 0; }
+          .bl-sk-card-body { padding: 1.35rem 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
+          .bl-sk-line { height: 12px; }
+          @media (max-width: 900px) {
+            .bl-sk-featured { grid-template-columns: 1fr; }
+            .bl-sk-grid { grid-template-columns: repeat(2, 1fr); }
+          }
+          @media (max-width: 580px) {
+            .bl-sk-hero { padding: 3.5rem 1.25rem 2.5rem; }
+            .bl-sk-body { padding: 1rem 1.25rem 4rem; }
+            .bl-sk-grid { grid-template-columns: 1fr; }
+          }
+        `}</style>
+        <div className="bl-sk-wrap">
+          <div className="bl-sk-hero">
+            <div className="bl-sk bl-sk-pill" />
+            <div className="bl-sk bl-sk-title" />
+            <div className="bl-sk bl-sk-sub" />
+          </div>
+          <div className="bl-sk-filters">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="bl-sk bl-sk-chip" />
+            ))}
+          </div>
+          <div className="bl-sk-body">
+            <div className="bl-sk-featured">
+              <div className="bl-sk bl-sk-img" />
+              <div className="bl-sk-featured-body">
+                <div className="bl-sk bl-sk-line" style={{ width: "40%" }} />
+                <div
+                  className="bl-sk bl-sk-line"
+                  style={{ width: "85%", height: 24 }}
+                />
+                <div
+                  className="bl-sk bl-sk-line"
+                  style={{ width: "70%", height: 24 }}
+                />
+                <div className="bl-sk bl-sk-line" style={{ width: "95%" }} />
+                <div className="bl-sk bl-sk-line" style={{ width: "60%" }} />
+              </div>
+            </div>
+            <div className="bl-sk-grid">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="bl-sk-card">
+                  <div className="bl-sk bl-sk-img" />
+                  <div className="bl-sk-card-body">
+                    <div
+                      className="bl-sk bl-sk-line"
+                      style={{ width: "35%" }}
+                    />
+                    <div
+                      className="bl-sk bl-sk-line"
+                      style={{ width: "90%", height: 16 }}
+                    />
+                    <div
+                      className="bl-sk bl-sk-line"
+                      style={{ width: "75%", height: 16 }}
+                    />
+                    <div
+                      className="bl-sk bl-sk-line"
+                      style={{ width: "100%" }}
+                    />
+                    <div
+                      className="bl-sk bl-sk-line"
+                      style={{ width: "80%" }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </>
     );
   }
 
@@ -420,32 +505,35 @@ export default function Blog() {
 
         {/* Hero */}
         <div className="bl-hero">
-          <div className="bl-eyebrow bl-u d1">✦ Tips &amp; Stories</div>
-          <h1
-            className="bl-h bl-u d2"
-            style={{
-              fontSize: "clamp(3.5rem,9vw,7rem)",
-              fontWeight: 800,
-              lineHeight: 0.9,
-              letterSpacing: "-0.035em",
-              marginBottom: "1.25rem",
-              color: "#2E2419",
-            }}
-          >
-            The Sip
-          </h1>
-          <p
-            className="bl-u d3"
-            style={{
-              fontSize: "1rem",
-              lineHeight: 1.8,
-              color: "#7C6F60",
-              maxWidth: "44ch",
-              margin: "0 auto",
-            }}
-          >
-            Hydration tips, lifestyle reads, and everything tumbler — by Hilee.
-          </p>
+          <div className="bl-hero-inner">
+            <div className="bl-eyebrow bl-u d1">✦ Tips &amp; Stories</div>
+            <h1
+              className="bl-h bl-u d2"
+              style={{
+                fontSize: "clamp(3.5rem,9vw,7rem)",
+                fontWeight: 800,
+                lineHeight: 0.9,
+                letterSpacing: "-0.035em",
+                marginBottom: "1.25rem",
+                color: "#2E2419",
+              }}
+            >
+              The Sip
+            </h1>
+            <p
+              className="bl-u d3"
+              style={{
+                fontSize: "1rem",
+                lineHeight: 1.8,
+                color: "#7C6F60",
+                maxWidth: "44ch",
+                margin: "0 auto",
+              }}
+            >
+              Hydration tips, lifestyle reads, and everything tumbler — by
+              Hilee.
+            </p>
+          </div>
         </div>
 
         {/* Filters */}

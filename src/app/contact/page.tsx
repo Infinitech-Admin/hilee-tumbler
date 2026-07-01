@@ -37,7 +37,7 @@ export default function Contact() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
+    const timer = setTimeout(() => setLoading(false), 500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -118,13 +118,88 @@ export default function Contact() {
 
   if (loading) {
     return (
-      <div
-        className="min-h-screen flex items-center justify-center"
-        style={{
-          background:
-            "linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%)",
-        }}
-      ></div>
+      <>
+        <style>{`
+          .cp-sk-wrap { font-family: 'Nunito', sans-serif; background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%); min-height: 100vh; }
+          @keyframes cp-shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
+          .cp-sk {
+            background: linear-gradient(90deg, rgba(14,165,233,0.08) 25%, rgba(14,165,233,0.16) 37%, rgba(14,165,233,0.08) 63%);
+            background-size: 800px 100%;
+            animation: cp-shimmer 1.4s ease-in-out infinite;
+            border-radius: 10px;
+          }
+          .cp-sk-hero { padding: 4rem 2rem 3rem; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
+          .cp-sk-pill { width: 140px; height: 22px; border-radius: 999px; }
+          .cp-sk-title { width: min(85%, 420px); height: 60px; border-radius: 16px; }
+          .cp-sk-sub { width: min(70%, 320px); height: 16px; }
+          .cp-sk-body { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem 5rem; }
+          .cp-sk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+          .cp-sk-left { display: flex; flex-direction: column; gap: 1.25rem; }
+          .cp-sk-info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+          .cp-sk-info-card { border-radius: 20px; padding: 1.5rem 1rem; border: 1.5px solid rgba(14,165,233,0.1); background: white; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+          .cp-sk-icon { width: 28px; height: 28px; border-radius: 50%; }
+          .cp-sk-biz-card { border-radius: 20px; padding: 1.5rem; border: 1.5px solid #DDD8CF; background: #F3ECE1; display: flex; flex-direction: column; gap: 0.75rem; }
+          .cp-sk-form-card { border-radius: 20px; padding: 1.75rem; border: 1.5px solid #DDD8CF; background: white; display: flex; flex-direction: column; gap: 1.1rem; }
+          .cp-sk-field { height: 40px; }
+          .cp-sk-textarea { height: 90px; }
+          .cp-sk-btn { height: 46px; border-radius: 999px; margin-top: 0.25rem; }
+          .cp-sk-line { height: 12px; }
+          @media (max-width: 860px) { .cp-sk-grid { grid-template-columns: 1fr; } }
+          @media (max-width: 500px) { .cp-sk-info-grid { grid-template-columns: 1fr 1fr; } .cp-sk-body { padding: 1rem 1rem 4rem; } }
+        `}</style>
+        <div className="cp-sk-wrap">
+          <div className="cp-sk-hero">
+            <div className="cp-sk cp-sk-pill" />
+            <div className="cp-sk cp-sk-title" />
+            <div className="cp-sk cp-sk-sub" />
+          </div>
+          <div className="cp-sk-body">
+            <div className="cp-sk-grid">
+              <div className="cp-sk-left">
+                <div className="cp-sk-info-grid">
+                  {Array.from({ length: 4 }).map((_, i) => (
+                    <div key={i} className="cp-sk-info-card">
+                      <div className="cp-sk cp-sk-icon" />
+                      <div
+                        className="cp-sk cp-sk-line"
+                        style={{ width: "70%" }}
+                      />
+                      <div
+                        className="cp-sk cp-sk-line"
+                        style={{ width: "55%" }}
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div className="cp-sk-biz-card">
+                  <div
+                    className="cp-sk cp-sk-line"
+                    style={{ width: "50%", height: 18 }}
+                  />
+                  {Array.from({ length: 3 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="cp-sk cp-sk-line"
+                      style={{ width: `${90 - i * 10}%` }}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className="cp-sk-form-card">
+                <div
+                  className="cp-sk cp-sk-line"
+                  style={{ width: "45%", height: 20 }}
+                />
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div key={i} className="cp-sk cp-sk-field" />
+                ))}
+                <div className="cp-sk cp-sk-textarea" />
+                <div className="cp-sk cp-sk-btn" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
     );
   }
 
