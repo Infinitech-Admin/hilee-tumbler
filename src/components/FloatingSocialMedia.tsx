@@ -9,8 +9,8 @@ export default function FloatingSocialMedia() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  if (pathname !== "/" && pathname !== "/user") return null;
   if (pathname.startsWith("/admin")) return null;
+  if (pathname === "/login" || pathname === "/register") return null;
 
   const socialLinks = [
     {

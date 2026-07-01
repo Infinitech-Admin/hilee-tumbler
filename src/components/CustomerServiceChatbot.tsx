@@ -16,9 +16,9 @@ type Message = {
 
 const FAQ_DATA = [
   {
-    question: "What is Hilee Thumbler?",
+    question: "What is Hilee tumbler?",
     answer:
-      "Hilee Thumbler is your go-to online store for trendy and affordable fashion finds! We offer a wide selection of clothing, accessories, and lifestyle products delivered right to your doorstep.",
+      "Hilee tumbler is your go-to online store for trendy and affordable fashion finds! We offer a wide selection of clothing, accessories, and lifestyle products delivered right to your doorstep.",
   },
   {
     question: "How can I place an order?",
@@ -59,7 +59,7 @@ export default function CustomerServiceChatbot() {
     if (isOpen && messages.length === 0 && !isChatEnded) {
       setTimeout(() => {
         addBotMessage(
-          "Hello! Welcome to Hilee Thumbler 🖤 Please select a question below to get started!",
+          "Hello! Welcome to Hilee tumbler 🖤 Please select a question below to get started!",
         );
       }, 500);
     }
@@ -119,7 +119,7 @@ export default function CustomerServiceChatbot() {
     setIsChatEnded(false);
     setTimeout(() => {
       addBotMessage(
-        "Hello! Welcome back to Hilee Thumbler 🖤 Please select a question below to get started!",
+        "Hello! Welcome back to Hilee tumbler 🖤 Please select a question below to get started!",
       );
     }, 500);
   };
@@ -142,8 +142,8 @@ export default function CustomerServiceChatbot() {
     }, 2000);
   };
 
-  if (pathname !== "/" && pathname !== "/user") return null;
   if (pathname.startsWith("/admin")) return null;
+  if (pathname === "/login" || pathname === "/register") return null;
 
   return (
     <>
@@ -173,7 +173,7 @@ export default function CustomerServiceChatbot() {
                 </CardTitle>
                 <p className="text-xs text-white/70 flex items-center gap-1">
                   <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                  Hilee Thumbler
+                  Hilee tumbler
                 </p>
               </div>
             </div>
