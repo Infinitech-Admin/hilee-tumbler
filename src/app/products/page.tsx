@@ -156,20 +156,20 @@ export default function MenuPage() {
     );
   }
 
-  const ticker = [
-    "HILEE TUMBLERS",
-    "STAY COLD ALL DAY",
-    "BUILT TO LAST",
-    "BPA FREE",
-    "PREMIUM DRINKWARE",
-    "NATIONWIDE SHIPPING",
-    "HILEE TUMBLERS",
-    "STAY COLD ALL DAY",
-    "BUILT TO LAST",
-    "BPA FREE",
-    "PREMIUM DRINKWARE",
-    "NATIONWIDE SHIPPING",
-  ];
+  // const ticker = [
+  //   "HILEE TUMBLERS",
+  //   "STAY COLD ALL DAY",
+  //   "BUILT TO LAST",
+  //   "BPA FREE",
+  //   "PREMIUM DRINKWARE",
+  //   "NATIONWIDE SHIPPING",
+  //   "HILEE TUMBLERS",
+  //   "STAY COLD ALL DAY",
+  //   "BUILT TO LAST",
+  //   "BPA FREE",
+  //   "PREMIUM DRINKWARE",
+  //   "NATIONWIDE SHIPPING",
+  // ];
   const tickerColors = [
     "#8C7355",
     "#A89070",
@@ -441,7 +441,7 @@ export default function MenuPage() {
       <div className="mp">
         {/* ── Ticker ── */}
         <div className="mp-ticker">
-          <div className="mp-tick-track">
+          {/* <div className="mp-tick-track">
             {ticker.map((t, i) => (
               <div key={i} className="mp-tick-item">
                 <span
@@ -451,7 +451,7 @@ export default function MenuPage() {
                 {t}
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
 
         {/* ── Hero Header ── */}
