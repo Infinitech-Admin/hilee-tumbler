@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const TICKER_ITEMS: string[] = [
   "HILEE PARTNERSHIP",
@@ -85,6 +85,7 @@ type FormState = {
 type FieldErrors = Partial<Record<keyof FormState, string>>;
 
 export default function Partnership() {
+  const [loading, setLoading] = useState(true);
   const [form, setForm] = useState<FormState>({
     name: "",
     email: "",
@@ -96,6 +97,11 @@ export default function Partnership() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -170,6 +176,133 @@ export default function Partnership() {
       setSubmitting(false);
     }
   };
+
+  if (loading) {
+    return (
+      <>
+        <style>{`
+          .pt-sk-wrap { font-family: 'Nunito', sans-serif; background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%); min-height: 100vh; }
+          @keyframes pt-shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
+          .pt-sk {
+            background: linear-gradient(90deg, rgba(14,165,233,0.08) 25%, rgba(14,165,233,0.16) 37%, rgba(14,165,233,0.08) 63%);
+            background-size: 800px 100%;
+            animation: pt-shimmer 1.4s ease-in-out infinite;
+            border-radius: 10px;
+          }
+          .pt-sk-ticker { height: 40px; background: rgba(14,165,233,0.05); border-bottom: 1px solid rgba(14,165,233,0.1); }
+          .pt-sk-hero { padding: 5rem 2.5rem 3.5rem; text-align: center; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
+          .pt-sk-pill { width: 170px; height: 24px; border-radius: 999px; }
+          .pt-sk-title { width: min(85%, 460px); height: 68px; border-radius: 16px; }
+          .pt-sk-sub { width: min(75%, 420px); height: 16px; }
+          .pt-sk-body { max-width: 1160px; margin: 0 auto; padding: 2rem 2.5rem 6rem; display: flex; flex-direction: column; gap: 3rem; }
+          .pt-sk-label { width: 200px; height: 12px; margin-bottom: 1.25rem; }
+          .pt-sk-why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+          .pt-sk-why-card { border-radius: 20px; border: 1.5px solid rgba(14,165,233,0.1); padding: 2rem 1.75rem; background: white; display: flex; flex-direction: column; gap: 0.75rem; }
+          .pt-sk-icon { width: 32px; height: 32px; border-radius: 8px; }
+          .pt-sk-line { height: 12px; }
+          .pt-sk-types { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+          .pt-sk-type-card { border-radius: 20px; border: 1.5px solid rgba(14,165,233,0.1); background: white; padding: 1.75rem 1.5rem; display: flex; flex-direction: column; gap: 0.7rem; }
+          .pt-sk-form { border-radius: 24px; background: #F3ECE1; border: 1.5px solid #DDD8CF; padding: 3rem 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+          .pt-sk-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem; }
+          .pt-sk-field { height: 44px; }
+          .pt-sk-field.span2 { grid-column: 1 / -1; height: 100px; }
+          .pt-sk-btn { width: 220px; height: 46px; border-radius: 999px; margin-top: 0.75rem; }
+          @media (max-width: 960px) {
+            .pt-sk-why { grid-template-columns: 1fr 1fr; }
+            .pt-sk-types { grid-template-columns: 1fr; }
+          }
+          @media (max-width: 700px) {
+            .pt-sk-hero { padding: 3.5rem 1.25rem 2.5rem; }
+            .pt-sk-body { padding: 1.5rem 1.25rem 4rem; }
+            .pt-sk-why { grid-template-columns: 1fr; }
+            .pt-sk-form { padding: 2rem 1.25rem; }
+            .pt-sk-form-grid { grid-template-columns: 1fr; }
+            .pt-sk-field.span2 { grid-column: 1; }
+          }
+        `}</style>
+        <div className="pt-sk-wrap">
+          <div className="pt-sk-ticker" />
+          <div className="pt-sk-hero">
+            <div className="pt-sk pt-sk-pill" />
+            <div className="pt-sk pt-sk-title" />
+            <div className="pt-sk pt-sk-sub" />
+          </div>
+          <div className="pt-sk-body">
+            <div>
+              <div className="pt-sk pt-sk-label" />
+              <div className="pt-sk-why">
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <div key={i} className="pt-sk-why-card">
+                    <div className="pt-sk pt-sk-icon" />
+                    <div
+                      className="pt-sk pt-sk-line"
+                      style={{ width: "55%", height: 16 }}
+                    />
+                    <div
+                      className="pt-sk pt-sk-line"
+                      style={{ width: "100%" }}
+                    />
+                    <div
+                      className="pt-sk pt-sk-line"
+                      style={{ width: "85%" }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="pt-sk pt-sk-label" />
+              <div className="pt-sk-types">
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <div key={i} className="pt-sk-type-card">
+                    <div
+                      className="pt-sk pt-sk-line"
+                      style={{ width: "45%", height: 18, borderRadius: 999 }}
+                    />
+                    <div
+                      className="pt-sk pt-sk-line"
+                      style={{ width: "70%", height: 18 }}
+                    />
+                    <div
+                      className="pt-sk pt-sk-line"
+                      style={{ width: "100%" }}
+                    />
+                    <div
+                      className="pt-sk pt-sk-line"
+                      style={{ width: "90%" }}
+                    />
+                    <div
+                      className="pt-sk pt-sk-line"
+                      style={{ width: "60%", marginTop: 8 }}
+                    />
+                    <div
+                      className="pt-sk pt-sk-line"
+                      style={{ width: "50%" }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="pt-sk-form">
+              <div
+                className="pt-sk pt-sk-line"
+                style={{ width: "35%", height: 24 }}
+              />
+              <div className="pt-sk pt-sk-line" style={{ width: "55%" }} />
+              <div className="pt-sk-form-grid">
+                <div className="pt-sk pt-sk-field" />
+                <div className="pt-sk pt-sk-field" />
+                <div className="pt-sk pt-sk-field" />
+                <div className="pt-sk pt-sk-field" />
+                <div className="pt-sk pt-sk-field span2" />
+              </div>
+              <div className="pt-sk pt-sk-btn" />
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>

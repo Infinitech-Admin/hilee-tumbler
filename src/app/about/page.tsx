@@ -10,18 +10,6 @@ export default function About() {
     return () => clearTimeout(timer);
   }, []);
 
-  if (loading) {
-    return (
-      <div
-        className="min-h-screen flex items-center justify-center"
-        style={{
-          background:
-            "linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%)",
-        }}
-      ></div>
-    );
-  }
-
   const pillars = [
     {
       num: "01",
@@ -63,20 +51,167 @@ export default function About() {
     },
   ];
 
-  // const tickerItems = [
-  //   "HILEE TUMBLERS",
-  //   "STAY COLD ALL DAY",
-  //   "BUILT TO LAST",
-  //   "BPA FREE",
-  //   "PREMIUM DRINKWARE",
-  //   "NATIONWIDE SHIPPING",
-  //   "HILEE TUMBLERS",
-  //   "STAY COLD ALL DAY",
-  //   "BUILT TO LAST",
-  //   "BPA FREE",
-  //   "PREMIUM DRINKWARE",
-  //   "NATIONWIDE SHIPPING",
-  // ];
+  const trustItems = [
+    { e: "🚚", t: "Free Shipping" },
+    { e: "↩️", t: "30-Day Returns" },
+    { e: "🏆", t: "Lifetime Warranty" },
+    { e: "✅", t: "100% BPA Free" },
+    { e: "🧊", t: "24H Ice Cold" },
+  ];
+
+  if (loading) {
+    return (
+      <>
+        <style>{`
+          .ab-sk-wrap { font-family: 'Nunito', sans-serif; background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%); min-height: 100vh; }
+          @keyframes ab-shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
+          .ab-sk {
+            background: linear-gradient(90deg, rgba(14,165,233,0.08) 25%, rgba(14,165,233,0.16) 37%, rgba(14,165,233,0.08) 63%);
+            background-size: 800px 100%;
+            animation: ab-shimmer 1.4s ease-in-out infinite;
+            border-radius: 10px;
+          }
+          .ab-sk-ticker { height: 40px; background: rgba(14,165,233,0.05); border-bottom: 1px solid rgba(14,165,233,0.1); }
+          .ab-sk-hero { padding: 4rem 2rem 3rem; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
+          .ab-sk-badges { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
+          .ab-sk-badge { width: 140px; height: 24px; border-radius: 999px; }
+          .ab-sk-title { width: min(70%, 420px); height: 84px; border-radius: 16px; }
+          .ab-sk-sub { width: min(60%, 340px); height: 16px; }
+          .ab-sk-body { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 5rem; display: flex; flex-direction: column; gap: 3rem; }
+          .ab-sk-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+          .ab-sk-visual { min-height: 420px; border-radius: 24px; }
+          .ab-sk-text-block { display: flex; flex-direction: column; gap: 0.75rem; }
+          .ab-sk-line { height: 12px; }
+          .ab-sk-section-title { width: 260px; height: 20px; margin: 0 auto 1.5rem; }
+          .ab-sk-pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+          .ab-sk-pillar { border-radius: 20px; border: 1.5px solid rgba(14,165,233,0.1); padding: 1.5rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; background: white; }
+          .ab-sk-reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+          .ab-sk-review { border-radius: 20px; border: 1.5px solid rgba(14,165,233,0.1); padding: 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; background: white; }
+          .ab-sk-promise { border-radius: 24px; padding: 2.5rem 2rem; display: flex; flex-direction: column; align-items: center; gap: 0.85rem; border: 1.5px solid rgba(14,165,233,0.15); }
+          .ab-sk-trust { display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; padding: 1.75rem 2rem; border-top: 1.5px dashed #DDD8CF; }
+          .ab-sk-trust-item { width: 90px; height: 12px; }
+          @media (max-width: 860px) {
+            .ab-sk-intro { grid-template-columns: 1fr; }
+            .ab-sk-visual { min-height: 300px; }
+            .ab-sk-pillars { grid-template-columns: repeat(2, 1fr); }
+            .ab-sk-reviews { grid-template-columns: 1fr; }
+          }
+          @media (max-width: 500px) {
+            .ab-sk-body { padding: 2rem 1rem 4rem; gap: 2.25rem; }
+            .ab-sk-pillars { grid-template-columns: repeat(2, 1fr); }
+            .ab-sk-visual { min-height: 240px; }
+          }
+        `}</style>
+        <div className="ab-sk-wrap">
+          <div className="ab-sk-ticker" />
+
+          <div className="ab-sk-hero">
+            <div className="ab-sk-badges">
+              <div className="ab-sk ab-sk-badge" />
+              <div className="ab-sk ab-sk-badge" />
+              <div className="ab-sk ab-sk-badge" />
+            </div>
+            <div className="ab-sk ab-sk-title" />
+            <div className="ab-sk ab-sk-sub" />
+          </div>
+
+          <div className="ab-sk-body">
+            {/* Intro */}
+            <div className="ab-sk-intro">
+              <div className="ab-sk ab-sk-visual" />
+              <div className="ab-sk-text-block">
+                <div
+                  className="ab-sk ab-sk-line"
+                  style={{ width: "70%", height: 30 }}
+                />
+                <div
+                  className="ab-sk ab-sk-line"
+                  style={{ width: "50%", height: 30, marginBottom: 8 }}
+                />
+                <div className="ab-sk ab-sk-line" style={{ width: "100%" }} />
+                <div className="ab-sk ab-sk-line" style={{ width: "95%" }} />
+                <div className="ab-sk ab-sk-line" style={{ width: "90%" }} />
+                <div
+                  className="ab-sk ab-sk-line"
+                  style={{ width: "100%", marginTop: 8 }}
+                />
+                <div className="ab-sk ab-sk-line" style={{ width: "85%" }} />
+                <div className="ab-sk ab-sk-line" style={{ width: "60%" }} />
+              </div>
+            </div>
+
+            {/* Pillars */}
+            <div>
+              <div className="ab-sk ab-sk-section-title" />
+              <div className="ab-sk-pillars">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div key={i} className="ab-sk-pillar">
+                    <div
+                      className="ab-sk ab-sk-line"
+                      style={{ width: "40%", height: 30 }}
+                    />
+                    <div
+                      className="ab-sk ab-sk-line"
+                      style={{ width: "70%", height: 14 }}
+                    />
+                    <div
+                      className="ab-sk ab-sk-line"
+                      style={{ width: "90%" }}
+                    />
+                    <div
+                      className="ab-sk ab-sk-line"
+                      style={{ width: "60%" }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Reviews */}
+            <div>
+              <div className="ab-sk ab-sk-section-title" />
+              <div className="ab-sk-reviews">
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <div key={i} className="ab-sk-review">
+                    <div
+                      className="ab-sk ab-sk-line"
+                      style={{ width: "35%", height: 14 }}
+                    />
+                    <div
+                      className="ab-sk ab-sk-line"
+                      style={{ width: "100%" }}
+                    />
+                    <div
+                      className="ab-sk ab-sk-line"
+                      style={{ width: "90%" }}
+                    />
+                    <div
+                      className="ab-sk ab-sk-line"
+                      style={{ width: "50%", height: 12, marginTop: 4 }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Promise */}
+            <div className="ab-sk ab-sk-promise">
+              <div className="ab-sk" style={{ width: "50%", height: 26 }} />
+              <div className="ab-sk" style={{ width: "70%", height: 14 }} />
+              <div className="ab-sk" style={{ width: "60%", height: 14 }} />
+            </div>
+
+            {/* Trust strip */}
+            <div className="ab-sk-trust">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <div key={i} className="ab-sk ab-sk-trust-item" />
+              ))}
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   const tickerColors = [
     "#8C7355",
@@ -85,14 +220,6 @@ export default function About() {
     "#6B5E4A",
     "#D4C4A8",
     "#9E8868",
-  ];
-
-  const trustItems = [
-    { e: "🚚", t: "Free Shipping" },
-    { e: "↩️", t: "30-Day Returns" },
-    { e: "🏆", t: "Lifetime Warranty" },
-    { e: "✅", t: "100% BPA Free" },
-    { e: "🧊", t: "24H Ice Cold" },
   ];
 
   return (
@@ -125,7 +252,6 @@ export default function About() {
 
         .ab-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
 
-        /* ── IMAGE FIX ── */
         .ab-intro-visual {
           background: linear-gradient(145deg, #F7F1E8, #ECE0CC);
           border-radius: 24px;
@@ -133,7 +259,7 @@ export default function About() {
           overflow: hidden;
           position: relative;
           width: 100%;
-          min-height: 420px;   /* reliable fixed height instead of aspect-ratio */
+          min-height: 420px;
         }
         .ab-intro-visual img {
           position: absolute;
@@ -214,19 +340,7 @@ export default function About() {
 
       <div className="ab">
         {/* Ticker */}
-        <div className="ab-ticker">
-          {/* <div className="ab-tick-track">
-            {tickerItems.map((t, i) => (
-              <div key={i} className="ab-tick-item">
-                <span
-                  className="ab-tick-dot"
-                  style={{ background: tickerColors[i % 6] }}
-                />
-                {t}
-              </div>
-            ))}
-          </div> */}
-        </div>
+        <div className="ab-ticker" />
 
         {/* Hero */}
         <div className="ab-hero">

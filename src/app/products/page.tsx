@@ -108,15 +108,88 @@ export default function MenuPage() {
 
   if (loading) {
     return (
-      <div
-        style={{
-          minHeight: "100vh",
-          background: "linear-gradient(180deg, #F0F8FF 0%, #D4E8F7 100%)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      />
+      <>
+        <style>{`
+          .mp-sk-wrap { font-family: 'Nunito', sans-serif; background: linear-gradient(180deg, #F0F8FF 0%, #D4E8F7 100%); min-height: 100vh; }
+          @keyframes mp-shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
+          .mp-sk {
+            background: linear-gradient(90deg, rgba(59,130,175,0.09) 25%, rgba(59,130,175,0.18) 37%, rgba(59,130,175,0.09) 63%);
+            background-size: 800px 100%;
+            animation: mp-shimmer 1.4s ease-in-out infinite;
+            border-radius: 10px;
+          }
+          .mp-sk-hero { padding: 4rem 2rem 3rem; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+          .mp-sk-badges { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
+          .mp-sk-badge { width: 130px; height: 26px; border-radius: 999px; }
+          .mp-sk-title { width: min(70%, 320px); height: 60px; border-radius: 16px; margin-top: 0.25rem; }
+          .mp-sk-sub { width: min(70%, 340px); height: 16px; }
+          .mp-sk-search { width: 300px; max-width: 80vw; height: 44px; border-radius: 999px; margin-top: 0.5rem; }
+          .mp-sk-area { padding: 0 2rem 5rem; }
+          .mp-sk-layout { display: flex; gap: 2rem; align-items: flex-start; max-width: 1400px; margin: 0 auto; }
+          .mp-sk-sidebar { width: 230px; flex-shrink: 0; background: white; border-radius: 20px; padding: 1.25rem 0.9rem; display: flex; flex-direction: column; gap: 0.6rem; }
+          .mp-sk-sidebar-title { width: 60%; height: 14px; margin-bottom: 0.5rem; }
+          .mp-sk-cb { height: 30px; border-radius: 10px; }
+          .mp-sk-main { flex: 1; min-width: 0; }
+          .mp-sk-strip { height: 1.5px; background: #DDD8CF; margin: 1.75rem 0; }
+          .mp-sk-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+          .mp-sk-card { border-radius: 20px; overflow: hidden; border: 1.5px solid rgba(0,0,0,0.05); background: white; }
+          .mp-sk-card-img { height: 180px; border-radius: 0; }
+          .mp-sk-card-body { padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+          .mp-sk-line { height: 12px; }
+          @media (max-width: 1100px) { .mp-sk-grid { grid-template-columns: repeat(3, 1fr); } }
+          @media (max-width: 900px) {
+            .mp-sk-sidebar { display: none; }
+            .mp-sk-layout { display: block; }
+          }
+          @media (max-width: 700px) { .mp-sk-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; } }
+        `}</style>
+        <div className="mp-sk-wrap">
+          <div className="mp-sk-hero">
+            <div className="mp-sk-badges">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="mp-sk mp-sk-badge" />
+              ))}
+            </div>
+            <div className="mp-sk mp-sk-title" />
+            <div className="mp-sk mp-sk-sub" />
+            <div className="mp-sk mp-sk-search" />
+          </div>
+          <div className="mp-sk-area">
+            <div className="mp-sk-layout">
+              <aside className="mp-sk-sidebar">
+                <div className="mp-sk mp-sk-sidebar-title" />
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <div key={i} className="mp-sk mp-sk-cb" />
+                ))}
+              </aside>
+              <div className="mp-sk-main">
+                <div className="mp-sk-strip" />
+                <div className="mp-sk-grid">
+                  {Array.from({ length: 8 }).map((_, i) => (
+                    <div key={i} className="mp-sk-card">
+                      <div className="mp-sk mp-sk-card-img" />
+                      <div className="mp-sk-card-body">
+                        <div
+                          className="mp-sk mp-sk-line"
+                          style={{ width: "60%" }}
+                        />
+                        <div
+                          className="mp-sk mp-sk-line"
+                          style={{ width: "85%", height: 14 }}
+                        />
+                        <div
+                          className="mp-sk mp-sk-line"
+                          style={{ width: "40%" }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
     );
   }
 
