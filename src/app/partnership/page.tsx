@@ -2,20 +2,20 @@
 
 import { useState, useEffect } from "react";
 
-const TICKER_ITEMS: string[] = [
-  "HILEE PARTNERSHIP",
-  "GROW WITH US",
-  "PREMIUM DRINKWARE",
-  "RETAILER PROGRAM",
-  "DISTRIBUTOR NETWORK",
-  "JOIN THE FAMILY",
-  "HILEE PARTNERSHIP",
-  "GROW WITH US",
-  "PREMIUM DRINKWARE",
-  "RETAILER PROGRAM",
-  "DISTRIBUTOR NETWORK",
-  "JOIN THE FAMILY",
-];
+// const TICKER_ITEMS: string[] = [
+//   "HILEE PARTNERSHIP",
+//   "GROW WITH US",
+//   "PREMIUM DRINKWARE",
+//   "RETAILER PROGRAM",
+//   "DISTRIBUTOR NETWORK",
+//   "JOIN THE FAMILY",
+//   "HILEE PARTNERSHIP",
+//   "GROW WITH US",
+//   "PREMIUM DRINKWARE",
+//   "RETAILER PROGRAM",
+//   "DISTRIBUTOR NETWORK",
+//   "JOIN THE FAMILY",
+// ];
 
 const BENEFITS = [
   {
@@ -444,7 +444,7 @@ export default function Partnership() {
 
       <div className="pt">
         {/* Ticker */}
-        <div className="pt-ticker">
+        {/* <div className="pt-ticker">
           <div className="pt-tick-track">
             {TICKER_ITEMS.map((item, i) => (
               <div key={i} className="pt-tick-item">
@@ -453,7 +453,7 @@ export default function Partnership() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Hero */}
         <div className="pt-hero">
