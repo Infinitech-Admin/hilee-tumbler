@@ -262,11 +262,11 @@ export default function MenuPage() {
         .mp-h { font-family: 'Bricolage Grotesque', sans-serif; }
 
         /* Ticker */
-        @keyframes mp-tick { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-        .mp-ticker      { background:#EDE8DF; border-bottom:2px solid rgba(0,0,0,0.05); height:40px; overflow:hidden; display:flex; align-items:center; }
-        .mp-tick-track  { display:flex; width:max-content; animation:mp-tick 28s linear infinite; }
-        .mp-tick-item   { display:flex; align-items:center; gap:1.25rem; padding:0 1.75rem; white-space:nowrap; font-size:0.65rem; font-weight:800; letter-spacing:0.25em; text-transform:uppercase; color:#5C4F3A; }
-        .mp-tick-dot    { width:5px; height:5px; border-radius:50%; flex-shrink:0; }
+        // @keyframes mp-tick { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+        // .mp-ticker      { background:#EDE8DF; border-bottom:2px solid rgba(0,0,0,0.05); height:40px; overflow:hidden; display:flex; align-items:center; }
+        // .mp-tick-track  { display:flex; width:max-content; animation:mp-tick 28s linear infinite; }
+        // .mp-tick-item   { display:flex; align-items:center; gap:1.25rem; padding:0 1.75rem; white-space:nowrap; font-size:0.65rem; font-weight:800; letter-spacing:0.25em; text-transform:uppercase; color:#5C4F3A; }
+        // .mp-tick-dot    { width:5px; height:5px; border-radius:50%; flex-shrink:0; }
 
         /* Float badges */
         @keyframes mp-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
@@ -513,19 +513,6 @@ export default function MenuPage() {
 
       <div className="mp">
         {/* ── Ticker ── */}
-        <div className="mp-ticker">
-          {/* <div className="mp-tick-track">
-            {ticker.map((t, i) => (
-              <div key={i} className="mp-tick-item">
-                <span
-                  className="mp-tick-dot"
-                  style={{ background: tickerColors[i % tickerColors.length] }}
-                />
-                {t}
-              </div>
-            ))}
-          </div> */}
-        </div>
 
         {/* ── Hero Header ── */}
         <div className="mp-hero">
