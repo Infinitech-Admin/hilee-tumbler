@@ -103,21 +103,15 @@ export default function ProductSection() {
           border: 1.5px solid rgba(14,165,233,0.15);
           overflow: hidden;
           backdrop-filter: blur(10px);
-          transition: all 0.3s ease;
+          transition: box-shadow 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
+          display: flex;
+          flex-direction: column;
+          height: 100%;
         }
         .ps-card:hover {
           transform: translateY(-8px);
           border-color: rgba(14,165,233,0.3);
           box-shadow: 0 12px 48px rgba(14,165,233,0.2), 0 4px 12px rgba(0,0,0,0.05);
-        }
-          transition: box-shadow 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
-          display: flex;
-          flex-direction: column;
-        }
-        .ps-card:hover {
-          box-shadow: 0 4px 20px rgba(0,0,0,0.08), 0 16px 48px rgba(0,0,0,0.1);
-          transform: translateY(-4px);
-          border-color: rgba(0,0,0,0.12);
         }
 
         .ps-img-area {
