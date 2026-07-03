@@ -475,9 +475,7 @@ export default function MenuItemCard({ item, index = 0 }: MenuItemCardProps) {
                 marginBottom: "-0.4rem",
                 fontFamily: "'Nunito', sans-serif",
               }}
-            >
-              Buy on
-            </div>
+            ></div>
 
             <div
               style={{
@@ -508,7 +506,7 @@ export default function MenuItemCard({ item, index = 0 }: MenuItemCardProps) {
                     <p.Icon size={16} />
                     {active ? (
                       <>
-                        Buy on {p.label}
+                        {p.label}
                         <ExternalLink size={13} strokeWidth={2.5} />
                       </>
                     ) : (
