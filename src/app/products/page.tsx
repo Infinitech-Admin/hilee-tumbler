@@ -110,14 +110,15 @@ export default function MenuPage() {
     return (
       <>
         <style>{`
-          .mp-sk-wrap { font-family: 'Nunito', sans-serif; background: linear-gradient(180deg, #F0F8FF 0%, #D4E8F7 100%); min-height: 100vh; }
+          .mp-sk-wrap { font-family: 'Nunito', sans-serif; background: linear-gradient(160deg, #EAFBFF 0%, #F6FEFF 55%, #FFFFFF 100%); min-height: 100vh; }
           @keyframes mp-shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
           .mp-sk {
-            background: linear-gradient(90deg, rgba(59,130,175,0.09) 25%, rgba(59,130,175,0.18) 37%, rgba(59,130,175,0.09) 63%);
+            background: linear-gradient(90deg, rgba(6,174,213,0.09) 25%, rgba(6,174,213,0.18) 37%, rgba(6,174,213,0.09) 63%);
             background-size: 800px 100%;
             animation: mp-shimmer 1.4s ease-in-out infinite;
             border-radius: 10px;
           }
+          .mp-sk-hero-band { background: linear-gradient(160deg, #CDEFFB 0%, #A9E1F5 45%, #DFF6FD 100%); border-bottom: 1.5px solid #B7E6F5; }
           .mp-sk-hero { padding: 4rem 2rem 3rem; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
           .mp-sk-badges { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
           .mp-sk-badge { width: 130px; height: 26px; border-radius: 999px; }
@@ -130,9 +131,9 @@ export default function MenuPage() {
           .mp-sk-sidebar-title { width: 60%; height: 14px; margin-bottom: 0.5rem; }
           .mp-sk-cb { height: 30px; border-radius: 10px; }
           .mp-sk-main { flex: 1; min-width: 0; }
-          .mp-sk-strip { height: 1.5px; background: #DDD8CF; margin: 1.75rem 0; }
+          .mp-sk-strip { height: 1.5px; background: #CDEEF9; margin: 1.75rem 0; }
           .mp-sk-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
-          .mp-sk-card { border-radius: 20px; overflow: hidden; border: 1.5px solid rgba(0,0,0,0.05); background: white; }
+          .mp-sk-card { border-radius: 20px; overflow: hidden; border: 1.5px solid #CDEEF9; background: white; }
           .mp-sk-card-img { height: 180px; border-radius: 0; }
           .mp-sk-card-body { padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
           .mp-sk-line { height: 12px; }
@@ -144,15 +145,17 @@ export default function MenuPage() {
           @media (max-width: 700px) { .mp-sk-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; } }
         `}</style>
         <div className="mp-sk-wrap">
-          <div className="mp-sk-hero">
-            <div className="mp-sk-badges">
-              {Array.from({ length: 3 }).map((_, i) => (
-                <div key={i} className="mp-sk mp-sk-badge" />
-              ))}
+          <div className="mp-sk-hero-band">
+            <div className="mp-sk-hero">
+              <div className="mp-sk-badges">
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <div key={i} className="mp-sk mp-sk-badge" />
+                ))}
+              </div>
+              <div className="mp-sk mp-sk-title" />
+              <div className="mp-sk mp-sk-sub" />
+              <div className="mp-sk mp-sk-search" />
             </div>
-            <div className="mp-sk mp-sk-title" />
-            <div className="mp-sk mp-sk-sub" />
-            <div className="mp-sk mp-sk-search" />
           </div>
           <div className="mp-sk-area">
             <div className="mp-sk-layout">
@@ -198,7 +201,8 @@ export default function MenuPage() {
       <div
         style={{
           minHeight: "100vh",
-          background: "linear-gradient(180deg, #F0F8FF 0%, #D4E8F7 100%)",
+          background:
+            "linear-gradient(160deg, #EAFBFF 0%, #F6FEFF 55%, #FFFFFF 100%)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -210,12 +214,13 @@ export default function MenuPage() {
             background: "white",
             padding: "2rem 3rem",
             borderRadius: "24px",
-            boxShadow: "0 4px 30px rgba(0,0,0,0.08)",
+            border: "1.5px solid #CDEEF9",
+            boxShadow: "0 4px 30px rgba(6,174,213,0.1)",
           }}
         >
           <p
             style={{
-              color: "#FF6B35",
+              color: "#DC2626",
               fontFamily: "'Nunito',sans-serif",
               fontWeight: 700,
               marginBottom: "0.5rem",
@@ -223,33 +228,19 @@ export default function MenuPage() {
           >
             Failed to load products
           </p>
-          <p style={{ color: "#ACA193", fontSize: "0.85rem" }}>{error}</p>
+          <p style={{ color: "#8FBFCE", fontSize: "0.85rem" }}>{error}</p>
         </div>
       </div>
     );
   }
 
-  // const ticker = [
-  //   "HILEE TUMBLERS",
-  //   "STAY COLD ALL DAY",
-  //   "BUILT TO LAST",
-  //   "BPA FREE",
-  //   "PREMIUM DRINKWARE",
-  //   "NATIONWIDE SHIPPING",
-  //   "HILEE TUMBLERS",
-  //   "STAY COLD ALL DAY",
-  //   "BUILT TO LAST",
-  //   "BPA FREE",
-  //   "PREMIUM DRINKWARE",
-  //   "NATIONWIDE SHIPPING",
-  // ];
   const tickerColors = [
-    "#8C7355",
-    "#A89070",
-    "#C4AA8A",
-    "#6B5E4A",
-    "#D4C4A8",
-    "#9E8868",
+    "#0EA5E9",
+    "#38BDF8",
+    "#67E8F9",
+    "#0369A1",
+    "#7DD3FC",
+    "#0284C7",
   ];
 
   return (
@@ -257,49 +248,42 @@ export default function MenuPage() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Nunito:wght@300;400;600;700;800&display=swap');
 
-        .mp { font-family: 'Nunito', sans-serif; background: linear-gradient(180deg, #F0F8FF 0%, #D4E8F7 100%); color: #2E2419; min-height: 100vh; }
+        .mp { font-family: 'Nunito', sans-serif; background: linear-gradient(160deg, #EAFBFF 0%, #F6FEFF 55%, #FFFFFF 100%); color: #073B4C; min-height: 100vh; }
         .mp * { box-sizing: border-box; }
         .mp-h { font-family: 'Bricolage Grotesque', sans-serif; }
 
-        /* Ticker */
-        // @keyframes mp-tick { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-        // .mp-ticker      { background:#EDE8DF; border-bottom:2px solid rgba(0,0,0,0.05); height:40px; overflow:hidden; display:flex; align-items:center; }
-        // .mp-tick-track  { display:flex; width:max-content; animation:mp-tick 28s linear infinite; }
-        // .mp-tick-item   { display:flex; align-items:center; gap:1.25rem; padding:0 1.75rem; white-space:nowrap; font-size:0.65rem; font-weight:800; letter-spacing:0.25em; text-transform:uppercase; color:#5C4F3A; }
-        // .mp-tick-dot    { width:5px; height:5px; border-radius:50%; flex-shrink:0; }
-
         /* Float badges */
         @keyframes mp-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
-        .mp-badge { display:inline-flex; align-items:center; gap:0.4rem; border-radius:999px; padding:0.35rem 0.9rem; font-size:0.62rem; font-weight:800; letter-spacing:0.15em; text-transform:uppercase; animation:mp-float 4s ease-in-out infinite; }
+        .mp-badge { display:inline-flex; align-items:center; gap:0.4rem; border-radius:999px; padding:0.35rem 0.9rem; font-size:0.62rem; font-weight:800; letter-spacing:0.15em; text-transform:uppercase; animation:mp-float 4s ease-in-out infinite; background: rgba(255,255,255,0.6); border: 1.5px solid rgba(3,105,161,0.3); color: #0369A1; }
 
         /* Entry */
         @keyframes mp-up { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:none} }
         .mp-u { animation:mp-up 0.85s cubic-bezier(.22,1,.36,1) both; }
         .d1{animation-delay:.06s}.d2{animation-delay:.18s}.d3{animation-delay:.3s}.d4{animation-delay:.44s}.d5{animation-delay:.56s}
 
-        /* Hero */
+        /* Hero — distinct blue band, matching the rest of the site */
         .mp-hero {
           position:relative; overflow:hidden;
-          background: linear-gradient(160deg, #B8DFF5 0%, #D0E9F7 45%, #F0F8FF 100%);
+          background: linear-gradient(160deg, #CDEFFB 0%, #A9E1F5 45%, #DFF6FD 100%);
           padding:4rem 2rem 3rem; text-align:center;
-          border-bottom: 1.5px solid rgba(59,130,175,0.18);
+          border-bottom: 1.5px solid #B7E6F5;
         }
 
         /* Search */
         .mp-search-wrap { position:relative; display:inline-flex; align-items:center; }
         .mp-search {
           font-family:'Nunito',sans-serif; font-size:0.85rem; font-weight:600;
-          background:white; border:2px solid rgba(0,0,0,0.08); color:#2E2419;
+          background:white; border:2px solid #CDEEF9; color:#073B4C;
           padding:0.7rem 1.1rem 0.7rem 2.6rem; border-radius:999px; outline:none; width:300px;
-          box-shadow:0 2px 16px rgba(0,0,0,0.06); transition:border-color .3s,box-shadow .3s;
+          box-shadow:0 2px 16px rgba(6,174,213,0.1); transition:border-color .3s,box-shadow .3s;
         }
-        .mp-search::placeholder { color:#ACA193; }
-        .mp-search:focus { border-color:#FF6B35; box-shadow:0 2px 20px rgba(255,107,53,0.14); }
-        .mp-search-ico { position:absolute; left:0.9rem; color:#ACA193; pointer-events:none; }
+        .mp-search::placeholder { color:#8FBFCE; }
+        .mp-search:focus { border-color:#0EA5E9; box-shadow:0 2px 20px rgba(14,165,233,0.18); }
+        .mp-search-ico { position:absolute; left:0.9rem; color:#8FBFCE; pointer-events:none; }
 
         /* Count */
-        .mp-count { display:inline-flex; align-items:center; gap:0.4rem; background:white; border:1.5px solid rgba(0,0,0,0.07); border-radius:999px; padding:0.35rem 0.9rem; box-shadow:0 2px 12px rgba(0,0,0,0.05); font-size:0.65rem; font-weight:700; color:#7C6F60; }
-        .mp-count-n { font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:0.9rem; color:#FF6B35; }
+        .mp-count { display:inline-flex; align-items:center; gap:0.4rem; background:white; border:1.5px solid #CDEEF9; border-radius:999px; padding:0.35rem 0.9rem; box-shadow:0 2px 12px rgba(6,174,213,0.08); font-size:0.65rem; font-weight:700; color:#5B7C8D; }
+        .mp-count-n { font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:0.9rem; color:#0284C7; }
 
         /* Grid area */
         .mp-grid-area { background: transparent; padding:0 2rem 5rem; min-height:60vh; }
@@ -312,18 +296,18 @@ export default function MenuPage() {
         .mp-sidebar {
           width:230px; flex-shrink:0; position:sticky; top:1.5rem;
           background:white; border-radius:20px; padding:1.25rem 0.9rem;
-          box-shadow:0 4px 20px rgba(0,0,0,0.06); border:1.5px solid rgba(0,0,0,0.05);
+          box-shadow:0 4px 20px rgba(6,174,213,0.08); border:1.5px solid #CDEEF9;
         }
         .mp-sidebar-title {
           font-family:'Bricolage Grotesque',sans-serif; font-weight:800;
           font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase;
-          color:#ACA193; margin:0 0 0.75rem 0.2rem;
+          color:#5B94A6; margin:0 0 0.75rem 0.2rem;
         }
         .mp-sidebar-group { margin-bottom:0.25rem; }
         .mp-sidebar-group-label {
           font-size:0.6rem; font-weight:800; letter-spacing:0.18em; text-transform:uppercase;
-          color:#ACA193; padding:0.6rem 0.5rem 0.3rem;
-          border-top:1.5px dashed #DDD8CF; margin-top:0.25rem;
+          color:#5B94A6; padding:0.6rem 0.5rem 0.3rem;
+          border-top:1.5px dashed #CDEEF9; margin-top:0.25rem;
         }
         .mp-sidebar-group:first-of-type .mp-sidebar-group-label {
           border-top:none; padding-top:0; margin-top:0;
@@ -334,11 +318,11 @@ export default function MenuPage() {
           background:transparent; border:none; cursor:pointer;
           transition:background 0.15s ease; text-align:left;
         }
-        .mp-cb-item:hover { background:rgba(0,0,0,0.04); }
-        .mp-cb-item.on    { background:rgba(0,0,0,0.03); }
+        .mp-cb-item:hover { background:rgba(6,174,213,0.06); }
+        .mp-cb-item.on    { background:rgba(6,174,213,0.05); }
         .mp-cb-box {
           width:17px; height:17px; flex-shrink:0;
-          border-radius:5px; border:1.5px solid rgba(0,0,0,0.18);
+          border-radius:5px; border:1.5px solid rgba(6,58,77,0.2);
           background:white; display:flex; align-items:center; justify-content:center;
           transition:background 0.15s, border-color 0.15s;
         }
@@ -346,11 +330,11 @@ export default function MenuPage() {
         .mp-cb-check { display:none; }
         .mp-cb-item.on .mp-cb-check { display:block; }
         .mp-cb-dot   { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
-        .mp-cb-label { flex:1; font-size:0.78rem; font-weight:600; color:#5C4F3A; transition:color 0.15s; }
+        .mp-cb-label { flex:1; font-size:0.78rem; font-weight:600; color:#0C4A6E; transition:color 0.15s; }
         .mp-cb-item.on .mp-cb-label { font-weight:700; }
         .mp-cb-count {
-          font-size:0.62rem; font-weight:700; color:#ACA193;
-          background:rgba(0,0,0,0.045); padding:0.1rem 0.45rem; border-radius:999px;
+          font-size:0.62rem; font-weight:700; color:#8FBFCE;
+          background:rgba(6,174,213,0.08); padding:0.1rem 0.45rem; border-radius:999px;
         }
         .mp-cb-item.on .mp-cb-count { background:rgba(255,255,255,0.7); }
 
@@ -358,7 +342,7 @@ export default function MenuPage() {
         .mp-active-pills {
           display:flex; flex-wrap:wrap; gap:0.3rem;
           margin:0.75rem 0 0; padding-top:0.75rem;
-          border-top:1.5px dashed #DDD8CF;
+          border-top:1.5px dashed #CDEEF9;
         }
         .mp-active-pill {
           display:inline-flex; align-items:center; gap:0.3rem;
@@ -375,33 +359,33 @@ export default function MenuPage() {
         .mp-clear-btn {
           width:100%; margin-top:0.85rem;
           padding:0.55rem; border-radius:10px;
-          border:1.5px solid #DDD8CF; background:transparent;
-          color:#ACA193; font-family:'Nunito',sans-serif; font-size:0.72rem; font-weight:700;
+          border:1.5px solid #CDEEF9; background:transparent;
+          color:#8FBFCE; font-family:'Nunito',sans-serif; font-size:0.72rem; font-weight:700;
           cursor:pointer; display:flex; align-items:center; justify-content:center; gap:0.35rem;
           transition:background 0.15s, color 0.15s;
         }
-        .mp-clear-btn:hover { background:rgba(255,107,53,0.06); color:#FF6B35; border-color:rgba(255,107,53,0.25); }
+        .mp-clear-btn:hover { background:rgba(14,165,233,0.08); color:#0284C7; border-color:rgba(14,165,233,0.3); }
 
         /* Mobile filter button */
         .mp-filter-fab {
           display:none; align-items:center; gap:0.5rem;
           font-family:'Nunito',sans-serif; font-size:0.78rem; font-weight:800;
           padding:0.65rem 1.25rem; border-radius:999px;
-          background:white; border:2px solid #DDD8CF; color:#5C4F3A;
-          cursor:pointer; box-shadow:0 2px 12px rgba(0,0,0,0.08);
+          background:white; border:2px solid #CDEEF9; color:#0C4A6E;
+          cursor:pointer; box-shadow:0 2px 12px rgba(6,174,213,0.1);
           transition:all .2s ease; margin-bottom:1rem;
         }
-        .mp-filter-fab:hover { box-shadow:0 4px 18px rgba(0,0,0,0.13); }
-        .mp-filter-fab-dot { width:8px; height:8px; border-radius:50%; background:#FF6B35; }
+        .mp-filter-fab:hover { box-shadow:0 4px 18px rgba(6,174,213,0.16); }
+        .mp-filter-fab-dot { width:8px; height:8px; border-radius:50%; background:#0EA5E9; }
         .mp-filter-fab-badge {
-          background:#FF6B35; color:white; border-radius:999px;
+          background:#0EA5E9; color:white; border-radius:999px;
           font-size:0.6rem; font-weight:900; padding:0.1rem 0.45rem; min-width:18px; text-align:center;
         }
 
         /* Bottom sheet drawer */
         .mp-drawer-overlay {
           display:none; position:fixed; inset:0; z-index:100;
-          background:rgba(0,0,0,0.45); backdrop-filter:blur(3px);
+          background:rgba(6,34,46,0.45); backdrop-filter:blur(3px);
         }
         .mp-drawer-overlay.open { display:block; }
         .mp-drawer {
@@ -409,35 +393,35 @@ export default function MenuPage() {
           background:white; border-radius:24px 24px 0 0;
           padding:0 0 2rem; max-height:85vh; overflow-y:auto;
           transform:translateY(100%); transition:transform 0.35s cubic-bezier(.22,1,.36,1);
-          box-shadow:0 -8px 40px rgba(0,0,0,0.15);
+          box-shadow:0 -8px 40px rgba(6,58,77,0.18);
         }
         .mp-drawer.open { transform:translateY(0); }
         .mp-drawer-handle {
           width:40px; height:4px; border-radius:999px;
-          background:#DDD8CF; margin:12px auto 0;
+          background:#CDEEF9; margin:12px auto 0;
         }
         .mp-drawer-header {
           display:flex; align-items:center; justify-content:space-between;
           padding:1rem 1.25rem 0.5rem;
-          border-bottom:1.5px solid #DDD8CF;
+          border-bottom:1.5px solid #CDEEF9;
         }
         .mp-drawer-title {
           font-family:'Bricolage Grotesque',sans-serif;
-          font-size:1.1rem; font-weight:800; color:#2E2419;
+          font-size:1.1rem; font-weight:800; color:#073B4C;
         }
         .mp-drawer-close {
           width:32px; height:32px; border-radius:50%;
-          background:rgba(0,0,0,0.06); border:none;
+          background:rgba(6,174,213,0.08); border:none;
           display:flex; align-items:center; justify-content:center;
-          font-size:0.9rem; cursor:pointer; color:#7C6F60;
+          font-size:0.9rem; cursor:pointer; color:#5B7C8D;
           transition:background .2s;
         }
-        .mp-drawer-close:hover { background:rgba(0,0,0,0.12); }
+        .mp-drawer-close:hover { background:rgba(6,174,213,0.15); }
         .mp-drawer-body { padding:0.75rem 1.25rem; }
         .mp-drawer-group-label {
           font-size:0.6rem; font-weight:800; letter-spacing:0.18em; text-transform:uppercase;
-          color:#ACA193; padding:0.75rem 0 0.4rem;
-          border-top:1.5px dashed #DDD8CF; margin-top:0.25rem;
+          color:#5B94A6; padding:0.75rem 0 0.4rem;
+          border-top:1.5px dashed #CDEEF9; margin-top:0.25rem;
         }
         .mp-drawer-group-label:first-child { border-top:none; padding-top:0.25rem; }
         .mp-drawer-cb-item {
@@ -446,11 +430,11 @@ export default function MenuPage() {
           background:transparent; border:none; cursor:pointer;
           transition:background .15s; text-align:left;
         }
-        .mp-drawer-cb-item:hover { background:rgba(0,0,0,0.04); }
-        .mp-drawer-cb-item.on { background:rgba(0,0,0,0.03); }
+        .mp-drawer-cb-item:hover { background:rgba(6,174,213,0.06); }
+        .mp-drawer-cb-item.on { background:rgba(6,174,213,0.05); }
         .mp-drawer-cb-box {
           width:20px; height:20px; flex-shrink:0; border-radius:6px;
-          border:1.5px solid rgba(0,0,0,0.18); background:white;
+          border:1.5px solid rgba(6,58,77,0.2); background:white;
           display:flex; align-items:center; justify-content:center;
           transition:background .15s, border-color .15s;
         }
@@ -458,32 +442,32 @@ export default function MenuPage() {
         .mp-drawer-cb-check { display:none; }
         .mp-drawer-cb-item.on .mp-drawer-cb-check { display:block; }
         .mp-drawer-cb-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
-        .mp-drawer-cb-label { flex:1; font-size:0.85rem; font-weight:600; color:#5C4F3A; }
+        .mp-drawer-cb-label { flex:1; font-size:0.85rem; font-weight:600; color:#0C4A6E; }
         .mp-drawer-cb-item.on .mp-drawer-cb-label { font-weight:700; }
         .mp-drawer-cb-count {
-          font-size:0.65rem; font-weight:700; color:#ACA193;
-          background:rgba(0,0,0,0.05); padding:0.15rem 0.5rem; border-radius:999px;
+          font-size:0.65rem; font-weight:700; color:#8FBFCE;
+          background:rgba(6,174,213,0.08); padding:0.15rem 0.5rem; border-radius:999px;
         }
-        .mp-drawer-cb-item.on .mp-drawer-cb-count { background:rgba(0,0,0,0.06); }
+        .mp-drawer-cb-item.on .mp-drawer-cb-count { background:rgba(6,174,213,0.12); }
         .mp-drawer-footer {
           display:flex; gap:0.75rem; padding:1rem 1.25rem 0;
-          border-top:1.5px solid #DDD8CF; margin-top:0.5rem;
+          border-top:1.5px solid #CDEEF9; margin-top:0.5rem;
           position:sticky; bottom:0; background:white;
         }
         .mp-drawer-apply {
           flex:1; padding:0.85rem; border-radius:999px; border:none;
-          background:#FF6B35; color:white;
+          background:linear-gradient(135deg, #0EA5E9, #0369A1); color:white;
           font-family:'Nunito',sans-serif; font-size:0.85rem; font-weight:800;
           cursor:pointer; transition:filter .2s;
         }
         .mp-drawer-apply:hover { filter:brightness(1.08); }
         .mp-drawer-clear {
           padding:0.85rem 1.25rem; border-radius:999px;
-          border:1.5px solid #DDD8CF; background:transparent;
-          font-family:'Nunito',sans-serif; font-size:0.85rem; font-weight:700; color:#7C6F60;
+          border:1.5px solid #CDEEF9; background:transparent;
+          font-family:'Nunito',sans-serif; font-size:0.85rem; font-weight:700; color:#5B7C8D;
           cursor:pointer; transition:all .2s;
         }
-        .mp-drawer-clear:hover { border-color:#FF6B35; color:#FF6B35; }
+        .mp-drawer-clear:hover { border-color:#0EA5E9; color:#0284C7; }
 
         @media (max-width:900px) {
           .mp-sidebar { display:none; }
@@ -493,8 +477,8 @@ export default function MenuPage() {
 
         /* Strip */
         .mp-strip { display:flex; align-items:center; gap:1rem; padding:1.5rem 0 1.75rem; }
-        .mp-strip-line { flex:1; height:1.5px; background:#DDD8CF; border-radius:999px; }
-        .mp-strip-lbl { font-size:0.62rem; font-weight:800; letter-spacing:0.22em; text-transform:uppercase; color:#ACA193; white-space:nowrap; }
+        .mp-strip-line { flex:1; height:1.5px; background:#CDEEF9; border-radius:999px; }
+        .mp-strip-lbl { font-size:0.62rem; font-weight:800; letter-spacing:0.22em; text-transform:uppercase; color:#5B94A6; white-space:nowrap; }
 
         /* Product grid */
         .mp-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; }
@@ -505,15 +489,13 @@ export default function MenuPage() {
         .mp-empty { text-align:center; padding:6rem 2rem; }
 
         /* Trust */
-        .mp-trust { display:flex; align-items:center; justify-content:center; gap:2rem; flex-wrap:wrap; padding:1.75rem 2rem; border-top:1.5px dashed #DDD8CF; margin-top:1.5rem; }
-        .mp-trust-item { display:flex; align-items:center; gap:0.4rem; font-size:0.72rem; font-weight:700; color:#ACA193; }
+        .mp-trust { display:flex; align-items:center; justify-content:center; gap:2rem; flex-wrap:wrap; padding:1.75rem 2rem; border-top:1.5px dashed #CDEEF9; margin-top:1.5rem; }
+        .mp-trust-item { display:flex; align-items:center; gap:0.4rem; font-size:0.72rem; font-weight:700; color:#5B94A6; }
 
         @media(max-width:600px){ .mp-search{width:85vw} }
       `}</style>
 
       <div className="mp">
-        {/* ── Ticker ── */}
-
         {/* ── Hero Header ── */}
         <div className="mp-hero">
           <div
@@ -529,37 +511,13 @@ export default function MenuPage() {
               marginBottom: "1.25rem",
             }}
           >
-            <span
-              className="mp-badge"
-              style={{
-                background: "rgba(255,107,53,0.1)",
-                border: "1.5px solid rgba(255,107,53,0.25)",
-                color: "#FF6B35",
-                animationDelay: "0s",
-              }}
-            >
+            <span className="mp-badge" style={{ animationDelay: "0s" }}>
               💧 Premium Drinkware
             </span>
-            <span
-              className="mp-badge"
-              style={{
-                background: "rgba(255,107,53,0.1)",
-                border: "1.5px solid rgba(255,107,53,0.25)",
-                color: "#FF6B35",
-                animationDelay: "0.7s",
-              }}
-            >
+            <span className="mp-badge" style={{ animationDelay: "0.7s" }}>
               ⭐ Top Rated
             </span>
-            <span
-              className="mp-badge"
-              style={{
-                background: "rgba(255,107,53,0.1)",
-                border: "1.5px solid rgba(255,107,53,0.25)",
-                color: "#FF6B35",
-                animationDelay: "1.3s",
-              }}
-            >
+            <span className="mp-badge" style={{ animationDelay: "1.3s" }}>
               🧊 24H Cold
             </span>
           </div>
@@ -571,12 +529,12 @@ export default function MenuPage() {
             <h1
               className="mp-h"
               style={{
-                fontSize: "clamp(3.2rem,8vw,6.5rem)",
+                fontSize: "clamp(2.4rem,6vw,4.2rem)",
                 fontWeight: 800,
-                lineHeight: 0.92,
+                lineHeight: 1.02,
                 letterSpacing: "-0.025em",
                 margin: 0,
-                color: "#2E2419",
+                color: "#073B4C",
               }}
             >
               Shop All
@@ -590,7 +548,7 @@ export default function MenuPage() {
               zIndex: 2,
               fontSize: "1rem",
               lineHeight: 1.75,
-              color: "#7C6F60",
+              color: "#2C6478",
               maxWidth: "42ch",
               margin: "0 auto 2rem",
               fontWeight: 400,
@@ -900,13 +858,13 @@ export default function MenuPage() {
                     style={{
                       fontSize: "3.5rem",
                       fontWeight: 800,
-                      color: "rgba(0,0,0,0.07)",
+                      color: "rgba(6,58,77,0.08)",
                       marginBottom: "1rem",
                     }}
                   >
                     Nothing here yet
                   </div>
-                  <p style={{ color: "#ACA193", fontSize: "0.9rem" }}>
+                  <p style={{ color: "#8FBFCE", fontSize: "0.9rem" }}>
                     Try a different filter or search term.
                   </p>
                 </div>

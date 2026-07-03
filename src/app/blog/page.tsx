@@ -141,26 +141,27 @@ export default function Blog() {
     return (
       <>
         <style>{`
-          .bl-sk-wrap { font-family: 'Nunito', sans-serif; background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%); min-height: 100vh; }
+          .bl-sk-wrap { font-family: 'Nunito', sans-serif; background: linear-gradient(160deg, #EAFBFF 0%, #F6FEFF 55%, #FFFFFF 100%); min-height: 100vh; }
           @keyframes bl-shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
           .bl-sk {
-            background: linear-gradient(90deg, rgba(14,165,233,0.08) 25%, rgba(14,165,233,0.16) 37%, rgba(14,165,233,0.08) 63%);
+            background: linear-gradient(90deg, rgba(6,174,213,0.08) 25%, rgba(6,174,213,0.18) 37%, rgba(6,174,213,0.08) 63%);
             background-size: 800px 100%;
             animation: bl-shimmer 1.4s ease-in-out infinite;
             border-radius: 10px;
           }
+          .bl-sk-hero-band { background: linear-gradient(160deg, #CDEFFB 0%, #A9E1F5 45%, #DFF6FD 100%); border-bottom: 1.5px solid #B7E6F5; }
           .bl-sk-hero { padding: 5rem 2.5rem 3.5rem; text-align: center; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
           .bl-sk-pill { width: 150px; height: 24px; border-radius: 999px; }
           .bl-sk-title { width: min(90%, 480px); height: 68px; border-radius: 16px; }
           .bl-sk-sub { width: min(80%, 380px); height: 16px; }
-          .bl-sk-filters { display: flex; gap: 0.5rem; justify-content: center; padding: 0 2.5rem 2rem; flex-wrap: wrap; }
+          .bl-sk-filters { display: flex; gap: 0.5rem; justify-content: center; padding: 2rem 2.5rem 0; flex-wrap: wrap; }
           .bl-sk-chip { width: 90px; height: 32px; border-radius: 999px; }
-          .bl-sk-body { max-width: 1160px; margin: 0 auto; padding: 1rem 2.5rem 6rem; display: flex; flex-direction: column; gap: 2rem; }
-          .bl-sk-featured { display: grid; grid-template-columns: 1fr 1fr; border-radius: 24px; overflow: hidden; border: 1.5px solid rgba(14,165,233,0.1); }
+          .bl-sk-body { max-width: 1160px; margin: 0 auto; padding: 3rem 2.5rem 6rem; display: flex; flex-direction: column; gap: 2rem; }
+          .bl-sk-featured { display: grid; grid-template-columns: 1fr 1fr; border-radius: 24px; overflow: hidden; border: 1.5px solid rgba(6,174,213,0.15); }
           .bl-sk-featured .bl-sk-img { height: 320px; border-radius: 0; }
           .bl-sk-featured-body { padding: 2.5rem 2.25rem; display: flex; flex-direction: column; gap: 0.9rem; background: white; }
           .bl-sk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-          .bl-sk-card { border-radius: 20px; overflow: hidden; border: 1.5px solid rgba(14,165,233,0.1); background: white; }
+          .bl-sk-card { border-radius: 20px; overflow: hidden; border: 1.5px solid rgba(6,174,213,0.15); background: white; }
           .bl-sk-card .bl-sk-img { height: 200px; border-radius: 0; }
           .bl-sk-card-body { padding: 1.35rem 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
           .bl-sk-line { height: 12px; }
@@ -170,15 +171,17 @@ export default function Blog() {
           }
           @media (max-width: 580px) {
             .bl-sk-hero { padding: 3.5rem 1.25rem 2.5rem; }
-            .bl-sk-body { padding: 1rem 1.25rem 4rem; }
+            .bl-sk-body { padding: 2rem 1.25rem 4rem; }
             .bl-sk-grid { grid-template-columns: 1fr; }
           }
         `}</style>
         <div className="bl-sk-wrap">
-          <div className="bl-sk-hero">
-            <div className="bl-sk bl-sk-pill" />
-            <div className="bl-sk bl-sk-title" />
-            <div className="bl-sk bl-sk-sub" />
+          <div className="bl-sk-hero-band">
+            <div className="bl-sk-hero">
+              <div className="bl-sk bl-sk-pill" />
+              <div className="bl-sk bl-sk-title" />
+              <div className="bl-sk bl-sk-sub" />
+            </div>
           </div>
           <div className="bl-sk-filters">
             {Array.from({ length: 4 }).map((_, i) => (
@@ -254,7 +257,7 @@ export default function Blog() {
               fontFamily: "'Bricolage Grotesque', sans-serif",
               fontWeight: 700,
               fontSize: "1rem",
-              color: "#2E2419",
+              color: "#073B4C",
               margin: "1.5rem 0 0.5rem",
             }}
           >
@@ -269,7 +272,7 @@ export default function Blog() {
             {heading && (
               <p
                 style={{
-                  color: "#5C4F3A",
+                  color: "#0C4A6E",
                   lineHeight: 1.85,
                   marginBottom: "0.5rem",
                 }}
@@ -282,7 +285,7 @@ export default function Blog() {
                 <li
                   key={j}
                   style={{
-                    color: "#7C6F60",
+                    color: "#5B7C8D",
                     lineHeight: 1.8,
                     fontSize: "0.9rem",
                     marginBottom: "0.3rem",
@@ -300,7 +303,7 @@ export default function Blog() {
         <p
           key={i}
           style={{
-            color: "#5C4F3A",
+            color: "#0C4A6E",
             lineHeight: 1.85,
             fontSize: "0.92rem",
             marginBottom: "0.25rem",
@@ -308,7 +311,7 @@ export default function Blog() {
         >
           {parts.map((part, j) =>
             part.startsWith("**") && part.endsWith("**") ? (
-              <strong key={j} style={{ color: "#2E2419", fontWeight: 700 }}>
+              <strong key={j} style={{ color: "#073B4C", fontWeight: 700 }}>
                 {part.replace(/\*\*/g, "")}
               </strong>
             ) : (
@@ -325,20 +328,14 @@ export default function Blog() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Nunito:wght@300;400;500;600;700;800&display=swap');
 
-        .bl { font-family: 'Nunito', sans-serif; background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%); color: #0C1C2E; min-height: 100vh; }
+        .bl { font-family: 'Nunito', sans-serif; background: linear-gradient(160deg, #EAFBFF 0%, #F6FEFF 55%, #FFFFFF 100%); color: #073B4C; min-height: 100vh; }
         .bl * { box-sizing: border-box; }
         .bl-h { font-family: 'Bricolage Grotesque', sans-serif; }
 
-        /* Ticker */
-        @keyframes bl-tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-        .bl-ticker { background: linear-gradient(90deg, #E0F2FE, #F0F9FF); border-bottom: 1.5px solid rgba(14,165,233,0.1); height: 40px; overflow: hidden; display: flex; align-items: center; }
-        .bl-tick-item { display: flex; align-items: center; gap: 1rem; padding: 0 2rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.25em; text-transform: uppercase; color: #0C1C2E; white-space: nowrap; }
-        .bl-tick-dot { width: 5px; height: 5px; border-radius: 50%; background: #0EA5E9; flex-shrink: 0; }
-
-        /* Hero */
-        .bl-hero { padding: 5rem 2.5rem 3.5rem; text-align: center; border-bottom: 1.5px solid rgba(0,0,0,0.06); background: linear-gradient(135deg, #BAE6FD 0%, #E0F2FE 45%, #FFFFFF 100%); max-width: none; width: 100%; margin: 0; }
-        .bl-hero-inner { max-width: 900px; margin: 0 auto; }
-        .bl-eyebrow { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(14,165,233,0.1); border: 1.5px solid rgba(14,165,233,0.25); border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: #0EA5E9; margin-bottom: 1.5rem; }
+        /* Hero — distinct blue band, centered, matching the Partnership page */
+        .bl-hero-band { background: linear-gradient(160deg, #CDEFFB 0%, #A9E1F5 45%, #DFF6FD 100%); border-bottom: 1.5px solid #B7E6F5; width: 100%; }
+        .bl-hero { padding: 5rem 2.5rem 3.5rem; text-align: center; max-width: 900px; margin: 0 auto; }
+        .bl-eyebrow { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.6); border: 1.5px solid rgba(3,105,161,0.3); border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: #0369A1; margin-bottom: 1.5rem; }
 
         /* Fade up animation */
         @keyframes bl-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
@@ -348,63 +345,66 @@ export default function Blog() {
 
         /* Filters */
         .bl-filters { display: flex; align-items: center; justify-content: center; gap: 0.5rem; flex-wrap: wrap; padding: 2rem 2.5rem 0; }
-        .bl-chip { background: none; border: 1.5px solid rgba(14,165,233,0.2); border-radius: 999px; padding: 0.45rem 1.1rem; font-family: 'Nunito', sans-serif; font-size: 0.72rem; font-weight: 700; color: #0C1C2E; cursor: pointer; transition: all 0.2s; letter-spacing: 0.03em; }
-        .bl-chip:hover { border-color: #0EA5E9; color: #0EA5E9; background: rgba(14,165,233,0.05); }
+        .bl-chip { background: none; border: 1.5px solid rgba(6,174,213,0.25); border-radius: 999px; padding: 0.45rem 1.1rem; font-family: 'Nunito', sans-serif; font-size: 0.72rem; font-weight: 700; color: #073B4C; cursor: pointer; transition: all 0.2s; letter-spacing: 0.03em; }
+        .bl-chip:hover { border-color: #0EA5E9; color: #0284C7; background: rgba(14,165,233,0.06); }
         .bl-chip.active { background: #0EA5E9; border-color: #0EA5E9; color: #FFFFFF; }
 
         /* Body */
         .bl-body { max-width: 1160px; margin: 0 auto; padding: 3rem 2.5rem 6rem; display: flex; flex-direction: column; gap: 3rem; }
 
         /* Section label */
-        .bl-section-label { display: flex; align-items: center; gap: 1rem; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #ACA193; }
-        .bl-section-label::after { content: ''; flex: 1; height: 1px; background: #DDD8CF; }
+        .bl-section-label { display: flex; align-items: center; gap: 1rem; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #5B94A6; }
+        .bl-section-label::after { content: ''; flex: 1; height: 1px; background: #CDEEF9; }
 
         /* Featured */
-        .bl-featured { display: grid; grid-template-columns: 1fr 1fr; border-radius: 24px; border: 1.5px solid rgba(14,165,233,0.15); overflow: hidden; cursor: pointer; transition: all 0.3s ease; background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(240,249,255,0.8)); }
-        .bl-featured:hover { box-shadow: 0 20px 50px rgba(14,165,233,0.2); transform: translateY(-4px) scale(1.01); border-color: rgba(14,165,233,0.3); }
-        .bl-feat-img-wrap { position: relative; min-height: 320px; background: #F3ECE1; display: flex; align-items: center; justify-content: center; }
+        .bl-featured { display: grid; grid-template-columns: 1fr 1fr; border-radius: 24px; border: 1.5px solid #CDEEF9; overflow: hidden; cursor: pointer; transition: all 0.3s ease; background: #FFFFFF; }
+        .bl-featured:hover { box-shadow: 0 20px 50px rgba(6,174,213,0.2); transform: translateY(-4px) scale(1.01); border-color: #67E8F9; }
+        .bl-feat-img-wrap { position: relative; min-height: 320px; background: #EAFBFF; display: flex; align-items: center; justify-content: center; }
         .bl-feat-img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 1.5rem; }
-        .bl-feat-img-badge { position: absolute; top: 1.25rem; left: 1.25rem; background: rgba(250,247,242,0.92); backdrop-filter: blur(8px); border-radius: 999px; padding: 0.3rem 0.8rem; font-size: 0.6rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: #5C4F3A; }
+        .bl-feat-img-badge { position: absolute; top: 1.25rem; left: 1.25rem; background: rgba(255,255,255,0.9); backdrop-filter: blur(8px); border-radius: 999px; padding: 0.3rem 0.8rem; font-size: 0.6rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: #0284C7; }
         .bl-feat-body { padding: 2.5rem 2.25rem; display: flex; flex-direction: column; justify-content: center; gap: 0.85rem; background: white; }
-        .bl-feat-label { font-size: 0.62rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #8C7355; display: flex; align-items: center; gap: 0.5rem; }
-        .bl-feat-tag { background: #EDE8DF; border: 1px solid #DDD8CF; border-radius: 999px; padding: 0.2rem 0.55rem; font-size: 0.55rem; color: #5C4F3A; letter-spacing: 0.12em; }
-        .bl-feat-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(1.3rem, 2.5vw, 1.9rem); line-height: 1.12; color: #2E2419; }
-        .bl-feat-excerpt { font-size: 0.88rem; color: #7C6F60; line-height: 1.8; }
-        .bl-feat-meta { display: flex; align-items: center; gap: 0.6rem; font-size: 0.7rem; color: #ACA193; font-weight: 600; }
-        .bl-feat-cta { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.8rem; font-weight: 800; color: #FF6B35; background: none; border: none; padding: 0; cursor: pointer; margin-top: 0.25rem; transition: gap 0.15s; font-family: 'Nunito', sans-serif; }
+        .bl-feat-label { font-size: 0.62rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #0284C7; display: flex; align-items: center; gap: 0.5rem; }
+        .bl-feat-tag { background: rgba(14,165,233,0.1); border: 1px solid rgba(14,165,233,0.25); border-radius: 999px; padding: 0.2rem 0.55rem; font-size: 0.55rem; color: #0369A1; letter-spacing: 0.12em; }
+        .bl-feat-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(1.3rem, 2.5vw, 1.9rem); line-height: 1.12; color: #073B4C; }
+        .bl-feat-excerpt { font-size: 0.88rem; color: #5B7C8D; line-height: 1.8; }
+        .bl-feat-meta { display: flex; align-items: center; gap: 0.6rem; font-size: 0.7rem; color: #8FBFCE; font-weight: 600; }
+        .bl-feat-cta { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.8rem; font-weight: 800; color: #0284C7; background: none; border: none; padding: 0; cursor: pointer; margin-top: 0.25rem; transition: gap 0.15s; font-family: 'Nunito', sans-serif; }
         .bl-feat-cta:hover { gap: 0.75rem; }
 
         /* Grid */
         .bl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-        .bl-card { background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,249,255,0.7)); border-radius: 20px; border: 1.5px solid rgba(14,165,233,0.15); overflow: hidden; cursor: pointer; display: flex; flex-direction: column; transition: all 0.3s ease; backdrop-filter: blur(10px); }
-        .bl-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 40px rgba(14,165,233,0.2); border-color: rgba(14,165,233,0.3); }
-        .bl-card-img-wrap { width: 100%; height: 200px; background: #F3ECE1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .bl-card { background: #FFFFFF; border-radius: 20px; border: 1.5px solid #CDEEF9; overflow: hidden; cursor: pointer; display: flex; flex-direction: column; transition: all 0.3s ease; }
+        .bl-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 40px rgba(6,174,213,0.2); border-color: #67E8F9; }
+        .bl-card-img-wrap { width: 100%; height: 200px; background: #EAFBFF; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .bl-card-img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 1rem; transition: transform 0.3s ease; }
         .bl-card:hover .bl-card-img { transform: scale(1.05); }
         .bl-card-body { padding: 1.35rem 1.25rem 1.25rem; display: flex; flex-direction: column; gap: 0.55rem; flex: 1; }
-        .bl-card-label { font-size: 0.6rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: #8C7355; }
-        .bl-card-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 0.98rem; line-height: 1.25; color: #2E2419; }
-        .bl-card-excerpt { font-size: 0.78rem; color: #7C6F60; line-height: 1.7; flex: 1; }
-        .bl-card-meta { display: flex; align-items: center; justify-content: space-between; font-size: 0.66rem; color: #ACA193; font-weight: 600; padding-top: 0.75rem; border-top: 1.5px dashed #DDD8CF; margin-top: 0.25rem; }
-        .bl-card-arrow { color: #8C7355; font-weight: 800; font-size: 0.8rem; }
+        .bl-card-label { font-size: 0.6rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: #0284C7; }
+        .bl-card-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 0.98rem; line-height: 1.25; color: #073B4C; }
+        .bl-card-excerpt { font-size: 0.78rem; color: #5B7C8D; line-height: 1.7; flex: 1; }
+        .bl-card-meta { display: flex; align-items: center; justify-content: space-between; font-size: 0.66rem; color: #8FBFCE; font-weight: 600; padding-top: 0.75rem; border-top: 1.5px dashed #CDEEF9; margin-top: 0.25rem; }
+        .bl-card-arrow { color: #0284C7; font-weight: 800; font-size: 0.8rem; }
 
-        /* Newsletter */
-        .bl-nl { background: #F3ECE1; border-radius: 24px; border: 1.5px solid #DDD8CF; padding: 3rem 2.5rem; text-align: center; }
-        .bl-nl-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.75rem; color: #2E2419; margin-bottom: 0.6rem; }
-        .bl-nl-sub { font-size: 0.9rem; color: #7C6F60; line-height: 1.7; max-width: 42ch; margin: 0 auto 1.75rem; }
-        .bl-nl-row { display: flex; align-items: center; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
-        .bl-nl-input { border: 1.5px solid #DDD8CF; border-radius: 999px; padding: 0.7rem 1.35rem; font-family: 'Nunito', sans-serif; font-size: 0.85rem; background: white; color: #2E2419; outline: none; width: 260px; transition: border-color 0.15s; }
-        .bl-nl-input:focus { border-color: #8C7355; box-shadow: 0 0 0 3px rgba(140,115,85,0.1); }
-        .bl-nl-input::placeholder { color: #ACA193; }
-        .bl-nl-btn { background: linear-gradient(135deg, #0EA5E9, #06B6D4); color: white; border: none; border-radius: 999px; padding: 0.7rem 1.6rem; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; cursor: pointer; box-shadow: 0 12px 32px rgba(14,165,233,0.4); transition: all 0.3s ease; white-space: nowrap; }
-        .bl-nl-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 48px rgba(14,165,233,0.5); }
+        /* Newsletter — split gradient panel, matching the Partnership form */
+        .bl-nl { border-radius: 24px; overflow: hidden; display: grid; grid-template-columns: 0.85fr 1.15fr; box-shadow: 0 24px 60px rgba(6,58,77,0.12); }
+        .bl-nl-side { background: linear-gradient(160deg, #073B4C, #0369A1 55%, #0EA5E9); padding: 2.75rem 2.25rem; display: flex; flex-direction: column; justify-content: center; color: #EAFBFF; }
+        .bl-nl-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.6rem; margin-bottom: 0.6rem; line-height: 1.2; }
+        .bl-nl-sub { font-size: 0.85rem; color: rgba(234,251,255,0.85); line-height: 1.75; }
+        .bl-nl-main { background: #FFFFFF; padding: 2.75rem 2.25rem; display: flex; flex-direction: column; justify-content: center; gap: 1rem; }
+        .bl-nl-row { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+        .bl-nl-input { border: 1.5px solid #CDEEF9; border-radius: 999px; padding: 0.7rem 1.35rem; font-family: 'Nunito', sans-serif; font-size: 0.85rem; background: #F6FEFF; color: #073B4C; outline: none; flex: 1; min-width: 200px; transition: border-color 0.15s; }
+        .bl-nl-input:focus { border-color: #0EA5E9; box-shadow: 0 0 0 3px rgba(14,165,233,0.12); background: #fff; }
+        .bl-nl-input::placeholder { color: #8FBFCE; }
+        .bl-nl-btn { background: linear-gradient(135deg, #0EA5E9, #0369A1); color: white; border: none; border-radius: 999px; padding: 0.7rem 1.6rem; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; cursor: pointer; box-shadow: 0 12px 32px rgba(14,165,233,0.35); transition: all 0.3s ease; white-space: nowrap; }
+        .bl-nl-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 48px rgba(14,165,233,0.45); }
+        .bl-nl-note { font-size: 0.72rem; color: #8FBFCE; font-weight: 600; }
 
         /* Trust */
-        .bl-trust { display: flex; align-items: center; justify-content: center; gap: 2.25rem; flex-wrap: wrap; padding: 1.75rem 2.5rem; border-top: 1.5px dashed #DDD8CF; }
-        .bl-trust-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 700; color: #ACA193; }
+        .bl-trust { display: flex; align-items: center; justify-content: center; gap: 2.25rem; flex-wrap: wrap; padding: 1.75rem 2.5rem; border-top: 1.5px dashed #CDEEF9; }
+        .bl-trust-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 700; color: #5B94A6; }
 
         /* Empty state */
-        .bl-empty { text-align: center; padding: 4rem 0; color: #ACA193; font-size: 0.88rem; grid-column: 1 / -1; }
+        .bl-empty { text-align: center; padding: 4rem 0; color: #8FBFCE; font-size: 0.88rem; grid-column: 1 / -1; }
 
         /* ── Modal ── */
         @keyframes bl-overlay-in { from { opacity: 0; } to { opacity: 1; } }
@@ -412,16 +412,16 @@ export default function Blog() {
 
         .bl-overlay {
           position: fixed; inset: 0; z-index: 1000;
-          background: rgba(30, 22, 14, 0.55);
+          background: rgba(7, 40, 54, 0.55);
           backdrop-filter: blur(6px);
           display: flex; align-items: center; justify-content: center;
           padding: 1.5rem;
           animation: bl-overlay-in 0.22s ease both;
         }
         .bl-modal {
-          background: #FDFAF6;
+          background: #F6FEFF;
           border-radius: 28px;
-          border: 1.5px solid #DDD8CF;
+          border: 1.5px solid #CDEEF9;
           width: 100%;
           max-width: 780px;
           max-height: 90vh;
@@ -429,16 +429,16 @@ export default function Blog() {
           animation: bl-modal-in 0.3s cubic-bezier(.22,1,.36,1) both;
           position: relative;
           scrollbar-width: thin;
-          scrollbar-color: #DDD8CF transparent;
+          scrollbar-color: #CDEEF9 transparent;
         }
         .bl-modal::-webkit-scrollbar { width: 5px; }
         .bl-modal::-webkit-scrollbar-track { background: transparent; }
-        .bl-modal::-webkit-scrollbar-thumb { background: #DDD8CF; border-radius: 99px; }
+        .bl-modal::-webkit-scrollbar-thumb { background: #CDEEF9; border-radius: 99px; }
 
         .bl-modal-img-wrap {
           width: 100%;
           height: 420px;
-          background: #F3ECE1;
+          background: #EAFBFF;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -459,36 +459,37 @@ export default function Blog() {
           width: 36px;
           height: 36px;
           border-radius: 50%;
-          background: rgba(250,247,242,0.9);
+          background: rgba(255,255,255,0.9);
           backdrop-filter: blur(8px);
-          border: 1.5px solid #DDD8CF;
+          border: 1.5px solid #CDEEF9;
           font-size: 1rem;
           cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: center;
-          color: #5C4F3A;
+          color: #0C4A6E;
           transition: background 0.15s, transform 0.15s;
           z-index: 10;
         }
         .bl-modal-close:hover { background: white; transform: scale(1.08); }
 
         .bl-modal-content { padding: 2.25rem 2.5rem 2.75rem; }
-        .bl-modal-cat { font-size: 0.62rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #8C7355; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
-        .bl-modal-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.1; color: #2E2419; margin-bottom: 0.75rem; }
-        .bl-modal-meta { display: flex; align-items: center; gap: 0.6rem; font-size: 0.72rem; color: #ACA193; font-weight: 600; margin-bottom: 1.75rem; padding-bottom: 1.5rem; border-bottom: 1.5px dashed #DDD8CF; }
+        .bl-modal-cat { font-size: 0.62rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #0284C7; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+        .bl-modal-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.1; color: #073B4C; margin-bottom: 0.75rem; }
+        .bl-modal-meta { display: flex; align-items: center; gap: 0.6rem; font-size: 0.72rem; color: #8FBFCE; font-weight: 600; margin-bottom: 1.75rem; padding-bottom: 1.5rem; border-bottom: 1.5px dashed #CDEEF9; }
         .bl-modal-body { display: flex; flex-direction: column; gap: 0.9rem; }
-        .bl-modal-footer { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1.5px dashed #DDD8CF; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-        .bl-modal-shop { background: #FF6B35; color: white; border: none; border-radius: 999px; padding: 0.75rem 1.75rem; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; cursor: pointer; box-shadow: 0 8px 28px rgba(255,107,53,0.25); transition: transform 0.2s, box-shadow 0.2s; }
-        .bl-modal-shop:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(255,107,53,0.35); }
-        .bl-modal-back { background: none; border: 1.5px solid #DDD8CF; border-radius: 999px; padding: 0.72rem 1.35rem; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.82rem; cursor: pointer; color: #7C6F60; transition: border-color 0.15s, color 0.15s; }
-        .bl-modal-back:hover { border-color: #8C7355; color: #5C4F3A; }
+        .bl-modal-footer { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1.5px dashed #CDEEF9; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+        .bl-modal-shop { background: linear-gradient(135deg, #0EA5E9, #0369A1); color: white; border: none; border-radius: 999px; padding: 0.75rem 1.75rem; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; cursor: pointer; box-shadow: 0 8px 28px rgba(14,165,233,0.3); transition: transform 0.2s, box-shadow 0.2s; }
+        .bl-modal-shop:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(14,165,233,0.4); }
+        .bl-modal-back { background: none; border: 1.5px solid #CDEEF9; border-radius: 999px; padding: 0.72rem 1.35rem; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.82rem; cursor: pointer; color: #5B7C8D; transition: border-color 0.15s, color 0.15s; }
+        .bl-modal-back:hover { border-color: #0EA5E9; color: #0284C7; }
 
         /* Responsive */
         @media (max-width: 900px) {
           .bl-featured { grid-template-columns: 1fr; }
           .bl-feat-img-wrap { min-height: 260px; }
           .bl-grid { grid-template-columns: repeat(2, 1fr); }
+          .bl-nl { grid-template-columns: 1fr; }
         }
         @media (max-width: 580px) {
           .bl-hero { padding: 3.5rem 1.25rem 2.5rem; }
@@ -497,25 +498,24 @@ export default function Blog() {
           .bl-trust { gap: 1.25rem; }
           .bl-modal-content { padding: 1.5rem 1.25rem 2rem; }
           .bl-modal-img-wrap { height: 300px; }
+          .bl-nl-side, .bl-nl-main { padding: 2rem 1.25rem; }
         }
       `}</style>
 
       <div className="bl">
-        {/* Ticker */}
-
         {/* Hero */}
-        <div className="bl-hero">
-          <div className="bl-hero-inner">
+        <div className="bl-hero-band">
+          <div className="bl-hero">
             <div className="bl-eyebrow bl-u d1">✦ Tips &amp; Stories</div>
             <h1
               className="bl-h bl-u d2"
               style={{
-                fontSize: "clamp(3.5rem,9vw,7rem)",
+                fontSize: "clamp(2.6rem,6vw,4.6rem)",
                 fontWeight: 800,
-                lineHeight: 0.9,
-                letterSpacing: "-0.035em",
-                marginBottom: "1.25rem",
-                color: "#2E2419",
+                lineHeight: 1.02,
+                letterSpacing: "-0.03em",
+                marginBottom: "1.1rem",
+                color: "#073B4C",
               }}
             >
               The Sip
@@ -525,7 +525,7 @@ export default function Blog() {
               style={{
                 fontSize: "1rem",
                 lineHeight: 1.8,
-                color: "#7C6F60",
+                color: "#2C6478",
                 maxWidth: "44ch",
                 margin: "0 auto",
               }}
@@ -627,18 +627,25 @@ export default function Blog() {
 
           {/* Newsletter */}
           <div className="bl-nl bl-u d6">
-            <div className="bl-nl-title">Stay in the Loop.</div>
-            <p className="bl-nl-sub">
-              Get hydration tips, tumbler guides, and exclusive Hilee updates
-              straight to your inbox. No spam — ever.
-            </p>
-            <div className="bl-nl-row">
-              <input
-                className="bl-nl-input"
-                type="email"
-                placeholder="your@email.com"
-              />
-              <button className="bl-nl-btn">Subscribe →</button>
+            <div className="bl-nl-side">
+              <div className="bl-nl-title">Stay in the Loop.</div>
+              <p className="bl-nl-sub">
+                Get hydration tips, tumbler guides, and exclusive Hilee updates
+                straight to your inbox. No spam — ever.
+              </p>
+            </div>
+            <div className="bl-nl-main">
+              <div className="bl-nl-row">
+                <input
+                  className="bl-nl-input"
+                  type="email"
+                  placeholder="your@email.com"
+                />
+                <button className="bl-nl-btn">Subscribe →</button>
+              </div>
+              <span className="bl-nl-note">
+                One email a week, max. Unsubscribe anytime.
+              </span>
             </div>
           </div>
 
@@ -685,12 +692,12 @@ export default function Blog() {
                 {expandedPost.featured && (
                   <span
                     style={{
-                      background: "#EDE8DF",
-                      border: "1px solid #DDD8CF",
+                      background: "rgba(14,165,233,0.1)",
+                      border: "1px solid rgba(14,165,233,0.25)",
                       borderRadius: 999,
                       padding: "0.2rem 0.55rem",
                       fontSize: "0.55rem",
-                      color: "#5C4F3A",
+                      color: "#0369A1",
                       letterSpacing: "0.12em",
                     }}
                   >

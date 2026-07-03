@@ -2,43 +2,45 @@
 
 import { useState, useEffect } from "react";
 
-// const TICKER_ITEMS: string[] = [
-//   "HILEE PARTNERSHIP",
-//   "GROW WITH US",
-//   "PREMIUM DRINKWARE",
-//   "RETAILER PROGRAM",
-//   "DISTRIBUTOR NETWORK",
-//   "JOIN THE FAMILY",
-//   "HILEE PARTNERSHIP",
-//   "GROW WITH US",
-//   "PREMIUM DRINKWARE",
-//   "RETAILER PROGRAM",
-//   "DISTRIBUTOR NETWORK",
-//   "JOIN THE FAMILY",
-// ];
-
 const BENEFITS = [
   {
     icon: "🏆",
     title: "Premium Quality",
     desc: "Double-wall vacuum insulation, BPA-free materials, and a lifetime warranty — products your customers will come back for.",
+    level: 1,
   },
   {
     icon: "📈",
     title: "Competitive Margins",
     desc: "Attractive wholesale pricing with flexible volume tiers and payment terms designed to help your business grow.",
+    level: 2,
   },
   {
     icon: "🎯",
     title: "Marketing Support",
     desc: "Ready-to-use product photography, display assets, and co-branded campaign materials — everything you need to sell.",
+    level: 3,
   },
 ];
 
 const PARTNERSHIP_TYPES = [
   {
+    type: "Reseller / Online",
+    tag: "E-COMMERCE",
+    tier: "Tier 01",
+    desc: "Sell Hilee through your online store, marketplace, or social commerce channels. A lean program built for digital-first sellers.",
+    perks: [
+      "Digital asset library",
+      "Dropship-friendly options",
+      "Affiliate tracking tools",
+      "Dedicated account manager",
+    ],
+    featured: false,
+  },
+  {
     type: "Retail Partnership",
     tag: "STORES & PHARMACIES",
+    tier: "Tier 02",
     desc: "Stock Hilee products in your retail outlet, lifestyle store, or supermarket. Perfect for established retailers looking to expand their premium drinkware selection.",
     perks: [
       "Wholesale pricing on all SKUs",
@@ -51,6 +53,7 @@ const PARTNERSHIP_TYPES = [
   {
     type: "Distributor Partnership",
     tag: "EXCLUSIVE REGIONS",
+    tier: "Tier 03",
     desc: "Become the exclusive Hilee distributor in your area. Ideal for businesses with established distribution networks ready to carry a fast-growing premium brand.",
     perks: [
       "Exclusive territorial rights",
@@ -59,18 +62,6 @@ const PARTNERSHIP_TYPES = [
       "Co-branding opportunities",
     ],
     featured: true,
-  },
-  {
-    type: "Reseller / Online",
-    tag: "E-COMMERCE",
-    desc: "Sell Hilee through your online store, marketplace, or social commerce channels. A lean program built for digital-first sellers.",
-    perks: [
-      "Digital asset library",
-      "Dropship-friendly options",
-      "Affiliate tracking tools",
-      "Dedicated account manager",
-    ],
-    featured: false,
   },
 ];
 
@@ -181,122 +172,72 @@ export default function Partnership() {
     return (
       <>
         <style>{`
-          .pt-sk-wrap { font-family: 'Nunito', sans-serif; background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%); min-height: 100vh; }
+          .pt-sk-wrap { font-family: 'Nunito', sans-serif; background: linear-gradient(160deg, #EAFBFF 0%, #F6FEFF 55%, #FFFFFF 100%); min-height: 100vh; }
           @keyframes pt-shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
           .pt-sk {
-            background: linear-gradient(90deg, rgba(14,165,233,0.08) 25%, rgba(14,165,233,0.16) 37%, rgba(14,165,233,0.08) 63%);
+            background: linear-gradient(90deg, rgba(6,174,213,0.08) 25%, rgba(6,174,213,0.18) 37%, rgba(6,174,213,0.08) 63%);
             background-size: 800px 100%;
             animation: pt-shimmer 1.4s ease-in-out infinite;
             border-radius: 10px;
           }
-          .pt-sk-ticker { height: 40px; background: rgba(14,165,233,0.05); border-bottom: 1px solid rgba(14,165,233,0.1); }
-          .pt-sk-hero { padding: 5rem 2.5rem 3.5rem; text-align: center; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
-          .pt-sk-pill { width: 170px; height: 24px; border-radius: 999px; }
-          .pt-sk-title { width: min(85%, 460px); height: 68px; border-radius: 16px; }
-          .pt-sk-sub { width: min(75%, 420px); height: 16px; }
-          .pt-sk-body { max-width: 1160px; margin: 0 auto; padding: 2rem 2.5rem 6rem; display: flex; flex-direction: column; gap: 3rem; }
+          .pt-sk-hero-band { background: linear-gradient(160deg, #CDEFFB 0%, #A9E1F5 45%, #DFF6FD 100%); border-bottom: 1.5px solid #B7E6F5; }
+          .pt-sk-hero { padding: 4.5rem 2.5rem; max-width: 1160px; margin: 0 auto; }
+          .pt-sk-pill { width: 160px; height: 22px; border-radius: 999px; }
+          .pt-sk-title { width: 60%; height: 100px; border-radius: 16px; margin-top: 1rem; }
+          .pt-sk-sub { width: 45%; height: 16px; margin-top: 1rem; }
+          .pt-sk-body { max-width: 1160px; margin: 0 auto; padding: 1rem 2.5rem 6rem; display: flex; flex-direction: column; gap: 3.5rem; }
           .pt-sk-label { width: 200px; height: 12px; margin-bottom: 1.25rem; }
-          .pt-sk-why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-          .pt-sk-why-card { border-radius: 20px; border: 1.5px solid rgba(14,165,233,0.1); padding: 2rem 1.75rem; background: white; display: flex; flex-direction: column; gap: 0.75rem; }
-          .pt-sk-icon { width: 32px; height: 32px; border-radius: 8px; }
-          .pt-sk-line { height: 12px; }
-          .pt-sk-types { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-          .pt-sk-type-card { border-radius: 20px; border: 1.5px solid rgba(14,165,233,0.1); background: white; padding: 1.75rem 1.5rem; display: flex; flex-direction: column; gap: 0.7rem; }
-          .pt-sk-form { border-radius: 24px; background: #F3ECE1; border: 1.5px solid #DDD8CF; padding: 3rem 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
-          .pt-sk-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem; }
+          .pt-sk-why { display: flex; gap: 1.25rem; align-items: flex-end; }
+          .pt-sk-why-card { flex: 1; border-radius: 18px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; }
+          .pt-sk-row { border-radius: 20px; height: 150px; margin-bottom: 1rem; }
+          .pt-sk-form { border-radius: 24px; display: grid; grid-template-columns: 0.8fr 1.2fr; overflow: hidden; }
+          .pt-sk-form-side { height: 420px; }
+          .pt-sk-form-main { padding: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
           .pt-sk-field { height: 44px; }
-          .pt-sk-field.span2 { grid-column: 1 / -1; height: 100px; }
-          .pt-sk-btn { width: 220px; height: 46px; border-radius: 999px; margin-top: 0.75rem; }
-          @media (max-width: 960px) {
-            .pt-sk-why { grid-template-columns: 1fr 1fr; }
-            .pt-sk-types { grid-template-columns: 1fr; }
-          }
-          @media (max-width: 700px) {
-            .pt-sk-hero { padding: 3.5rem 1.25rem 2.5rem; }
-            .pt-sk-body { padding: 1.5rem 1.25rem 4rem; }
-            .pt-sk-why { grid-template-columns: 1fr; }
-            .pt-sk-form { padding: 2rem 1.25rem; }
-            .pt-sk-form-grid { grid-template-columns: 1fr; }
-            .pt-sk-field.span2 { grid-column: 1; }
+          @media (max-width: 900px) {
+            .pt-sk-form { grid-template-columns: 1fr; }
           }
         `}</style>
         <div className="pt-sk-wrap">
-          <div className="pt-sk-ticker" />
-          <div className="pt-sk-hero">
-            <div className="pt-sk pt-sk-pill" />
-            <div className="pt-sk pt-sk-title" />
-            <div className="pt-sk pt-sk-sub" />
+          <div className="pt-sk-hero-band">
+            <div className="pt-sk-hero">
+              <div>
+                <div className="pt-sk pt-sk-pill" />
+                <div className="pt-sk pt-sk-title" />
+                <div className="pt-sk pt-sk-sub" />
+              </div>
+            </div>
           </div>
           <div className="pt-sk-body">
             <div>
               <div className="pt-sk pt-sk-label" />
               <div className="pt-sk-why">
-                {Array.from({ length: 3 }).map((_, i) => (
-                  <div key={i} className="pt-sk-why-card">
-                    <div className="pt-sk pt-sk-icon" />
-                    <div
-                      className="pt-sk pt-sk-line"
-                      style={{ width: "55%", height: 16 }}
-                    />
-                    <div
-                      className="pt-sk pt-sk-line"
-                      style={{ width: "100%" }}
-                    />
-                    <div
-                      className="pt-sk pt-sk-line"
-                      style={{ width: "85%" }}
-                    />
-                  </div>
+                {[70, 100, 130].map((h, i) => (
+                  <div
+                    key={i}
+                    className="pt-sk pt-sk-why-card"
+                    style={{ height: h }}
+                  />
                 ))}
               </div>
             </div>
             <div>
               <div className="pt-sk pt-sk-label" />
-              <div className="pt-sk-types">
-                {Array.from({ length: 3 }).map((_, i) => (
-                  <div key={i} className="pt-sk-type-card">
-                    <div
-                      className="pt-sk pt-sk-line"
-                      style={{ width: "45%", height: 18, borderRadius: 999 }}
-                    />
-                    <div
-                      className="pt-sk pt-sk-line"
-                      style={{ width: "70%", height: 18 }}
-                    />
-                    <div
-                      className="pt-sk pt-sk-line"
-                      style={{ width: "100%" }}
-                    />
-                    <div
-                      className="pt-sk pt-sk-line"
-                      style={{ width: "90%" }}
-                    />
-                    <div
-                      className="pt-sk pt-sk-line"
-                      style={{ width: "60%", marginTop: 8 }}
-                    />
-                    <div
-                      className="pt-sk pt-sk-line"
-                      style={{ width: "50%" }}
-                    />
-                  </div>
-                ))}
-              </div>
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="pt-sk pt-sk-row" />
+              ))}
             </div>
             <div className="pt-sk-form">
-              <div
-                className="pt-sk pt-sk-line"
-                style={{ width: "35%", height: 24 }}
-              />
-              <div className="pt-sk pt-sk-line" style={{ width: "55%" }} />
-              <div className="pt-sk-form-grid">
+              <div className="pt-sk pt-sk-form-side" />
+              <div className="pt-sk-form-main">
+                <div
+                  className="pt-sk pt-sk-field"
+                  style={{ width: "40%", height: 24 }}
+                />
                 <div className="pt-sk pt-sk-field" />
                 <div className="pt-sk pt-sk-field" />
                 <div className="pt-sk pt-sk-field" />
-                <div className="pt-sk pt-sk-field" />
-                <div className="pt-sk pt-sk-field span2" />
               </div>
-              <div className="pt-sk pt-sk-btn" />
             </div>
           </div>
         </div>
@@ -309,195 +250,178 @@ export default function Partnership() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Nunito:wght@300;400;500;600;700;800&display=swap');
 
-        .pt { font-family: 'Nunito', sans-serif; background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%); color: #0C1C2E; min-height: 100vh; }
+        .pt { font-family: 'Nunito', sans-serif; background: linear-gradient(160deg, #EAFBFF 0%, #F6FEFF 55%, #FFFFFF 100%); color: #073B4C; min-height: 100vh; }
         .pt * { box-sizing: border-box; margin: 0; padding: 0; }
         .pt-h { font-family: 'Bricolage Grotesque', sans-serif; }
 
-        /* Ticker */
-        @keyframes pt-tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-        .pt-ticker { background: linear-gradient(90deg, #E0F2FE, #F0F9FF); border-bottom: 1px solid rgba(14,165,233,0.1); height: 40px; overflow: hidden; display: flex; align-items: center; }
-        .pt-tick-track { display: flex; width: max-content; animation: pt-tick 30s linear infinite; }
-        .pt-tick-item { display: flex; align-items: center; gap: 1rem; padding: 0 2rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.25em; text-transform: uppercase; color: #0C1C2E; white-space: nowrap; }
-        .pt-tick-dot { width: 5px; height: 5px; border-radius: 50%; background: #0EA5E9; flex-shrink: 0; }
+        /* Hero: split layout with a rising "fill gauge" instead of centered banner */
+        .pt-hero { max-width: 900px; margin: 0 auto; padding: 4.5rem 2.5rem 3.5rem; position: relative; text-align: center; display: flex; flex-direction: column; align-items: center; }
+        .pt-hero-band { background: linear-gradient(160deg, #CDEFFB 0%, #A9E1F5 45%, #DFF6FD 100%); border-bottom: 1.5px solid #B7E6F5; }
+        .pt-eyebrow { display: inline-flex; align-items: center; gap: 0.45rem; background: rgba(255,255,255,0.6); border: 1.5px solid rgba(3,105,161,0.3); border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: #0369A1; margin-bottom: 1.5rem; }
 
-        /* Hero */
-        .pt-hero { padding: 5rem 2.5rem 3.5rem; text-align: center; border-bottom: 1.5px solid rgba(14,165,233,0.18); background: linear-gradient(135deg, #B8DFF5 0%, #D6EDFB 50%, #F0F9FF 100%); }
-        .pt-hero-inner { max-width: 900px; margin: 0 auto; }
-        .pt-eyebrow { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(14,165,233,0.1); border: 1.5px solid rgba(14,165,233,0.25); border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: #0EA5E9; margin-bottom: 1.5rem; }
-
-        /* Fade-up */
         @keyframes pt-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
         .pt-u { animation: pt-up 0.7s cubic-bezier(.22,1,.36,1) both; }
         .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}
         .d4{animation-delay:.38s}.d5{animation-delay:.5s}.d6{animation-delay:.62s}
 
-        /* Body */
-        .pt-body { max-width: 1160px; margin: 0 auto; padding: 4rem 2.5rem 6rem; display: flex; flex-direction: column; gap: 4rem; }
-        .pt-section-label { display: flex; align-items: center; gap: 1rem; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #ACA193; margin-bottom: 1.5rem; }
-        .pt-section-label::after { content: ''; flex: 1; height: 1px; background: #DDD8CF; }
+        .pt-body { max-width: 1160px; margin: 0 auto; padding: 1rem 2.5rem 6rem; display: flex; flex-direction: column; gap: 4.5rem; }
+        .pt-section-label { display: flex; align-items: center; gap: 1rem; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #5B94A6; margin-bottom: 1.5rem; }
+        .pt-section-label::after { content: ''; flex: 1; height: 1px; background: #CDEEF9; }
 
-        /* Why cards */
-        .pt-why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; align-items: stretch; }
-        .pt-why-card { background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,249,255,0.7)); border-radius: 20px; border: 1.5px solid rgba(14,165,233,0.15); padding: 2rem 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; height: 100%; transition: all 0.3s ease; backdrop-filter: blur(10px); }
-        .pt-why-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 32px rgba(14,165,233,0.15); border-color: rgba(14,165,233,0.3); }
-        .pt-why-icon { font-size: 1.6rem; }
-        .pt-why-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 1.05rem; color: #0C1C2E; }
-        .pt-why-desc { font-size: 0.85rem; color: #7C6F60; line-height: 1.75; flex: 1; }
+        /* Why partner: ascending step cards (heights grow) instead of equal 3-col grid */
+        .pt-why { display: flex; gap: 1.25rem; align-items: flex-end; }
+        .pt-why-card { flex: 1; background: #FFFFFF; border-radius: 18px; border: 1.5px solid #CDEEF9; padding: 1.75rem 1.5rem; display: flex; flex-direction: column; gap: 0.65rem; transition: all 0.3s ease; }
+        .pt-why-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(6,174,213,0.18); border-color: #67E8F9; }
+        .pt-why-card.lv1 { padding-bottom: 1.75rem; }
+        .pt-why-card.lv2 { padding-bottom: 2.75rem; }
+        .pt-why-card.lv3 { padding-bottom: 3.75rem; background: linear-gradient(160deg,#FFFFFF, #EAFBFF); }
+        .pt-why-icon { font-size: 1.5rem; }
+        .pt-why-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 1.02rem; color: #073B4C; }
+        .pt-why-desc { font-size: 0.84rem; color: #5B7C8D; line-height: 1.7; }
 
-        /* Partnership cards */
-        .pt-types { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; align-items: stretch; }
-        .pt-type-card { background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,249,255,0.7)); border-radius: 20px; border: 1.5px solid rgba(14,165,233,0.15); overflow: hidden; display: flex; flex-direction: column; transition: all 0.3s ease; backdrop-filter: blur(10px); }
-        .pt-type-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 40px rgba(14,165,233,0.2); border-color: rgba(14,165,233,0.3); }
-        .pt-type-card.featured { border-color: #0EA5E9; box-shadow: 0 0 0 2px rgba(14,165,233,0.1); }
-        .pt-type-header { padding: 1.75rem 1.5rem 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
-        .pt-type-tag {
-          display: inline-flex; align-items: center; width: fit-content;
-          font-size: 0.62rem; font-weight: 800; letter-spacing: 0.15em;
-          text-transform: uppercase; color: #0EA5E9;
-          background: rgba(14,165,233,0.1); border-radius: 999px;
-          padding: 0.3rem 0.75rem; margin-bottom: 0.25rem;
-        }
-        .pt-type-tag.featured { background: #0EA5E9; color: #fff; }
-        .pt-type-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.15rem; color: #0C1C2E; }
-        .pt-type-desc { font-size: 0.82rem; color: #7C6F60; line-height: 1.75; }
-        .pt-type-perks { padding: 1.25rem 1.5rem; border-top: 1.5px dashed #DDD8CF; display: flex; flex-direction: column; gap: 0.55rem; }
-        .pt-perk { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.8rem; color: #5C4F3A; line-height: 1.4; }
-        .pt-perk::before { content: '✓'; color: #8C7355; font-weight: 800; font-size: 0.75rem; flex-shrink: 0; margin-top: 0.1rem; }
+        /* Partnership types: stacked tier rows connected by a rising line, not a card grid */
+        .pt-tiers { position: relative; display: flex; flex-direction: column; gap: 1rem; padding-left: 2.25rem; }
+        .pt-tiers::before { content: ''; position: absolute; left: 7px; top: 10px; bottom: 10px; width: 2px; background: linear-gradient(180deg, #BAE6FD, #0EA5E9); border-radius: 2px; }
+        .pt-tier-row { position: relative; background: #FFFFFF; border: 1.5px solid #CDEEF9; border-radius: 18px; padding: 1.5rem 1.75rem; display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.5rem; align-items: center; transition: all 0.3s ease; }
+        .pt-tier-row::before { content: ''; position: absolute; left: -2.25rem; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; border-radius: 50%; background: #FFFFFF; border: 3px solid #0EA5E9; }
+        .pt-tier-row:hover { box-shadow: 0 16px 40px rgba(6,174,213,0.16); transform: translateX(4px); }
+        .pt-tier-row.featured { border-color: #0EA5E9; background: linear-gradient(135deg, #F0FBFF, #E0F7FE); box-shadow: 0 0 0 2px rgba(14,165,233,0.12); }
+        .pt-tier-row.featured::before { background: #0EA5E9; }
+        .pt-tier-meta { display: flex; flex-direction: column; gap: 0.5rem; }
+        .pt-tier-topline { display: flex; align-items: center; gap: 0.6rem; }
+        .pt-tier-num { font-family: 'Bricolage Grotesque', sans-serif; font-size: 0.68rem; font-weight: 800; color: #0284C7; letter-spacing: 0.1em; }
+        .pt-tier-tag { font-size: 0.6rem; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase; color: #0EA5E9; background: rgba(6,174,213,0.1); border-radius: 999px; padding: 0.28rem 0.7rem; }
+        .pt-tier-tag.featured { background: #0EA5E9; color: #fff; }
+        .pt-tier-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.2rem; color: #073B4C; }
+        .pt-tier-desc { font-size: 0.83rem; color: #5B7C8D; line-height: 1.65; }
+        .pt-tier-perks { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .pt-perk-pill { display: flex; align-items: center; gap: 0.35rem; font-size: 0.74rem; font-weight: 600; color: #0C4A6E; background: rgba(6,174,213,0.08); border: 1px solid rgba(6,174,213,0.2); border-radius: 999px; padding: 0.35rem 0.75rem; }
+        .pt-perk-pill::before { content: '✓'; color: #0EA5E9; font-weight: 800; }
 
-        /* Form */
-        .pt-form-wrap { background: #F3ECE1; border-radius: 24px; border: 1.5px solid #DDD8CF; padding: 3rem 2.5rem; }
-        .pt-form-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.75rem; color: #2E2419; margin-bottom: 0.5rem; }
-        .pt-form-sub { font-size: 0.88rem; color: #7C6F60; line-height: 1.7; margin-bottom: 2rem; }
+        /* Contact: split panel — cyan gradient info side + white form side, replacing the tan block */
+        .pt-form-wrap { border-radius: 24px; overflow: hidden; display: grid; grid-template-columns: 0.85fr 1.15fr; box-shadow: 0 24px 60px rgba(6,58,77,0.12); }
+        .pt-form-side { background: linear-gradient(160deg, #073B4C, #0369A1 55%, #0EA5E9); padding: 3rem 2.25rem; display: flex; flex-direction: column; justify-content: space-between; color: #EAFBFF; }
+        .pt-form-side-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.6rem; line-height: 1.25; margin-bottom: 1rem; }
+        .pt-form-side-sub { font-size: 0.85rem; line-height: 1.75; color: rgba(234,251,255,0.85); }
+        .pt-form-stats { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+        .pt-form-stat { display: flex; align-items: baseline; gap: 0.6rem; }
+        .pt-form-stat-num { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.6rem; }
+        .pt-form-stat-label { font-size: 0.72rem; color: rgba(234,251,255,0.75); text-transform: uppercase; letter-spacing: 0.08em; }
+
+        .pt-form-main { background: #FFFFFF; padding: 3rem 2.5rem; }
+        .pt-form-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.5rem; color: #073B4C; margin-bottom: 0.5rem; }
+        .pt-form-sub { font-size: 0.85rem; color: #5B7C8D; line-height: 1.7; margin-bottom: 2rem; }
         .pt-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
         .pt-field { display: flex; flex-direction: column; gap: 0.4rem; }
         .pt-field.span2 { grid-column: 1 / -1; }
-        .pt-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #5C4F3A; }
-        .pt-label span { color: #FF6B35; }
+        .pt-label { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #0C4A6E; }
+        .pt-label span { color: #EF4444; }
         .pt-input, .pt-select, .pt-textarea {
-          border: 1.5px solid #DDD8CF; border-radius: 12px; padding: 0.7rem 1rem;
+          border: 1.5px solid #CDEEF9; border-radius: 12px; padding: 0.7rem 1rem;
           font-family: 'Nunito', sans-serif; font-size: 0.88rem;
-          background: white; color: #2E2419; outline: none;
+          background: #F6FEFF; color: #073B4C; outline: none;
           transition: border-color 0.15s; width: 100%;
         }
-        .pt-input:focus, .pt-select:focus, .pt-textarea:focus { border-color: #8C7355; box-shadow: 0 0 0 3px rgba(140,115,85,0.1); }
-        .pt-input::placeholder, .pt-textarea::placeholder { color: #ACA193; }
-        .pt-textarea { resize: vertical; min-height: 120px; }
+        .pt-input:focus, .pt-select:focus, .pt-textarea:focus { border-color: #0EA5E9; box-shadow: 0 0 0 3px rgba(14,165,233,0.12); background: #fff; }
+        .pt-input::placeholder, .pt-textarea::placeholder { color: #8FBFCE; }
+        .pt-textarea { resize: vertical; min-height: 110px; }
 
-        .pt-input.error, .pt-select.error, .pt-textarea.error { border-color: #C0392B; }
-        .pt-field-error { font-size: 0.7rem; color: #C0392B; font-weight: 600; margin-top: 0.1rem; }
+        .pt-input.error, .pt-select.error, .pt-textarea.error { border-color: #DC2626; }
+        .pt-field-error { font-size: 0.7rem; color: #DC2626; font-weight: 600; margin-top: 0.1rem; }
 
         .pt-server-error {
-          background: #FDF0EE; border: 1.5px solid #E8C4BC; border-radius: 12px;
-          padding: 0.85rem 1.1rem; font-size: 0.82rem; color: #8B2217;
+          background: #FEF2F2; border: 1.5px solid #FCA5A5; border-radius: 12px;
+          padding: 0.85rem 1.1rem; font-size: 0.82rem; color: #991B1B;
           margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;
         }
 
         .pt-submit { margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
         .pt-submit-btn {
-          background: linear-gradient(135deg, #0EA5E9, #06B6D4); color: white; border: none; border-radius: 999px;
+          background: linear-gradient(135deg, #0EA5E9, #0369A1); color: white; border: none; border-radius: 999px;
           padding: 0.8rem 2rem; font-family: 'Nunito', sans-serif; font-weight: 800;
           font-size: 0.88rem; cursor: pointer;
-          box-shadow: 0 12px 32px rgba(14,165,233,0.4);
+          box-shadow: 0 12px 32px rgba(14,165,233,0.35);
           transition: all 0.3s ease;
           display: flex; align-items: center; gap: 0.5rem;
         }
-        .pt-submit-btn:hover:not(:disabled) { transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 48px rgba(14,165,233,0.5); }
+        .pt-submit-btn:hover:not(:disabled) { transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 48px rgba(14,165,233,0.45); }
         .pt-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
-        .pt-submit-note { font-size: 0.72rem; color: #ACA193; font-weight: 600; }
+        .pt-submit-note { font-size: 0.72rem; color: #8FBFCE; font-weight: 600; }
 
         @keyframes pt-spin { to { transform: rotate(360deg); } }
         .pt-spinner {
-          width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3);
+          width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.35);
           border-top-color: #fff; border-radius: 50%;
           animation: pt-spin 0.7s linear infinite; flex-shrink: 0;
         }
 
-        /* Success */
         .pt-success { text-align: center; padding: 3rem 2rem; }
         .pt-success-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-        .pt-success-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.5rem; color: #2E2419; margin-bottom: 0.5rem; }
-        .pt-success-sub { font-size: 0.9rem; color: #7C6F60; line-height: 1.7; }
+        .pt-success-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.5rem; color: #073B4C; margin-bottom: 0.5rem; }
+        .pt-success-sub { font-size: 0.9rem; color: #5B7C8D; line-height: 1.7; }
 
-        /* Trust */
-        .pt-trust { display: flex; align-items: center; justify-content: center; gap: 2.25rem; flex-wrap: wrap; padding: 1.75rem 2.5rem; border-top: 1.5px dashed #DDD8CF; }
-        .pt-trust-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 700; color: #ACA193; }
-
-        /* Responsive */
         @media (max-width: 960px) {
-          .pt-why { grid-template-columns: 1fr 1fr; }
-          .pt-types { grid-template-columns: 1fr; }
+          .pt-tier-row { grid-template-columns: 1fr; }
+          .pt-form-wrap { grid-template-columns: 1fr; }
         }
         @media (max-width: 700px) {
-          .pt-hero { padding: 3.5rem 1.25rem 2.5rem; }
-          .pt-body { padding: 2.5rem 1.25rem 4rem; gap: 3rem; }
-          .pt-why { grid-template-columns: 1fr; }
-          .pt-form-wrap { padding: 2rem 1.25rem; }
+          .pt-hero { padding: 3rem 1.25rem 2.5rem; gap: 2rem; }
+          .pt-body { padding: 0 1.25rem 4rem; gap: 3rem; }
+          .pt-why { flex-direction: column; }
+          .pt-why-card.lv1, .pt-why-card.lv2, .pt-why-card.lv3 { padding-bottom: 1.75rem; }
+          .pt-tiers { padding-left: 1.5rem; }
+          .pt-tier-row::before { left: -1.5rem; }
+          .pt-form-side, .pt-form-main { padding: 2rem 1.25rem; }
           .pt-form-grid { grid-template-columns: 1fr; }
           .pt-field.span2 { grid-column: 1; }
-          .pt-trust { gap: 1.25rem; padding: 1.5rem 1.25rem; }
-        }
-        @media (max-width: 400px) {
-          .pt-hero { padding: 2.5rem 1rem 2rem; }
-          .pt-body { padding: 2rem 1rem 3rem; }
         }
       `}</style>
 
       <div className="pt">
-        {/* Ticker */}
-        {/* <div className="pt-ticker">
-          <div className="pt-tick-track">
-            {TICKER_ITEMS.map((item, i) => (
-              <div key={i} className="pt-tick-item">
-                <span className="pt-tick-dot" />
-                {item}
-              </div>
-            ))}
-          </div>
-        </div> */}
-
         {/* Hero */}
-        <div className="pt-hero">
-          <div className="pt-hero-inner">
-            <div className="pt-eyebrow pt-u d1">✦ Become a Partner</div>
-            <h1
-              className="pt-h pt-u d2"
-              style={{
-                fontSize: "clamp(3rem,9vw,7rem)",
-                fontWeight: 800,
-                lineHeight: 0.9,
-                letterSpacing: "-0.035em",
-                marginBottom: "1.25rem",
-                color: "#2E2419",
-              }}
-            >
-              Grow with Us
-            </h1>
-            <p
-              className="pt-u d3"
-              style={{
-                fontSize: "1rem",
-                lineHeight: 1.8,
-                color: "#7C6F60",
-                maxWidth: "48ch",
-                margin: "0 auto",
-              }}
-            >
-              Join our growing network of retailers and distributors bringing
-              premium Hilee drinkware to more people — everywhere.
-            </p>
+        <div className="pt-hero-band">
+          <div className="pt-hero">
+            <div>
+              <div className="pt-eyebrow pt-u d1">✦ Become a Partner</div>
+              <h1
+                className="pt-h pt-u d2"
+                style={{
+                  fontSize: "clamp(2.6rem,6vw,4.6rem)",
+                  fontWeight: 800,
+                  lineHeight: 1.02,
+                  letterSpacing: "-0.03em",
+                  marginBottom: "1.1rem",
+                  color: "#073B4C",
+                }}
+              >
+                Grow with Us
+              </h1>
+              <p
+                className="pt-u d3"
+                style={{
+                  fontSize: "1rem",
+                  lineHeight: 1.8,
+                  color: "#2C6478",
+                  maxWidth: "48ch",
+                }}
+              >
+                Join our growing network of retailers and distributors bringing
+                premium Hilee drinkware to more people — everywhere.
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Body */}
         <div className="pt-body">
-          {/* Why Partner */}
+          {/* Why Partner — ascending step cards */}
           <div>
             <div className="pt-section-label pt-u d4">
               Why Partner with Hilee
             </div>
             <div className="pt-why pt-u d4">
               {BENEFITS.map((b) => (
-                <div key={b.title} className="pt-why-card">
+                <div key={b.title} className={`pt-why-card lv${b.level}`}>
                   <div className="pt-why-icon">{b.icon}</div>
                   <div className="pt-why-title">{b.title}</div>
                   <div className="pt-why-desc">{b.desc}</div>
@@ -506,29 +430,32 @@ export default function Partnership() {
             </div>
           </div>
 
-          {/* Partnership Types */}
+          {/* Partnership Types — connected tier rows */}
           <div>
             <div className="pt-section-label pt-u d4">
               Partnership Opportunities
             </div>
-            <div className="pt-types pt-u d5">
+            <div className="pt-tiers pt-u d5">
               {PARTNERSHIP_TYPES.map((p) => (
                 <div
                   key={p.type}
-                  className={`pt-type-card${p.featured ? " featured" : ""}`}
+                  className={`pt-tier-row${p.featured ? " featured" : ""}`}
                 >
-                  <div className="pt-type-header">
-                    <div
-                      className={`pt-type-tag${p.featured ? " featured" : ""}`}
-                    >
-                      {p.tag}
+                  <div className="pt-tier-meta">
+                    <div className="pt-tier-topline">
+                      <span className="pt-tier-num">{p.tier}</span>
+                      <span
+                        className={`pt-tier-tag${p.featured ? " featured" : ""}`}
+                      >
+                        {p.tag}
+                      </span>
                     </div>
-                    <div className="pt-type-title">{p.type}</div>
-                    <div className="pt-type-desc">{p.desc}</div>
+                    <div className="pt-tier-title">{p.type}</div>
+                    <div className="pt-tier-desc">{p.desc}</div>
                   </div>
-                  <div className="pt-type-perks">
+                  <div className="pt-tier-perks">
                     {p.perks.map((perk) => (
-                      <div key={perk} className="pt-perk">
+                      <div key={perk} className="pt-perk-pill">
                         {perk}
                       </div>
                     ))}
@@ -538,146 +465,176 @@ export default function Partnership() {
             </div>
           </div>
 
-          {/* Contact Form */}
+          {/* Contact Form — split gradient panel */}
           <div className="pt-form-wrap pt-u d6" id="partner-form">
-            {submitted ? (
-              <div className="pt-success">
-                <div className="pt-success-icon">🎉</div>
-                <div className="pt-success-title">We got your inquiry!</div>
-                <p className="pt-success-sub">
-                  Our partnership team will reach out within 48 hours. Keep an
-                  eye on your inbox — exciting things are coming.
+            <div className="pt-form-side">
+              <div>
+                <div className="pt-form-side-title">
+                  Let's build something that scales.
+                </div>
+                <p className="pt-form-side-sub">
+                  Tell us about your business and our partnership team will find
+                  the right tier for you.
                 </p>
               </div>
-            ) : (
-              <>
-                <div className="pt-form-title">Start Your Journey</div>
-                <p className="pt-form-sub">
-                  Fill out the form below and our team will get back to you
-                  within 48 hours.
-                </p>
+              <div className="pt-form-stats">
+                <div className="pt-form-stat">
+                  <span className="pt-form-stat-num">48h</span>
+                  <span className="pt-form-stat-label">Avg. reply time</span>
+                </div>
+                <div className="pt-form-stat">
+                  <span className="pt-form-stat-num">3</span>
+                  <span className="pt-form-stat-label">Partnership tiers</span>
+                </div>
+                <div className="pt-form-stat">
+                  <span className="pt-form-stat-num">0</span>
+                  <span className="pt-form-stat-label">Spam, ever</span>
+                </div>
+              </div>
+            </div>
 
-                {serverError && (
-                  <div className="pt-server-error">
-                    <span>⚠️</span> {serverError}
+            <div className="pt-form-main">
+              {submitted ? (
+                <div className="pt-success">
+                  <div className="pt-success-icon">🎉</div>
+                  <div className="pt-success-title">We got your inquiry!</div>
+                  <p className="pt-success-sub">
+                    Our partnership team will reach out within 48 hours. Keep an
+                    eye on your inbox — exciting things are coming.
+                  </p>
+                </div>
+              ) : (
+                <>
+                  <div className="pt-form-title">Start Your Journey</div>
+                  <p className="pt-form-sub">
+                    Fill out the form below and our team will get back to you
+                    within 48 hours.
+                  </p>
+
+                  {serverError && (
+                    <div className="pt-server-error">
+                      <span>⚠️</span> {serverError}
+                    </div>
+                  )}
+
+                  <div className="pt-form-grid">
+                    <div className="pt-field">
+                      <label className="pt-label">
+                        Full Name <span>*</span>
+                      </label>
+                      <input
+                        className={`pt-input${fieldErrors.name ? " error" : ""}`}
+                        name="name"
+                        type="text"
+                        placeholder="Juan dela Cruz"
+                        value={form.name}
+                        onChange={handleChange}
+                        disabled={submitting}
+                      />
+                      {fieldErrors.name && (
+                        <span className="pt-field-error">
+                          {fieldErrors.name}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="pt-field">
+                      <label className="pt-label">
+                        Email <span>*</span>
+                      </label>
+                      <input
+                        className={`pt-input${fieldErrors.email ? " error" : ""}`}
+                        name="email"
+                        type="email"
+                        placeholder="juan@yourstore.com"
+                        value={form.email}
+                        onChange={handleChange}
+                        disabled={submitting}
+                      />
+                      {fieldErrors.email && (
+                        <span className="pt-field-error">
+                          {fieldErrors.email}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="pt-field">
+                      <label className="pt-label">Company Name</label>
+                      <input
+                        className="pt-input"
+                        name="company"
+                        type="text"
+                        placeholder="Your Store or Business"
+                        value={form.company}
+                        onChange={handleChange}
+                        disabled={submitting}
+                      />
+                    </div>
+
+                    <div className="pt-field">
+                      <label className="pt-label">
+                        Partnership Type <span>*</span>
+                      </label>
+                      <select
+                        className={`pt-select${fieldErrors.type ? " error" : ""}`}
+                        name="type"
+                        value={form.type}
+                        onChange={handleChange}
+                        disabled={submitting}
+                      >
+                        <option value="">Select a type</option>
+                        <option value="retail">Retail Partnership</option>
+                        <option value="distributor">
+                          Distributor Partnership
+                        </option>
+                        <option value="reseller">Reseller / Online</option>
+                        <option value="other">Other</option>
+                      </select>
+                      {fieldErrors.type && (
+                        <span className="pt-field-error">
+                          {fieldErrors.type}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="pt-field span2">
+                      <label className="pt-label">
+                        Tell us about your business
+                      </label>
+                      <textarea
+                        className="pt-textarea"
+                        name="message"
+                        placeholder="What kind of store do you run? Where are you located? How many customers do you reach?"
+                        value={form.message}
+                        onChange={handleChange}
+                        disabled={submitting}
+                      />
+                    </div>
                   </div>
-                )}
 
-                <div className="pt-form-grid">
-                  <div className="pt-field">
-                    <label className="pt-label">
-                      Full Name <span>*</span>
-                    </label>
-                    <input
-                      className={`pt-input${fieldErrors.name ? " error" : ""}`}
-                      name="name"
-                      type="text"
-                      placeholder="Juan dela Cruz"
-                      value={form.name}
-                      onChange={handleChange}
-                      disabled={submitting}
-                    />
-                    {fieldErrors.name && (
-                      <span className="pt-field-error">{fieldErrors.name}</span>
-                    )}
-                  </div>
-
-                  <div className="pt-field">
-                    <label className="pt-label">
-                      Email <span>*</span>
-                    </label>
-                    <input
-                      className={`pt-input${fieldErrors.email ? " error" : ""}`}
-                      name="email"
-                      type="email"
-                      placeholder="juan@yourstore.com"
-                      value={form.email}
-                      onChange={handleChange}
-                      disabled={submitting}
-                    />
-                    {fieldErrors.email && (
-                      <span className="pt-field-error">
-                        {fieldErrors.email}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="pt-field">
-                    <label className="pt-label">Company Name</label>
-                    <input
-                      className="pt-input"
-                      name="company"
-                      type="text"
-                      placeholder="Your Store or Business"
-                      value={form.company}
-                      onChange={handleChange}
-                      disabled={submitting}
-                    />
-                  </div>
-
-                  <div className="pt-field">
-                    <label className="pt-label">
-                      Partnership Type <span>*</span>
-                    </label>
-                    <select
-                      className={`pt-select${fieldErrors.type ? " error" : ""}`}
-                      name="type"
-                      value={form.type}
-                      onChange={handleChange}
+                  <div className="pt-submit">
+                    <button
+                      className="pt-submit-btn"
+                      onClick={handleSubmit}
                       disabled={submitting}
                     >
-                      <option value="">Select a type</option>
-                      <option value="retail">Retail Partnership</option>
-                      <option value="distributor">
-                        Distributor Partnership
-                      </option>
-                      <option value="reseller">Reseller / Online</option>
-                      <option value="other">Other</option>
-                    </select>
-                    {fieldErrors.type && (
-                      <span className="pt-field-error">{fieldErrors.type}</span>
-                    )}
+                      {submitting ? (
+                        <>
+                          <span className="pt-spinner" />
+                          Sending…
+                        </>
+                      ) : (
+                        "Send Partnership Inquiry →"
+                      )}
+                    </button>
+                    <span className="pt-submit-note">
+                      We reply within 48 hours — no spam, ever.
+                    </span>
                   </div>
-
-                  <div className="pt-field span2">
-                    <label className="pt-label">
-                      Tell us about your business
-                    </label>
-                    <textarea
-                      className="pt-textarea"
-                      name="message"
-                      placeholder="What kind of store do you run? Where are you located? How many customers do you reach?"
-                      value={form.message}
-                      onChange={handleChange}
-                      disabled={submitting}
-                    />
-                  </div>
-                </div>
-
-                <div className="pt-submit">
-                  <button
-                    className="pt-submit-btn"
-                    onClick={handleSubmit}
-                    disabled={submitting}
-                  >
-                    {submitting ? (
-                      <>
-                        <span className="pt-spinner" />
-                        Sending…
-                      </>
-                    ) : (
-                      "Send Partnership Inquiry →"
-                    )}
-                  </button>
-                  <span className="pt-submit-note">
-                    We reply within 48 hours — no spam, ever.
-                  </span>
-                </div>
-              </>
-            )}
+                </>
+              )}
+            </div>
           </div>
-
-          {/* Trust Bar */}
         </div>
       </div>
     </>

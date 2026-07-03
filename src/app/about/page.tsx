@@ -63,15 +63,15 @@ export default function About() {
     return (
       <>
         <style>{`
-          .ab-sk-wrap { font-family: 'Nunito', sans-serif; background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%); min-height: 100vh; }
+          .ab-sk-wrap { font-family: 'Nunito', sans-serif; background: linear-gradient(160deg, #EAFBFF 0%, #F6FEFF 55%, #FFFFFF 100%); min-height: 100vh; }
           @keyframes ab-shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
           .ab-sk {
-            background: linear-gradient(90deg, rgba(14,165,233,0.08) 25%, rgba(14,165,233,0.16) 37%, rgba(14,165,233,0.08) 63%);
+            background: linear-gradient(90deg, rgba(6,174,213,0.08) 25%, rgba(6,174,213,0.18) 37%, rgba(6,174,213,0.08) 63%);
             background-size: 800px 100%;
             animation: ab-shimmer 1.4s ease-in-out infinite;
             border-radius: 10px;
           }
-          .ab-sk-ticker { height: 40px; background: rgba(14,165,233,0.05); border-bottom: 1px solid rgba(14,165,233,0.1); }
+          .ab-sk-hero-band { background: linear-gradient(160deg, #CDEFFB 0%, #A9E1F5 45%, #DFF6FD 100%); border-bottom: 1.5px solid #B7E6F5; }
           .ab-sk-hero { padding: 4rem 2rem 3rem; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
           .ab-sk-badges { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
           .ab-sk-badge { width: 140px; height: 24px; border-radius: 999px; }
@@ -84,11 +84,11 @@ export default function About() {
           .ab-sk-line { height: 12px; }
           .ab-sk-section-title { width: 260px; height: 20px; margin: 0 auto 1.5rem; }
           .ab-sk-pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-          .ab-sk-pillar { border-radius: 20px; border: 1.5px solid rgba(14,165,233,0.1); padding: 1.5rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; background: white; }
+          .ab-sk-pillar { border-radius: 20px; border: 1.5px solid rgba(6,174,213,0.15); padding: 1.5rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; background: white; }
           .ab-sk-reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-          .ab-sk-review { border-radius: 20px; border: 1.5px solid rgba(14,165,233,0.1); padding: 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; background: white; }
-          .ab-sk-promise { border-radius: 24px; padding: 2.5rem 2rem; display: flex; flex-direction: column; align-items: center; gap: 0.85rem; border: 1.5px solid rgba(14,165,233,0.15); }
-          .ab-sk-trust { display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; padding: 1.75rem 2rem; border-top: 1.5px dashed #DDD8CF; }
+          .ab-sk-review { border-radius: 20px; border: 1.5px solid rgba(6,174,213,0.15); padding: 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; background: white; }
+          .ab-sk-promise { border-radius: 24px; padding: 2.5rem 2rem; display: flex; flex-direction: column; align-items: center; gap: 0.85rem; border: 1.5px solid rgba(6,174,213,0.2); }
+          .ab-sk-trust { display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; padding: 1.75rem 2rem; border-top: 1.5px dashed #CDEEF9; }
           .ab-sk-trust-item { width: 90px; height: 12px; }
           @media (max-width: 860px) {
             .ab-sk-intro { grid-template-columns: 1fr; }
@@ -103,16 +103,16 @@ export default function About() {
           }
         `}</style>
         <div className="ab-sk-wrap">
-          <div className="ab-sk-ticker" />
-
-          <div className="ab-sk-hero">
-            <div className="ab-sk-badges">
-              <div className="ab-sk ab-sk-badge" />
-              <div className="ab-sk ab-sk-badge" />
-              <div className="ab-sk ab-sk-badge" />
+          <div className="ab-sk-hero-band">
+            <div className="ab-sk-hero">
+              <div className="ab-sk-badges">
+                <div className="ab-sk ab-sk-badge" />
+                <div className="ab-sk ab-sk-badge" />
+                <div className="ab-sk ab-sk-badge" />
+              </div>
+              <div className="ab-sk ab-sk-title" />
+              <div className="ab-sk ab-sk-sub" />
             </div>
-            <div className="ab-sk ab-sk-title" />
-            <div className="ab-sk ab-sk-sub" />
           </div>
 
           <div className="ab-sk-body">
@@ -214,12 +214,12 @@ export default function About() {
   }
 
   const tickerColors = [
-    "#8C7355",
-    "#A89070",
-    "#C4AA8A",
-    "#6B5E4A",
-    "#D4C4A8",
-    "#9E8868",
+    "#0EA5E9",
+    "#38BDF8",
+    "#67E8F9",
+    "#0369A1",
+    "#7DD3FC",
+    "#0284C7",
   ];
 
   return (
@@ -227,14 +227,14 @@ export default function About() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Nunito:wght@300;400;600;700;800&display=swap');
 
-        .ab { font-family: 'Nunito', sans-serif; background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%); color: #0C1C2E; min-height: 100vh; }
+        .ab { font-family: 'Nunito', sans-serif; background: linear-gradient(160deg, #EAFBFF 0%, #F6FEFF 55%, #FFFFFF 100%); color: #073B4C; min-height: 100vh; }
         .ab * { box-sizing: border-box; }
         .ab-h { font-family: 'Bricolage Grotesque', sans-serif; }
 
         @keyframes ab-tick { from { transform: translateX(0) } to { transform: translateX(-50%) } }
-        .ab-ticker { background: linear-gradient(90deg, #E0F2FE, #F0F9FF); border-bottom: 2px solid rgba(14,165,233,0.1); height: 40px; overflow: hidden; display: flex; align-items: center; }
+        .ab-ticker { background: linear-gradient(90deg, #EAFBFF, #F6FEFF); border-bottom: 2px solid rgba(6,174,213,0.15); height: 40px; overflow: hidden; display: flex; align-items: center; }
         .ab-tick-track { display: flex; width: max-content; animation: ab-tick 28s linear infinite; }
-        .ab-tick-item { display: flex; align-items: center; gap: 1.25rem; padding: 0 1.75rem; white-space: nowrap; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.25em; text-transform: uppercase; color: #0C1C2E; }
+        .ab-tick-item { display: flex; align-items: center; gap: 1.25rem; padding: 0 1.75rem; white-space: nowrap; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.25em; text-transform: uppercase; color: #073B4C; }
         .ab-tick-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
 
         @keyframes ab-up { from { opacity: 0; transform: translateY(28px) } to { opacity: 1; transform: none } }
@@ -244,18 +244,19 @@ export default function About() {
         .d5 { animation-delay: .56s } .d6 { animation-delay: .68s }
 
         @keyframes ab-float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-7px) } }
-        .ab-badge { display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; animation: ab-float 4s ease-in-out infinite; background: rgba(14,165,233,0.1); border: 1.5px solid rgba(14,165,233,0.25); color: #0EA5E9; }
+        .ab-badge { display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; animation: ab-float 4s ease-in-out infinite; background: rgba(255,255,255,0.6); border: 1.5px solid rgba(3,105,161,0.3); color: #0369A1; }
 
-        .ab-hero { background: linear-gradient(160deg, #BFE3FA 0%, #D3ECFB 45%, #EAF6FE 100%); padding: 4rem 2rem 3rem; text-align: center; border-bottom: 1.5px solid rgba(14,165,233,0.18); }
+        /* Hero — distinct blue band, centered, matching the rest of the site */
+        .ab-hero { background: linear-gradient(160deg, #CDEFFB 0%, #A9E1F5 45%, #DFF6FD 100%); padding: 4rem 2rem 3rem; text-align: center; border-bottom: 1.5px solid #B7E6F5; }
 
         .ab-body { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 5rem; display: flex; flex-direction: column; gap: 3rem; }
 
         .ab-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
 
         .ab-intro-visual {
-          background: linear-gradient(145deg, #F7F1E8, #ECE0CC);
+          background: linear-gradient(145deg, #EAFBFF, #CDEFFB);
           border-radius: 24px;
-          border: 1.5px solid #DDD8CF;
+          border: 1.5px solid #CDEEF9;
           overflow: hidden;
           position: relative;
           width: 100%;
@@ -275,7 +276,7 @@ export default function About() {
         .ab-intro-visual-overlay {
           position: absolute;
           bottom: 0; left: 0; right: 0;
-          background: linear-gradient(to top, rgba(26,16,10,0.7) 0%, transparent 100%);
+          background: linear-gradient(to top, rgba(6,34,46,0.72) 0%, transparent 100%);
           padding: 1.5rem 1.25rem 1.25rem;
           display: flex;
           flex-direction: column;
@@ -285,45 +286,45 @@ export default function About() {
           font-family: 'Bricolage Grotesque', sans-serif;
           font-weight: 800;
           font-size: 1rem;
-          color: #FAF7F2;
+          color: #F0FBFF;
           letter-spacing: 0.05em;
         }
         .ab-intro-visual-sub {
           font-size: 0.7rem;
-          color: rgba(250,247,242,0.7);
+          color: rgba(240,251,255,0.75);
           font-weight: 600;
           letter-spacing: 0.12em;
           text-transform: uppercase;
         }
 
-        .ab-tagline { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; line-height: 1.15; background: linear-gradient(135deg, #0C1C2E 0%, #0EA5E9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; }
+        .ab-tagline { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; line-height: 1.15; background: linear-gradient(135deg, #073B4C 0%, #0EA5E9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; }
         .ab-tagline span { background: linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .ab-body-text { font-size: 0.9rem; color: #7C6F60; font-weight: 500; line-height: 1.8; }
+        .ab-body-text { font-size: 0.9rem; color: #5B7C8D; font-weight: 500; line-height: 1.8; }
 
-        .ab-section-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.3rem; color: #2E2419; text-align: center; margin-bottom: 1.5rem; }
+        .ab-section-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.3rem; color: #073B4C; text-align: center; margin-bottom: 1.5rem; }
 
         .ab-pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-        .ab-pillar { background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,249,255,0.7)); border-radius: 20px; border: 1.5px solid rgba(14,165,233,0.15); padding: 1.5rem 1rem; text-align: center; transition: all 0.3s ease; backdrop-filter: blur(10px); }
-        .ab-pillar:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 32px rgba(14,165,233,0.15); border-color: rgba(14,165,233,0.3); }
+        .ab-pillar { background: #FFFFFF; border-radius: 20px; border: 1.5px solid #CDEEF9; padding: 1.5rem 1rem; text-align: center; transition: all 0.3s ease; }
+        .ab-pillar:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 32px rgba(6,174,213,0.16); border-color: #67E8F9; }
         .ab-pillar-num { font-family: 'Bricolage Grotesque', sans-serif; font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, #0EA5E9, #06B6D4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 0.5rem; }
-        .ab-pillar-name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 0.85rem; color: #0C1C2E; margin-bottom: 0.3rem; }
-        .ab-pillar-desc { font-size: 0.75rem; color: #7C6F60; font-weight: 500; line-height: 1.5; }
+        .ab-pillar-name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 0.85rem; color: #073B4C; margin-bottom: 0.3rem; }
+        .ab-pillar-desc { font-size: 0.75rem; color: #5B7C8D; font-weight: 500; line-height: 1.5; }
 
         .ab-reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-        .ab-review { background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,249,255,0.7)); border-radius: 20px; border: 1.5px solid rgba(14,165,233,0.15); padding: 1.25rem; backdrop-filter: blur(10px); transition: all 0.3s ease; }
-        .ab-review:hover { transform: translateY(-3px); border-color: rgba(14,165,233,0.3); box-shadow: 0 8px 24px rgba(14,165,233,0.12); }
+        .ab-review { background: #FFFFFF; border-radius: 20px; border: 1.5px solid #CDEEF9; padding: 1.25rem; transition: all 0.3s ease; }
+        .ab-review:hover { transform: translateY(-3px); border-color: #67E8F9; box-shadow: 0 8px 24px rgba(6,174,213,0.14); }
         .ab-review-stars { color: #0EA5E9; font-size: 0.8rem; margin-bottom: 0.75rem; letter-spacing: 0.1em; }
-        .ab-review-text { font-size: 0.82rem; color: #7C6F60; font-weight: 500; line-height: 1.7; margin-bottom: 0.75rem; font-style: italic; }
-        .ab-review-name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 0.78rem; color: #2E2419; }
+        .ab-review-text { font-size: 0.82rem; color: #5B7C8D; font-weight: 500; line-height: 1.7; margin-bottom: 0.75rem; font-style: italic; }
+        .ab-review-name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 0.78rem; color: #073B4C; }
 
-        .ab-promise { background: linear-gradient(135deg, #E0F2FE, #F0F9FF); border-radius: 24px; padding: 2.5rem 2rem; text-align: center; border: 1.5px solid rgba(14,165,233,0.2); }
-        .ab-promise-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.6rem; background: linear-gradient(135deg, #0C1C2E 0%, #0EA5E9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; }
-        .ab-promise-sub { font-size: 0.9rem; color: #5C6B7A; font-weight: 500; line-height: 1.75; max-width: 46ch; margin: 0 auto; }
-        .ab-promise-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #0EA5E9, #06B6D4); color: white; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; border: none; border-radius: 999px; padding: 0.7rem 1.75rem; cursor: pointer; box-shadow: 0 12px 32px rgba(14,165,233,0.4); transition: all 0.3s ease; }
-        .ab-promise-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 48px rgba(14,165,233,0.5); }
+        .ab-promise { background: linear-gradient(135deg, #EAFBFF, #F6FEFF); border-radius: 24px; padding: 2.5rem 2rem; text-align: center; border: 1.5px solid #CDEEF9; }
+        .ab-promise-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.6rem; background: linear-gradient(135deg, #073B4C 0%, #0EA5E9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; }
+        .ab-promise-sub { font-size: 0.9rem; color: #2C6478; font-weight: 500; line-height: 1.75; max-width: 46ch; margin: 0 auto; }
+        .ab-promise-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #0EA5E9, #0369A1); color: white; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; border: none; border-radius: 999px; padding: 0.7rem 1.75rem; cursor: pointer; box-shadow: 0 12px 32px rgba(14,165,233,0.35); transition: all 0.3s ease; }
+        .ab-promise-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 48px rgba(14,165,233,0.45); }
 
-        .ab-trust { display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; padding: 1.75rem 2rem; border-top: 1.5px dashed #DDD8CF; }
-        .ab-trust-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 700; color: #ACA193; }
+        .ab-trust { display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; padding: 1.75rem 2rem; border-top: 1.5px dashed #CDEEF9; }
+        .ab-trust-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 700; color: #5B94A6; }
 
         @media (max-width: 860px) {
           .ab-intro { grid-template-columns: 1fr; }
@@ -340,7 +341,6 @@ export default function About() {
 
       <div className="ab">
         {/* Ticker */}
-        <div className="ab-ticker" />
 
         {/* Hero */}
         <div className="ab-hero">
@@ -355,37 +355,13 @@ export default function About() {
               marginBottom: "1.25rem",
             }}
           >
-            <span
-              className="ab-badge"
-              style={{
-                background: "rgba(255,107,53,0.1)",
-                border: "1.5px solid rgba(255,107,53,0.25)",
-                color: "#FF6B35",
-                animationDelay: "0s",
-              }}
-            >
+            <span className="ab-badge" style={{ animationDelay: "0s" }}>
               🧊 Stay Cold. Stay Bold.
             </span>
-            <span
-              className="ab-badge"
-              style={{
-                background: "rgba(255,107,53,0.1)",
-                border: "1.5px solid rgba(255,107,53,0.25)",
-                color: "#FF6B35",
-                animationDelay: "0.7s",
-              }}
-            >
+            <span className="ab-badge" style={{ animationDelay: "0.7s" }}>
               ⭐ Trusted Brand
             </span>
-            <span
-              className="ab-badge"
-              style={{
-                background: "rgba(255,107,53,0.1)",
-                border: "1.5px solid rgba(255,107,53,0.25)",
-                color: "#FF6B35",
-                animationDelay: "1.3s",
-              }}
-            >
+            <span className="ab-badge" style={{ animationDelay: "1.3s" }}>
               ✅ 100% BPA Free
             </span>
           </div>
@@ -394,12 +370,12 @@ export default function About() {
             <h1
               className="ab-h"
               style={{
-                fontSize: "clamp(3.2rem,8vw,6.5rem)",
+                fontSize: "clamp(2.4rem,6vw,4.2rem)",
                 fontWeight: 800,
-                lineHeight: 0.92,
+                lineHeight: 1.02,
                 letterSpacing: "-0.025em",
                 margin: 0,
-                color: "#2E2419",
+                color: "#073B4C",
               }}
             >
               Our Story
@@ -411,7 +387,7 @@ export default function About() {
             style={{
               fontSize: "1rem",
               lineHeight: 1.75,
-              color: "#7C6F60",
+              color: "#2C6478",
               maxWidth: "42ch",
               margin: "0 auto",
               fontWeight: 400,

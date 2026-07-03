@@ -120,14 +120,15 @@ export default function Contact() {
     return (
       <>
         <style>{`
-          .cp-sk-wrap { font-family: 'Nunito', sans-serif; background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%); min-height: 100vh; }
+          .cp-sk-wrap { font-family: 'Nunito', sans-serif; background: linear-gradient(160deg, #EAFBFF 0%, #F6FEFF 55%, #FFFFFF 100%); min-height: 100vh; }
           @keyframes cp-shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
           .cp-sk {
-            background: linear-gradient(90deg, rgba(14,165,233,0.08) 25%, rgba(14,165,233,0.16) 37%, rgba(14,165,233,0.08) 63%);
+            background: linear-gradient(90deg, rgba(6,174,213,0.08) 25%, rgba(6,174,213,0.18) 37%, rgba(6,174,213,0.08) 63%);
             background-size: 800px 100%;
             animation: cp-shimmer 1.4s ease-in-out infinite;
             border-radius: 10px;
           }
+          .cp-sk-hero-band { background: linear-gradient(160deg, #CDEFFB 0%, #A9E1F5 45%, #DFF6FD 100%); border-bottom: 1.5px solid #B7E6F5; }
           .cp-sk-hero { padding: 4rem 2rem 3rem; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
           .cp-sk-pill { width: 140px; height: 22px; border-radius: 999px; }
           .cp-sk-title { width: min(85%, 420px); height: 60px; border-radius: 16px; }
@@ -136,10 +137,10 @@ export default function Contact() {
           .cp-sk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
           .cp-sk-left { display: flex; flex-direction: column; gap: 1.25rem; }
           .cp-sk-info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-          .cp-sk-info-card { border-radius: 20px; padding: 1.5rem 1rem; border: 1.5px solid rgba(14,165,233,0.1); background: white; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+          .cp-sk-info-card { border-radius: 20px; padding: 1.5rem 1rem; border: 1.5px solid rgba(6,174,213,0.15); background: white; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
           .cp-sk-icon { width: 28px; height: 28px; border-radius: 50%; }
-          .cp-sk-biz-card { border-radius: 20px; padding: 1.5rem; border: 1.5px solid #DDD8CF; background: #F3ECE1; display: flex; flex-direction: column; gap: 0.75rem; }
-          .cp-sk-form-card { border-radius: 20px; padding: 1.75rem; border: 1.5px solid #DDD8CF; background: white; display: flex; flex-direction: column; gap: 1.1rem; }
+          .cp-sk-biz-card { border-radius: 20px; padding: 1.5rem; border: 1.5px solid #CDEEF9; background: #EAFBFF; display: flex; flex-direction: column; gap: 0.75rem; }
+          .cp-sk-form-card { border-radius: 20px; padding: 1.75rem; border: 1.5px solid #CDEEF9; background: white; display: flex; flex-direction: column; gap: 1.1rem; }
           .cp-sk-field { height: 40px; }
           .cp-sk-textarea { height: 90px; }
           .cp-sk-btn { height: 46px; border-radius: 999px; margin-top: 0.25rem; }
@@ -148,10 +149,12 @@ export default function Contact() {
           @media (max-width: 500px) { .cp-sk-info-grid { grid-template-columns: 1fr 1fr; } .cp-sk-body { padding: 1rem 1rem 4rem; } }
         `}</style>
         <div className="cp-sk-wrap">
-          <div className="cp-sk-hero">
-            <div className="cp-sk cp-sk-pill" />
-            <div className="cp-sk cp-sk-title" />
-            <div className="cp-sk cp-sk-sub" />
+          <div className="cp-sk-hero-band">
+            <div className="cp-sk-hero">
+              <div className="cp-sk cp-sk-pill" />
+              <div className="cp-sk cp-sk-title" />
+              <div className="cp-sk cp-sk-sub" />
+            </div>
           </div>
           <div className="cp-sk-body">
             <div className="cp-sk-grid">
@@ -231,7 +234,7 @@ export default function Contact() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Nunito:wght@300;400;600;700;800&display=swap');
 
-        .cp { font-family: 'Nunito', sans-serif; background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #FFFFFF 100%); color: #0C1C2E; min-height: 100vh; }
+        .cp { font-family: 'Nunito', sans-serif; background: linear-gradient(160deg, #EAFBFF 0%, #F6FEFF 55%, #FFFFFF 100%); color: #073B4C; min-height: 100vh; }
         .cp * { box-sizing: border-box; }
         .cp-h { font-family: 'Bricolage Grotesque', sans-serif; }
 
@@ -242,96 +245,93 @@ export default function Contact() {
         .d3 { animation-delay: .3s  } .d4 { animation-delay: .44s }
         .d5 { animation-delay: .56s }
 
-        /* Float badges */
-        @keyframes cp-float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-7px) } }
-        .cp-badge { display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; animation: cp-float 4s ease-in-out infinite; }
+        /* Hero — distinct blue band, centered, matching Partnership/Blog pages */
+        .cp-hero-band { background: linear-gradient(160deg, #CDEFFB 0%, #A9E1F5 45%, #DFF6FD 100%); border-bottom: 1.5px solid #B7E6F5; width: 100%; }
+        .cp-hero { padding: 4rem 2rem 3rem; text-align: center; max-width: 900px; margin: 0 auto; }
 
-        /* Hero */
-        .cp-hero { position: relative; overflow: hidden; background: linear-gradient(135deg, #BAE6FD 0%, #E0F2FE 45%, #FFFFFF 100%); padding: 4rem 2rem 3rem; text-align: center; border-bottom: 1.5px solid rgba(0,0,0,0.06); }
-
-        /* Eyebrow pill — matches blog */
-        .cp-eyebrow { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(14,165,233,0.1); border: 1.5px solid rgba(14,165,233,0.25); border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: #0EA5E9; margin-bottom: 1.5rem; }
+        /* Eyebrow pill */
+        .cp-eyebrow { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.6); border: 1.5px solid rgba(3,105,161,0.3); border-radius: 999px; padding: 0.35rem 0.9rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: #0369A1; margin-bottom: 1.5rem; }
 
         /* Info cards */
         .cp-info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
         .cp-info-card {
-          background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,249,255,0.7)); border-radius: 20px; padding: 1.5rem 1rem;
-          text-align: center; border: 1.5px solid rgba(14,165,233,0.15); backdrop-filter: blur(10px);
-          box-shadow: 0 8px 24px rgba(14,165,233,0.1);
+          background: #FFFFFF; border-radius: 20px; padding: 1.5rem 1rem;
+          text-align: center; border: 1.5px solid #CDEEF9;
+          box-shadow: 0 8px 24px rgba(6,174,213,0.1);
           transition: all 0.3s ease;
         }
-        .cp-info-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 32px rgba(14,165,233,0.2); border-color: rgba(14,165,233,0.3); }
+        .cp-info-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 32px rgba(6,174,213,0.2); border-color: #67E8F9; }
         .cp-info-icon  { color: #0EA5E9; margin: 0 auto 0.75rem; display: flex; justify-content: center; }
-        .cp-info-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 0.82rem; color: #2E2419; margin-bottom: 0.3rem; }
-        .cp-info-value { font-size: 0.78rem; color: #7C6F60; font-weight: 600; }
+        .cp-info-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 0.82rem; color: #073B4C; margin-bottom: 0.3rem; }
+        .cp-info-value { font-size: 0.78rem; color: #5B7C8D; font-weight: 600; }
 
         /* Business card */
         .cp-biz-card {
-          background: #F3ECE1; border-radius: 20px; padding: 1.5rem;
-          border: 1.5px solid #DDD8CF;
+          background: #EAFBFF; border-radius: 20px; padding: 1.5rem;
+          border: 1.5px solid #CDEEF9;
         }
-        .cp-biz-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.05rem; color: #2E2419; margin-bottom: 0.75rem; }
-        .cp-biz-item  { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.82rem; color: #5C4F3A; font-weight: 500; margin-bottom: 0.5rem; line-height: 1.5; }
-        .cp-biz-dot   { width: 6px; height: 6px; border-radius: 50%; background: #FF6B35; flex-shrink: 0; margin-top: 0.45rem; }
+        .cp-biz-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.05rem; color: #073B4C; margin-bottom: 0.75rem; }
+        .cp-biz-item  { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.82rem; color: #0C4A6E; font-weight: 500; margin-bottom: 0.5rem; line-height: 1.5; }
+        .cp-biz-dot   { width: 6px; height: 6px; border-radius: 50%; background: #0EA5E9; flex-shrink: 0; margin-top: 0.45rem; }
 
         /* Form card */
         .cp-form-card {
           background: white; border-radius: 20px; padding: 1.75rem;
-          border: 1.5px solid #DDD8CF; box-shadow: 0 4px 20px rgba(46,36,25,0.05);
+          border: 1.5px solid #CDEEF9; box-shadow: 0 4px 20px rgba(6,58,77,0.06);
         }
-        .cp-form-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.25rem; color: #2E2419; margin-bottom: 1.25rem; }
-        .cp-label { font-size: 0.78rem; font-weight: 700; color: #5C4F3A; margin-bottom: 0.35rem; display: block; }
+        .cp-form-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.25rem; color: #073B4C; margin-bottom: 1.25rem; }
+        .cp-label { font-size: 0.78rem; font-weight: 700; color: #0C4A6E; margin-bottom: 0.35rem; display: block; }
 
         /* Inputs */
         .cp-form-card input,
         .cp-form-card textarea {
           font-family: 'Nunito', sans-serif !important;
-          background: #FAF7F2 !important;
-          border: 1.5px solid #DDD8CF !important;
-          color: #2E2419 !important;
+          background: #F6FEFF !important;
+          border: 1.5px solid #CDEEF9 !important;
+          color: #073B4C !important;
           border-radius: 10px !important;
           font-size: 0.85rem !important;
           font-weight: 600 !important;
           transition: border-color 0.2s, box-shadow 0.2s !important;
         }
         .cp-form-card input::placeholder,
-        .cp-form-card textarea::placeholder { color: #ACA193 !important; }
+        .cp-form-card textarea::placeholder { color: #8FBFCE !important; }
         .cp-form-card input:focus,
         .cp-form-card textarea:focus {
-          border-color: #8C7355 !important;
-          box-shadow: 0 0 0 3px rgba(140,115,85,0.12) !important;
+          border-color: #0EA5E9 !important;
+          box-shadow: 0 0 0 3px rgba(14,165,233,0.14) !important;
           outline: none !important;
         }
 
         /* Select */
         .cp-select-trigger {
           font-family: 'Nunito', sans-serif !important;
-          background: #FAF7F2 !important;
-          border: 1.5px solid #DDD8CF !important;
-          color: #2E2419 !important;
+          background: #F6FEFF !important;
+          border: 1.5px solid #CDEEF9 !important;
+          color: #073B4C !important;
           border-radius: 10px !important;
           font-size: 0.85rem !important;
           font-weight: 600 !important;
           width: 100% !important;
         }
-        .cp-select-trigger:focus { border-color: #8C7355 !important; box-shadow: 0 0 0 3px rgba(140,115,85,0.12) !important; }
+        .cp-select-trigger:focus { border-color: #0EA5E9 !important; box-shadow: 0 0 0 3px rgba(14,165,233,0.14) !important; }
 
         /* Submit button */
         .cp-submit {
           width: 100%; padding: 0.8rem; border-radius: 999px; border: none;
-          background: linear-gradient(135deg, #0EA5E9, #06B6D4); color: white;
+          background: linear-gradient(135deg, #0EA5E9, #0369A1); color: white;
           font-family: 'Nunito', sans-serif; font-size: 0.9rem; font-weight: 800;
           cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-          box-shadow: 0 12px 32px rgba(14,165,233,0.4);
+          box-shadow: 0 12px 32px rgba(14,165,233,0.35);
           transition: all 0.3s ease;
           letter-spacing: 0.02em;
         }
-        .cp-submit:hover:not(:disabled) { transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 48px rgba(14,165,233,0.5); }
+        .cp-submit:hover:not(:disabled) { transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 48px rgba(14,165,233,0.45); }
         .cp-submit:disabled { opacity: 0.65; cursor: not-allowed; }
 
         /* Trust strip */
-        .cp-trust { display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; padding: 1.75rem 2rem; border-top: 1.5px dashed #DDD8CF; margin-top: 0.5rem; }
-        .cp-trust-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 700; color: #ACA193; }
+        .cp-trust { display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; padding: 1.75rem 2rem; border-top: 1.5px dashed #CDEEF9; margin-top: 0.5rem; }
+        .cp-trust-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 700; color: #5B94A6; }
 
         /* Layout */
         .cp-body { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem 5rem; }
@@ -343,40 +343,42 @@ export default function Contact() {
 
       <div className="cp">
         {/* Hero */}
-        <div className="cp-hero">
-          <div className="cp-eyebrow cp-u d1">✦ Get in Touch</div>
+        <div className="cp-hero-band">
+          <div className="cp-hero">
+            <div className="cp-eyebrow cp-u d1">✦ Get in Touch</div>
 
-          <div className="cp-u d2" style={{ marginBottom: "0.75rem" }}>
-            <h1
-              className="cp-h"
+            <div className="cp-u d2" style={{ marginBottom: "0.75rem" }}>
+              <h1
+                className="cp-h"
+                style={{
+                  fontSize: "clamp(2.4rem,6vw,4.2rem)",
+                  fontWeight: 800,
+                  lineHeight: 1.02,
+                  letterSpacing: "-0.025em",
+                  margin: 0,
+                  color: "#073B4C",
+                }}
+              >
+                Contact Us
+              </h1>
+            </div>
+
+            <p
+              className="cp-u d3"
               style={{
-                fontSize: "clamp(3.2rem,8vw,6.5rem)",
-                fontWeight: 800,
-                lineHeight: 0.92,
-                letterSpacing: "-0.025em",
-                margin: 0,
-                color: "#2E2419",
+                fontSize: "1rem",
+                lineHeight: 1.75,
+                color: "#2C6478",
+                maxWidth: "42ch",
+                margin: "0 auto",
+                fontWeight: 400,
               }}
             >
-              Contact Us
-            </h1>
+              Questions about tumblers, customization, or orders?
+              <br />
+              We&apos;d love to help.
+            </p>
           </div>
-
-          <p
-            className="cp-u d3"
-            style={{
-              fontSize: "1rem",
-              lineHeight: 1.75,
-              color: "#7C6F60",
-              maxWidth: "42ch",
-              margin: "0 auto",
-              fontWeight: 400,
-            }}
-          >
-            Questions about tumblers, customization, or orders?
-            <br />
-            We&apos;d love to help.
-          </p>
         </div>
 
         {/* Body */}
@@ -424,7 +426,7 @@ export default function Contact() {
               >
                 <div>
                   <label className="cp-label">
-                    Name <span style={{ color: "#FF6B35" }}>*</span>
+                    Name <span style={{ color: "#0369A1" }}>*</span>
                   </label>
                   <Input
                     value={formData.name}
@@ -435,7 +437,7 @@ export default function Contact() {
 
                 <div>
                   <label className="cp-label">
-                    Email <span style={{ color: "#FF6B35" }}>*</span>
+                    Email <span style={{ color: "#0369A1" }}>*</span>
                   </label>
                   <Input
                     type="email"
@@ -448,7 +450,7 @@ export default function Contact() {
                 <div>
                   <label className="cp-label">
                     Phone{" "}
-                    <span style={{ color: "#ACA193", fontWeight: 500 }}>
+                    <span style={{ color: "#8FBFCE", fontWeight: 500 }}>
                       (optional)
                     </span>
                   </label>
@@ -486,7 +488,7 @@ export default function Contact() {
 
                 <div>
                   <label className="cp-label">
-                    Message <span style={{ color: "#FF6B35" }}>*</span>
+                    Message <span style={{ color: "#0369A1" }}>*</span>
                   </label>
                   <Textarea
                     value={formData.message}
