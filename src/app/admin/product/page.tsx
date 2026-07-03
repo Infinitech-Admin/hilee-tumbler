@@ -106,7 +106,7 @@ interface Product {
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
-const purpleGrad = "linear-gradient(135deg, #7c3aed 0%, #9333ea 100%)";
+const purpleGrad = "linear-gradient(135deg, #0891b2 0%, #06b6d4 100%)";
 
 // ── Static Categories ────────────────────────────────────────────────────────
 // Backend stores category as a plain string (validation rule:
@@ -161,7 +161,7 @@ const CATEGORY_COLOR_MAP: Record<string, string> = CATEGORY_GROUPS.reduce(
 );
 
 const getCategoryColor = (name: string | null) =>
-  (name && CATEGORY_COLOR_MAP[name]) || "#9333ea";
+  (name && CATEGORY_COLOR_MAP[name]) || "#06b6d4";
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
@@ -1082,7 +1082,7 @@ export default function ProductsAdminPage() {
           className="flex min-h-screen w-full"
           style={{
             background:
-              "linear-gradient(135deg, #f5f3ff 0%, #fdf4ff 50%, #f3e8ff 100%)",
+              "linear-gradient(135deg, #ecfeff 0%, #f0fdff 50%, #e0f7fa 100%)",
           }}
         >
           <AppSidebar />
@@ -1109,7 +1109,7 @@ export default function ProductsAdminPage() {
         className="flex min-h-screen w-full"
         style={{
           background:
-            "linear-gradient(135deg, #f5f3ff 0%, #fdf4ff 50%, #f3e8ff 100%)",
+            "linear-gradient(135deg, #ecfeff 0%, #f0fdff 50%, #e0f7fa 100%)",
         }}
       >
         <AppSidebar />

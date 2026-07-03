@@ -100,21 +100,21 @@ export default function LoginPage() {
         className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden"
         style={{
           background:
-            "linear-gradient(160deg, #2E2419 0%, #4A3728 40%, #2E2419 100%)",
+            "linear-gradient(160deg, #EAF6FF 0%, #F7FBFF 45%, #FFFFFF 100%)",
         }}
       >
         {/* Blobs */}
         <div
           className="hilee-blob absolute top-16 left-8 w-80 h-80 rounded-full pointer-events-none"
-          style={{ background: "#E9DCC8", filter: "blur(80px)", opacity: 0.18 }}
+          style={{ background: "#BFE3FF", filter: "blur(80px)", opacity: 0.35 }}
         />
         <div
           className="hilee-blob hilee-blob-2 absolute top-1/3 right-8 w-72 h-72 rounded-full pointer-events-none"
-          style={{ background: "#FF6B35", filter: "blur(80px)", opacity: 0.18 }}
+          style={{ background: "#FF6B35", filter: "blur(80px)", opacity: 0.12 }}
         />
         <div
           className="hilee-blob hilee-blob-3 absolute bottom-12 left-1/2 w-64 h-64 rounded-full pointer-events-none"
-          style={{ background: "#C4AA8A", filter: "blur(80px)", opacity: 0.18 }}
+          style={{ background: "#C4AA8A", filter: "blur(80px)", opacity: 0.12 }}
         />
 
         <div className="relative z-10 w-full max-w-md mx-auto px-4">

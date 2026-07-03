@@ -43,7 +43,7 @@ import {
   getSortedRowModel,
 } from "@tanstack/react-table";
 
-const purpleGrad = "linear-gradient(135deg, #7c3aed 0%, #9333ea 100%)";
+const skyGrad = "linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)";
 
 interface PartnershipInquiry {
   id: number;
@@ -167,9 +167,9 @@ export default function PartnershipAdminPage() {
         const value = row.original.type;
         const label = typeLabels[value] ?? value;
         const badgeClass: Record<string, string> = {
-          retail: "bg-violet-100 text-violet-800",
-          distributor: "bg-gray-900 text-violet-50",
-          reseller: "bg-sky-100 text-sky-800",
+          retail: "bg-sky-100 text-sky-800",
+          distributor: "bg-gray-900 text-sky-50",
+          reseller: "bg-cyan-100 text-cyan-800",
           other: "bg-green-50 text-green-800",
         };
         return (
@@ -254,12 +254,12 @@ export default function PartnershipAdminPage() {
   if (loading) {
     return (
       <SidebarProvider defaultOpen={!isMobile}>
-        <div className="flex min-h-screen w-full bg-gradient-to-br from-violet-50 to-red-50">
+        <div className="flex min-h-screen w-full bg-gradient-to-br from-sky-50 to-cyan-50">
           <AppSidebar />
           <div className={`flex-1 min-w-0 ${isMobile ? "ml-0" : "ml-72"}`}>
             <div className="flex items-center justify-center min-h-screen w-full">
               <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-6 py-4 rounded-xl shadow-lg">
-                <Loader2 className="h-6 w-6 animate-spin text-violet-500" />
+                <Loader2 className="h-6 w-6 animate-spin text-sky-500" />
                 <span className="text-gray-700 font-medium">
                   Loading inquiries...
                 </span>
@@ -277,7 +277,7 @@ export default function PartnershipAdminPage() {
         className="flex min-h-screen w-full"
         style={{
           background:
-            "linear-gradient(135deg, #f5f3ff 0%, #fdf4ff 50%, #f3e8ff 100%)",
+            "linear-gradient(135deg, #eaf6ff 0%, #f0fbff 50%, #f7fbff 100%)",
         }}
       >
         <AppSidebar />
@@ -286,8 +286,8 @@ export default function PartnershipAdminPage() {
             <div
               className="sticky top-0 z-50 flex h-12 items-center gap-2 border-b px-4 shadow-sm"
               style={{
-                background: "rgba(124,58,237,0.97)",
-                borderColor: "rgba(168,85,247,0.3)",
+                background: "rgba(14,165,233,0.97)",
+                borderColor: "rgba(56,189,248,0.3)",
               }}
             >
               <SidebarTrigger className="-ml-1 text-white" />
@@ -301,7 +301,7 @@ export default function PartnershipAdminPage() {
               <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-stretch justify-between">
                 <div
                   className="rounded-2xl px-7 py-6 shadow-xl relative overflow-hidden"
-                  style={{ background: purpleGrad }}
+                  style={{ background: skyGrad }}
                 >
                   <div
                     className="absolute right-4 top-4 w-20 h-20 rounded-full opacity-10 pointer-events-none"
@@ -315,7 +315,7 @@ export default function PartnershipAdminPage() {
                       <h1 className="text-2xl font-bold text-white tracking-tight">
                         Partnership inquiries
                       </h1>
-                      <p className="text-violet-200 text-sm mt-0.5">
+                      <p className="text-sky-100 text-sm mt-0.5">
                         Manage retailer and distributor applications
                       </p>
                     </div>
@@ -323,8 +323,14 @@ export default function PartnershipAdminPage() {
                 </div>
               </div>
 
-              <Card className="gap-0 p-0 bg-white/70 backdrop-blur-sm shadow-xl border-violet-100">
-                <CardHeader className="pb-3 bg-gradient-to-r from-violet-500 to-purple-300 text-white rounded-t-lg">
+              <Card className="gap-0 p-0 bg-white/70 backdrop-blur-sm shadow-xl border-sky-100">
+                <CardHeader
+                  className="pb-3 text-white rounded-t-lg"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, #0ea5e9 0%, #7dd3fc 100%)",
+                  }}
+                >
                   <div className="mt-4 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
                     <div className="relative flex-1 max-w-sm">
                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/70" />
@@ -362,7 +368,7 @@ export default function PartnershipAdminPage() {
                         }
                         onValueChange={handleItemsPerPageChange}
                       >
-                        <SelectTrigger className="w-24 h-9 border-gray-200 focus:border-violet-400 text-sm">
+                        <SelectTrigger className="w-24 h-9 border-gray-200 focus:border-sky-400 text-sm">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -379,7 +385,7 @@ export default function PartnershipAdminPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full min-w-[600px]">
                       <thead>
-                        <tr className="bg-gradient-to-r from-violet-100 to-red-100 border-b border-violet-200">
+                        <tr className="bg-gradient-to-r from-sky-100 to-cyan-100 border-b border-sky-200">
                           {table.getHeaderGroups().map((headerGroup) =>
                             headerGroup.headers.map((header) => (
                               <th
@@ -407,8 +413,8 @@ export default function PartnershipAdminPage() {
                               className="px-4 py-16 text-center"
                             >
                               <div className="flex flex-col items-center gap-3">
-                                <div className="w-16 h-16 rounded-2xl bg-violet-50 flex items-center justify-center">
-                                  <Handshake className="w-8 h-8 text-violet-300" />
+                                <div className="w-16 h-16 rounded-2xl bg-sky-50 flex items-center justify-center">
+                                  <Handshake className="w-8 h-8 text-sky-300" />
                                 </div>
                                 <div>
                                   <p className="font-semibold text-gray-700">
@@ -427,7 +433,7 @@ export default function PartnershipAdminPage() {
                           paginatedRows.map((row, index) => (
                             <tr
                               key={row.id}
-                              className={`border-b border-violet-100 hover:bg-gradient-to-r hover:from-violet-50 hover:to-red-50 transition-all duration-200 ${index % 2 === 0 ? "bg-white" : "bg-violet-50/30"}`}
+                              className={`border-b border-sky-100 hover:bg-gradient-to-r hover:from-sky-50 hover:to-cyan-50 transition-all duration-200 ${index % 2 === 0 ? "bg-white" : "bg-sky-50/30"}`}
                             >
                               {row.getVisibleCells().map((cell) => (
                                 <td
@@ -465,7 +471,7 @@ export default function PartnershipAdminPage() {
                         <button
                           onClick={() => setCurrentPage(1)}
                           disabled={currentPage === 1}
-                          className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-white hover:text-violet-600 hover:border hover:border-violet-200 disabled:opacity-30 disabled:cursor-not-allowed transition-all text-xs font-semibold"
+                          className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-white hover:text-sky-600 hover:border hover:border-sky-200 disabled:opacity-30 disabled:cursor-not-allowed transition-all text-xs font-semibold"
                         >
                           «
                         </button>
@@ -474,7 +480,7 @@ export default function PartnershipAdminPage() {
                             setCurrentPage((p) => Math.max(1, p - 1))
                           }
                           disabled={currentPage === 1}
-                          className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-white hover:text-violet-600 hover:border hover:border-violet-200 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                          className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-white hover:text-sky-600 hover:border hover:border-sky-200 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
                         >
                           <ChevronLeft className="w-4 h-4" />
                         </button>
@@ -491,7 +497,18 @@ export default function PartnershipAdminPage() {
                               <button
                                 key={pg}
                                 onClick={() => setCurrentPage(pg)}
-                                className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-semibold transition-all ${currentPage === pg ? "bg-gradient-to-r from-violet-500 to-red-500 text-white shadow-md shadow-violet-200" : "text-gray-600 hover:bg-white hover:text-violet-600 hover:border hover:border-violet-200"}`}
+                                style={
+                                  currentPage === pg
+                                    ? {
+                                        background:
+                                          "linear-gradient(90deg, #0ea5e9 0%, #06b6d4 100%)",
+                                        color: "#ffffff",
+                                        boxShadow:
+                                          "0 4px 10px rgba(14,165,233,0.25)",
+                                      }
+                                    : undefined
+                                }
+                                className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-semibold transition-all ${currentPage === pg ? "" : "text-gray-600 hover:bg-white hover:text-sky-600 hover:border hover:border-sky-200"}`}
                               >
                                 {pg}
                               </button>
@@ -503,14 +520,14 @@ export default function PartnershipAdminPage() {
                             setCurrentPage((p) => Math.min(totalPages, p + 1))
                           }
                           disabled={currentPage === totalPages}
-                          className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-white hover:text-violet-600 hover:border hover:border-violet-200 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                          className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-white hover:text-sky-600 hover:border hover:border-sky-200 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
                         >
                           <ChevronRight className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => setCurrentPage(totalPages)}
                           disabled={currentPage === totalPages}
-                          className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-white hover:text-violet-600 hover:border hover:border-violet-200 disabled:opacity-30 disabled:cursor-not-allowed transition-all text-xs font-semibold"
+                          className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-white hover:text-sky-600 hover:border hover:border-sky-200 disabled:opacity-30 disabled:cursor-not-allowed transition-all text-xs font-semibold"
                         >
                           »
                         </button>
@@ -527,7 +544,7 @@ export default function PartnershipAdminPage() {
         <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
           <DialogContent className="sm:max-w-md w-full bg-white dark:bg-gray-900 rounded-xl shadow-xl p-6 sm:p-8">
             <DialogHeader className="text-center sm:text-left">
-              <DialogTitle className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-violet-600">
+              <DialogTitle className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-cyan-600">
                 Partnership details
               </DialogTitle>
               <DialogDescription className="mt-1 text-sm text-gray-500 dark:text-gray-400">
@@ -538,21 +555,19 @@ export default function PartnershipAdminPage() {
             {selectedInquiry && (
               <div className="mt-6 space-y-4 text-gray-700 dark:text-gray-300 text-sm sm:text-base">
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
-                  <span className="font-semibold text-violet-600">Name:</span>
+                  <span className="font-semibold text-sky-600">Name:</span>
                   <span className="break-words">{selectedInquiry.name}</span>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
-                  <span className="font-semibold text-violet-600">Email:</span>
+                  <span className="font-semibold text-sky-600">Email:</span>
                   <span className="break-words">{selectedInquiry.email}</span>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
-                  <span className="font-semibold text-violet-600">
-                    Company:
-                  </span>
+                  <span className="font-semibold text-sky-600">Company:</span>
                   <span>{selectedInquiry.company || "-"}</span>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
-                  <span className="font-semibold text-violet-600">
+                  <span className="font-semibold text-sky-600">
                     Partnership type:
                   </span>
                   <span>
@@ -560,15 +575,13 @@ export default function PartnershipAdminPage() {
                   </span>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <span className="font-semibold text-violet-600">
-                    Message:
-                  </span>
-                  <p className="p-3 bg-violet-50 dark:bg-violet-900 rounded-lg text-gray-800 dark:text-gray-200 text-sm sm:text-base max-h-40 overflow-auto">
+                  <span className="font-semibold text-sky-600">Message:</span>
+                  <p className="p-3 bg-sky-50 dark:bg-sky-900 rounded-lg text-gray-800 dark:text-gray-200 text-sm sm:text-base max-h-40 overflow-auto">
                     {selectedInquiry.message || "-"}
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
-                  <span className="font-semibold text-violet-600">
+                  <span className="font-semibold text-sky-600">
                     Created at:
                   </span>
                   <span>
@@ -581,7 +594,7 @@ export default function PartnershipAdminPage() {
             <DialogFooter className="mt-6 flex justify-center sm:justify-end">
               <Button
                 variant="outline"
-                className="bg-white dark:bg-gray-800 border-violet-400 text-violet-600 hover:bg-violet-50 hover:text-violet-700 transition-all"
+                className="bg-white dark:bg-gray-800 border-sky-400 text-sky-600 hover:bg-sky-50 hover:text-sky-700 transition-all"
                 onClick={() => setIsViewDialogOpen(false)}
               >
                 Close

@@ -35,59 +35,59 @@ const items = [
     title: "Dashboard",
     url: "/admin/dashboard",
     icon: Home,
-    color: "text-purple-600",
-    bgColor: "hover:bg-gradient-to-r hover:from-purple-50 hover:to-purple-50",
+    color: "text-sky-600",
+    bgColor: "hover:bg-gradient-to-r hover:from-sky-50 hover:to-sky-50",
   },
   {
     title: "Inbox",
-    url: "/admin/partnershp",
+    url: "/admin/partnership",
     icon: Mail,
-    color: "text-purple-600",
-    bgColor: "hover:bg-gradient-to-r hover:from-purple-50 hover:to-purple-50",
+    color: "text-sky-600",
+    bgColor: "hover:bg-gradient-to-r hover:from-sky-50 hover:to-sky-50",
   },
   {
     title: "Products",
     url: "/admin/product",
     icon: Package,
-    color: "text-purple-700",
-    bgColor: "hover:bg-gradient-to-r hover:from-purple-50 hover:to-purple-50",
+    color: "text-sky-700",
+    bgColor: "hover:bg-gradient-to-r hover:from-sky-50 hover:to-sky-50",
   },
 
   {
     title: "Orders",
     url: "/admin/order",
     icon: ShoppingCart,
-    color: "text-purple-600",
-    bgColor: "hover:bg-gradient-to-r hover:from-purple-50 hover:to-purple-50",
+    color: "text-sky-600",
+    bgColor: "hover:bg-gradient-to-r hover:from-sky-50 hover:to-sky-50",
   },
   {
     title: "Inbox",
     url: "/admin/contacts",
     icon: Mail,
-    color: "text-purple-600",
-    bgColor: "hover:bg-gradient-to-r hover:from-purple-50 hover:to-purple-50",
+    color: "text-sky-600",
+    bgColor: "hover:bg-gradient-to-r hover:from-sky-50 hover:to-sky-50",
   },
   {
     title: "Users",
     url: "/admin/users",
     icon: Users,
-    color: "text-purple-600",
-    bgColor: "hover:bg-gradient-to-r hover:from-purple-50 hover:to-purple-50",
+    color: "text-sky-600",
+    bgColor: "hover:bg-gradient-to-r hover:from-sky-50 hover:to-sky-50",
   },
-  {
-    title: "Reports",
-    url: "/admin/reports",
-    icon: BarChart3,
-    color: "text-purple-700",
-    bgColor: "hover:bg-gradient-to-r hover:from-purple-50 hover:to-purple-50",
-  },
-  {
-    title: "Settings",
-    url: "/admin/settings",
-    icon: Settings,
-    color: "text-purple-600",
-    bgColor: "hover:bg-gradient-to-r hover:from-purple-50 hover:to-purple-50",
-  },
+  // {
+  //   title: "Reports",
+  //   url: "/admin/reports",
+  //   icon: BarChart3,
+  //   color: "text-sky-700",
+  //   bgColor: "hover:bg-gradient-to-r hover:from-sky-50 hover:to-sky-50",
+  // },
+  // {
+  //   title: "Settings",
+  //   url: "/admin/settings",
+  //   icon: Settings,
+  //   color: "text-sky-600",
+  //   bgColor: "hover:bg-gradient-to-r hover:from-sky-50 hover:to-sky-50",
+  // },
 ];
 
 // ── Unchanged original AppSidebar ──────────────────────────────────────────
@@ -102,10 +102,16 @@ export function AppSidebar() {
   };
 
   return (
-    <Sidebar className="border-r border-purple-200">
-      <SidebarContent className="bg-purple-200 py-3">
+    <Sidebar className="border-r border-[#D6ECFB]">
+      <SidebarContent className="bg-[#EAF6FF] py-3">
         <SidebarGroup>
-          <div className="px-4 py-6 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-lg mx-3 mt-3 mb-4 shadow-lg">
+          <div
+            className="px-4 py-6 text-white rounded-lg mx-3 mt-3 mb-4 shadow-lg"
+            style={{
+              background: "linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%)",
+              borderBottom: "2px solid #BFE3FF",
+            }}
+          >
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
                 <Flame className="w-6 h-6 text-white" />
@@ -114,7 +120,7 @@ export function AppSidebar() {
                 <SidebarGroupLabel className="text-white font-bold text-lg">
                   Hilee Admin
                 </SidebarGroupLabel>
-                <p className="text-purple-100 text-xs">Management Portal</p>
+                <p className="text-white/70 text-xs">Management Portal</p>
               </div>
             </div>
           </div>
@@ -128,7 +134,7 @@ export function AppSidebar() {
                     isActive={pathname === item.url}
                     className={`${item.bgColor} transition-all duration-200 rounded-lg mx-1 group hover:shadow-sm ${
                       pathname === item.url
-                        ? "bg-gradient-to-r from-purple-100 to-purple-100 border-l-4 border-purple-600"
+                        ? "bg-gradient-to-r from-sky-50 to-sky-50 border-l-4 border-sky-500"
                         : ""
                     }`}
                   >
@@ -141,7 +147,7 @@ export function AppSidebar() {
                       />
                       <span className="font-medium">{item.title}</span>
                       {pathname === item.url && (
-                        <TrendingUp className="ml-auto h-4 w-4 text-purple-600" />
+                        <TrendingUp className="ml-auto h-4 w-4 text-sky-600" />
                       )}
                     </Link>
                   </SidebarMenuButton>
@@ -152,10 +158,10 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="p-3 bg-gradient-to-r from-purple-50 to-purple-50 border-t border-purple-200">
+      <SidebarFooter className="p-3 bg-gradient-to-r from-sky-50 to-sky-50 border-t border-[#D6ECFB]">
         <Button
           variant="ghost"
-          className="w-full justify-start hover:bg-gradient-to-r hover:from-purple-100 hover:to-purple-100 transition-all duration-200 rounded-lg group"
+          className="w-full justify-start hover:bg-gradient-to-r hover:from-sky-100 hover:to-sky-100 transition-all duration-200 rounded-lg group"
           onClick={handleLogout}
         >
           <LogOut className="h-4 w-4 mr-2 text-red-500 group-hover:scale-110 transition-transform" />
@@ -188,7 +194,10 @@ export function ResponsiveSidebar() {
     <>
       {/* ── Mobile hamburger (hidden on lg+) ── */}
       <button
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-purple-600 text-white shadow-lg hover:bg-purple-700 active:scale-95 transition-all"
+        className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg text-white shadow-lg active:scale-95 transition-all"
+        style={{
+          background: "linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%)",
+        }}
         onClick={() => setMobileOpen(true)}
         aria-label="Open navigation"
       >
