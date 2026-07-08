@@ -876,7 +876,7 @@ export default function MenuPage() {
                 </div>
               )}
 
-              <div className="mp-trust">
+              {/* <div className="mp-trust">
                 {[
                   { e: "🚚", t: "Free Shipping" },
                   { e: "↩️", t: "30-Day Returns" },
@@ -888,7 +888,7 @@ export default function MenuPage() {
                     <span>{x.e}</span> {x.t}
                   </span>
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

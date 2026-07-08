@@ -51,13 +51,13 @@ export default function About() {
     },
   ];
 
-  const trustItems = [
-    { e: "🚚", t: "Free Shipping" },
-    { e: "↩️", t: "30-Day Returns" },
-    { e: "🏆", t: "Lifetime Warranty" },
-    { e: "✅", t: "100% BPA Free" },
-    { e: "🧊", t: "24H Ice Cold" },
-  ];
+  // const trustItems = [
+  //   { e: "🚚", t: "Free Shipping" },
+  //   { e: "↩️", t: "30-Day Returns" },
+  //   { e: "🏆", t: "Lifetime Warranty" },
+  //   { e: "✅", t: "100% BPA Free" },
+  //   { e: "🧊", t: "24H Ice Cold" },
+  // ];
 
   if (loading) {
     return (
@@ -475,13 +475,13 @@ export default function About() {
           </div>
 
           {/* Trust strip */}
-          <div className="ab-trust">
+          {/* <div className="ab-trust">
             {trustItems.map((x) => (
               <span key={x.t} className="ab-trust-item">
                 <span>{x.e}</span> {x.t}
               </span>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </>

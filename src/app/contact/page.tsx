@@ -518,7 +518,7 @@ export default function Contact() {
           </div>
 
           {/* Trust strip */}
-          <div className="cp-trust">
+          {/* <div className="cp-trust">
             {[
               { e: "🚚", t: "Free Shipping" },
               { e: "↩️", t: "30-Day Returns" },
@@ -530,7 +530,7 @@ export default function Contact() {
                 <span>{x.e}</span> {x.t}
               </span>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </>

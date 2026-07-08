@@ -108,13 +108,13 @@ const CATEGORIES: string[] = [
   ...Array.from(new Set(POSTS.map((p) => p.category))),
 ];
 
-const TRUST_ITEMS = [
-  { icon: "🚚", label: "Free Shipping" },
-  { icon: "↩️", label: "30-Day Returns" },
-  { icon: "🏆", label: "Lifetime Warranty" },
-  { icon: "✅", label: "100% BPA Free" },
-  { icon: "🧊", label: "24H Ice Cold" },
-];
+// const TRUST_ITEMS = [
+//   { icon: "🚚", label: "Free Shipping" },
+//   { icon: "↩️", label: "30-Day Returns" },
+//   { icon: "🏆", label: "Lifetime Warranty" },
+//   { icon: "✅", label: "100% BPA Free" },
+//   { icon: "🧊", label: "24H Ice Cold" },
+// ];
 
 export default function Blog() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -650,13 +650,13 @@ export default function Blog() {
           </div>
 
           {/* Trust Bar */}
-          <div className="bl-trust bl-u d6">
+          {/* <div className="bl-trust bl-u d6">
             {TRUST_ITEMS.map((item) => (
               <span key={item.label} className="bl-trust-item">
                 <span>{item.icon}</span> {item.label}
               </span>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
 
