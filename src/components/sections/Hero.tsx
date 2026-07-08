@@ -294,17 +294,17 @@ export default function HeroSection() {
       `}</style>
 
       {/* Ticker */}
-      <div className="ht-wrap">
+      {/* <div className="ht-wrap">
         <div className="ht-inner">
           {[
             "STAY HYDRATED",
-            "FREE SHIPPING",
+            // "FREE SHIPPING",
             "24H COLD",
             "BPA FREE",
             "STAINLESS STEEL",
             "PREMIUM QUALITY",
             "STAY HYDRATED",
-            "FREE SHIPPING",
+            // "FREE SHIPPING",
             "24H COLD",
             "BPA FREE",
             "STAINLESS STEEL",
@@ -320,7 +320,7 @@ export default function HeroSection() {
             </span>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* Hero shell */}
       <section className="hs-shell">
