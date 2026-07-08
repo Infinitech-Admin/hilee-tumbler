@@ -293,7 +293,7 @@ export default function HeroSection() {
         }
       `}</style>
 
-      {/* Ticker */}
+      {/* Tickerss */}
       {/* <div className="ht-wrap">
         <div className="ht-inner">
           {[
