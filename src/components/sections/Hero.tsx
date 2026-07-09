@@ -1,59 +1,55 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { ShoppingBag, Droplets, ArrowRight } from "lucide-react";
+import { useRef, useState } from "react";
+import { ShoppingBag, Droplets, ArrowRight, Play } from "lucide-react";
 
 const ACCENT = "#0EA5E9";
 
-interface Product {
+interface Reel {
   id: number;
-  name: string;
-  description: string;
-  price: number;
-  category: string;
-  image: string;
-  is_featured: boolean;
-  tiktok_url: string | null;
+  video: string; // path under /public, e.g. "/reels/reel-1.mp4"
+  poster?: string; // optional thumbnail shown before video loads
+  title?: string; // optional now — caption strip only shows if present
+  caption?: string; // optional now — caption strip only shows if present
+  linkUrl?: string | null; // optional TikTok/Instagram link for this reel
 }
 
+// ─── Edit this list with your own reels ───
+// Drop your .mp4 files in /public/reels/ (or point video at a full URL)
+const REELS: Reel[] = [
+  { id: 1, video: "/reels/1.mp4" },
+  { id: 2, video: "/reels/2.mp4" },
+  { id: 3, video: "/reels/3.mp4" },
+  { id: 4, video: "/reels/4.mp4" },
+  { id: 5, video: "/reels/5.mp4" },
+  { id: 6, video: "/reels/6.mp4" },
+  { id: 7, video: "/reels/7.mp4" },
+  { id: 8, video: "/reels/8.mp4" },
+];
+
 export default function HeroSection() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
   const [activeIdx, setActiveIdx] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
+  const modalVideoRef = useRef<HTMLVideoElement | null>(null);
 
-  const getImageUrl = (p: string) => {
-    if (!p) return "/placeholder.svg";
-    if (p.startsWith("http")) return p;
-    const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-    return `${BASE}/${p.startsWith("images/products/") ? p : `images/products/${p}`}`;
+  const featured = REELS[activeIdx] ?? null;
+
+  const goToNextReel = () => {
+    setActiveIdx((prev) => (prev + 1) % REELS.length);
   };
 
-  useEffect(() => {
-    fetch("/api/products?paginate=false")
-      .then((r) => (r.ok ? r.json() : []))
-      .then((d) => setProducts(Array.isArray(d) ? d : []))
-      .catch(() => setProducts([]))
-      .finally(() => setLoading(false));
-  }, []);
-
-  const featured = products[activeIdx] ?? null;
+  const openModal = () => {
+    setModalOpen(true);
+    // let the modal video take over playback (autoPlay handles it, this is just a safety kick)
+    requestAnimationFrame(() => {
+      modalVideoRef.current?.play().catch(() => {});
+    });
+  };
 
   return (
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
-        /* ── Ticker ── */
-        .ht-wrap { overflow: hidden; white-space: nowrap; padding: 9px 0;
-          border-bottom: 1px solid rgba(0,0,0,0.07); background: #E0F2FE; }
-        .ht-inner { display: inline-flex; animation: htTick 28s linear infinite; }
-        @keyframes htTick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-        .ht-item { display: inline-flex; align-items: center; gap: 8px; padding: 0 24px;
-          font-family: 'Inter', sans-serif; font-size: 0.68rem; font-weight: 800;
-          letter-spacing: 0.12em; text-transform: uppercase; }
-        .ht-dot { width: 4px; height: 4px; border-radius: 50%; background: #FF6B35; flex-shrink: 0; }
 
         /* ── Shell ── */
         .hs-shell { font-family: 'Inter', sans-serif; 
@@ -74,16 +70,22 @@ export default function HeroSection() {
           position: relative; z-index: 1;
           display: grid;
           grid-template-columns: 1fr 1fr;
+          grid-template-areas: "intro right" "cta right";
+          align-content: center;
           min-height: 520px;
           max-width: 1320px;
           margin: 0 auto;
           padding: 0 5vw;
-          gap: 0;
+          column-gap: 0;
+          row-gap: 0;
         }
 
-        /* ── Left ── */
-        .hs-left { display: flex; flex-direction: column; justify-content: center;
-          padding: 4rem 3rem 4rem 0; gap: 1.5rem; }
+        /* ── Intro (label + headline + sub) ── */
+        .hs-intro { grid-area: intro; display: flex; flex-direction: column;
+          justify-content: center; padding: 4rem 3rem 0 0; gap: 1.5rem; }
+
+        /* ── CTA group ── */
+        .hs-cta-group { grid-area: cta; padding: 1.5rem 3rem 4rem 0; }
 
         .hs-label { display: inline-flex; align-items: center; gap: 7px; width: fit-content; }
         .hs-label-text { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.14em;
@@ -131,42 +133,43 @@ export default function HeroSection() {
         /* ── Right panel ── */
         .hs-right { position: relative; display: flex; align-items: stretch; overflow: hidden; }
 
-        /* ── Image stage ── */
+        /* ── Reel stage ── */
         .hs-stage { flex: 1; display: flex; flex-direction: column;
           align-items: center; justify-content: center;
           padding: 3rem 0 3rem 3rem; position: relative; min-width: 0; }
 
-        .hs-img-frame { position: relative; width: 100%; max-width: 360px;
-          aspect-ratio: 1; border-radius: 32px; 
-          background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(240,249,255,0.8));
-          border: 2px solid rgba(14,165,233,0.25); overflow: hidden;
+        .hs-img-frame { position: relative; width: 100%; max-width: 280px;
+          aspect-ratio: 9 / 16; border-radius: 28px; 
+          background: #0C1C2E; overflow: hidden;
+          border: 2px solid rgba(14,165,233,0.35);
           display: flex; align-items: center; justify-content: center;
           cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;
-          box-shadow: 0 20px 50px rgba(14,165,233,0.15); backdrop-filter: blur(10px); }
-        .hs-img-frame:hover { transform: scale(1.03) translateY(-8px); box-shadow: 0 32px 64px rgba(14,165,233,0.3); }
-        .hs-img-frame:hover .hs-view-overlay { opacity: 1; }
+          box-shadow: 0 0 0 6px rgba(14,165,233,0.12), 0 20px 50px rgba(14,165,233,0.25);
+          animation: hs-glow-pulse 3.5s ease-in-out infinite; }
+        .hs-img-frame:hover { transform: scale(1.03) translateY(-8px); box-shadow: 0 0 0 8px rgba(14,165,233,0.18), 0 32px 64px rgba(14,165,233,0.35); }
 
-        .hs-view-overlay { position: absolute; inset: 0; background: rgba(14,165,233,0.08);
-          display: flex; align-items: center; justify-content: center;
-          opacity: 0; transition: opacity 0.2s; border-radius: 32px; }
-        .hs-view-overlay span { background: #0EA5E9; color: white; font-weight: 800;
-          font-size: 0.8rem; padding: 10px 22px; border-radius: 999px; letter-spacing: 0.05em; }
+        @keyframes hs-glow-pulse {
+          0%, 100% { box-shadow: 0 0 0 6px rgba(14,165,233,0.12), 0 20px 50px rgba(14,165,233,0.25); }
+          50% { box-shadow: 0 0 0 10px rgba(14,165,233,0.05), 0 24px 60px rgba(14,165,233,0.35); }
+        }
 
-        .hs-new-badge { position: absolute; top: 18px; left: 18px; z-index: 2;
+        .hs-reel-video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .hs-new-badge { position: absolute; top: 14px; left: 14px; z-index: 2;
           background: #0EA5E9; color: white; font-size: 0.6rem; font-weight: 900;
           letter-spacing: 0.12em; text-transform: uppercase;
-          padding: 5px 12px; border-radius: 999px; }
+          padding: 5px 12px; border-radius: 999px; display: inline-flex; align-items: center; gap: 4px; }
 
-        /* ── Product selector dots ── */
+        .hs-caption-strip { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+          padding: 14px 14px 12px; background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+          color: white; text-align: left; }
+        .hs-caption-title { font-size: 0.82rem; font-weight: 800; margin: 0 0 2px; }
+        .hs-caption-text { font-size: 0.68rem; opacity: 0.85; margin: 0; line-height: 1.4; }
+
+        /* ── Reel selector dots ── */
         .hs-dots { display: flex; gap: 6px; margin-top: 1.25rem; }
         .hs-dot-btn { width: 8px; height: 8px; border-radius: 50%; border: none;
           cursor: pointer; transition: transform 0.15s, background 0.15s; padding: 0; }
-
-        /* ── Skeleton ── */
-        .hs-skel { width: 100%; max-width: 360px; aspect-ratio: 1; border-radius: 32px;
-          background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
-          background-size: 200% 100%; animation: hsSkel 1.4s ease infinite; }
-        @keyframes hsSkel { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
         /* ── Stats sidebar ── */
         .hs-stats-bar { display: flex; flex-direction: column; gap: 1rem;
@@ -188,9 +191,10 @@ export default function HeroSection() {
         .hs-modal { background: white; border-radius: 28px; overflow: hidden;
           width: 100%; max-width: 780px; max-height: 90svh; display: flex;
           box-shadow: 0 40px 80px rgba(0,0,0,0.22); overflow-y: auto; }
-        .hs-modal-img { width: 42%; flex-shrink: 0; background: #F0F9FF;
+        .hs-modal-img { width: 42%; flex-shrink: 0; background: #0C1C2E;
           display: flex; align-items: center; justify-content: center;
-          padding: 2.5rem; box-sizing: border-box; min-height: 300px; }
+          padding: 0; box-sizing: border-box; min-height: 300px; }
+        .hs-modal-video { width: 100%; height: 100%; object-fit: cover; display: block; }
         .hs-modal-body { flex: 1; padding: 2rem 2rem 2rem 1.5rem;
           display: flex; flex-direction: column; gap: 1rem; overflow-y: auto; }
         .hs-modal-close { position: absolute; top: 1rem; right: 1rem; z-index: 10;
@@ -203,16 +207,7 @@ export default function HeroSection() {
           padding: 4px 12px; border-radius: 999px; width: fit-content; }
         .hs-modal-name { font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight: 900;
           color: #0C1C2E; margin: 0; line-height: 1.15; }
-        .hs-modal-price { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 900;
-          color: #0EA5E9; margin: 0; }
         .hs-modal-desc { font-size: 0.88rem; color: #4B5563; line-height: 1.7; margin: 0; flex: 1; }
-        .hs-modal-shop-label { font-size: 0.6rem; font-weight: 800; letter-spacing: 0.1em;
-          text-transform: uppercase; color: #6B7280; margin: 0; }
-        .hs-tiktok-btn { display: flex; align-items: center; justify-content: center; gap: 8px;
-          padding: 14px 1rem; border-radius: 999px; background: #010101; color: white;
-          font-family: 'Inter', sans-serif; font-weight: 800; font-size: 0.85rem;
-          text-decoration: none; transition: opacity 0.2s; border: none; cursor: pointer; }
-        .hs-tiktok-btn:hover { opacity: 0.85; }
 
         /* ══════ RESPONSIVE ══════ */
 
@@ -220,25 +215,31 @@ export default function HeroSection() {
         @media (max-width: 860px) {
           .hs-grid {
             grid-template-columns: 1fr;
+            grid-template-areas: "intro" "right" "cta";
             padding: 0 1.25rem;
           }
-          .hs-left {
-            padding: 2.5rem 0 1rem;
+          .hs-intro {
+            padding: 2.5rem 0 0;
             align-items: center;
             text-align: center;
+          }
+          .hs-cta-group {
+            padding: 1.5rem 0 1rem;
+            display: flex;
+            justify-content: center;
           }
           .hs-sub { text-align: center; max-width: 100%; }
           .hs-pills { justify-content: center; }
           .hs-ctas { justify-content: center; }
           .hs-trust { justify-content: center; }
 
-          /* Right: image + stats side by side on tablet */
+          /* Right: reel + stats side by side on tablet */
           .hs-right {
             flex-direction: row;
             justify-content: center;
             align-items: flex-start;
             gap: 1.25rem;
-            padding-bottom: 2.5rem;
+            padding-bottom: 1rem;
           }
           .hs-stage {
             padding: 0;
@@ -257,10 +258,11 @@ export default function HeroSection() {
           .hs-stat-card { min-width: 80px; }
         }
 
-        /* Mobile: fully stacked, stats go horizontal below image */
+        /* Mobile: fully stacked, stats go horizontal below reel */
         @media (max-width: 560px) {
           .hs-grid { padding: 0 1rem; }
-          .hs-left { padding: 2rem 0 1rem; gap: 1.1rem; }
+          .hs-intro { padding: 2rem 0 0; gap: 1.1rem; }
+          .hs-cta-group { padding: 1.25rem 0 0.75rem; }
           .hs-headline { font-size: clamp(2rem, 9vw, 2.6rem); }
 
           .hs-right {
@@ -269,10 +271,9 @@ export default function HeroSection() {
             gap: 1rem;
           }
           .hs-stage { padding: 0; width: 100%; }
-          .hs-img-frame { max-width: 100%; border-radius: 22px; }
-          .hs-skel { max-width: 100%; border-radius: 22px; }
+          .hs-img-frame { max-width: 220px; border-radius: 22px; }
 
-          /* Stats go horizontal row below image */
+          /* Stats go horizontal row below reel */
           .hs-stats-bar {
             flex-direction: row;
             border-left: none;
@@ -288,39 +289,10 @@ export default function HeroSection() {
 
           /* Modal */
           .hs-modal { flex-direction: column; border-radius: 20px; }
-          .hs-modal-img { width: 100%; min-height: 220px; padding: 1.5rem; }
+          .hs-modal-img { width: 100%; min-height: 220px; padding: 0; }
           .hs-modal-body { padding: 1.25rem 1.25rem 1.5rem; }
         }
       `}</style>
-
-      {/* Tickerss */}
-      {/* <div className="ht-wrap">
-        <div className="ht-inner">
-          {[
-            "STAY HYDRATED",
-            // "FREE SHIPPING",
-            "24H COLD",
-            "BPA FREE",
-            "STAINLESS STEEL",
-            "PREMIUM QUALITY",
-            "STAY HYDRATED",
-            // "FREE SHIPPING",
-            "24H COLD",
-            "BPA FREE",
-            "STAINLESS STEEL",
-            "PREMIUM QUALITY",
-          ].map((t, i) => (
-            <span
-              key={i}
-              className="ht-item"
-              style={{ color: i % 2 === 0 ? "#1F2937" : ACCENT }}
-            >
-              <span className="ht-dot" />
-              {t}
-            </span>
-          ))}
-        </div>
-      </div> */}
 
       {/* Hero shell */}
       <section className="hs-shell">
@@ -328,8 +300,8 @@ export default function HeroSection() {
         <div className="hs-blob-b" />
 
         <div className="hs-grid">
-          {/* ══ LEFT ══ */}
-          <div className="hs-left">
+          {/* ══ INTRO TEXT ══ */}
+          <div className="hs-intro">
             <div className="hs-label">
               <Droplets size={13} color={ACCENT} />
               <span className="hs-label-text">
@@ -347,68 +319,63 @@ export default function HeroSection() {
               Insulated stainless steel tumblers built for life on the go.
               Ice-cold for 24 hours. Yours for every adventure.
             </p>
-
-            <div className="hs-ctas">
-              <Link href="/products" className="hs-btn-primary">
-                <ShoppingBag size={16} />
-                Shop now
-              </Link>
-              <Link href="/about" className="hs-btn-ghost">
-                Our story <ArrowRight size={14} />
-              </Link>
-            </div>
           </div>
 
           {/* ══ RIGHT ══ */}
           <div className="hs-right">
             <div className="hs-stage">
-              {loading ? (
-                <div className="hs-skel" />
-              ) : !featured ? (
+              {!featured ? (
                 <p
                   style={{
                     color: "#6B7280",
                     fontFamily: "'Inter',sans-serif",
                   }}
                 >
-                  No products.
+                  No reels yet.
                 </p>
               ) : (
                 <>
                   <div
                     className="hs-img-frame"
-                    onClick={() => setModalOpen(true)}
+                    onClick={openModal}
                     role="button"
                     tabIndex={0}
-                    onKeyDown={(e) => e.key === "Enter" && setModalOpen(true)}
-                    aria-label={`View ${featured.name}`}
+                    onKeyDown={(e) => e.key === "Enter" && openModal()}
+                    aria-label={`Play reel ${featured.id}`}
                   >
-                    <Image
-                      src={getImageUrl(featured.image)}
-                      alt={featured.name}
-                      width={320}
-                      height={320}
-                      style={{
-                        objectFit: "contain",
-                        maxWidth: "80%",
-                        maxHeight: "80%",
-                      }}
-                      priority
+                    <video
+                      key={featured.id}
+                      className="hs-reel-video"
+                      src={featured.video}
+                      poster={featured.poster}
+                      autoPlay
+                      muted
+                      playsInline
+                      onEnded={goToNextReel}
                     />
-                    <div className="hs-view-overlay">
-                      <span>VIEW PRODUCT</span>
-                    </div>
-                    <span className="hs-new-badge">NEW</span>
+                    <span className="hs-new-badge">
+                      <Play size={9} fill="white" /> REEL
+                    </span>
+                    {(featured.title || featured.caption) && (
+                      <div className="hs-caption-strip">
+                        {featured.title && (
+                          <p className="hs-caption-title">{featured.title}</p>
+                        )}
+                        {featured.caption && (
+                          <p className="hs-caption-text">{featured.caption}</p>
+                        )}
+                      </div>
+                    )}
                   </div>
 
-                  {products.length > 1 && (
+                  {REELS.length > 1 && (
                     <div className="hs-dots">
-                      {products.map((_, i) => (
+                      {REELS.map((_, i) => (
                         <button
                           key={i}
                           className="hs-dot-btn"
                           onClick={() => setActiveIdx(i)}
-                          aria-label={`Product ${i + 1}`}
+                          aria-label={`Reel ${i + 1}`}
                           style={{
                             background:
                               i === activeIdx ? ACCENT : "rgba(0,0,0,0.18)",
@@ -425,6 +392,19 @@ export default function HeroSection() {
 
             {/* Stats sidebar */}
           </div>
+
+          {/* ══ CTA GROUP ══ */}
+          <div className="hs-cta-group">
+            <div className="hs-ctas">
+              <Link href="/products" className="hs-btn-primary">
+                <ShoppingBag size={16} />
+                Shop now
+              </Link>
+              <Link href="/about" className="hs-btn-ghost">
+                Our story <ArrowRight size={14} />
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -434,7 +414,7 @@ export default function HeroSection() {
           position: "relative",
           height: "1px",
           background: "rgba(0,0,0,0.08)",
-          margin: "0 4rem",
+          margin: "0 1.5rem",
         }}
       >
         <div
@@ -485,47 +465,30 @@ export default function HeroSection() {
             </button>
 
             <div className="hs-modal-img">
-              <Image
-                src={getImageUrl(featured.image)}
-                alt={featured.name}
-                width={280}
-                height={280}
-                style={{
-                  objectFit: "contain",
-                  maxWidth: "100%",
-                  maxHeight: "100%",
-                }}
+              <video
+                ref={modalVideoRef}
+                className="hs-modal-video"
+                src={featured.video}
+                poster={featured.poster}
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
               />
             </div>
 
-            <div className="hs-modal-body">
-              <span className="hs-modal-cat">{featured.category}</span>
-              <h2 className="hs-modal-name">{featured.name}</h2>
-              <p className="hs-modal-desc">{featured.description}</p>
-
-              <p className="hs-modal-shop-label">Available on</p>
-              <a
-                href={featured.tiktok_url ?? "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hs-tiktok-btn"
-                style={{
-                  pointerEvents: featured.tiktok_url ? "auto" : "none",
-                  opacity: featured.tiktok_url ? 1 : 0.4,
-                }}
-              >
-                <svg
-                  width="15"
-                  height="15"
-                  viewBox="0 0 24 24"
-                  fill="white"
-                  aria-hidden="true"
-                >
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.26 8.26 0 0 0 4.84 1.55V6.79a4.85 4.85 0 0 1-1.07-.1z" />
-                </svg>
-                Shop now
-              </a>
-            </div>
+            {(featured.title || featured.caption) && (
+              <div className="hs-modal-body">
+                <span className="hs-modal-cat">Reel</span>
+                {featured.title && (
+                  <h2 className="hs-modal-name">{featured.title}</h2>
+                )}
+                {featured.caption && (
+                  <p className="hs-modal-desc">{featured.caption}</p>
+                )}
+              </div>
+            )}
           </div>
         </div>
       )}
