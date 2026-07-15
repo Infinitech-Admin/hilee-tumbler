@@ -628,16 +628,31 @@ export default function MenuPage() {
                 <div key={groupIndex} className="mp-sidebar-group">
                   {group.cats.map((cat) => {
                     const style = getCategoryStyle(cat.name)
-                    const count = products.filter(
-                      (p) => normalizeCategory(p.category) === cat.name,
-                    ).length
-                    const isOn = activeFilters.includes(cat.name)
+                    const normalizedName = normalizeCategory(cat.name)
+
+                    const isOn = activeFilters.includes(normalizedName)
+
+                    const count = products.filter((p) => {
+                      const normalizedCat = normalizeCategory(p.category)
+
+                      const matchSearch = p.name
+                        .toLowerCase()
+                        .includes(searchQuery.toLowerCase())
+
+                      if (!matchSearch) return false
+
+                      if (normalizedName === "other") {
+                        return !knownCats.includes(normalizedCat)
+                      }
+
+                      return normalizedCat === normalizedName
+                    }).length
 
                     return (
                       <button
                         key={cat.name}
                         className={`mp-cb-item ${isOn ? "on" : ""}`}
-                        onClick={() => toggleFilter(cat.name)}
+                        onClick={() => toggleFilter(normalizedName)}
                       >
                         <div
                           className="mp-cb-box"
@@ -721,7 +736,7 @@ export default function MenuPage() {
               )}
             </aside>
 
-            <div className="mp-main">
+            <div className="mp-main mt-4">
               {/* ── Mobile filter FAB + Drawer ── */}
               <button
                 className="mp-filter-fab"
@@ -768,11 +783,25 @@ export default function MenuPage() {
                   {CATEGORY_GROUPS.map((group, gi) => (
                     <div key={gi}>
                       {group.cats.map((cat) => {
-                        const count = products.filter(
-                          (p) => normalizeCategory(p.category) === cat.name,
-                        ).length
+                        const normalizedName = normalizeCategory(cat.name)
 
-                        const isOn = activeFilters.includes(cat.name)
+                        const count = products.filter((p) => {
+                          const normalizedCat = normalizeCategory(p.category)
+
+                          const matchSearch = p.name
+                            .toLowerCase()
+                            .includes(searchQuery.toLowerCase())
+
+                          if (!matchSearch) return false
+
+                          if (normalizedName === "other") {
+                            return !knownCats.includes(normalizedCat)
+                          }
+
+                          return normalizedCat === normalizedName
+                        }).length
+
+                        const isOn = activeFilters.includes(normalizedName)
 
                         return (
                           <button
