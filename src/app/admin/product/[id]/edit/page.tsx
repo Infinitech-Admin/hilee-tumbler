@@ -1,12 +1,12 @@
-"use client";
+"use client"
 
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/app-sidebar"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
+import { Switch } from "@/components/ui/switch"
 import {
   Select,
   SelectContent,
@@ -15,7 +15,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/components/ui/select"
 import {
   ArrowLeft,
   Loader2,
@@ -24,25 +24,25 @@ import {
   ShoppingBag,
   Link,
   LayoutGrid,
-} from "lucide-react";
-import { useState, useEffect, useRef } from "react";
-import { useRouter, useParams } from "next/navigation";
-import { useToast } from "@/hooks/use-toast";
-import { useAuthStore } from "@/store/authStore";
-import Image from "next/image";
+} from "lucide-react"
+import { useState, useEffect, useRef } from "react"
+import { useRouter, useParams } from "next/navigation"
+import { useToast } from "@/hooks/use-toast"
+import { useAuthStore } from "@/store/authStore"
+import Image from "next/image"
 
-const purpleGrad = "linear-gradient(135deg, #7c3aed 0%, #9333ea 100%)";
+const purpleGrad = "linear-gradient(135deg, #7c3aed 0%, #9333ea 100%)"
 
 const getImageUrl = (imagePath: string): string => {
-  if (!imagePath) return "/placeholder.svg";
+  if (!imagePath) return "/placeholder.svg"
   if (imagePath.startsWith("http://") || imagePath.startsWith("https://"))
-    return imagePath;
-  const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+    return imagePath
+  const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
   const fullPath = imagePath.startsWith("images/products/")
     ? imagePath
-    : `images/products/${imagePath}`;
-  return `${BASE}/${fullPath}`;
-};
+    : `images/products/${imagePath}`
+  return `${BASE}/${fullPath}`
+}
 
 // ── Static Categories ────────────────────────────────────────────────────────
 // Backend stores category as a plain string (validation rule:
@@ -50,55 +50,46 @@ const getImageUrl = (imagePath: string): string => {
 // grouped list for the picker UI — no API call, no FK, no category table.
 
 interface CategoryOption {
-  name: string;
-  color: string;
+  name: string
+  color: string
 }
 
 interface CategoryGroup {
-  label: string;
-  options: CategoryOption[];
+  options: CategoryOption[]
 }
 
 const CATEGORY_GROUPS: CategoryGroup[] = [
   {
-    label: "Lifestyle",
-    options: [
-      { name: "Everyday Use", color: "#f97316" },
-      { name: "Travel", color: "#3b82f6" },
-      { name: "Office", color: "#2563eb" },
-    ],
+    options: [{ name: "Home Supplies", color: "#22c55e" }],
   },
   {
-    label: "For Them",
-    options: [
-      { name: "For Kids", color: "#f59e0b" },
-      { name: "Couples", color: "#ec4899" },
-      { name: "Gift Sets", color: "#a855f7" },
-      { name: "Adult", color: "#18181b" },
-    ],
+    options: [{ name: "Tea & Coffeeware", color: "#92400e" }],
   },
   {
-    label: "Activity",
-    options: [
-      { name: "Gym & Sports", color: "#22c55e" },
-      { name: "Outdoor", color: "#166534" },
-      { name: "Coffee", color: "#78350f" },
-      { name: "School", color: "#ef4444" },
-    ],
+    options: [{ name: "Bakeware", color: "#f59e0b" }],
   },
-];
+  {
+    options: [{ name: "Cookware", color: "#ef4444" }],
+  },
+  {
+    options: [{ name: "Cutlery & Tableware", color: "#3b82f6" }],
+  },
+  {
+    options: [{ name: "Drinkware", color: "#06b6d4" }],
+  },
+]
 
 export default function EditProductPage() {
-  const router = useRouter();
-  const params = useParams();
-  const id = params.id as string;
-  const { toast } = useToast();
-  const tokenFromStore = useAuthStore((state) => state.token);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter()
+  const params = useParams()
+  const id = params.id as string
+  const { toast } = useToast()
+  const tokenFromStore = useAuthStore((state) => state.token)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   const [formData, setFormData] = useState({
     name: "",
@@ -110,33 +101,33 @@ export default function EditProductPage() {
     shopee_url: "",
     lazada_url: "",
     is_active: true,
-  });
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [currentImage, setCurrentImage] = useState<string>("");
+  })
+  const [selectedImage, setSelectedImage] = useState<File | null>(null)
+  const [imagePreview, setImagePreview] = useState<string | null>(null)
+  const [currentImage, setCurrentImage] = useState<string>("")
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener("resize", check)
+    return () => window.removeEventListener("resize", check)
+  }, [])
 
   useEffect(() => {
-    useAuthStore.getState().initializeAuth();
-  }, []);
+    useAuthStore.getState().initializeAuth()
+  }, [])
 
   useEffect(() => {
-    fetchProduct();
-  }, [id]);
+    fetchProduct()
+  }, [id])
 
   const fetchProduct = async () => {
     try {
-      setLoading(true);
+      setLoading(true)
       const token =
         tokenFromStore ||
         localStorage.getItem("auth_token") ||
-        localStorage.getItem("token");
+        localStorage.getItem("token")
 
       const response = await fetch(`/api/products/${id}`, {
         headers: {
@@ -145,12 +136,12 @@ export default function EditProductPage() {
             : {}),
           Accept: "application/json",
         },
-      });
-      const data = await response.json();
+      })
+      const data = await response.json()
       if (!response.ok)
-        throw new Error(data.message || "Failed to fetch product");
+        throw new Error(data.message || "Failed to fetch product")
 
-      const product = data.data ?? data;
+      const product = data.data ?? data
       setFormData({
         name: product.name ?? "",
         description: product.description ?? "",
@@ -161,54 +152,54 @@ export default function EditProductPage() {
         shopee_url: product.shopee_url ?? "",
         lazada_url: product.lazada_url ?? "",
         is_active: product.is_active ?? true,
-      });
-      setCurrentImage(product.image ?? "");
+      })
+      setCurrentImage(product.image ?? "")
     } catch (error: any) {
       toast({
         variant: "destructive",
         title: "Error",
         description: error.message || "Failed to load product",
-      });
+      })
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSaving(true);
+    e.preventDefault()
+    setSaving(true)
 
     try {
       const token =
         tokenFromStore ||
         localStorage.getItem("auth_token") ||
         localStorage.getItem("token") ||
-        useAuthStore.getState().token;
+        useAuthStore.getState().token
 
       if (!token || token === "null" || token === "undefined") {
         toast({
           variant: "destructive",
           title: "Unauthenticated",
           description: "Your session expired. Please log in again.",
-        });
-        router.push("/admin/login");
-        return;
+        })
+        router.push("/admin/login")
+        return
       }
 
-      const data = new FormData();
-      data.append("_method", "PUT");
-      data.append("name", formData.name);
-      data.append("description", formData.description);
-      data.append("price", formData.price);
-      data.append("stock", formData.stock);
-      data.append("is_active", formData.is_active ? "1" : "0");
-      data.append("tiktok_url", formData.tiktok_url);
-      data.append("shopee_url", formData.shopee_url);
-      data.append("lazada_url", formData.lazada_url);
+      const data = new FormData()
+      data.append("_method", "PUT")
+      data.append("name", formData.name)
+      data.append("description", formData.description)
+      data.append("price", formData.price)
+      data.append("stock", formData.stock)
+      data.append("is_active", formData.is_active ? "1" : "0")
+      data.append("tiktok_url", formData.tiktok_url)
+      data.append("shopee_url", formData.shopee_url)
+      data.append("lazada_url", formData.lazada_url)
       if (formData.category && formData.category !== "none")
-        data.append("category", formData.category);
+        data.append("category", formData.category)
 
-      if (selectedImage) data.append("image", selectedImage);
+      if (selectedImage) data.append("image", selectedImage)
 
       const response = await fetch(`/api/products/${id}`, {
         method: "POST",
@@ -217,41 +208,41 @@ export default function EditProductPage() {
           Accept: "application/json",
         },
         body: data,
-      });
+      })
 
-      const result = await response.json();
+      const result = await response.json()
       if (!response.ok)
-        throw new Error(result.message || "Failed to update product");
+        throw new Error(result.message || "Failed to update product")
 
-      toast({ title: "Success", description: "Product updated successfully!" });
-      router.push("/admin/product");
+      toast({ title: "Success", description: "Product updated successfully!" })
+      router.push("/admin/product")
     } catch (error: any) {
       toast({
         variant: "destructive",
         title: "Error",
         description: error.message,
-      });
+      })
     } finally {
-      setSaving(false);
+      setSaving(false)
     }
-  };
+  }
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
 
   const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+    const file = e.target.files?.[0]
     if (file) {
-      setSelectedImage(file);
-      const reader = new FileReader();
-      reader.onload = () => setImagePreview(reader.result as string);
-      reader.readAsDataURL(file);
+      setSelectedImage(file)
+      const reader = new FileReader()
+      reader.onload = () => setImagePreview(reader.result as string)
+      reader.readAsDataURL(file)
     }
-  };
+  }
 
   if (loading) {
     return (
@@ -276,7 +267,7 @@ export default function EditProductPage() {
           </div>
         </div>
       </SidebarProvider>
-    );
+    )
   }
 
   return (
@@ -455,24 +446,20 @@ export default function EditProductPage() {
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="none">— No category —</SelectItem>
-                          {CATEGORY_GROUPS.map((group) => (
-                            <SelectGroup key={group.label}>
-                              <SelectLabel className="text-purple-400 text-[11px] font-bold uppercase tracking-widest px-2">
-                                {group.label}
-                              </SelectLabel>
-                              {group.options.map((opt) => (
-                                <SelectItem key={opt.name} value={opt.name}>
-                                  <span className="inline-flex items-center gap-2">
-                                    <span
-                                      className="w-2 h-2 rounded-full inline-block"
-                                      style={{ background: opt.color }}
-                                    />
-                                    {opt.name}
-                                  </span>
-                                </SelectItem>
-                              ))}
-                            </SelectGroup>
-                          ))}
+
+                          {CATEGORY_GROUPS.flatMap((group) =>
+                            group.options.map((opt) => (
+                              <SelectItem key={opt.name} value={opt.name}>
+                                <span className="inline-flex items-center gap-2">
+                                  <span
+                                    className="w-2 h-2 rounded-full inline-block"
+                                    style={{ background: opt.color }}
+                                  />
+                                  {opt.name}
+                                </span>
+                              </SelectItem>
+                            )),
+                          )}
                         </SelectContent>
                       </Select>
                     </div>
@@ -709,5 +696,5 @@ export default function EditProductPage() {
         </div>
       </div>
     </SidebarProvider>
-  );
+  )
 }

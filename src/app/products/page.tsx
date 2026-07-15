@@ -1,56 +1,67 @@
-"use client";
+"use client"
 
-import { useState, useEffect, useMemo } from "react";
-import type { MenuItem } from "@/types";
-import MenuItemCard, { getCategoryStyle } from "@/components/ui/menu-item-card";
+import { useState, useEffect, useMemo } from "react"
+import type { MenuItem } from "@/types"
+import MenuItemCard, { getCategoryStyle } from "@/components/ui/menu-item-card"
 
-const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-
-const getImageUrl = (imagePath: string): string => {
-  if (!imagePath) return "/placeholder.svg";
-  if (imagePath.startsWith("http://") || imagePath.startsWith("https://"))
-    return imagePath;
-  const fullPath = imagePath.startsWith("images/products/")
-    ? imagePath
-    : `images/products/${imagePath}`;
-  return `${BASE}/${fullPath}`;
-};
-
-function normalizeCategory(category?: string | null): string {
-  return category?.trim().toLowerCase() || "";
+type Category = {
+  name: string
+  color: string
 }
 
-const CATEGORY_GROUPS: { label: string; cats: string[] }[] = [
+const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+
+const getImageUrl = (imagePath: string): string => {
+  if (!imagePath) return "/placeholder.svg"
+  if (imagePath.startsWith("http://") || imagePath.startsWith("https://"))
+    return imagePath
+  const fullPath = imagePath.startsWith("images/products/")
+    ? imagePath
+    : `images/products/${imagePath}`
+  return `${BASE}/${fullPath}`
+}
+
+function normalizeCategory(category?: string | null): string {
+  return category?.trim().toLowerCase() || ""
+}
+
+const CATEGORY_GROUPS: { cats: Category[] }[] = [
   {
-    label: "Lifestyle",
-    cats: ["everyday use", "travel", "office"],
+    cats: [{ name: "Home Supplies", color: "#22c55e" }],
   },
   {
-    label: "For Them",
-    cats: ["for kids", "couples", "gift sets", "adult"],
+    cats: [{ name: "Tea & Coffeeware", color: "#92400e" }],
   },
   {
-    label: "Activity",
-    cats: ["gym & sports", "outdoor", "coffee", "school"],
+    cats: [{ name: "Bakeware", color: "#f59e0b" }],
   },
-];
+  {
+    cats: [{ name: "Cookware", color: "#ef4444" }],
+  },
+  {
+    cats: [{ name: "Cutlery & Tableware", color: "#3b82f6" }],
+  },
+  {
+    cats: [{ name: "Drinkware", color: "#06b6d4" }],
+  },
+]
 
 export default function MenuPage() {
-  const [products, setProducts] = useState<MenuItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [activeFilters, setActiveFilters] = useState<string[]>([]);
-  const [searchQuery, setSearch] = useState("");
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [products, setProducts] = useState<MenuItem[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [activeFilters, setActiveFilters] = useState<string[]>([])
+  const [searchQuery, setSearch] = useState("")
+  const [drawerOpen, setDrawerOpen] = useState(false)
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        setLoading(true);
-        setError(null);
-        const response = await fetch("/api/products?paginate=false");
-        const data = await response.json();
-        if (!response.ok) throw new Error("Failed to fetch products");
+        setLoading(true)
+        setError(null)
+        const response = await fetch("/api/products?paginate=false")
+        const data = await response.json()
+        if (!response.ok) throw new Error("Failed to fetch products")
         const transformed: MenuItem[] = data.map((product: any) => ({
           id: product.id,
           name: product.name,
@@ -63,48 +74,48 @@ export default function MenuPage() {
           image: getImageUrl(product.image),
           category: product.category ?? null,
           tiktok_url: product.tiktok_url ?? null,
-        }));
-        setProducts(transformed);
+        }))
+        setProducts(transformed)
       } catch (err) {
         setError(
           err instanceof Error ? err.message : "Failed to fetch products",
-        );
-        setProducts([]);
+        )
+        setProducts([])
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
-    fetchProducts();
-  }, []);
+    }
+    fetchProducts()
+  }, [])
 
-  const allGroupCats = useMemo(
-    () => CATEGORY_GROUPS.flatMap((g) => g.cats),
-    [],
-  );
+  const allGroupCats = useMemo(() => CATEGORY_GROUPS.flatMap((g) => g.cats), [])
 
   const toggleFilter = (cat: string) => {
-    setActiveFilters((prev) =>
-      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat],
-    );
-  };
+    const normalized = normalizeCategory(cat)
 
-  const clearFilters = () => setActiveFilters([]);
+    setActiveFilters((prev) =>
+      prev.includes(normalized)
+        ? prev.filter((c) => c !== normalized)
+        : [...prev, normalized],
+    )
+  }
+
+  const clearFilters = () => setActiveFilters([])
+
+  const knownCats = CATEGORY_GROUPS.flatMap((g) => g.cats.map((c) => c.name))
 
   const filtered = products.filter((p) => {
-    const cat = normalizeCategory(p.category);
-    const knownCats = CATEGORY_GROUPS.flatMap((g) => g.cats);
+    const cat = normalizeCategory(p.category)
 
     const matchCat =
       activeFilters.length === 0 ||
       activeFilters.includes(cat) ||
-      (activeFilters.includes("other") && !knownCats.includes(cat));
+      (activeFilters.includes("other") && !knownCats.includes(cat))
 
-    const matchSearch = p.name
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase());
+    const matchSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase())
 
-    return matchCat && matchSearch;
-  });
+    return matchCat && matchSearch
+  })
 
   if (loading) {
     return (
@@ -193,7 +204,7 @@ export default function MenuPage() {
           </div>
         </div>
       </>
-    );
+    )
   }
 
   if (error) {
@@ -231,7 +242,7 @@ export default function MenuPage() {
           <p style={{ color: "#8FBFCE", fontSize: "0.85rem" }}>{error}</p>
         </div>
       </div>
-    );
+    )
   }
 
   const tickerColors = [
@@ -241,7 +252,7 @@ export default function MenuPage() {
     "#0369A1",
     "#7DD3FC",
     "#0284C7",
-  ];
+  ]
 
   return (
     <>
@@ -613,26 +624,24 @@ export default function MenuPage() {
             <aside className="mp-u d5 mp-sidebar">
               <div className="mp-sidebar-title">Filter by</div>
 
-              {CATEGORY_GROUPS.map((group) => (
-                <div key={group.label} className="mp-sidebar-group">
-                  <div className="mp-sidebar-group-label">{group.label}</div>
+              {CATEGORY_GROUPS.map((group, groupIndex) => (
+                <div key={groupIndex} className="mp-sidebar-group">
                   {group.cats.map((cat) => {
-                    const style = getCategoryStyle(cat);
+                    const style = getCategoryStyle(cat.name)
                     const count = products.filter(
-                      (p) => normalizeCategory(p.category) === cat,
-                    ).length;
-                    const isOn = activeFilters.includes(cat);
+                      (p) => normalizeCategory(p.category) === cat.name,
+                    ).length
+                    const isOn = activeFilters.includes(cat.name)
+
                     return (
                       <button
-                        key={cat}
+                        key={cat.name}
                         className={`mp-cb-item ${isOn ? "on" : ""}`}
-                        onClick={() => toggleFilter(cat)}
+                        onClick={() => toggleFilter(cat.name)}
                       >
                         <div
                           className="mp-cb-box"
-                          style={
-                            isOn ? { background: style.accent } : undefined
-                          }
+                          style={isOn ? { background: cat.color } : undefined}
                         >
                           <svg
                             className="mp-cb-check"
@@ -650,23 +659,26 @@ export default function MenuPage() {
                             />
                           </svg>
                         </div>
+
                         <span
                           className="mp-cb-dot"
-                          style={{ background: style.accent }}
+                          style={{ background: cat.color }}
                         />
+
                         <span
                           className="mp-cb-label"
-                          style={isOn ? { color: style.accent } : undefined}
+                          style={isOn ? { color: cat.color } : undefined}
                         >
-                          {style.label}
+                          {cat.name}
                         </span>
+
                         <span
                           className="mp-cb-count"
                           style={
                             isOn
                               ? {
-                                  background: `${style.accent}18`,
-                                  color: style.accent,
+                                  background: `${cat.color}18`,
+                                  color: cat.color,
                                 }
                               : undefined
                           }
@@ -674,7 +686,7 @@ export default function MenuPage() {
                           {count}
                         </span>
                       </button>
-                    );
+                    )
                   })}
                 </div>
               ))}
@@ -682,7 +694,7 @@ export default function MenuPage() {
               {activeFilters.length > 0 && (
                 <div className="mp-active-pills">
                   {activeFilters.map((cat) => {
-                    const style = getCategoryStyle(cat);
+                    const style = getCategoryStyle(cat)
                     return (
                       <span
                         key={cat}
@@ -697,7 +709,7 @@ export default function MenuPage() {
                           ✕
                         </button>
                       </span>
-                    );
+                    )
                   })}
                 </div>
               )}
@@ -754,28 +766,24 @@ export default function MenuPage() {
                 </div>
                 <div className="mp-drawer-body">
                   {CATEGORY_GROUPS.map((group, gi) => (
-                    <div key={group.label}>
-                      <div
-                        className={`mp-drawer-group-label ${gi === 0 ? "first-child" : ""}`}
-                      >
-                        {group.label}
-                      </div>
+                    <div key={gi}>
                       {group.cats.map((cat) => {
-                        const style = getCategoryStyle(cat);
                         const count = products.filter(
-                          (p) => normalizeCategory(p.category) === cat,
-                        ).length;
-                        const isOn = activeFilters.includes(cat);
+                          (p) => normalizeCategory(p.category) === cat.name,
+                        ).length
+
+                        const isOn = activeFilters.includes(cat.name)
+
                         return (
                           <button
-                            key={cat}
+                            key={cat.name}
                             className={`mp-drawer-cb-item ${isOn ? "on" : ""}`}
-                            onClick={() => toggleFilter(cat)}
+                            onClick={() => toggleFilter(cat.name)}
                           >
                             <div
                               className="mp-drawer-cb-box"
                               style={
-                                isOn ? { background: style.accent } : undefined
+                                isOn ? { background: cat.color } : undefined
                               }
                             >
                               <svg
@@ -794,23 +802,26 @@ export default function MenuPage() {
                                 />
                               </svg>
                             </div>
+
                             <span
                               className="mp-drawer-cb-dot"
-                              style={{ background: style.accent }}
+                              style={{ background: cat.color }}
                             />
+
                             <span
                               className="mp-drawer-cb-label"
-                              style={isOn ? { color: style.accent } : undefined}
+                              style={isOn ? { color: cat.color } : undefined}
                             >
-                              {style.label}
+                              {cat.name}
                             </span>
+
                             <span
                               className="mp-drawer-cb-count"
                               style={
                                 isOn
                                   ? {
-                                      background: `${style.accent}18`,
-                                      color: style.accent,
+                                      background: `${cat.color}18`,
+                                      color: cat.color,
                                     }
                                   : undefined
                               }
@@ -818,7 +829,7 @@ export default function MenuPage() {
                               {count}
                             </span>
                           </button>
-                        );
+                        )
                       })}
                     </div>
                   ))}
@@ -894,5 +905,5 @@ export default function MenuPage() {
         </div>
       </div>
     </>
-  );
+  )
 }

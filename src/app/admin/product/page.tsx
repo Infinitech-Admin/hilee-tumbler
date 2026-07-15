@@ -1,12 +1,12 @@
-"use client";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import type React from "react";
-import { AppSidebar } from "@/components/app-sidebar";
-import { Button } from "@/components/ui/button";
-import { useAuthStore } from "@/store/authStore";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
+"use client"
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import type React from "react"
+import { AppSidebar } from "@/components/app-sidebar"
+import { Button } from "@/components/ui/button"
+import { useAuthStore } from "@/store/authStore"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
 import {
   Select,
   SelectContent,
@@ -15,7 +15,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/components/ui/select"
 import {
   MoreHorizontal,
   Eye,
@@ -40,7 +40,7 @@ import {
   Clock,
   Link,
   LayoutGrid,
-} from "lucide-react";
+} from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -48,7 +48,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu"
 import {
   Dialog,
   DialogContent,
@@ -57,8 +57,8 @@ import {
   DialogTitle,
   DialogFooter,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+} from "@/components/ui/dialog"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -69,10 +69,10 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { useState, useEffect, useRef, type FormEvent } from "react";
-import { useRouter } from "next/navigation";
-import { useToast } from "@/hooks/use-toast";
+} from "@/components/ui/alert-dialog"
+import { useState, useEffect, useRef, type FormEvent } from "react"
+import { useRouter } from "next/navigation"
+import { useToast } from "@/hooks/use-toast"
 import {
   type ColumnDef,
   type ColumnFiltersState,
@@ -82,31 +82,31 @@ import {
   getCoreRowModel,
   getFilteredRowModel,
   getSortedRowModel,
-} from "@tanstack/react-table";
-import { Checkbox } from "@/components/ui/checkbox";
-import Image from "next/image";
+} from "@tanstack/react-table"
+import { Checkbox } from "@/components/ui/checkbox"
+import Image from "next/image"
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
 interface Product {
-  id: number;
-  name: string;
-  description: string;
-  price: number | string;
-  stock: number;
-  image: string;
-  category: string | null;
-  tiktok_url: string | null;
-  shopee_url: string | null;
-  lazada_url: string | null;
-  is_active: boolean;
-  created_at: string;
-  updated_at: string;
+  id: number
+  name: string
+  description: string
+  price: number | string
+  stock: number
+  image: string
+  category: string | null
+  tiktok_url: string | null
+  shopee_url: string | null
+  lazada_url: string | null
+  is_active: boolean
+  created_at: string
+  updated_at: string
 }
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
-const purpleGrad = "linear-gradient(135deg, #0891b2 0%, #06b6d4 100%)";
+const purpleGrad = "linear-gradient(135deg, #0891b2 0%, #06b6d4 100%)"
 
 // ── Static Categories ────────────────────────────────────────────────────────
 // Backend stores category as a plain string (validation rule:
@@ -114,72 +114,63 @@ const purpleGrad = "linear-gradient(135deg, #0891b2 0%, #06b6d4 100%)";
 // grouped list for the picker UI — no API call, no FK, no category table.
 
 interface CategoryOption {
-  name: string;
-  color: string;
+  name: string
+  color: string
 }
 
 interface CategoryGroup {
-  label: string;
-  options: CategoryOption[];
+  options: CategoryOption[]
 }
 
 const CATEGORY_GROUPS: CategoryGroup[] = [
   {
-    label: "Lifestyle",
-    options: [
-      { name: "Everyday Use", color: "#f97316" },
-      { name: "Travel", color: "#3b82f6" },
-      { name: "Office", color: "#2563eb" },
-    ],
+    options: [{ name: "Home Supplies", color: "#22c55e" }],
   },
   {
-    label: "For Them",
-    options: [
-      { name: "For Kids", color: "#f59e0b" },
-      { name: "Couples", color: "#ec4899" },
-      { name: "Gift Sets", color: "#a855f7" },
-      { name: "Adult", color: "#18181b" },
-    ],
+    options: [{ name: "Tea & Coffeeware", color: "#92400e" }],
   },
   {
-    label: "Activity",
-    options: [
-      { name: "Gym & Sports", color: "#22c55e" },
-      { name: "Outdoor", color: "#166534" },
-      { name: "Coffee", color: "#78350f" },
-      { name: "School", color: "#ef4444" },
-    ],
+    options: [{ name: "Bakeware", color: "#f59e0b" }],
   },
-];
+  {
+    options: [{ name: "Cookware", color: "#ef4444" }],
+  },
+  {
+    options: [{ name: "Cutlery & Tableware", color: "#3b82f6" }],
+  },
+  {
+    options: [{ name: "Drinkware", color: "#06b6d4" }],
+  },
+]
 
 const CATEGORY_COLOR_MAP: Record<string, string> = CATEGORY_GROUPS.reduce(
   (acc, group) => {
-    group.options.forEach((opt) => (acc[opt.name] = opt.color));
-    return acc;
+    group.options.forEach((opt) => (acc[opt.name] = opt.color))
+    return acc
   },
   {} as Record<string, string>,
-);
+)
 
 const getCategoryColor = (name: string | null) =>
-  (name && CATEGORY_COLOR_MAP[name]) || "#06b6d4";
+  (name && CATEGORY_COLOR_MAP[name]) || "#06b6d4"
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
 const getImageUrl = (imagePath: string): string => {
-  if (!imagePath) return "/placeholder.svg";
+  if (!imagePath) return "/placeholder.svg"
   if (imagePath.startsWith("http://") || imagePath.startsWith("https://"))
-    return imagePath;
-  const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+    return imagePath
+  const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
   const fullPath = imagePath.startsWith("images/products/")
     ? imagePath
-    : `images/products/${imagePath}`;
-  return `${BASE}/${fullPath}`;
-};
+    : `images/products/${imagePath}`
+  return `${BASE}/${fullPath}`
+}
 
 const formatPrice = (price: number | string): string => {
-  const n = typeof price === "string" ? parseFloat(price) : price;
-  return isNaN(n) ? "0.00" : n.toFixed(2);
-};
+  const n = typeof price === "string" ? parseFloat(price) : price
+  return isNaN(n) ? "0.00" : n.toFixed(2)
+}
 
 // ── Sub-components ─────────────────────────────────────────────────────────────
 
@@ -189,18 +180,18 @@ function StockBadge({ stock }: { stock: number }) {
       <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-red-50 text-red-600 border border-red-200">
         <XCircle className="w-3 h-3" /> Out of Stock
       </span>
-    );
+    )
   if (stock < 10)
     return (
       <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-600 border border-amber-200">
         <AlertTriangle className="w-3 h-3" /> Low — {stock} left
       </span>
-    );
+    )
   return (
     <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-600 border border-emerald-200">
       <CheckCircle2 className="w-3 h-3" /> In Stock
     </span>
-  );
+  )
 }
 
 function InfoRow({
@@ -208,9 +199,9 @@ function InfoRow({
   label,
   value,
 }: {
-  icon: React.ElementType;
-  label: string;
-  value: React.ReactNode;
+  icon: React.ElementType
+  label: string
+  value: React.ReactNode
 }) {
   return (
     <div className="flex items-start gap-3 py-3.5 border-b border-purple-50 last:border-0">
@@ -224,7 +215,7 @@ function InfoRow({
         <div className="text-sm font-medium text-gray-800">{value}</div>
       </div>
     </div>
-  );
+  )
 }
 
 // ── Platform Link Badge ────────────────────────────────────────────────────────
@@ -234,11 +225,11 @@ function PlatformLink({
   label,
   color,
 }: {
-  href: string | null;
-  label: string;
-  color: string;
+  href: string | null
+  label: string
+  color: string
 }) {
-  if (!href) return null;
+  if (!href) return null
   return (
     <a
       href={href}
@@ -250,7 +241,7 @@ function PlatformLink({
       <Link className="w-3 h-3" />
       {label}
     </a>
-  );
+  )
 }
 
 // ── Product Detail Sheet ───────────────────────────────────────────────────────
@@ -259,28 +250,28 @@ function ProductDetailSheet({
   product,
   onEdit,
 }: {
-  product: Product | null;
-  onEdit: (id: number) => void;
+  product: Product | null
+  onEdit: (id: number) => void
 }) {
-  if (!product) return null;
+  if (!product) return null
 
   const createdDate = new Date(product.created_at).toLocaleDateString("en-US", {
     month: "long",
     day: "2-digit",
     year: "numeric",
-  });
+  })
   const updatedDate = new Date(product.updated_at).toLocaleDateString("en-US", {
     month: "long",
     day: "2-digit",
     year: "numeric",
-  });
+  })
   const updatedTime = new Date(product.updated_at).toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
-  });
+  })
 
   const hasShopLinks =
-    product.tiktok_url || product.shopee_url || product.lazada_url;
+    product.tiktok_url || product.shopee_url || product.lazada_url
 
   return (
     <SheetContent
@@ -516,17 +507,17 @@ function ProductDetailSheet({
         </Button>
       </div>
     </SheetContent>
-  );
+  )
 }
 
 // ── Main Page ──────────────────────────────────────────────────────────────────
 
 export default function ProductsAdminPage() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [products, setProducts] = useState<Product[]>([])
+  const [loading, setLoading] = useState(true)
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
   const [newFormData, setNewFormData] = useState({
     name: "",
     description: "",
@@ -536,79 +527,79 @@ export default function ProductsAdminPage() {
     tiktok_url: "",
     shopee_url: "",
     lazada_url: "",
-  });
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [isCreating, setIsCreating] = useState(false);
-  const [deletingId, setDeletingId] = useState<number | null>(null);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-  const [globalFilter, setGlobalFilter] = useState("");
-  const [itemsPerPage, setItemsPerPage] = useState<number>(10);
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  })
+  const [selectedImage, setSelectedImage] = useState<File | null>(null)
+  const [imagePreview, setImagePreview] = useState<string | null>(null)
+  const [isCreating, setIsCreating] = useState(false)
+  const [deletingId, setDeletingId] = useState<number | null>(null)
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [sorting, setSorting] = useState<SortingState>([])
+  const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
+  const [globalFilter, setGlobalFilter] = useState("")
+  const [itemsPerPage, setItemsPerPage] = useState<number>(10)
+  const [currentPage, setCurrentPage] = useState<number>(1)
 
-  const { toast } = useToast();
-  const router = useRouter();
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const tokenFromStore = useAuthStore((state) => state.token);
+  const { toast } = useToast()
+  const router = useRouter()
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const tokenFromStore = useAuthStore((state) => state.token)
 
   // ── Effects ────────────────────────────────────────────────────────────────
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener("resize", check)
+    return () => window.removeEventListener("resize", check)
+  }, [])
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    fetchProducts()
+  }, [])
 
   useEffect(() => {
-    setCurrentPage(1);
-  }, [itemsPerPage, globalFilter]);
+    setCurrentPage(1)
+  }, [itemsPerPage, globalFilter])
 
   // ── API ────────────────────────────────────────────────────────────────────
 
   const fetchProducts = async () => {
     try {
-      setLoading(true);
-      const response = await fetch("/api/products?paginate=false");
-      const result = await response.json();
-      if (response.ok) setProducts(result);
-      else throw new Error(result.message || "Failed to fetch products");
+      setLoading(true)
+      const response = await fetch("/api/products?paginate=false")
+      const result = await response.json()
+      if (response.ok) setProducts(result)
+      else throw new Error(result.message || "Failed to fetch products")
     } catch {
       toast({
         variant: "destructive",
         title: "Error",
         description: "Failed to load products",
-      });
+      })
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   const handleCreateSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setIsCreating(true);
+    e.preventDefault()
+    setIsCreating(true)
     try {
-      const token = tokenFromStore || localStorage.getItem("auth_token");
-      const formData = new FormData();
-      formData.append("name", newFormData.name);
-      formData.append("description", newFormData.description);
-      formData.append("price", newFormData.price);
-      formData.append("stock", newFormData.stock);
+      const token = tokenFromStore || localStorage.getItem("auth_token")
+      const formData = new FormData()
+      formData.append("name", newFormData.name)
+      formData.append("description", newFormData.description)
+      formData.append("price", newFormData.price)
+      formData.append("stock", newFormData.stock)
       if (newFormData.category && newFormData.category !== "none")
-        formData.append("category", newFormData.category);
+        formData.append("category", newFormData.category)
       if (newFormData.tiktok_url)
-        formData.append("tiktok_url", newFormData.tiktok_url);
+        formData.append("tiktok_url", newFormData.tiktok_url)
       if (newFormData.shopee_url)
-        formData.append("shopee_url", newFormData.shopee_url);
+        formData.append("shopee_url", newFormData.shopee_url)
       if (newFormData.lazada_url)
-        formData.append("lazada_url", newFormData.lazada_url);
-      if (selectedImage) formData.append("image", selectedImage);
+        formData.append("lazada_url", newFormData.lazada_url)
+      if (selectedImage) formData.append("image", selectedImage)
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/products`,
         {
@@ -619,32 +610,32 @@ export default function ProductsAdminPage() {
           },
           body: formData,
         },
-      );
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.message);
-      toast({ title: "Success", description: "Product created successfully!" });
-      setIsCreateModalOpen(false);
-      resetForm();
-      fetchProducts();
+      )
+      const result = await response.json()
+      if (!response.ok) throw new Error(result.message)
+      toast({ title: "Success", description: "Product created successfully!" })
+      setIsCreateModalOpen(false)
+      resetForm()
+      fetchProducts()
     } catch (error: any) {
       toast({
         variant: "destructive",
         title: "Error",
         description: error.message,
-      });
+      })
     } finally {
-      setIsCreating(false);
+      setIsCreating(false)
     }
-  };
+  }
 
   const handleDelete = async (id: number) => {
-    setDeletingId(id);
+    setDeletingId(id)
     try {
       const token =
         tokenFromStore ||
         localStorage.getItem("auth_token") ||
-        localStorage.getItem("token");
-      if (!token) throw new Error("You must be logged in to delete products.");
+        localStorage.getItem("token")
+      if (!token) throw new Error("You must be logged in to delete products.")
       const response = await fetch(`/api/products/${id}`, {
         method: "DELETE",
         headers: {
@@ -652,36 +643,36 @@ export default function ProductsAdminPage() {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-      });
+      })
       if (response.status === 204) {
         toast({
           title: "Success",
           description: "Product deleted successfully!",
-        });
-        fetchProducts();
-        return;
+        })
+        fetchProducts()
+        return
       }
-      let result: any = {};
-      const text = await response.text();
+      let result: any = {}
+      const text = await response.text()
       if (text) {
         try {
-          result = JSON.parse(text);
+          result = JSON.parse(text)
         } catch {}
       }
       if (!response.ok)
-        throw new Error(result.message || `Delete failed: ${response.status}`);
-      toast({ title: "Success", description: "Product deleted successfully!" });
-      fetchProducts();
+        throw new Error(result.message || `Delete failed: ${response.status}`)
+      toast({ title: "Success", description: "Product deleted successfully!" })
+      fetchProducts()
     } catch (error: any) {
       toast({
         variant: "destructive",
         title: "Error",
         description: error.message,
-      });
+      })
     } finally {
-      setDeletingId(null);
+      setDeletingId(null)
     }
-  };
+  }
 
   const resetForm = () => {
     setNewFormData({
@@ -693,43 +684,43 @@ export default function ProductsAdminPage() {
       tiktok_url: "",
       shopee_url: "",
       lazada_url: "",
-    });
-    setSelectedImage(null);
-    setImagePreview(null);
-    if (fileInputRef.current) fileInputRef.current.value = "";
-  };
+    })
+    setSelectedImage(null)
+    setImagePreview(null)
+    if (fileInputRef.current) fileInputRef.current.value = ""
+  }
 
   const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+    const file = e.target.files?.[0]
     if (file) {
-      setSelectedImage(file);
-      const reader = new FileReader();
-      reader.onload = () => setImagePreview(reader.result as string);
-      reader.readAsDataURL(file);
+      setSelectedImage(file)
+      const reader = new FileReader()
+      reader.onload = () => setImagePreview(reader.result as string)
+      reader.readAsDataURL(file)
     }
-  };
+  }
 
   const handleNewFormChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    const { name, value } = e.target;
-    setNewFormData((prev) => ({ ...prev, [name]: value }));
-  };
+    const { name, value } = e.target
+    setNewFormData((prev) => ({ ...prev, [name]: value }))
+  }
 
   // ── Stats ──────────────────────────────────────────────────────────────────
 
-  const activeCount = products.filter((p) => p.is_active).length;
-  const outOfStockCount = products.filter((p) => p.stock === 0).length;
+  const activeCount = products.filter((p) => p.is_active).length
+  const outOfStockCount = products.filter((p) => p.stock === 0).length
   const lowStockCount = products.filter(
     (p) => p.stock > 0 && p.stock < 10,
-  ).length;
+  ).length
 
   const statCards = [
     { label: "Total Products", value: products.length, icon: ShoppingBag },
     { label: "Active", value: activeCount, icon: CheckCircle2 },
     { label: "Low Stock", value: lowStockCount, icon: AlertTriangle },
     { label: "Out of Stock", value: outOfStockCount, icon: XCircle },
-  ];
+  ]
 
   // ── Table columns ──────────────────────────────────────────────────────────
 
@@ -791,18 +782,7 @@ export default function ProductsAdminPage() {
           <div className="font-semibold text-gray-900 truncate max-w-[180px]">
             {row.original.name}
           </div>
-          {/* Category pill under name */}
-          {row.original.category && (
-            <span className="inline-flex items-center gap-1 mt-1 px-2 py-0.5 rounded-md text-xs font-medium bg-purple-50 text-purple-600 border border-purple-100">
-              <span
-                className="w-1.5 h-1.5 rounded-full"
-                style={{
-                  background: getCategoryColor(row.original.category),
-                }}
-              />
-              {row.original.category}
-            </span>
-          )}
+
           {/* Platform link dots */}
           <div className="flex items-center gap-1 mt-1">
             {row.original.tiktok_url && (
@@ -856,9 +836,9 @@ export default function ProductsAdminPage() {
         </div>
       ),
       sortingFn: (a, b) => {
-        const nameA = a.original.category ?? "";
-        const nameB = b.original.category ?? "";
-        return nameA.localeCompare(nameB);
+        const nameA = a.original.category ?? ""
+        const nameB = b.original.category ?? ""
+        return nameA.localeCompare(nameB)
       },
     },
     {
@@ -940,7 +920,7 @@ export default function ProductsAdminPage() {
       id: "actions",
       enableHiding: false,
       cell: ({ row }) => {
-        const product = row.original;
+        const product = row.original
         return (
           <div className="flex items-center gap-1">
             {/* View Sheet */}
@@ -1043,10 +1023,10 @@ export default function ProductsAdminPage() {
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
-        );
+        )
       },
     },
-  ];
+  ]
 
   // ── Table instance ─────────────────────────────────────────────────────────
 
@@ -1061,17 +1041,17 @@ export default function ProductsAdminPage() {
     onGlobalFilterChange: setGlobalFilter,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
-  });
+  })
 
-  const filteredRows = table.getFilteredRowModel().rows;
-  const totalItems = filteredRows.length;
+  const filteredRows = table.getFilteredRowModel().rows
+  const totalItems = filteredRows.length
   const totalPages =
-    itemsPerPage === -1 ? 1 : Math.ceil(totalItems / itemsPerPage);
-  const startIndex = itemsPerPage === -1 ? 0 : (currentPage - 1) * itemsPerPage;
+    itemsPerPage === -1 ? 1 : Math.ceil(totalItems / itemsPerPage)
+  const startIndex = itemsPerPage === -1 ? 0 : (currentPage - 1) * itemsPerPage
   const paginatedRows =
     itemsPerPage === -1
       ? filteredRows
-      : filteredRows.slice(startIndex, startIndex + itemsPerPage);
+      : filteredRows.slice(startIndex, startIndex + itemsPerPage)
 
   // ── Loading screen ─────────────────────────────────────────────────────────
 
@@ -1098,7 +1078,7 @@ export default function ProductsAdminPage() {
           </div>
         </div>
       </SidebarProvider>
-    );
+    )
   }
 
   // ── Page ───────────────────────────────────────────────────────────────────
@@ -1178,7 +1158,7 @@ export default function ProductsAdminPage() {
               {/* Stat cards */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {statCards.map((stat) => {
-                  const Icon = stat.icon;
+                  const Icon = stat.icon
                   return (
                     <div
                       key={stat.label}
@@ -1200,7 +1180,7 @@ export default function ProductsAdminPage() {
                         </p>
                       </div>
                     </div>
-                  );
+                  )
                 })}
               </div>
 
@@ -1387,27 +1367,23 @@ export default function ProductsAdminPage() {
                                   <SelectItem value="none">
                                     — No category —
                                   </SelectItem>
-                                  {CATEGORY_GROUPS.map((group) => (
-                                    <SelectGroup key={group.label}>
-                                      <SelectLabel className="text-purple-400 text-[11px] font-bold uppercase tracking-widest px-2">
-                                        {group.label}
-                                      </SelectLabel>
-                                      {group.options.map((opt) => (
-                                        <SelectItem
-                                          key={opt.name}
-                                          value={opt.name}
-                                        >
-                                          <span className="inline-flex items-center gap-2">
-                                            <span
-                                              className="w-2 h-2 rounded-full inline-block"
-                                              style={{ background: opt.color }}
-                                            />
-                                            {opt.name}
-                                          </span>
-                                        </SelectItem>
-                                      ))}
-                                    </SelectGroup>
-                                  ))}
+
+                                  {CATEGORY_GROUPS.flatMap((group) =>
+                                    group.options.map((opt) => (
+                                      <SelectItem
+                                        key={opt.name}
+                                        value={opt.name}
+                                      >
+                                        <span className="inline-flex items-center gap-2">
+                                          <span
+                                            className="w-2 h-2 rounded-full inline-block"
+                                            style={{ background: opt.color }}
+                                          />
+                                          {opt.name}
+                                        </span>
+                                      </SelectItem>
+                                    )),
+                                  )}
                                 </SelectContent>
                               </Select>
                             </div>
@@ -1532,8 +1508,8 @@ export default function ProductsAdminPage() {
                                 type="button"
                                 variant="outline"
                                 onClick={() => {
-                                  setIsCreateModalOpen(false);
-                                  resetForm();
+                                  setIsCreateModalOpen(false)
+                                  resetForm()
                                 }}
                                 disabled={isCreating}
                                 className="flex-1 sm:flex-none border-purple-200 text-purple-600 hover:bg-purple-50 rounded-xl"
@@ -1670,13 +1646,13 @@ export default function ProductsAdminPage() {
                             }}
                             onMouseEnter={(e) => {
                               e.currentTarget.style.background =
-                                "rgba(237,233,254,0.5)";
+                                "rgba(237,233,254,0.5)"
                             }}
                             onMouseLeave={(e) => {
                               e.currentTarget.style.background =
                                 index % 2 === 0
                                   ? "white"
-                                  : "rgba(245,243,255,0.4)";
+                                  : "rgba(245,243,255,0.4)"
                             }}
                           >
                             {row.getVisibleCells().map((cell) => (
@@ -1739,12 +1715,12 @@ export default function ProductsAdminPage() {
                       {Array.from(
                         { length: Math.min(5, totalPages) },
                         (_, i) => {
-                          let page: number;
-                          if (totalPages <= 5) page = i + 1;
-                          else if (currentPage <= 3) page = i + 1;
+                          let page: number
+                          if (totalPages <= 5) page = i + 1
+                          else if (currentPage <= 3) page = i + 1
                           else if (currentPage >= totalPages - 2)
-                            page = totalPages - 4 + i;
-                          else page = currentPage - 2 + i;
+                            page = totalPages - 4 + i
+                          else page = currentPage - 2 + i
                           return (
                             <button
                               key={page}
@@ -1768,7 +1744,7 @@ export default function ProductsAdminPage() {
                               )}
                               {currentPage === page && page}
                             </button>
-                          );
+                          )
                         },
                       )}
 
@@ -1797,5 +1773,5 @@ export default function ProductsAdminPage() {
         </div>
       </div>
     </SidebarProvider>
-  );
+  )
 }
