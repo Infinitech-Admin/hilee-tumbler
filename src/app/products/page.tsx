@@ -1,28 +1,39 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useMemo } from "react"
-import type { MenuItem } from "@/types"
-import MenuItemCard, { getCategoryStyle } from "@/components/ui/menu-item-card"
+import { useState, useEffect, useMemo } from "react";
+import type { MenuItem } from "@/types";
+import MenuItemCard, { getCategoryStyle } from "@/components/ui/menu-item-card";
 
 type Category = {
-  name: string
-  color: string
-}
+  name: string;
+  color: string;
+};
 
-const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
-const getImageUrl = (imagePath: string): string => {
-  if (!imagePath) return "/placeholder.svg"
+// Self-contained inline SVG placeholder — never 404s because it's not a network request.
+const FALLBACK_IMG =
+  "data:image/svg+xml;charset=UTF-8," +
+  encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+      <rect width="100" height="100" rx="12" fill="#EAF7FB"/>
+      <path d="M30 65 L45 45 L58 58 L68 42 L75 65 Z" fill="#B7E6F5"/>
+      <circle cx="38" cy="35" r="7" fill="#B7E6F5"/>
+    </svg>
+  `);
+
+const getImageUrl = (imagePath?: string | null): string => {
+  if (!imagePath) return FALLBACK_IMG;
   if (imagePath.startsWith("http://") || imagePath.startsWith("https://"))
-    return imagePath
+    return imagePath;
   const fullPath = imagePath.startsWith("images/products/")
     ? imagePath
-    : `images/products/${imagePath}`
-  return `${BASE}/${fullPath}`
-}
+    : `images/products/${imagePath}`;
+  return `${BASE}/${fullPath}`;
+};
 
 function normalizeCategory(category?: string | null): string {
-  return category?.trim().toLowerCase() || ""
+  return category?.trim().toLowerCase() || "";
 }
 
 const CATEGORY_GROUPS: { cats: Category[] }[] = [
@@ -44,24 +55,27 @@ const CATEGORY_GROUPS: { cats: Category[] }[] = [
   {
     cats: [{ name: "Drinkware", color: "#06b6d4" }],
   },
-]
+];
 
 export default function MenuPage() {
-  const [products, setProducts] = useState<MenuItem[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [activeFilters, setActiveFilters] = useState<string[]>([])
-  const [searchQuery, setSearch] = useState("")
-  const [drawerOpen, setDrawerOpen] = useState(false)
+  const [products, setProducts] = useState<MenuItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  const [searchQuery, setSearch] = useState("");
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  // Which category the user tapped into on the mobile "shop categories" screen.
+  // null = show the category list (like the TikTok Shop screenshot).
+  const [mobileCategory, setMobileCategory] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        setLoading(true)
-        setError(null)
-        const response = await fetch("/api/products?paginate=false")
-        const data = await response.json()
-        if (!response.ok) throw new Error("Failed to fetch products")
+        setLoading(true);
+        setError(null);
+        const response = await fetch("/api/products?paginate=false");
+        const data = await response.json();
+        if (!response.ok) throw new Error("Failed to fetch products");
         const transformed: MenuItem[] = data.map((product: any) => ({
           id: product.id,
           name: product.name,
@@ -74,48 +88,72 @@ export default function MenuPage() {
           image: getImageUrl(product.image),
           category: product.category ?? null,
           tiktok_url: product.tiktok_url ?? null,
-        }))
-        setProducts(transformed)
+        }));
+        setProducts(transformed);
       } catch (err) {
         setError(
           err instanceof Error ? err.message : "Failed to fetch products",
-        )
-        setProducts([])
+        );
+        setProducts([]);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
-    fetchProducts()
-  }, [])
+    };
+    fetchProducts();
+  }, []);
 
-  const allGroupCats = useMemo(() => CATEGORY_GROUPS.flatMap((g) => g.cats), [])
+  const allGroupCats = useMemo(
+    () => CATEGORY_GROUPS.flatMap((g) => g.cats),
+    [],
+  );
 
   const toggleFilter = (cat: string) => {
-    const normalized = normalizeCategory(cat)
+    const normalized = normalizeCategory(cat);
 
     setActiveFilters((prev) =>
       prev.includes(normalized)
         ? prev.filter((c) => c !== normalized)
         : [...prev, normalized],
-    )
-  }
+    );
+  };
 
-  const clearFilters = () => setActiveFilters([])
+  const clearFilters = () => setActiveFilters([]);
 
-  const knownCats = CATEGORY_GROUPS.flatMap((g) => g.cats.map((c) => c.name))
+  const knownCats = CATEGORY_GROUPS.flatMap((g) => g.cats.map((c) => c.name));
+
+  // First product image found for a category — used as the row thumbnail
+  // on the mobile category list, same idea as the screenshot.
+  // Falls back to an inline SVG (never 404s) if no product/image is found.
+  const getCategoryThumb = (catName: string) => {
+    const norm = normalizeCategory(catName);
+    const found = products.find((p) => normalizeCategory(p.category) === norm);
+    return found?.image || FALLBACK_IMG;
+  };
+
+  const openMobileCategory = (catName: string) => {
+    setMobileCategory(catName);
+    setActiveFilters([normalizeCategory(catName)]);
+  };
+
+  const closeMobileCategory = () => {
+    setMobileCategory(null);
+    setActiveFilters([]);
+  };
 
   const filtered = products.filter((p) => {
-    const cat = normalizeCategory(p.category)
+    const cat = normalizeCategory(p.category);
 
     const matchCat =
       activeFilters.length === 0 ||
       activeFilters.includes(cat) ||
-      (activeFilters.includes("other") && !knownCats.includes(cat))
+      (activeFilters.includes("other") && !knownCats.includes(cat));
 
-    const matchSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase())
+    const matchSearch = p.name
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
 
-    return matchCat && matchSearch
-  })
+    return matchCat && matchSearch;
+  });
 
   if (loading) {
     return (
@@ -204,7 +242,7 @@ export default function MenuPage() {
           </div>
         </div>
       </>
-    )
+    );
   }
 
   if (error) {
@@ -242,17 +280,8 @@ export default function MenuPage() {
           <p style={{ color: "#8FBFCE", fontSize: "0.85rem" }}>{error}</p>
         </div>
       </div>
-    )
+    );
   }
-
-  const tickerColors = [
-    "#0EA5E9",
-    "#38BDF8",
-    "#67E8F9",
-    "#0369A1",
-    "#7DD3FC",
-    "#0284C7",
-  ]
 
   return (
     <>
@@ -303,7 +332,7 @@ export default function MenuPage() {
         .mp-layout { display:flex; gap:2rem; align-items:flex-start; max-width:1400px; margin:0 auto; }
         .mp-main   { flex:1; min-width:0; }
 
-        /* ── Checkbox Sidebar ── */
+        /* ── Checkbox Sidebar (desktop) ── */
         .mp-sidebar {
           width:230px; flex-shrink:0; position:sticky; top:1.5rem;
           background:white; border-radius:20px; padding:1.25rem 0.9rem;
@@ -315,14 +344,6 @@ export default function MenuPage() {
           color:#5B94A6; margin:0 0 0.75rem 0.2rem;
         }
         .mp-sidebar-group { margin-bottom:0.25rem; }
-        .mp-sidebar-group-label {
-          font-size:0.6rem; font-weight:800; letter-spacing:0.18em; text-transform:uppercase;
-          color:#5B94A6; padding:0.6rem 0.5rem 0.3rem;
-          border-top:1.5px dashed #CDEEF9; margin-top:0.25rem;
-        }
-        .mp-sidebar-group:first-of-type .mp-sidebar-group-label {
-          border-top:none; padding-top:0; margin-top:0;
-        }
         .mp-cb-item {
           display:flex; align-items:center; gap:0.6rem;
           width:100%; padding:0.5rem 0.5rem; border-radius:10px;
@@ -377,113 +398,50 @@ export default function MenuPage() {
         }
         .mp-clear-btn:hover { background:rgba(14,165,233,0.08); color:#0284C7; border-color:rgba(14,165,233,0.3); }
 
-        /* Mobile filter button */
-        .mp-filter-fab {
-          display:none; align-items:center; gap:0.5rem;
-          font-family:'Nunito',sans-serif; font-size:0.78rem; font-weight:800;
-          padding:0.65rem 1.25rem; border-radius:999px;
-          background:white; border:2px solid #CDEEF9; color:#0C4A6E;
-          cursor:pointer; box-shadow:0 2px 12px rgba(6,174,213,0.1);
-          transition:all .2s ease; margin-bottom:1rem;
-        }
-        .mp-filter-fab:hover { box-shadow:0 4px 18px rgba(6,174,213,0.16); }
-        .mp-filter-fab-dot { width:8px; height:8px; border-radius:50%; background:#0EA5E9; }
-        .mp-filter-fab-badge {
-          background:#0EA5E9; color:white; border-radius:999px;
-          font-size:0.6rem; font-weight:900; padding:0.1rem 0.45rem; min-width:18px; text-align:center;
-        }
-
-        /* Bottom sheet drawer */
-        .mp-drawer-overlay {
-          display:none; position:fixed; inset:0; z-index:100;
-          background:rgba(6,34,46,0.45); backdrop-filter:blur(3px);
-        }
-        .mp-drawer-overlay.open { display:block; }
-        .mp-drawer {
-          position:fixed; bottom:0; left:0; right:0; z-index:101;
-          background:white; border-radius:24px 24px 0 0;
-          padding:0 0 2rem; max-height:85vh; overflow-y:auto;
-          transform:translateY(100%); transition:transform 0.35s cubic-bezier(.22,1,.36,1);
-          box-shadow:0 -8px 40px rgba(6,58,77,0.18);
-        }
-        .mp-drawer.open { transform:translateY(0); }
-        .mp-drawer-handle {
-          width:40px; height:4px; border-radius:999px;
-          background:#CDEEF9; margin:12px auto 0;
-        }
-        .mp-drawer-header {
-          display:flex; align-items:center; justify-content:space-between;
-          padding:1rem 1.25rem 0.5rem;
-          border-bottom:1.5px solid #CDEEF9;
-        }
-        .mp-drawer-title {
-          font-family:'Bricolage Grotesque',sans-serif;
-          font-size:1.1rem; font-weight:800; color:#073B4C;
-        }
-        .mp-drawer-close {
-          width:32px; height:32px; border-radius:50%;
-          background:rgba(6,174,213,0.08); border:none;
-          display:flex; align-items:center; justify-content:center;
-          font-size:0.9rem; cursor:pointer; color:#5B7C8D;
-          transition:background .2s;
-        }
-        .mp-drawer-close:hover { background:rgba(6,174,213,0.15); }
-        .mp-drawer-body { padding:0.75rem 1.25rem; }
-        .mp-drawer-group-label {
-          font-size:0.6rem; font-weight:800; letter-spacing:0.18em; text-transform:uppercase;
-          color:#5B94A6; padding:0.75rem 0 0.4rem;
-          border-top:1.5px dashed #CDEEF9; margin-top:0.25rem;
-        }
-        .mp-drawer-group-label:first-child { border-top:none; padding-top:0.25rem; }
-        .mp-drawer-cb-item {
-          display:flex; align-items:center; gap:0.7rem;
-          width:100%; padding:0.65rem 0.5rem; border-radius:12px;
-          background:transparent; border:none; cursor:pointer;
-          transition:background .15s; text-align:left;
-        }
-        .mp-drawer-cb-item:hover { background:rgba(6,174,213,0.06); }
-        .mp-drawer-cb-item.on { background:rgba(6,174,213,0.05); }
-        .mp-drawer-cb-box {
-          width:20px; height:20px; flex-shrink:0; border-radius:6px;
-          border:1.5px solid rgba(6,58,77,0.2); background:white;
-          display:flex; align-items:center; justify-content:center;
-          transition:background .15s, border-color .15s;
-        }
-        .mp-drawer-cb-item.on .mp-drawer-cb-box { border-color:transparent; }
-        .mp-drawer-cb-check { display:none; }
-        .mp-drawer-cb-item.on .mp-drawer-cb-check { display:block; }
-        .mp-drawer-cb-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
-        .mp-drawer-cb-label { flex:1; font-size:0.85rem; font-weight:600; color:#0C4A6E; }
-        .mp-drawer-cb-item.on .mp-drawer-cb-label { font-weight:700; }
-        .mp-drawer-cb-count {
-          font-size:0.65rem; font-weight:700; color:#8FBFCE;
-          background:rgba(6,174,213,0.08); padding:0.15rem 0.5rem; border-radius:999px;
-        }
-        .mp-drawer-cb-item.on .mp-drawer-cb-count { background:rgba(6,174,213,0.12); }
-        .mp-drawer-footer {
-          display:flex; gap:0.75rem; padding:1rem 1.25rem 0;
-          border-top:1.5px solid #CDEEF9; margin-top:0.5rem;
-          position:sticky; bottom:0; background:white;
-        }
-        .mp-drawer-apply {
-          flex:1; padding:0.85rem; border-radius:999px; border:none;
-          background:linear-gradient(135deg, #0EA5E9, #0369A1); color:white;
-          font-family:'Nunito',sans-serif; font-size:0.85rem; font-weight:800;
-          cursor:pointer; transition:filter .2s;
-        }
-        .mp-drawer-apply:hover { filter:brightness(1.08); }
-        .mp-drawer-clear {
-          padding:0.85rem 1.25rem; border-radius:999px;
-          border:1.5px solid #CDEEF9; background:transparent;
-          font-family:'Nunito',sans-serif; font-size:0.85rem; font-weight:700; color:#5B7C8D;
-          cursor:pointer; transition:all .2s;
-        }
-        .mp-drawer-clear:hover { border-color:#0EA5E9; color:#0284C7; }
-
         @media (max-width:900px) {
           .mp-sidebar { display:none; }
-          .mp-filter-fab { display:flex; }
           .mp-layout { display:block; }
+        }
+
+        /* ── Mobile category list (TikTok-shop style) ── */
+        .mp-mobile-cats {
+          display:none;
+        }
+        @media (max-width:900px) {
+          .mp-mobile-cats:not(.hidden) {
+            display:block;
+            background:white; border-radius:16px; padding:0 1rem;
+            box-shadow:0 4px 20px rgba(6,174,213,0.08); border:1.5px solid #CDEEF9;
+            margin-bottom:1.25rem;
+          }
+        }
+        .mp-cat-row {
+          display:flex; align-items:center; gap:0.9rem;
+          width:100%; padding:0.85rem 0.1rem;
+          border:none; border-bottom:1px solid #EAF7FB;
+          background:none; cursor:pointer; text-align:left;
+        }
+        .mp-cat-row:last-child { border-bottom:none; }
+        .mp-cat-thumb { width:52px; height:52px; border-radius:10px; object-fit:cover; flex-shrink:0; background:#EAF7FB; }
+        .mp-cat-name { flex:1; font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:0.95rem; color:#073B4C; }
+        .mp-cat-count { color:#8FBFCE; font-weight:700; font-size:0.85rem; }
+        .mp-cat-chevron { flex-shrink:0; }
+
+        .mp-mobile-back {
+          display:none;
+        }
+        @media (max-width:900px) {
+          .mp-mobile-back {
+            display:inline-flex; align-items:center; gap:0.4rem;
+            font-family:'Nunito',sans-serif; font-weight:800; font-size:0.85rem;
+            color:#0369A1; background:none; border:none; padding:0.4rem 0.1rem 0.9rem;
+            cursor:pointer;
+          }
+        }
+
+        .mp-mobile-products { }
+        @media (max-width:900px) {
+          .mp-mobile-products:not(.show) { display:none; }
         }
 
         /* Strip */
@@ -498,10 +456,6 @@ export default function MenuPage() {
 
         /* Empty */
         .mp-empty { text-align:center; padding:6rem 2rem; }
-
-        /* Trust */
-        .mp-trust { display:flex; align-items:center; justify-content:center; gap:2rem; flex-wrap:wrap; padding:1.75rem 2rem; border-top:1.5px dashed #CDEEF9; margin-top:1.5rem; }
-        .mp-trust-item { display:flex; align-items:center; gap:0.4rem; font-size:0.72rem; font-weight:700; color:#5B94A6; }
 
         @media(max-width:600px){ .mp-search{width:85vw} }
       `}</style>
@@ -627,26 +581,20 @@ export default function MenuPage() {
               {CATEGORY_GROUPS.map((group, groupIndex) => (
                 <div key={groupIndex} className="mp-sidebar-group">
                   {group.cats.map((cat) => {
-                    const style = getCategoryStyle(cat.name)
-                    const normalizedName = normalizeCategory(cat.name)
-
-                    const isOn = activeFilters.includes(normalizedName)
+                    const normalizedName = normalizeCategory(cat.name);
+                    const isOn = activeFilters.includes(normalizedName);
 
                     const count = products.filter((p) => {
-                      const normalizedCat = normalizeCategory(p.category)
-
+                      const normalizedCat = normalizeCategory(p.category);
                       const matchSearch = p.name
                         .toLowerCase()
-                        .includes(searchQuery.toLowerCase())
-
-                      if (!matchSearch) return false
-
+                        .includes(searchQuery.toLowerCase());
+                      if (!matchSearch) return false;
                       if (normalizedName === "other") {
-                        return !knownCats.includes(normalizedCat)
+                        return !knownCats.includes(normalizedCat);
                       }
-
-                      return normalizedCat === normalizedName
-                    }).length
+                      return normalizedCat === normalizedName;
+                    }).length;
 
                     return (
                       <button
@@ -701,7 +649,7 @@ export default function MenuPage() {
                           {count}
                         </span>
                       </button>
-                    )
+                    );
                   })}
                 </div>
               ))}
@@ -709,7 +657,7 @@ export default function MenuPage() {
               {activeFilters.length > 0 && (
                 <div className="mp-active-pills">
                   {activeFilters.map((cat) => {
-                    const style = getCategoryStyle(cat)
+                    const style = getCategoryStyle(cat);
                     return (
                       <span
                         key={cat}
@@ -724,7 +672,7 @@ export default function MenuPage() {
                           ✕
                         </button>
                       </span>
-                    )
+                    );
                   })}
                 </div>
               )}
@@ -737,202 +685,129 @@ export default function MenuPage() {
             </aside>
 
             <div className="mp-main mt-4">
-              {/* ── Mobile filter FAB + Drawer ── */}
-              <button
-                className="mp-filter-fab"
-                onClick={() => setDrawerOpen(true)}
-              >
-                <span className="mp-filter-fab-dot" />
-                Filter by category
-                {activeFilters.length > 0 && (
-                  <span className="mp-filter-fab-badge">
-                    {activeFilters.length}
-                  </span>
-                )}
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
-              </button>
-
+              {/* ── Mobile category list — tap a row to browse that category ── */}
               <div
-                className={`mp-drawer-overlay ${drawerOpen ? "open" : ""}`}
-                onClick={() => setDrawerOpen(false)}
-              />
+                className={`mp-mobile-cats ${mobileCategory ? "hidden" : ""}`}
+              >
+                {allGroupCats.map((cat) => {
+                  const normalizedName = normalizeCategory(cat.name);
+                  const count = products.filter((p) => {
+                    const normalizedCat = normalizeCategory(p.category);
+                    const matchSearch = p.name
+                      .toLowerCase()
+                      .includes(searchQuery.toLowerCase());
+                    if (!matchSearch) return false;
+                    if (normalizedName === "other") {
+                      return !knownCats.includes(normalizedCat);
+                    }
+                    return normalizedCat === normalizedName;
+                  }).length;
 
-              <div className={`mp-drawer ${drawerOpen ? "open" : ""}`}>
-                <div className="mp-drawer-handle" />
-                <div className="mp-drawer-header">
-                  <span className="mp-drawer-title">Filter by</span>
-                  <button
-                    className="mp-drawer-close"
-                    onClick={() => setDrawerOpen(false)}
-                  >
-                    ✕
-                  </button>
-                </div>
-                <div className="mp-drawer-body">
-                  {CATEGORY_GROUPS.map((group, gi) => (
-                    <div key={gi}>
-                      {group.cats.map((cat) => {
-                        const normalizedName = normalizeCategory(cat.name)
-
-                        const count = products.filter((p) => {
-                          const normalizedCat = normalizeCategory(p.category)
-
-                          const matchSearch = p.name
-                            .toLowerCase()
-                            .includes(searchQuery.toLowerCase())
-
-                          if (!matchSearch) return false
-
-                          if (normalizedName === "other") {
-                            return !knownCats.includes(normalizedCat)
-                          }
-
-                          return normalizedCat === normalizedName
-                        }).length
-
-                        const isOn = activeFilters.includes(normalizedName)
-
-                        return (
-                          <button
-                            key={cat.name}
-                            className={`mp-drawer-cb-item ${isOn ? "on" : ""}`}
-                            onClick={() => toggleFilter(cat.name)}
-                          >
-                            <div
-                              className="mp-drawer-cb-box"
-                              style={
-                                isOn ? { background: cat.color } : undefined
-                              }
-                            >
-                              <svg
-                                className="mp-drawer-cb-check"
-                                width="11"
-                                height="9"
-                                viewBox="0 0 10 8"
-                                fill="none"
-                              >
-                                <path
-                                  d="M1 4l2.5 2.5L9 1"
-                                  stroke="white"
-                                  strokeWidth="1.8"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                />
-                              </svg>
-                            </div>
-
-                            <span
-                              className="mp-drawer-cb-dot"
-                              style={{ background: cat.color }}
-                            />
-
-                            <span
-                              className="mp-drawer-cb-label"
-                              style={isOn ? { color: cat.color } : undefined}
-                            >
-                              {cat.name}
-                            </span>
-
-                            <span
-                              className="mp-drawer-cb-count"
-                              style={
-                                isOn
-                                  ? {
-                                      background: `${cat.color}18`,
-                                      color: cat.color,
-                                    }
-                                  : undefined
-                              }
-                            >
-                              {count}
-                            </span>
-                          </button>
-                        )
-                      })}
-                    </div>
-                  ))}
-                </div>
-                <div className="mp-drawer-footer">
-                  <button className="mp-drawer-clear" onClick={clearFilters}>
-                    Clear all
-                  </button>
-                  <button
-                    className="mp-drawer-apply"
-                    onClick={() => setDrawerOpen(false)}
-                  >
-                    Show {filtered.length} results
-                  </button>
-                </div>
+                  return (
+                    <button
+                      key={cat.name}
+                      className="mp-cat-row"
+                      onClick={() => openMobileCategory(cat.name)}
+                    >
+                      <img
+                        src={getCategoryThumb(cat.name)}
+                        alt={cat.name}
+                        className="mp-cat-thumb"
+                        onError={(e) => {
+                          e.currentTarget.onerror = null;
+                          e.currentTarget.src = FALLBACK_IMG;
+                        }}
+                      />
+                      <span className="mp-cat-name">{cat.name}</span>
+                      <span className="mp-cat-count">{count}</span>
+                      <svg
+                        className="mp-cat-chevron"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#8FBFCE"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <polyline points="9 6 15 12 9 18" />
+                      </svg>
+                    </button>
+                  );
+                })}
               </div>
 
-              {/* Section strip */}
-              <div className="mp-strip">
-                <div className="mp-strip-line" />
-                <span className="mp-strip-lbl">
-                  {activeFilters.length === 0
-                    ? "All Products"
-                    : activeFilters
-                        .map((c) => getCategoryStyle(c).label)
-                        .join(", ")}
-                  {" · "}
-                  {filtered.length} items
-                </span>
-                <div className="mp-strip-line" />
-              </div>
-
-              {filtered.length === 0 ? (
-                <div className="mp-empty">
-                  <div
-                    className="mp-h"
-                    style={{
-                      fontSize: "3.5rem",
-                      fontWeight: 800,
-                      color: "rgba(6,58,77,0.08)",
-                      marginBottom: "1rem",
-                    }}
+              {mobileCategory && (
+                <button
+                  className="mp-mobile-back"
+                  onClick={closeMobileCategory}
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
-                    Nothing here yet
-                  </div>
-                  <p style={{ color: "#8FBFCE", fontSize: "0.9rem" }}>
-                    Try a different filter or search term.
-                  </p>
-                </div>
-              ) : (
-                <div className="mp-grid">
-                  {filtered.map((product, i) => (
-                    <MenuItemCard key={product.id} item={product} index={i} />
-                  ))}
-                </div>
+                    <polyline points="15 18 9 12 15 6" />
+                  </svg>
+                  Back to categories
+                </button>
               )}
 
-              {/* <div className="mp-trust">
-                {[
-                  { e: "🚚", t: "Free Shipping" },
-                  { e: "↩️", t: "30-Day Returns" },
-                  { e: "🏆", t: "Lifetime Warranty" },
-                  { e: "✅", t: "100% BPA Free" },
-                  { e: "🧊", t: "24H Ice Cold" },
-                ].map((x) => (
-                  <span key={x.t} className="mp-trust-item">
-                    <span>{x.e}</span> {x.t}
+              <div
+                className={`mp-mobile-products ${
+                  mobileCategory || searchQuery ? "show" : ""
+                }`}
+              >
+                {/* Section strip */}
+                <div className="mp-strip">
+                  <div className="mp-strip-line" />
+                  <span className="mp-strip-lbl">
+                    {activeFilters.length === 0
+                      ? "All Products"
+                      : activeFilters
+                          .map((c) => getCategoryStyle(c).label)
+                          .join(", ")}
+                    {" · "}
+                    {filtered.length} items
                   </span>
-                ))}
-              </div> */}
+                  <div className="mp-strip-line" />
+                </div>
+
+                {filtered.length === 0 ? (
+                  <div className="mp-empty">
+                    <div
+                      className="mp-h"
+                      style={{
+                        fontSize: "3.5rem",
+                        fontWeight: 800,
+                        color: "rgba(6,58,77,0.08)",
+                        marginBottom: "1rem",
+                      }}
+                    >
+                      Nothing here yet
+                    </div>
+                    <p style={{ color: "#8FBFCE", fontSize: "0.9rem" }}>
+                      Try a different filter or search term.
+                    </p>
+                  </div>
+                ) : (
+                  <div className="mp-grid">
+                    {filtered.map((product, i) => (
+                      <MenuItemCard key={product.id} item={product} index={i} />
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }
