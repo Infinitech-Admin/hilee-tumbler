@@ -633,7 +633,7 @@ export default function ProductSection() {
                   color: accent,
                 }}
               >
-                Premium Drinkware
+                {selected.category}
               </div>
 
               <h2
