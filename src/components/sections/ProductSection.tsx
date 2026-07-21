@@ -39,12 +39,19 @@ export default function ProductSection() {
   const [selected, setSelected] = useState<Product | null>(null);
 
   useEffect(() => {
-    fetch("/api/products?paginate=false")
-      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
-      .then((d) => setProducts(Array.isArray(d) ? d : []))
-      .catch((e) => setError(String(e)))
-      .finally(() => setLoading(false));
-  }, []);
+  fetch("/api/products?paginate=false")
+    .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+    .then((d) => {
+      const drinkware = Array.isArray(d)
+        ? d.filter((product) => product.category === "Drinkware")
+        : [];
+
+      setProducts(drinkware);
+    })
+    .catch((e) => setError(String(e)))
+    .finally(() => setLoading(false));
+}, []);
+
 
   const { accent, bg } = THEME;
 
@@ -464,7 +471,7 @@ export default function ProductSection() {
                             marginBottom: "0.25rem",
                           }}
                         >
-                          Premium Drinkware
+                          {product.category}
                         </div>
 
                         <h3
